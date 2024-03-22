@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgottenPassword));
-            panLogin = new Panel();
+            panFP = new Panel();
             lblRegister = new Label();
             lblLogin = new Label();
             btnReveal = new Button();
             tbBSN = new TextBox();
             lblBSN = new Label();
             lblFPHeading = new Label();
-            panLogin.SuspendLayout();
+            panFP.SuspendLayout();
             SuspendLayout();
             // 
-            // panLogin
+            // panFP
             // 
-            panLogin.BackColor = Color.FromArgb(217, 217, 217);
-            panLogin.Controls.Add(lblRegister);
-            panLogin.Controls.Add(lblLogin);
-            panLogin.Controls.Add(btnReveal);
-            panLogin.Controls.Add(tbBSN);
-            panLogin.Controls.Add(lblBSN);
-            panLogin.Controls.Add(lblFPHeading);
-            panLogin.Location = new Point(289, 168);
-            panLogin.Name = "panLogin";
-            panLogin.Size = new Size(461, 367);
-            panLogin.TabIndex = 1;
+            panFP.BackColor = Color.FromArgb(217, 217, 217);
+            panFP.Controls.Add(lblRegister);
+            panFP.Controls.Add(lblLogin);
+            panFP.Controls.Add(btnReveal);
+            panFP.Controls.Add(tbBSN);
+            panFP.Controls.Add(lblBSN);
+            panFP.Controls.Add(lblFPHeading);
+            panFP.Location = new Point(289, 168);
+            panFP.Name = "panFP";
+            panFP.Size = new Size(461, 367);
+            panFP.TabIndex = 1;
             // 
             // lblRegister
             // 
@@ -136,19 +136,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(127, 149, 209);
             ClientSize = new Size(1006, 721);
-            Controls.Add(panLogin);
+            Controls.Add(panFP);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ForgottenPassword";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Forgotten Password";
-            panLogin.ResumeLayout(false);
-            panLogin.PerformLayout();
+            panFP.ResumeLayout(false);
+            panFP.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panLogin;
+        private Panel panFP;
         private Label lblRegister;
         private Label lblLogin;
         private Button btnReveal;
