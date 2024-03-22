@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace recipe
 {
@@ -66,14 +65,6 @@ namespace recipe
                 bsn.Handled = true;
                 MessageBox.Show("Maximum length reached (9 digits)");
             }
-        }
-
-        private void btnReveal_Click(object sender, EventArgs e)
-        {
-            //add logic
-            
-            
-            MessageBox.Show($"BSN was accepted! {username}'s password is {password}!");
         }
     }
 }

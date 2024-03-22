@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -105,10 +104,8 @@ namespace recipe
                 MessageBox.Show("Please select your birthdate");
                 return false;
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -124,11 +121,14 @@ namespace recipe
                 string lastName = tbLastName.Text;
                 DateTime birthdate = dtpBirthdate.Value;
 
-                MessageBox.Show($"Registration successful, {username}!");
-
                 //add logic
 
+                MessageBox.Show("Registration successful!");
                 ClearInput();
+            }
+            else
+            {
+                MessageBox.Show("Please fill in all required fields.");
             }
         }
     }
