@@ -16,7 +16,9 @@ namespace recipe
         public Register()
         {
             InitializeComponent();
+            LoadCbGender();
         }
+
         private void ClearInput()
         {
             tbUsername.Clear();
@@ -28,11 +30,18 @@ namespace recipe
             tbLastName.Clear();
             dtpBirthdate.Value = DateTime.Today;
         }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
         }
-
+        private void LoadCbGender()
+        {
+            foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+            {
+                cbGender.Items.Add(gender);
+            }
+        }
         private void tbBSN_KeyPress(object sender, KeyPressEventArgs bsn)
         {
             if (!char.IsDigit(bsn.KeyChar) && bsn.KeyChar != '\b')
@@ -63,6 +72,7 @@ namespace recipe
         {
             lblLogin.ForeColor = Color.FromArgb(255, 41, 107);
         }
+
         private bool CheckEmptySpaces()
         {
             if (tbUsername.Text == "")
