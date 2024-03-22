@@ -39,13 +39,11 @@ namespace recipe
         {
             lblRegister.ForeColor = Color.FromArgb(255, 41, 107);
         }
-
         public void ClearInput()
         {
             tbUsername.Clear();
             tbPassword.Clear();
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
