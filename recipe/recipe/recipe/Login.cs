@@ -57,17 +57,20 @@ namespace recipe
                 string password = tbPassword.Text;
 
                 // add logic
+
+                MessageBox.Show($"Successfully logged in! Welcome {username}!");
                 ClearInput();
-            }
-            else
-            {
-                MessageBox.Show("Please fill in all required fields.");
             }
         }
 
         private bool CheckEmptySpaces()
         {
-            if (tbUsername.Text == "")
+            if (tbUsername.Text == "" && tbPassword.Text == "")
+            {
+                MessageBox.Show("Please enter all credentials");
+                return false;
+            }
+            else if (tbUsername.Text == "")
             {
                 MessageBox.Show("Please enter your username");
                 return false;
@@ -77,7 +80,10 @@ namespace recipe
                 MessageBox.Show("Please enter your password");
                 return false;
             }
-            return true; 
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace recipe
         public Register()
         {
             InitializeComponent();
+            LoadCbGender();
         }
         private void ClearInput()
         {
@@ -30,6 +31,13 @@ namespace recipe
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearInput();
+        }
+        private void LoadCbGender()
+        {
+            foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+            {
+                cbGender.Items.Add(gender);
+            }
         }
 
         private void tbBSN_KeyPress(object sender, KeyPressEventArgs bsn)
@@ -66,42 +74,42 @@ namespace recipe
         {
             if (tbUsername.Text == "")
             {
-                MessageBox.Show("Please enter your username");
+                MessageBox.Show("Please enter your username.");
                 return false;
             }
             else if (tbPassword.Text == "")
             {
-                MessageBox.Show("Please enter your password");
+                MessageBox.Show("Please enter your password.");
                 return false;
             }
             else if (tbBSN.Text == "")
             {
-                MessageBox.Show("Please enter your BSN");
+                MessageBox.Show("Please enter your BSN.");
                 return false;
             }
             else if (cbGender.SelectedIndex == 0)
             {
-                MessageBox.Show("Please select your gender");
+                MessageBox.Show("Please select your gender.");
                 return false;
             }
             else if (tbEmail.Text == "")
             {
-                MessageBox.Show("Please enter your email");
+                MessageBox.Show("Please enter your email.");
                 return false;
             }
             else if (tbFirstName.Text == "")
             {
-                MessageBox.Show("Please enter your first name");
+                MessageBox.Show("Please enter your first name.");
                 return false;
             }
             else if (tbLastName.Text == "")
             {
-                MessageBox.Show("Please enter your last name");
+                MessageBox.Show("Please enter your last name.");
                 return false;
             }
             else if (dtpBirthdate.Value == DateTime.Today)
             {
-                MessageBox.Show("Please select your birthdate");
+                MessageBox.Show("Please select your birthdate.");
                 return false;
             }
 
@@ -123,12 +131,9 @@ namespace recipe
 
                 //add logic
 
-                MessageBox.Show("Registration successful!");
+                MessageBox.Show($"Registration successful!\n" +
+                    $"Welcome to the company, {firstName} {lastName}!");
                 ClearInput();
-            }
-            else
-            {
-                MessageBox.Show("Please fill in all required fields.");
             }
         }
     }

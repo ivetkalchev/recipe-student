@@ -180,7 +180,7 @@
             lblLoginHeading.AutoSize = true;
             lblLoginHeading.Font = new Font("Segoe UI", 25F, FontStyle.Bold);
             lblLoginHeading.ForeColor = Color.FromArgb(255, 41, 107);
-            lblLoginHeading.Location = new Point(46, 62);
+            lblLoginHeading.Location = new Point(46, 69);
             lblLoginHeading.Name = "lblLoginHeading";
             lblLoginHeading.Size = new Size(363, 114);
             lblLoginHeading.TabIndex = 0;

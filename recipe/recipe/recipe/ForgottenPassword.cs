@@ -58,12 +58,27 @@ namespace recipe
             if (!char.IsDigit(bsn.KeyChar) && bsn.KeyChar != '\b')
             {
                 bsn.Handled = true;
-                MessageBox.Show("Please enter only numbers");
+                MessageBox.Show("Please enter only numbers.");
             }
             else if (tbBSN.Text.Length >= 9 && bsn.KeyChar != '\b')
             {
                 bsn.Handled = true;
-                MessageBox.Show("Maximum length reached (9 digits)");
+                MessageBox.Show("Maximum length reached (9 digits).");
+            }
+        }
+
+        private void btnReveal_Click(object sender, EventArgs e)
+        {
+            if (tbBSN.Text == "")
+            {
+                MessageBox.Show("Enter your password.");
+            }
+            else 
+            {
+                //add logic 
+
+                /*MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
+                    $"The password of {username} is {password}.");*/
             }
         }
     }

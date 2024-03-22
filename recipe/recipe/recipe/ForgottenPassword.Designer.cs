@@ -97,6 +97,7 @@
             btnReveal.TabIndex = 6;
             btnReveal.Text = "Reveal password";
             btnReveal.UseVisualStyleBackColor = false;
+            btnReveal.Click += btnReveal_Click;
             // 
             // tbBSN
             // 
