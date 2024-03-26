@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             panRegister = new Panel();
+            cbGender = new ComboBox();
             dtpBirthdate = new DateTimePicker();
             lblBirthdate = new Label();
             tbLastName = new TextBox();
@@ -38,7 +39,6 @@
             lbFirstName = new Label();
             tbEmail = new TextBox();
             lblEmail = new Label();
-            cbGender = new ComboBox();
             lblGender = new Label();
             tbBSN = new TextBox();
             lblBSN = new Label();
@@ -57,6 +57,7 @@
             // panRegister
             // 
             panRegister.BackColor = Color.FromArgb(217, 217, 217);
+            panRegister.Controls.Add(cbGender);
             panRegister.Controls.Add(dtpBirthdate);
             panRegister.Controls.Add(lblBirthdate);
             panRegister.Controls.Add(tbLastName);
@@ -65,7 +66,6 @@
             panRegister.Controls.Add(lbFirstName);
             panRegister.Controls.Add(tbEmail);
             panRegister.Controls.Add(lblEmail);
-            panRegister.Controls.Add(cbGender);
             panRegister.Controls.Add(lblGender);
             panRegister.Controls.Add(tbBSN);
             panRegister.Controls.Add(lblBSN);
@@ -83,12 +83,21 @@
             panRegister.Size = new Size(839, 595);
             panRegister.TabIndex = 1;
             // 
+            // cbGender
+            // 
+            cbGender.Font = new Font("Segoe UI", 12F);
+            cbGender.FormattingEnabled = true;
+            cbGender.Location = new Point(48, 391);
+            cbGender.Name = "cbGender";
+            cbGender.Size = new Size(360, 36);
+            cbGender.TabIndex = 22;
+            // 
             // dtpBirthdate
             // 
-            dtpBirthdate.Font = new Font("Segoe UI", 12F);
-            dtpBirthdate.Location = new Point(437, 389);
+            dtpBirthdate.Font = new Font("Segoe UI", 13F);
+            dtpBirthdate.Location = new Point(437, 391);
             dtpBirthdate.Name = "dtpBirthdate";
-            dtpBirthdate.Size = new Size(360, 34);
+            dtpBirthdate.Size = new Size(360, 36);
             dtpBirthdate.TabIndex = 21;
             // 
             // lblBirthdate
@@ -158,15 +167,6 @@
             lblEmail.Size = new Size(69, 30);
             lblEmail.TabIndex = 14;
             lblEmail.Text = "Email";
-            // 
-            // cbGender
-            // 
-            cbGender.Font = new Font("Segoe UI", 12F);
-            cbGender.FormattingEnabled = true;
-            cbGender.Location = new Point(48, 389);
-            cbGender.Name = "cbGender";
-            cbGender.Size = new Size(360, 36);
-            cbGender.TabIndex = 13;
             // 
             // lblGender
             // 
@@ -349,7 +349,7 @@
         private Label lbFirstName;
         private TextBox tbEmail;
         private Label lblEmail;
-        private ComboBox cbGender;
         private Label lblGender;
+        private ComboBox cbGender;
     }
 }

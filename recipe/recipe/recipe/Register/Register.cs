@@ -1,0 +1,239 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+
+namespace recipe
+{
+
+    public partial class Register : Form
+    {
+        SqlConnection connection = new SqlConnection("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
+
+        public Register()
+        {
+            InitializeComponent();
+            LoadCbGender();
+        }
+        private void ClearInput()
+        {
+            tbUsername.Clear();
+            tbPassword.Clear();
+            tbBSN.Clear();
+            cbGender.SelectedIndex = 0;
+            tbEmail.Clear();
+            tbFirstName.Clear();
+            tbLastName.Clear();
+            dtpBirthdate.Value = DateTime.Today;
+        }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearInput();
+        }
+        private void LoadCbGender()
+        {
+            foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+            {
+                cbGender.Items.Add(gender);
+            }
+        }
+
+        private void tbBSN_KeyPress(object sender, KeyPressEventArgs bsn)
+        {
+            if (!char.IsDigit(bsn.KeyChar) && bsn.KeyChar != '\b')
+            {
+                bsn.Handled = true;
+                MessageBox.Show("Please enter only numbers");
+            }
+            else if (tbBSN.Text.Length >= 9 && bsn.KeyChar != '\b')
+            {
+                bsn.Handled = true;
+                MessageBox.Show("Maximum length reached (9 digits)");
+            }
+        }
+
+        private void lblLogin_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
+            this.Close();
+        }
+
+        private void lblLogin_MouseHover(object sender, EventArgs e)
+        {
+            lblLogin.ForeColor = Color.FromArgb(255, 130, 169);
+        }
+
+        private void lblLogin_MouseLeave(object sender, EventArgs e)
+        {
+            lblLogin.ForeColor = Color.FromArgb(255, 41, 107);
+        }
+        private bool CheckEmptySpaces()
+        {
+            if (tbUsername.Text == "")
+            {
+                MessageBox.Show("Please enter your username.");
+                return false;
+            }
+            else if (tbPassword.Text == "")
+            {
+                MessageBox.Show("Please enter your password.");
+                return false;
+            }
+            else if (tbBSN.Text == "")
+            {
+                MessageBox.Show("Please enter your BSN.");
+                return false;
+            }
+            else if (tbBSN.Text.Length < 7)
+            {
+                MessageBox.Show("BSN must be at least 8 characters long.");
+                return false;
+            }
+            else if (cbGender.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select your gender.");
+                return false;
+            }
+            else if (tbEmail.Text == "")
+            {
+                MessageBox.Show("Please enter your email.");
+                return false;
+            }
+            else if (tbFirstName.Text == "")
+            {
+                MessageBox.Show("Please enter your first name.");
+                return false;
+            }
+            else if (tbLastName.Text == "")
+            {
+                MessageBox.Show("Please enter your last name.");
+                return false;
+            }
+            else if (dtpBirthdate.Value.Date == DateTime.Today)
+            {
+                MessageBox.Show("Please select a valid birthdate.");
+                return false;
+            }
+            return true;
+        }
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CheckEmptySpaces())
+                {
+                    string username = tbUsername.Text;
+                    string password = tbPassword.Text;
+                    string bsn = tbBSN.Text;
+                    string gender = cbGender.SelectedItem.ToString();
+                    string email = tbEmail.Text;
+                    string firstName = tbFirstName.Text;
+                    string lastName = tbLastName.Text;
+                    DateTime birthdate = dtpBirthdate.Value;
+
+                    // Open connection
+                    connection.Open();
+
+                    // Check if BSN already exists
+                    SqlCommand checkBSNCommand = new SqlCommand("SELECT COUNT(*) FROM RegisterTbl WHERE BSN = @BSN", connection);
+                    checkBSNCommand.Parameters.AddWithValue("@BSN", bsn);
+                    int existingBSNCount = (int)checkBSNCommand.ExecuteScalar();
+
+                    if (existingBSNCount > 0)
+                    {
+                        MessageBox.Show("BSN already exists. Please choose a different one.");
+                        return; // Exit the method without inserting the record
+                    }
+
+                    // Check if username already exists
+                    SqlCommand checkUsernameCommand = new SqlCommand("SELECT COUNT(*) FROM RegisterTbl WHERE Username = @Username", connection);
+                    checkUsernameCommand.Parameters.AddWithValue("@Username", username);
+                    int existingUserCount = (int)checkUsernameCommand.ExecuteScalar();
+
+                    if (existingUserCount > 0)
+                    {
+                        MessageBox.Show("Username already exists. Please choose a different one.");
+                        return; // Exit the method without inserting the record
+                    }
+
+                    // Prepare SQL command
+                    string sql = @"INSERT INTO RegisterTbl (Username, Password, BSN, Gender, Email, FirstName, LastName, Birthdate)
+                           VALUES (@Username, @Password, @BSN, @Gender, @Email, @FirstName, @LastName, @Birthdate)";
+                    SqlCommand insertCommand = new SqlCommand(sql, connection);
+                    insertCommand.Parameters.AddWithValue("@Username", username);
+                    insertCommand.Parameters.AddWithValue("@Password", password);
+                    insertCommand.Parameters.AddWithValue("@BSN", bsn);
+                    insertCommand.Parameters.AddWithValue("@Gender", gender);
+                    insertCommand.Parameters.AddWithValue("@Email", email);
+                    insertCommand.Parameters.AddWithValue("@FirstName", firstName);
+                    insertCommand.Parameters.AddWithValue("@LastName", lastName);
+                    insertCommand.Parameters.AddWithValue("@Birthdate", birthdate);
+
+                    // Execute command
+                    insertCommand.ExecuteNonQuery();
+
+                    MessageBox.Show($"Registration successful!\n" +
+                        $"Welcome to the company, {firstName} {lastName}!");
+                    ClearInput();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        /*private void btnRegister_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CheckEmptySpaces())
+                {
+                    string username = tbUsername.Text;
+                    string password = tbPassword.Text;
+                    string bsn = tbBSN.Text;
+                    string gender = cbGender.SelectedItem.ToString();
+                    string email = tbEmail.Text;
+                    string firstName = tbFirstName.Text;
+                    string lastName = tbLastName.Text;
+                DateTime birthdate = dtpBirthdate.Value;
+
+                          DataAccess dataAccess = new DataAccess("connectionString");
+
+                    if (dataAccess.UsernameExists(username))
+                    {
+                        MessageBox.Show("Username already exists. Choose a different one.");
+                        return;
+                    }
+
+                    if (dataAccess.BSNExists(bsn))
+                    {
+                        MessageBox.Show("BSN already exists. Choose a different one.");
+                        return;
+                    }
+
+                    dataAccess.InsertUser(username, password, bsn, gender, email, firstName, lastName, birthdate);
+
+                    MessageBox.Show($"Registration successful!\n" +
+                        $"Welcome to the company, {firstName} {lastName}!");
+                    ClearInput();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }*/
+    }
+}

@@ -50,7 +50,6 @@ namespace recipe
         private void lblRegister_MouseLeave(object sender, EventArgs e)
         {
             lblRegister.ForeColor = Color.FromArgb(255, 41, 107);
-
         }
 
         private void tbBSN_KeyPress(object sender, KeyPressEventArgs bsn)
@@ -76,7 +75,7 @@ namespace recipe
             else 
             {
                 //add logic 
-
+                
                 /*MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
                     $"The password of {username} is {password}.");*/
             }
