@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             panRegister = new Panel();
+            tbFirstName = new TextBox();
             cbGender = new ComboBox();
             dtpBirthdate = new DateTimePicker();
             lblBirthdate = new Label();
             tbLastName = new TextBox();
             lblLastName = new Label();
-            tbFirstName = new TextBox();
             lbFirstName = new Label();
             tbEmail = new TextBox();
             lblEmail = new Label();
@@ -57,12 +57,12 @@
             // panRegister
             // 
             panRegister.BackColor = Color.FromArgb(217, 217, 217);
+            panRegister.Controls.Add(tbFirstName);
             panRegister.Controls.Add(cbGender);
             panRegister.Controls.Add(dtpBirthdate);
             panRegister.Controls.Add(lblBirthdate);
             panRegister.Controls.Add(tbLastName);
             panRegister.Controls.Add(lblLastName);
-            panRegister.Controls.Add(tbFirstName);
             panRegister.Controls.Add(lbFirstName);
             panRegister.Controls.Add(tbEmail);
             panRegister.Controls.Add(lblEmail);
@@ -82,6 +82,14 @@
             panRegister.Name = "panRegister";
             panRegister.Size = new Size(839, 595);
             panRegister.TabIndex = 1;
+            // 
+            // tbFirstName
+            // 
+            tbFirstName.Font = new Font("Segoe UI", 12F);
+            tbFirstName.Location = new Point(437, 225);
+            tbFirstName.Name = "tbFirstName";
+            tbFirstName.Size = new Size(360, 34);
+            tbFirstName.TabIndex = 23;
             // 
             // cbGender
             // 
@@ -129,14 +137,6 @@
             lblLastName.Size = new Size(122, 30);
             lblLastName.TabIndex = 18;
             lblLastName.Text = "Last Name";
-            // 
-            // tbFirstName
-            // 
-            tbFirstName.Font = new Font("Segoe UI", 12F);
-            tbFirstName.Location = new Point(437, 225);
-            tbFirstName.Name = "tbFirstName";
-            tbFirstName.Size = new Size(360, 34);
-            tbFirstName.TabIndex = 17;
             // 
             // lbFirstName
             // 
@@ -345,11 +345,11 @@
         private Label lblBirthdate;
         private TextBox tbLastName;
         private Label lblLastName;
-        private TextBox tbFirstName;
         private Label lbFirstName;
         private TextBox tbEmail;
         private Label lblEmail;
         private Label lblGender;
         private ComboBox cbGender;
+        private TextBox tbFirstName;
     }
 }

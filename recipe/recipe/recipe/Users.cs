@@ -56,24 +56,5 @@ namespace recipe
             get { return lastName; }
             set { lastName = value; }
         }
-
-        public void Login()
-        {
-            MessageBox.Show("Logging in...");
-            //add logic
-        }
-
-        public void Register()
-        {
-            MessageBox.Show("Registering...");
-            id = ++lastAssignedIdUser;
-            //add logic
-        }
-
-        public void ResetPassword()
-        {
-            MessageBox.Show("Resetting password...");
-            //add logic
-        }
     }
 }

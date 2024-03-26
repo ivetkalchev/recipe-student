@@ -1,3 +1,5 @@
+using System.Data.SqlClient;
+
 namespace recipe
 {
     public partial class Login : Form
@@ -56,12 +58,44 @@ namespace recipe
                 string username = tbUsername.Text;
                 string password = tbPassword.Text;
 
-                // add logic
+                try
+                {
+                    // Open connection
+                    using (SqlConnection connection = new SqlConnection("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False"))
+                    {
+                        connection.Open();
 
-                MessageBox.Show($"Successfully logged in! Welcome {username}!");
-                ClearInput();
+                        // Check if username and password match
+                        string query = "SELECT COUNT(*) FROM RegisterTbl WHERE Username = @Username AND Password = @Password";
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            command.Parameters.AddWithValue("@Username", username);
+                            command.Parameters.AddWithValue("@Password", password);
+
+                            int count = (int)command.ExecuteScalar();
+                            if (count > 0)
+                            {
+                                MessageBox.Show($"Successfully logged in! Welcome {username}!");
+
+                                Homepage homepage = new Homepage();
+                                homepage.Show();
+
+                                ClearInput();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid username or password. Please try again.");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
             }
         }
+
 
         private bool CheckEmptySpaces()
         {

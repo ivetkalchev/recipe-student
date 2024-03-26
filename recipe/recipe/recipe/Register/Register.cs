@@ -181,6 +181,10 @@ namespace recipe
 
                     MessageBox.Show($"Registration successful!\n" +
                         $"Welcome to the company, {firstName} {lastName}!");
+
+                    Homepage homepage = new Homepage();
+                    homepage.Show();
+
                     ClearInput();
                 }
             }

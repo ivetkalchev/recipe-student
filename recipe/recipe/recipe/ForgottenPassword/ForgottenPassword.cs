@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -68,17 +69,51 @@ namespace recipe
 
         private void btnReveal_Click(object sender, EventArgs e)
         {
-            if (tbBSN.Text == "")
+            string bsn = tbBSN.Text;
+
+            if (string.IsNullOrEmpty(bsn))
             {
-                MessageBox.Show("Enter your password.");
+                MessageBox.Show("Please enter your BSN.");
+                return;
             }
-            else 
+
+            try
             {
-                //add logic 
-                
-                /*MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
-                    $"The password of {username} is {password}.");*/
+                // Open connection
+                using (SqlConnection connection = new SqlConnection("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False"))
+                {
+                    connection.Open();
+
+                    // Check if BSN exists
+                    string query = "SELECT Username, Password, FirstName, LastName FROM RegisterTbl WHERE BSN = @BSN";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@BSN", bsn);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string username = reader["Username"].ToString();
+                                string password = reader["Password"].ToString();
+                                string firstName = reader["FirstName"].ToString();
+                                string lastName = reader["LastName"].ToString();
+
+                                MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
+                                                $"The password of {username} is {password}.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("No user found with this BSN.");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
+
     }
 }
