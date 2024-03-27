@@ -23,14 +23,12 @@ namespace recipe
         {
             Register register = new Register();
             register.ShowDialog();
-            this.Close();
         }
 
         private void lblLogin_Click(object sender, EventArgs e)
         {
             Login login = new Login();
             login.ShowDialog();
-            this.Close();
         }
 
         private void lblLogin_MouseHover(object sender, EventArgs e)

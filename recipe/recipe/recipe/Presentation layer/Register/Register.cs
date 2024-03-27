@@ -62,7 +62,6 @@ namespace recipe
         {
             Login login = new Login();
             login.ShowDialog();
-            this.Close();
         }
 
         private void lblLogin_MouseHover(object sender, EventArgs e)
@@ -76,6 +75,9 @@ namespace recipe
         }
         private bool CheckEmptySpaces()
         {
+            DateTime today = DateTime.Today;
+            DateTime minBirthdate = today.AddYears(-14);
+
             if (tbUsername.Text == "")
             {
                 MessageBox.Show("Please enter your username.");
@@ -106,9 +108,19 @@ namespace recipe
                 MessageBox.Show("Please enter your email.");
                 return false;
             }
+            else if (!tbEmail.Text.Contains("@"))
+            {
+                MessageBox.Show("Add @ to the email.");
+                return false;
+            }
             else if (tbFirstName.Text == "")
             {
                 MessageBox.Show("Please enter your first name.");
+                return false;
+            }
+            else if (ContainsDigitsOrSymbols(tbFirstName.Text))
+            {
+                MessageBox.Show("First name should not contain numbers.");
                 return false;
             }
             else if (tbLastName.Text == "")
@@ -116,12 +128,28 @@ namespace recipe
                 MessageBox.Show("Please enter your last name.");
                 return false;
             }
-            else if (dtpBirthdate.Value.Date == DateTime.Today)
+            else if (ContainsDigitsOrSymbols(tbLastName.Text))
             {
-                MessageBox.Show("Please select a valid birthdate.");
+                MessageBox.Show("Last name should not contain numbers.");
+                return false;
+            }
+            else if (dtpBirthdate.Value.Date > minBirthdate)
+            {
+                MessageBox.Show("Please select a valid birthdate (at least 14 years).");
                 return false;
             }
             return true;
+        }
+        bool ContainsDigitsOrSymbols(string input)
+        {
+            foreach (char c in input)
+            {
+                if (char.IsDigit(c) || char.IsSymbol(c) || char.IsPunctuation(c))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {

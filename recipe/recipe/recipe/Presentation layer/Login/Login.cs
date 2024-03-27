@@ -13,13 +13,11 @@ namespace recipe
         {
             ForgottenPassword forgottenPassword = new ForgottenPassword();
             forgottenPassword.ShowDialog();
-            this.Close();
         }
         private void lblRegister_Click(object sender, EventArgs e)
         {
             Register register = new Register();
             register.ShowDialog();
-            this.Close();
         }
 
         private void lblForgottenPassword_MouseHover(object sender, EventArgs e)
