@@ -1,0 +1,11 @@
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\bin\Debug\net8.0\data_access.deps.json
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\bin\Debug\net8.0\data_access.dll
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\bin\Debug\net8.0\data_access.pdb
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.AssemblyInfoInputs.cache
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.AssemblyInfo.cs
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.csproj.CoreCompileInputs.cache
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.dll
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\refint\data_access.dll
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.pdb
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\ref\data_access.dll
