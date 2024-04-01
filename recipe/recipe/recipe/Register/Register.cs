@@ -7,19 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using data_access;
 
 namespace recipe
 {
-
     public partial class Register : Form
     {
-        SqlConnection connection = new SqlConnection("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
-
+        private DataRegister dbRegister;
         public Register()
         {
             InitializeComponent();
             LoadCbGender();
+            dbRegister = new DataRegister("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
         private void ClearInput()
         {
@@ -166,46 +165,21 @@ namespace recipe
                     string lastName = tbLastName.Text;
                     DateTime birthdate = dtpBirthdate.Value;
 
-                    // Open connection
-                    connection.Open();
+                    dbRegister.OpenConnection();
 
-                    // Check if BSN already exists
-                    SqlCommand checkBSNCommand = new SqlCommand("SELECT COUNT(*) FROM RegisterTbl WHERE BSN = @BSN", connection);
-                    checkBSNCommand.Parameters.AddWithValue("@BSN", bsn);
-                    int existingBSNCount = (int)checkBSNCommand.ExecuteScalar();
-
-                    if (existingBSNCount > 0)
+                    if (dbRegister.IsBSNExists(bsn))
                     {
                         MessageBox.Show("BSN already exists. Please choose a different one.");
-                        return; // Exit the method without inserting the record
+                        return;
                     }
 
-                    // Check if username already exists
-                    SqlCommand checkUsernameCommand = new SqlCommand("SELECT COUNT(*) FROM RegisterTbl WHERE Username = @Username", connection);
-                    checkUsernameCommand.Parameters.AddWithValue("@Username", username);
-                    int existingUserCount = (int)checkUsernameCommand.ExecuteScalar();
-
-                    if (existingUserCount > 0)
+                    if (dbRegister.IsUsernameExists(username))
                     {
                         MessageBox.Show("Username already exists. Please choose a different one.");
-                        return; // Exit the method without inserting the record
+                        return;
                     }
 
-                    // Prepare SQL command
-                    string sql = @"INSERT INTO RegisterTbl (Username, Password, BSN, Gender, Email, FirstName, LastName, Birthdate)
-                           VALUES (@Username, @Password, @BSN, @Gender, @Email, @FirstName, @LastName, @Birthdate)";
-                    SqlCommand insertCommand = new SqlCommand(sql, connection);
-                    insertCommand.Parameters.AddWithValue("@Username", username);
-                    insertCommand.Parameters.AddWithValue("@Password", password);
-                    insertCommand.Parameters.AddWithValue("@BSN", bsn);
-                    insertCommand.Parameters.AddWithValue("@Gender", gender);
-                    insertCommand.Parameters.AddWithValue("@Email", email);
-                    insertCommand.Parameters.AddWithValue("@FirstName", firstName);
-                    insertCommand.Parameters.AddWithValue("@LastName", lastName);
-                    insertCommand.Parameters.AddWithValue("@Birthdate", birthdate);
-
-                    // Execute command
-                    insertCommand.ExecuteNonQuery();
+                    dbRegister.InsertUser(username, password, bsn, gender, email, firstName, lastName, birthdate);
 
                     MessageBox.Show($"Registration successful!\n" +
                         $"Welcome to the company, {firstName} {lastName}!");
@@ -222,7 +196,7 @@ namespace recipe
             }
             finally
             {
-                connection.Close();
+                dbRegister.CloseConnection();
             }
         }
     }

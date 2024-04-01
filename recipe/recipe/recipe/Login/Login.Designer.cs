@@ -188,11 +188,13 @@
             // 
             // Login
             // 
+            AccessibleRole = AccessibleRole.Sound;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(127, 149, 209);
             ClientSize = new Size(1006, 721);
             Controls.Add(panLogin);
+            FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;

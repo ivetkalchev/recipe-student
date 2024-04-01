@@ -163,6 +163,9 @@
       "data_access/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.6"
+        },
         "compile": {
           "bin/placeholder/data_access.dll": {}
         },

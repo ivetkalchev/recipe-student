@@ -4,9 +4,11 @@ namespace recipe
 {
     public partial class Login : Form
     {
+        private DataLogin dbLogin;
         public Login()
         {
             InitializeComponent();
+            dbLogin = new DataLogin("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
 
         private void lblForgottenPassword_Click(object sender, EventArgs e)
@@ -58,33 +60,18 @@ namespace recipe
 
                 try
                 {
-                    // Open connection
-                    using (SqlConnection connection = new SqlConnection("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False"))
+                    if (dbLogin.CheckLoginCredentials(username, password))
                     {
-                        connection.Open();
+                        MessageBox.Show($"Successfully logged in! Welcome {username}!");
 
-                        // Check if username and password match
-                        string query = "SELECT COUNT(*) FROM RegisterTbl WHERE Username = @Username AND Password = @Password";
-                        using (SqlCommand command = new SqlCommand(query, connection))
-                        {
-                            command.Parameters.AddWithValue("@Username", username);
-                            command.Parameters.AddWithValue("@Password", password);
+                        Homepage homepage = new Homepage();
+                        homepage.Show();
 
-                            int count = (int)command.ExecuteScalar();
-                            if (count > 0)
-                            {
-                                MessageBox.Show($"Successfully logged in! Welcome {username}!");
-
-                                Homepage homepage = new Homepage();
-                                homepage.Show();
-
-                                ClearInput();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Invalid username or password. Please try again.");
-                            }
-                        }
+                        ClearInput();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid username or password. Please try again.");
                     }
                 }
                 catch (Exception ex)
@@ -93,8 +80,6 @@ namespace recipe
                 }
             }
         }
-
-
         private bool CheckEmptySpaces()
         {
             if (tbUsername.Text == "" && tbPassword.Text == "")

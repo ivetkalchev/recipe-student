@@ -9,14 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using data_access;
 
 namespace recipe
 {
     public partial class ForgottenPassword : Form
     {
+        private DataForgottenPassword dbFP;
         public ForgottenPassword()
         {
             InitializeComponent();
+            dbFP = new DataForgottenPassword("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
 
         private void lblRegister_Click(object sender, EventArgs e)
@@ -77,34 +80,21 @@ namespace recipe
 
             try
             {
-                // Open connection
-                using (SqlConnection connection = new SqlConnection("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False"))
+                var userData = dbFP.GetUserDataByBSN(bsn);
+
+                if (userData != (null, null, null, null))
                 {
-                    connection.Open();
+                    string username = userData.Username;
+                    string password = userData.Password;
+                    string firstName = userData.FirstName;
+                    string lastName = userData.LastName;
 
-                    // Check if BSN exists
-                    string query = "SELECT Username, Password, FirstName, LastName FROM RegisterTbl WHERE BSN = @BSN";
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@BSN", bsn);
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                string username = reader["Username"].ToString();
-                                string password = reader["Password"].ToString();
-                                string firstName = reader["FirstName"].ToString();
-                                string lastName = reader["LastName"].ToString();
-
-                                MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
-                                                $"The password of {username} is {password}.");
-                            }
-                            else
-                            {
-                                MessageBox.Show("No user found with this BSN.");
-                            }
-                        }
-                    }
+                    MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
+                                    $"The password of {username} is {password}.");
+                }
+                else
+                {
+                    MessageBox.Show("No user found with this BSN.");
                 }
             }
             catch (Exception ex)
@@ -112,6 +102,5 @@ namespace recipe
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-
     }
 }

@@ -9,3 +9,4 @@ C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_acces
 C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\refint\data_access.dll
 C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.pdb
 C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\ref\data_access.dll
+C:\Users\ivetk\Desktop\ind\recipe\recipe\data_access\obj\Debug\net8.0\data_access.csproj.AssemblyReference.cache
