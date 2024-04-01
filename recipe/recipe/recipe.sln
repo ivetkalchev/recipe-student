@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "data_access", "data_access\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "recipe_desktop", "..\..\..\recipe_desktop\recipe_desktop.csproj", "{A1456AA2-7264-4D13-B848-BC74252E4624}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic_layer", "logic_layer\logic_layer.csproj", "{772689EF-A5ED-43CB-BCDF-267AC0148B7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recipe_website", "recipe_website\recipe_website.csproj", "{5C8E81A5-CA54-495C-8A57-D4E82F5C8CCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A1456AA2-7264-4D13-B848-BC74252E4624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1456AA2-7264-4D13-B848-BC74252E4624}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1456AA2-7264-4D13-B848-BC74252E4624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{772689EF-A5ED-43CB-BCDF-267AC0148B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{772689EF-A5ED-43CB-BCDF-267AC0148B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{772689EF-A5ED-43CB-BCDF-267AC0148B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{772689EF-A5ED-43CB-BCDF-267AC0148B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C8E81A5-CA54-495C-8A57-D4E82F5C8CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C8E81A5-CA54-495C-8A57-D4E82F5C8CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C8E81A5-CA54-495C-8A57-D4E82F5C8CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C8E81A5-CA54-495C-8A57-D4E82F5C8CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
