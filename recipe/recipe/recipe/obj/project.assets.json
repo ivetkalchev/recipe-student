@@ -147,19 +147,6 @@
           }
         }
       },
-      "business_layer/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "data_access": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/business_layer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/business_layer.dll": {}
-        }
-      },
       "data_access/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -489,11 +476,6 @@
         "version.txt"
       ]
     },
-    "business_layer/1.0.0": {
-      "type": "project",
-      "path": "../business_layer/business_layer.csproj",
-      "msbuildProject": "../business_layer/business_layer.csproj"
-    },
     "data_access/1.0.0": {
       "type": "project",
       "path": "../data_access/data_access.csproj",
@@ -503,7 +485,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
       "System.Data.SqlClient >= 4.8.6",
-      "business_layer >= 1.0.0"
+      "data_access >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -512,9 +494,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\recipe\\recipe.csproj",
-      "projectName": "recipe",
-      "projectPath": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\recipe\\recipe.csproj",
+      "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\recipe\\recipe_desktop.csproj",
+      "projectName": "recipe_desktop",
+      "projectPath": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\recipe\\recipe_desktop.csproj",
       "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\recipe\\obj\\",
       "projectStyle": "PackageReference",
@@ -533,8 +515,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\business_layer\\business_layer.csproj": {
-              "projectPath": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\business_layer\\business_layer.csproj"
+            "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\data_access\\data_access.csproj": {
+              "projectPath": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\data_access\\data_access.csproj"
             }
           }
         }

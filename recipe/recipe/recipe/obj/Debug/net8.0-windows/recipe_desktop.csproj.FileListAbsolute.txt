@@ -1,0 +1,10 @@
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe_desktop.csproj.AssemblyReference.cache
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe.ForgottenPassword.resources
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe.Homepage.resources
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe.Login.resources
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe.Register.resources
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe_desktop.csproj.GenerateResource.cache
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe_desktop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe_desktop.AssemblyInfoInputs.cache
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe_desktop.AssemblyInfo.cs
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe\obj\Debug\net8.0-windows\recipe_desktop.csproj.CoreCompileInputs.cache

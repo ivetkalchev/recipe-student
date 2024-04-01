@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace recipe
+namespace data_access
 {
     public class DataLogin
     {

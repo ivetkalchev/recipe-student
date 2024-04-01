@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\business_layer\business_layer.csproj" />
+    <ProjectReference Include="..\data_access\data_access.csproj" />
+    <ProjectReference Include="..\logic_layer\logic_layer.csproj" />
   </ItemGroup>
 
 </Project>
