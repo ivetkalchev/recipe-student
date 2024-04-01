@@ -1,5 +1,0 @@
-C:\Users\ivetk\Desktop\ind\recipe\recipe\business_layer\obj\Debug\net8.0\business_layer.csproj.AssemblyReference.cache
-C:\Users\ivetk\Desktop\ind\recipe\recipe\business_layer\obj\Debug\net8.0\business_layer.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\ivetk\Desktop\ind\recipe\recipe\business_layer\obj\Debug\net8.0\business_layer.AssemblyInfoInputs.cache
-C:\Users\ivetk\Desktop\ind\recipe\recipe\business_layer\obj\Debug\net8.0\business_layer.AssemblyInfo.cs
-C:\Users\ivetk\Desktop\ind\recipe\recipe\business_layer\obj\Debug\net8.0\business_layer.csproj.CoreCompileInputs.cache

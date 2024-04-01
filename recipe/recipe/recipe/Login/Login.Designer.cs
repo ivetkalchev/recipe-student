@@ -194,7 +194,7 @@
             BackColor = Color.FromArgb(127, 149, 209);
             ClientSize = new Size(1006, 721);
             Controls.Add(panLogin);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
