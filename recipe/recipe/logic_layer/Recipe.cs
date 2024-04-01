@@ -103,13 +103,10 @@ namespace recipe
             TimeRequired = newTimeRequired;
             DietaryRestriction = newDietaryRestriction;
             Budget = newBudget;
-
-            MessageBox.Show("Recipe edited successfully.");
         }
 
         public void DeleteRecipe()
         {
-            MessageBox.Show("Recipe deleted successfully.");
         }
 
     }

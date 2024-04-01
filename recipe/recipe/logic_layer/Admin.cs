@@ -49,7 +49,6 @@ namespace recipe
                              $"Number of approved recipes: {totalApproved}\n" +
                              $"Number of denied recipes: {totalDenied}";
 
-            MessageBox.Show(message, "Recipe Analytics", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }

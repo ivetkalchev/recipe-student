@@ -33,7 +33,7 @@ namespace recipe
             recipes.Add(recipe);
         }
 
-        public void GenerateShoppingList()
+        /*public void GenerateShoppingList()
         {
             shoppingList.Clear();
 
@@ -52,7 +52,7 @@ namespace recipe
                     }
                 }
             }
-        }
+        }*/
 
     }
 }
