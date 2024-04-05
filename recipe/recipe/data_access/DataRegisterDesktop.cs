@@ -6,11 +6,11 @@ using System.Text;
 
 namespace data_access
 {
-    public class DataRegister
+    public class DataRegisterDesktop
     {
         private SqlConnection connection;
 
-        public DataRegister(string connectionString)
+        public DataRegisterDesktop(string connectionString)
         {
             connection = new SqlConnection(connectionString);
         }
@@ -58,14 +58,15 @@ namespace data_access
             string salt = GenerateSalt();
             string hashedPassword = HashPassword(password, salt);
 
-            string sql = @"INSERT INTO [User] (role, username, password, salt, email)
-                           VALUES (@Role, @Username, @Password, @Salt, @Email);
-                           INSERT INTO CompanyUser (firstName, lastName, bsn, gender, birthDate, id)
-                           VALUES (@FirstName, @LastName, @BSN, @Gender, @Birthdate, SCOPE_IDENTITY())";
+            string sql = @"INSERT INTO [User] (role, username, password, hashedPassword, salt, email)
+                   VALUES (@Role, @Username, @Password, @HashedPassword, @Salt, @Email);
+                   INSERT INTO CompanyUser (firstName, lastName, bsn, gender, birthDate, id)
+                   VALUES (@FirstName, @LastName, @BSN, @Gender, @Birthdate, SCOPE_IDENTITY())";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@Role", "desktopUser");
             command.Parameters.AddWithValue("@Username", username);
-            command.Parameters.AddWithValue("@Password", hashedPassword);
+            command.Parameters.AddWithValue("@Password", password);
+            command.Parameters.AddWithValue("@HashedPassword", hashedPassword);
             command.Parameters.AddWithValue("@Salt", salt);
             command.Parameters.AddWithValue("@Email", email);
             command.Parameters.AddWithValue("@FirstName", firstName);

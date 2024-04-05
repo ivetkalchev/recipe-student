@@ -9,7 +9,7 @@ namespace logic_layer
     public class WebUser : User
     {
         private List<Recipe> favourites;
-        public WebUser(int id, string username, string password, string email) : base(id, username, password, email)
+        public WebUser(int id, string username, string password, string email) : base(0, username, password, email)
         {
             favourites = new List<Recipe>();
         }

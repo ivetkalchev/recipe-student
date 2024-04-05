@@ -21,9 +21,9 @@ namespace data_access
                     connection.Open();
 
                     string query = @"SELECT U.username, U.password, CU.firstName, CU.lastName 
-                                     FROM [User] U 
-                                     JOIN CompanyUser CU ON U.id = CU.id 
-                                     WHERE CU.bsn = @BSN";
+                             FROM [User] U 
+                             JOIN CompanyUser CU ON U.id = CU.id 
+                             WHERE CU.bsn = @BSN";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@BSN", bsn);
@@ -51,5 +51,6 @@ namespace data_access
                 throw new Exception($"Error: {ex.Message}");
             }
         }
+
     }
 }
