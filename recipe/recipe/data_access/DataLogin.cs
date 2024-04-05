@@ -20,7 +20,8 @@ namespace data_access
                 {
                     connection.Open();
 
-                    string query = "SELECT COUNT(*) FROM RegisterTbl WHERE Username = @Username AND Password = @Password";
+                    string query = @"SELECT COUNT(*) FROM [User] 
+                                     WHERE username = @Username AND password = @Password";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);

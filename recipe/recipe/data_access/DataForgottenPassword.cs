@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace data_access
 {
@@ -16,7 +12,7 @@ namespace data_access
             this.connectionString = connectionString;
         }
 
-        public (string Username, string Password, string FirstName, string LastName) GetUserDataByBSN(string bsn)
+        public (string? Username, string? Password, string? FirstName, string? LastName) GetUserDataByBSN(string bsn)
         {
             try
             {
@@ -24,7 +20,10 @@ namespace data_access
                 {
                     connection.Open();
 
-                    string query = "SELECT Username, Password, FirstName, LastName FROM RegisterTbl WHERE BSN = @BSN";
+                    string query = @"SELECT U.username, U.password, CU.firstName, CU.lastName 
+                                     FROM [User] U 
+                                     JOIN CompanyUser CU ON U.id = CU.id 
+                                     WHERE CU.bsn = @BSN";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@BSN", bsn);
@@ -33,10 +32,10 @@ namespace data_access
                             if (reader.Read())
                             {
                                 return (
-                                    reader["Username"].ToString(),
-                                    reader["Password"].ToString(),
-                                    reader["FirstName"].ToString(),
-                                    reader["LastName"].ToString()
+                                    reader["Username"]?.ToString(),
+                                    reader["Password"]?.ToString(),
+                                    reader["FirstName"]?.ToString(),
+                                    reader["LastName"]?.ToString()
                                 );
                             }
                             else
