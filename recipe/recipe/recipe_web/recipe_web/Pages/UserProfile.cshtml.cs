@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System;
-using data_access;
 
-namespace recipe_web.Pages
+namespace YourNamespace
 {
     public class UserProfileModel : PageModel
     {
-    
     }
 }

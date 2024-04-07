@@ -1,8 +1,8 @@
-﻿using System;
+﻿using logic_layer;
+using System;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace data_access
 {
@@ -15,47 +15,48 @@ namespace data_access
             this.connectionString = connectionString;
         }
 
-        public async Task<bool> DoesUsernameExistAsync(string username)
+        public bool DoesUsernameExist(string username)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync();
+                connection.Open();
 
                 using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [User] WHERE username = @Username", connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
-                    int existingUserCount = (int)await command.ExecuteScalarAsync();
+                    int existingUserCount = (int)command.ExecuteScalar();
                     return existingUserCount > 0;
                 }
             }
         }
 
-        public async Task<bool> DoesEmailExistAsync(string email)
+        public bool DoesEmailExist(string email)
         {
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync();
+                connection.Open();
 
                 using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [User] WHERE email = @Email", connection))
                 {
                     command.Parameters.AddWithValue("@Email", email);
-                    int existingEmailCount = (int)await command.ExecuteScalarAsync();
+                    int existingEmailCount = (int)command.ExecuteScalar();
                     return existingEmailCount > 0;
                 }
             }
         }
 
-        public async Task InsertUserAsync(string username, string password, string email)
+        public WebUser InsertUser(string username, string password, string email)
         {
             string salt = GenerateSalt();
             string hashedPassword = HashPassword(password, salt);
 
             using (var connection = new SqlConnection(connectionString))
             {
-                await connection.OpenAsync();
+                connection.Open();
 
                 string sql = @"INSERT INTO [User] (role, username, password, hashedPassword, salt, email)
-                       VALUES (@Role, @Username, @Password, @HashedPassword, @Salt, @Email)";
+                       VALUES (@Role, @Username, @Password, @HashedPassword, @Salt, @Email);
+                       SELECT SCOPE_IDENTITY();";
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@Role", "webUser");
@@ -64,7 +65,10 @@ namespace data_access
                     command.Parameters.AddWithValue("@HashedPassword", hashedPassword);
                     command.Parameters.AddWithValue("@Salt", salt);
                     command.Parameters.AddWithValue("@Email", email);
-                    await command.ExecuteNonQueryAsync();
+
+                    int userId = Convert.ToInt32(command.ExecuteScalar());
+
+                    return new WebUser(userId, username, password, email);
                 }
             }
         }

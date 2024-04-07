@@ -160,7 +160,7 @@ namespace recipe_desktop
                     string username = tbUsername.Text;
                     string password = tbPassword.Text;
                     string bsn = tbBSN.Text;
-                    string gender = cbGender.SelectedItem.ToString();
+                    string gender = cbGender.SelectedItem?.ToString();
                     string email = tbEmail.Text;
                     string firstName = tbFirstName.Text;
                     string lastName = tbLastName.Text;
@@ -172,7 +172,7 @@ namespace recipe_desktop
                         email: email,
                         firstName: firstName,
                         lastName: lastName,
-                        bsn: int.Parse(bsn),
+                        bsn: Convert.ToInt32(bsn),
                         gender: gender,
                         birthdate: birthdate
                     );

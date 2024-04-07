@@ -92,7 +92,8 @@
       "System.Security.Principal.Windows/4.7.0": {},
       "data_access/1.0.0": {
         "dependencies": {
-          "System.Data.SqlClient": "4.8.6"
+          "System.Data.SqlClient": "4.8.6",
+          "logic_layer": "1.0.0"
         },
         "runtime": {
           "data_access.dll": {}

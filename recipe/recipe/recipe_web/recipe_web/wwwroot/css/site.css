@@ -10,7 +10,6 @@ body {
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
     gap: 10px;
-    height: 100vh;
 }
 
 #header_container {

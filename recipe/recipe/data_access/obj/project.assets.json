@@ -146,6 +146,16 @@
             "rid": "win"
           }
         }
+      },
+      "logic_layer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/logic_layer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/logic_layer.dll": {}
+        }
       }
     }
   },
@@ -462,11 +472,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "logic_layer/1.0.0": {
+      "type": "project",
+      "path": "../logic_layer/logic_layer.csproj",
+      "msbuildProject": "../logic_layer/logic_layer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "System.Data.SqlClient >= 4.8.6"
+      "System.Data.SqlClient >= 4.8.6",
+      "logic_layer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -495,13 +511,22 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\logic_layer\\logic_layer.csproj": {
+              "projectPath": "C:\\Users\\ivetk\\Desktop\\ind\\recipe\\recipe\\logic_layer\\logic_layer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -529,7 +554,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

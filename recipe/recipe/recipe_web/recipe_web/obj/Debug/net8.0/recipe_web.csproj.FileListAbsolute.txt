@@ -76,9 +76,9 @@ C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\scopedcss\bundle\recipe_web.styles.css
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\scopedcss\projectbundle\recipe_web.bundle.scp.css
-C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.csproj.CopyComplete
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.dll
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\refint\recipe_web.dll
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.pdb
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.genruntimeconfig.cache
 C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\ref\recipe_web.dll
+C:\Users\ivetk\Desktop\ind\recipe\recipe\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.csproj.Up2Date
