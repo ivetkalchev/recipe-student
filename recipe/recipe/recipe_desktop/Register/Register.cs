@@ -14,12 +14,11 @@ namespace recipe_desktop
 {
     public partial class Register : Form
     {
-        private DataRegisterDesktop dbRegister;
+        private DataRegister dbRegister;
         public Register()
         {
             InitializeComponent();
             LoadCbGender();
-            dbRegister = new DataRegisterDesktop("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
         private void ClearInput()
         {
@@ -159,25 +158,12 @@ namespace recipe_desktop
                 {
                     string username = tbUsername.Text;
                     string password = tbPassword.Text;
-                    string bsn = tbBSN.Text;
+                    int bsn = Convert.ToInt32(tbBSN.Text);
                     string gender = cbGender.SelectedItem?.ToString();
                     string email = tbEmail.Text;
                     string firstName = tbFirstName.Text;
                     string lastName = tbLastName.Text;
                     DateTime birthdate = dtpBirthdate.Value;
-
-                    CompanyUser companyUser = new CompanyUser(
-                        username: username,
-                        password: password,
-                        email: email,
-                        firstName: firstName,
-                        lastName: lastName,
-                        bsn: Convert.ToInt32(bsn),
-                        gender: gender,
-                        birthdate: birthdate
-                    );
-
-                    dbRegister.OpenConnection();
 
                     if (dbRegister.DoesBSNExist(bsn))
                     {
@@ -197,7 +183,7 @@ namespace recipe_desktop
                         return;
                     }
 
-                    dbRegister.InsertUser(username, password, bsn, gender, email, firstName, lastName, birthdate);
+                    dbRegister.InsertCompanyUser(username, password, bsn, gender, email, firstName, lastName, birthdate);
 
                     MessageBox.Show($"Registration successful!\n" +
                         $"Welcome to the company, {firstName} {lastName}!");
@@ -211,10 +197,6 @@ namespace recipe_desktop
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
-            }
-            finally
-            {
-                dbRegister.CloseConnection();
             }
         }
     }

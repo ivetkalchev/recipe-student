@@ -13,9 +13,9 @@ namespace logic_layer
         private int bsn;
         private string gender;
         private DateTime birthdate;
-        public CompanyUser(string username, string password, string email,
-                   string firstName, string lastName, int bsn, string gender, DateTime birthdate, int id = -1)
-        : base(id, username, password, email)
+        public CompanyUser(int id, string role, string username, string password, string hashedPassword, string salt,
+                   string email, string firstName, string lastName, int bsn, string gender, DateTime birthdate)
+        : base(id, role, username, password, hashedPassword, salt, email)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -23,7 +23,6 @@ namespace logic_layer
             this.gender = gender;
             this.birthdate = birthdate;
         }
-
         public string FirstName
         {
             get { return firstName; }

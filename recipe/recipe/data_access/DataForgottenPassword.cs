@@ -5,14 +5,13 @@ namespace data_access
 {
     public class DataForgottenPassword
     {
-        private string connectionString;
-
+        private readonly string connectionString = "Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;Persist Security Info=True;User ID=dbi526066_recipe;Password=123;Encrypt=False";
         public DataForgottenPassword(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
-        public (string? Username, string? Password, string? FirstName, string? LastName) GetUserDataByBSN(string bsn)
+        public (string? Username, string? Password, string? FirstName, string? LastName) GetUserDataByBSN(int bsn)
         {
             try
             {

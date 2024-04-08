@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace data_access
 {
     public class DataLogin
     {
-        private string connectionString;
+        private readonly string connectionString = "Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;Persist Security Info=True;User ID=dbi526066_recipe;Password=123;Encrypt=False";
 
-        public DataLogin(string connectionString)
+        public DataLogin()
         {
-            this.connectionString = connectionString;
         }
 
         public bool CheckLoginCredentials(string username, string password)
@@ -20,21 +21,42 @@ namespace data_access
                 {
                     connection.Open();
 
-                    string query = @"SELECT COUNT(*) FROM [User] 
-                             WHERE username = @Username AND password = @Password";
+                    string query = @"SELECT hashedPassword, salt FROM [User] WHERE username = @Username";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Username", username);
-                        command.Parameters.AddWithValue("@Password", password);
 
-                        int count = (int)command.ExecuteScalar();
-                        return count > 0;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string hashedPasswordFromDb = reader.GetString(0);
+                                string salt = reader.GetString(1);
+                                string hashedInputPassword = HashPassword(password, salt);
+                                return hashedPasswordFromDb == hashedInputPassword;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
+                throw new Exception("An error occurred while processing your request. Please try again later.");
+            }
+        }
+
+        private string HashPassword(string password, string salt)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] saltedPasswordBytes = Encoding.UTF8.GetBytes(password + salt);
+                byte[] hashBytes = sha256.ComputeHash(saltedPasswordBytes);
+                return Convert.ToBase64String(hashBytes);
             }
         }
     }

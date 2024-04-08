@@ -19,7 +19,6 @@ namespace recipe_desktop
         public ForgottenPassword()
         {
             InitializeComponent();
-            dbFP = new DataForgottenPassword("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
 
         private void lblRegister_Click(object sender, EventArgs e)
@@ -70,9 +69,9 @@ namespace recipe_desktop
 
         private void btnReveal_Click(object sender, EventArgs e)
         {
-            string bsn = tbBSN.Text;
+            int bsn = Convert.ToInt32(tbBSN.Text);
 
-            if (string.IsNullOrEmpty(bsn))
+            if (bsn == 0)
             {
                 MessageBox.Show("Please enter your BSN.");
                 return;

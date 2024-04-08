@@ -11,15 +11,14 @@ namespace recipe_web.Pages
 {
     public class RegisterModel : PageModel
     {
-        private readonly DataRegisterWeb dbRegister;
-        public RegisterModel()
+        private readonly DataRegister dbRegister;
+        public RegisterModel(DataRegister dbRegister)
         {
-            string connectionString = "Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False";
-            dbRegister = new DataRegisterWeb(connectionString);
-
             Username = "";
             Email = "";
             Password = "";
+
+            this.dbRegister = dbRegister;
         }
 
         [BindProperty]
@@ -55,7 +54,7 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            WebUser newUser = dbRegister.InsertUser(Username, Password, Email);
+            WebUser newUser = dbRegister.InsertWebUser(Username, Password, Email);
 
             return RedirectToPage("/Login");
         }

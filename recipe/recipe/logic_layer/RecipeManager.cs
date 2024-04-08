@@ -8,29 +8,15 @@ namespace logic_layer
 {
     public class RecipeManager
     {
-        public void SubmitRecipe(Recipe recipe)
+        private RecipeApprovalService approvalService;
+        private RecipeSubmissionService submissionService;
+        private RecipeEditingService editingService;
+
+        public RecipeManager(IRecipeValidator validator)
         {
-            //user submits recipe for approval of manager
-        }
-        public void UploadRecipe(Recipe recipe)
-        {
-            //manager uploads directly a recipe
-        }
-        public void ApproveRecipe(List<Recipe> submittedRecipes)
-        {
-            //manager approves a recipe, submitted by the web user
-        }
-        public void DenyRecipe(List<Recipe> submittedRecipes)
-        {
-            //manager denies a recipe, submitted by the web user
-        }
-        public void RemoveRecipe(Recipe recipe)
-        {
-            //manager or web user removes a recipe they posted
-        }
-        public void EditRecipe(Recipe recipe)
-        {
-            //manager or web user edits a recipe they posted
+            approvalService = new RecipeApprovalService(validator);
+            submissionService = new RecipeSubmissionService();
+            editingService = new RecipeEditingService();
         }
     }
 }
