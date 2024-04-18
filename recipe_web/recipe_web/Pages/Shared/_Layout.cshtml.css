@@ -1,0 +1,53 @@
+﻿.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    z-index: 9999; /* Ensure the cookie banner appears above other elements */
+}
+
+.cookie-text p {
+    margin-bottom: 10px;
+}
+
+.cookie-buttons button {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 3px;
+}
+
+.accept-button {
+    background-color: #28a745;
+    color: darkgreen;
+}
+
+.accept-button:hover {
+    background-color: #218838;
+}
+
+.decline-button {
+    background-color: #dc3545;
+    color: red;
+}
+
+.decline-button:hover {
+    background-color: #c82333;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+    background-color: #f8f9fa;
+    z-index: 9998;
+}

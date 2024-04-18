@@ -1,0 +1,129 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+#header_container {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    height: auto;
+    grid-row: 1;
+}
+
+.header_img {
+    width: 100%;
+    height: 300px;
+}
+
+.header_heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 4px #000000;
+    color: #FFFFFF;
+    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-color: #FF296B;
+    font-size: 60px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-weight: bold;
+}
+
+#nav_container {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFC0BE;
+    height: 50px;
+    grid-row: 2;
+    margin-top: -20px;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+
+        nav ul li a {
+            font-size: 20px;
+            font-weight: bold;
+            color: #FF296B;
+            text-decoration: none;
+            transition: color 0.1s ease;
+            background-color: transparent;
+            padding: 20px 30px;
+            font-family: Comic Sans MS, Comic Sans, cursive;
+            white-space: nowrap;
+        }
+
+            nav ul li a:hover {
+                color: #FFFFFF;
+                background-color: #FF82A9;
+            }
+
+#content_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    overflow: hidden;
+    grid-row: 3;
+    padding: 20px;
+}
+
+#footer_container {
+    text-align: center;
+    background-color: #7F95D1;
+    height: 120px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-weight: bold;
+    padding: 20px;
+    grid-row: 4;
+}
+
+footer a {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.1s ease;
+}
+
+    footer a:hover {
+        color: #FF296B;
+    }
+
+.cookie-consent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+    .cookie-consent button {
+        margin: 0 5px;
+    }
