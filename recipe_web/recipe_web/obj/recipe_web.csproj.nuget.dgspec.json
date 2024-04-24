@@ -70,12 +70,72 @@
         }
       }
     },
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\logic_layer.csproj": {
+    "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\logic_layer.csproj",
-        "projectName": "logic_layer",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\logic_layer.csproj",
+        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj",
+        "projectName": "entity_classes",
+        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj",
+        "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj",
+        "projectName": "manager_classes",
+        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\obj\\",
         "projectStyle": "PackageReference",
@@ -93,7 +153,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj": {
+                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -157,8 +221,8 @@
               "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
                 "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj"
               },
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\logic_layer.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\logic_layer.csproj"
+              "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj": {
+                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj"
               }
             }
           }

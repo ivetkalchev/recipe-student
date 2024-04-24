@@ -1,36 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using entity_classes.Recipe;
 
-namespace logic_layer
+namespace manager_classes
 {
+    //add logic and list
     public class RecipeManager
     {
-        public void SubmitRecipe(Recipe recipe)
+        public RecipeManager() { }
+        public void ApproveRecipe(int idRecipe)
         {
-            //user submits recipe for approval of manager
+        }
+        public void DenyRecipe(int idRecipe)
+        {
+        }
+        public void EditRecipe(int idRecipe, Recipe updatedRecipe)
+        {
+        }
+        public void DeleteRecipe(int idRecipe)
+        {
         }
         public void UploadRecipe(Recipe recipe)
         {
-            //manager uploads directly a recipe
-        }
-        public void ApproveRecipe(List<Recipe> submittedRecipes)
-        {
-            //manager approves a recipe, submitted by the web user
-        }
-        public void DenyRecipe(List<Recipe> submittedRecipes)
-        {
-            //manager denies a recipe, submitted by the web user
-        }
-        public void RemoveRecipe(Recipe recipe)
-        {
-            //manager or web user removes a recipe they posted
-        }
-        public void EditRecipe(Recipe recipe)
-        {
-            //manager or web user edits a recipe they posted
         }
     }
 }

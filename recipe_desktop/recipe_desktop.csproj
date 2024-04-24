@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\data_access\data_access.csproj" />
-    <ProjectReference Include="..\logic_layer\logic_layer.csproj" />
+    <ProjectReference Include="..\logic_layer\manager_classes.csproj" />
   </ItemGroup>
 
 </Project>

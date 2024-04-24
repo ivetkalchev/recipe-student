@@ -5,11 +5,13 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "data_access", "data_access\data_access.csproj", "{49B58873-8F66-4DEB-95EB-D4966DD8A392}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "logic_layer", "logic_layer\logic_layer.csproj", "{772689EF-A5ED-43CB-BCDF-267AC0148B7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "manager_classes", "logic_layer\manager_classes.csproj", "{772689EF-A5ED-43CB-BCDF-267AC0148B7C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "recipe_desktop", "recipe_desktop\recipe_desktop.csproj", "{F4F0D7EF-0DDB-4714-985B-56CEB5554100}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "recipe_web", "recipe_web\recipe_web\recipe_web.csproj", "{959D87DD-6590-4B2C-8AB3-6E7D66730401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "entity_classes", "entity_classes\entity_classes.csproj", "{701D7110-A83D-4646-8F37-2D6288B8A385}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{959D87DD-6590-4B2C-8AB3-6E7D66730401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959D87DD-6590-4B2C-8AB3-6E7D66730401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959D87DD-6590-4B2C-8AB3-6E7D66730401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701D7110-A83D-4646-8F37-2D6288B8A385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701D7110-A83D-4646-8F37-2D6288B8A385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701D7110-A83D-4646-8F37-2D6288B8A385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701D7110-A83D-4646-8F37-2D6288B8A385}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

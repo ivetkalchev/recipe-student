@@ -95,3 +95,7 @@ C:\Users\ivetk\Desktop\recipe\recipe_desktop\obj\Debug\net8.0-windows\recipe_des
 C:\Users\ivetk\Desktop\recipe\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.dll
 C:\Users\ivetk\Desktop\recipe\recipe_desktop\obj\Debug\net8.0-windows\refint\recipe_desktop.dll
 C:\Users\ivetk\Desktop\recipe\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.pdb
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.csproj.AssemblyReference.cache
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.dll
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\refint\recipe_desktop.dll
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.pdb

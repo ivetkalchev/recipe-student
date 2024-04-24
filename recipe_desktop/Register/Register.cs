@@ -8,18 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using data_access;
-using logic_layer;
+using manager_classes;
 
 namespace recipe_desktop
 {
     public partial class Register : Form
     {
-        private DataRegisterDesktop dbRegister;
         public Register()
         {
             InitializeComponent();
             LoadCbGender();
-            dbRegister = new DataRegisterDesktop("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
         private void ClearInput()
         {
@@ -153,69 +151,7 @@ namespace recipe_desktop
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (CheckEmptySpaces())
-                {
-                    string username = tbUsername.Text;
-                    string password = tbPassword.Text;
-                    string bsn = tbBSN.Text;
-                    string gender = cbGender.SelectedItem.ToString();
-                    string email = tbEmail.Text;
-                    string firstName = tbFirstName.Text;
-                    string lastName = tbLastName.Text;
-                    DateTime birthdate = dtpBirthdate.Value;
-
-                    CompanyUser companyUser = new CompanyUser(
-                        username: username,
-                        password: password,
-                        email: email,
-                        firstName: firstName,
-                        lastName: lastName,
-                        bsn: int.Parse(bsn),
-                        gender: gender,
-                        birthdate: birthdate
-                    );
-
-                    dbRegister.OpenConnection();
-
-                    if (dbRegister.DoesBSNExist(bsn))
-                    {
-                        MessageBox.Show("BSN is already registered.");
-                        return;
-                    }
-
-                    if (dbRegister.DoesUsernameExist(username))
-                    {
-                        MessageBox.Show("Username is already registered. Please choose a different one.");
-                        return;
-                    }
-
-                    if (dbRegister.DoesEmailExist(email))
-                    {
-                        MessageBox.Show("Email is already registered. Please choose a different one.");
-                        return;
-                    }
-
-                    dbRegister.InsertUser(username, password, bsn, gender, email, firstName, lastName, birthdate);
-
-                    MessageBox.Show($"Registration successful!\n" +
-                        $"Welcome to the company, {firstName} {lastName}!");
-
-                    Homepage homepage = new Homepage();
-                    homepage.Show();
-
-                    ClearInput();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-            finally
-            {
-                dbRegister.CloseConnection();
-            }
+            
         }
     }
 }
