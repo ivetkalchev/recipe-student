@@ -130,14 +130,14 @@
         }
       }
     },
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj": {
+    "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj",
+        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj",
         "projectName": "manager_classes",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj",
+        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\obj\\",
+        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -221,8 +221,8 @@
               "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
                 "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj"
               },
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj"
+              "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
+                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj"
               }
             }
           }

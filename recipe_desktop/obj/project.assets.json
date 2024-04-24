@@ -511,8 +511,8 @@
     },
     "manager_classes/1.0.0": {
       "type": "project",
-      "path": "../logic_layer/manager_classes.csproj",
-      "msbuildProject": "../logic_layer/manager_classes.csproj"
+      "path": "../manager_classes/manager_classes.csproj",
+      "msbuildProject": "../manager_classes/manager_classes.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -552,8 +552,8 @@
             "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
               "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj"
             },
-            "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj": {
-              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj"
+            "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
+              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj"
             }
           }
         }
