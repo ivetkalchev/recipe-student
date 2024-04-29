@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace entity_classes.User
+namespace enum_classes
 {
-    public enum Gender
+    public enum Role
     {
-        Male,
-        Female,
-        Other
+        Administrator,
+        Employee
     }
-
 }

@@ -3,20 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using entity_classes.Recipe;
-using entity_classes.User;
+using entity_classes.Recipes;
+using entity_classes.Users;
 
-namespace entity_classes.Rating
+namespace entity_classes.Ratings
 {
-    //should i initialize idRecipe and idUser
     public class Rating
     {
+        private Recipe recipe;
+        private User user;
+
         private int idRating;
-        private decimal rating;
-        public Rating(int idRating, int idRecipe, int idUser, decimal rating)
+        private decimal ratingValue;
+        public Rating(int idRating, Recipe recipe, User user, decimal ratingValue)
         {
             this.idRating = idRating;
-            this.rating = rating;
+            this.recipe = recipe;
+            this.user = user;
+            this.ratingValue = ratingValue;
+        }
+        public void SetRatingValue(decimal updatedRatingValue)
+        {
+            this.ratingValue = updatedRatingValue;
+        }
+        public decimal GetRatingValue() 
+        { 
+            return ratingValue;
         }
     }
 }

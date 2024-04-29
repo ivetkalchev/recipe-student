@@ -5,11 +5,9 @@ namespace recipe_desktop
 {
     public partial class Login : Form
     {
-        private DataLogin dbLogin;
         public Login()
         {
             InitializeComponent();
-            dbLogin = new DataLogin("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
 
         private void lblForgottenPassword_Click(object sender, EventArgs e)
@@ -59,26 +57,7 @@ namespace recipe_desktop
                 string username = tbUsername.Text;
                 string password = tbPassword.Text;
 
-                try
-                {
-                    if (dbLogin.CheckLoginCredentials(username, password))
-                    {
-                        MessageBox.Show($"Successfully logged in! Welcome {username}!");
-
-                        Homepage homepage = new Homepage();
-                        homepage.Show();
-
-                        ClearInput();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid username or password. Please try again.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}");
-                }
+                
             }
         }
         private bool CheckEmptySpaces()

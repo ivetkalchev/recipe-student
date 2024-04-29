@@ -1,18 +1,38 @@
-﻿using System;
+﻿using enum_classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace entity_classes.Recipe
+namespace entity_classes.Recipes
 {
     public class Food : Recipe
     {
-        private int spicyLevel;
-        public Food(int idRecipe, string title, int serving, int cookingTime, List<Ingredient> ingredients,
-            string instructions, int spicyLevel) : base(idRecipe, title, serving, cookingTime, ingredients, instructions)
+        private bool isSpicy;
+        private int servings;
+        public Food(int idRecipe, string title, List<Ingredient> ingredients, string instructions, 
+            DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, bool isSpicy, int servings) 
+            : base(idRecipe, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime)
         {
-            this.spicyLevel = spicyLevel;
+            this.isSpicy = isSpicy;
+            this.servings = servings;
+ 
+        }
+        public override decimal CalculatePrice()
+        {
+            decimal totalPrice = 0;
+            foreach (Ingredient ingredient in this.GetIngredients())
+            {
+                totalPrice += ingredient.GetPrice() * ingredient.GetQuantity();
+            }
+
+            if (servings != 0)
+            {
+                return totalPrice * servings;
+            }
+
+            return totalPrice;
         }
     }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using entity_classes.Users;
+using enum_classes;
 
-namespace entity_classes.Recipe
+namespace entity_classes.Recipes
 {
     public class Ingredient
     {
@@ -12,19 +14,23 @@ namespace entity_classes.Recipe
         private string name;
         private Unit unit;
         private decimal quantity;
-        private bool vegan;
-        private bool diary;
-        private bool peanut;
-
-        public Ingredient(int idIngredient, string name, Unit unit, decimal quantity, bool vegan, bool diary, bool peanut)
+        private decimal price;
+        public Ingredient(int idIngredient, string name, Unit unit, decimal quantity, decimal price)
         {
             this.idIngredient = idIngredient;
             this.name = name;
             this.unit = unit;
             this.quantity = quantity;
-            this.vegan = vegan;
-            this.diary = diary;
-            this.peanut = peanut;
+            this.price = price;
+        }
+        public decimal GetQuantity() 
+        { 
+            return quantity;
+        }
+
+        public decimal GetPrice() 
+        { 
+            return price;
         }
     }
 }

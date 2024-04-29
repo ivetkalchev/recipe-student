@@ -3,17 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using entity_classes.Users;
+using entity_classes.Recipes;
 
-namespace entity_classes.Review
+namespace entity_classes.Reviews
 {
     public class Review
     {
+        private Recipe recipe;
+        private User user;
+
         private int idReview;
-        private string review;
-        public Review(int idReview, int idRecipe, int idUser, string review)
+        private string reviewText;
+        public Review(int idReview, Recipe recipe, User user, string reviewText)
         {
             this.idReview = idReview;
-            this.review = review;
+            this.recipe = recipe;
+            this.user = user; 
+            this.reviewText = reviewText;
+        }
+        public void SetReviewText(string updatedReviewText)
+        {
+            this.reviewText = updatedReviewText;
         }
     }
 }

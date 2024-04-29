@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using entity_classes.Review;
+using entity_classes.Ratings;
+using entity_classes.Reviews;
 
 namespace manager_classes
 {
-    //add logic and list
     public class ReviewManager
     {
-        public ReviewManager() { }
+        private List<Review> reviews = new List<Review>();
         public void AddReview(Review review)
         {
+            reviews.Add(review);
         }
-        public void DeleteReview(int idReview)
+        public void DeleteReview(Review review)
         {
+            reviews.Remove(review);
         }
-        public void EditReview(int idReview, string updatedReview)
+        public void EditReview(Review review, string updatedReviewText)
         {
+            review.SetReviewText(updatedReviewText);
         }
     }
 }

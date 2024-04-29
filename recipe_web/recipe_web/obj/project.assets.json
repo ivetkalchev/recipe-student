@@ -163,6 +163,9 @@
       "entity_classes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "enum_classes": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/entity_classes.dll": {}
         },
@@ -170,11 +173,22 @@
           "bin/placeholder/entity_classes.dll": {}
         }
       },
+      "enum_classes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/enum_classes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/enum_classes.dll": {}
+        }
+      },
       "manager_classes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "entity_classes": "1.0.0"
+          "entity_classes": "1.0.0",
+          "enum_classes": "1.0.0"
         },
         "compile": {
           "bin/placeholder/manager_classes.dll": {}
@@ -509,10 +523,15 @@
       "path": "../../entity_classes/entity_classes.csproj",
       "msbuildProject": "../../entity_classes/entity_classes.csproj"
     },
+    "enum_classes/1.0.0": {
+      "type": "project",
+      "path": "../../enum_classes/enum_classes.csproj",
+      "msbuildProject": "../../enum_classes/enum_classes.csproj"
+    },
     "manager_classes/1.0.0": {
       "type": "project",
-      "path": "../../logic_layer/manager_classes.csproj",
-      "msbuildProject": "../../logic_layer/manager_classes.csproj"
+      "path": "../../manager_classes/manager_classes.csproj",
+      "msbuildProject": "../../manager_classes/manager_classes.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -551,8 +570,8 @@
             "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
               "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj"
             },
-            "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj": {
-              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\logic_layer\\manager_classes.csproj"
+            "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
+              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj"
             }
           }
         }

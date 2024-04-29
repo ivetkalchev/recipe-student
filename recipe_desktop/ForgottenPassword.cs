@@ -15,11 +15,9 @@ namespace recipe_desktop
 {
     public partial class ForgottenPassword : Form
     {
-        private DataForgottenPassword dbFP;
         public ForgottenPassword()
         {
             InitializeComponent();
-            dbFP = new DataForgottenPassword("Data Source=mssqlstud.fhict.local;Initial Catalog=dbi526066_recipe;User ID=dbi526066_recipe;Password=123123;Encrypt=False");
         }
 
         private void lblRegister_Click(object sender, EventArgs e)
@@ -80,22 +78,7 @@ namespace recipe_desktop
 
             try
             {
-                var userData = dbFP.GetUserDataByBSN(bsn);
-
-                if (userData.Item1 != null && userData.Item2 != null && userData.Item3 != null && userData.Item4 != null)
-                {
-                    string username = userData.Item1;
-                    string password = userData.Item2;
-                    string firstName = userData.Item3;
-                    string lastName = userData.Item4;
-
-                    MessageBox.Show($"The BSN matches {firstName} {lastName}.\n" +
-                                    $"The password of {username} is {password}.");
-                }
-                else
-                {
-                    MessageBox.Show("No user found with this BSN.");
-                }
+                
 
             }
             catch (Exception ex)

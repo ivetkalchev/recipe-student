@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace recipe_desktop
+namespace enum_classes
 {
-    public enum Gender
+    public enum DietaryRestriction
     {
-        Male,
-        Female,
-        Other
+        None,
+        Vegan,
+        Vegetarian,
+        GlutenFree
     }
-
 }

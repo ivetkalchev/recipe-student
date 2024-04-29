@@ -9,7 +9,7 @@
       "recipe_web/1.0.0": {
         "dependencies": {
           "data_access": "1.0.0",
-          "logic_layer": "1.0.0"
+          "manager_classes": "1.0.0"
         },
         "runtime": {
           "recipe_web.dll": {}
@@ -98,9 +98,17 @@
           "data_access.dll": {}
         }
       },
-      "logic_layer/1.0.0": {
+      "entity_classes/1.0.0": {
         "runtime": {
-          "logic_layer.dll": {}
+          "entity_classes.dll": {}
+        }
+      },
+      "manager_classes/1.0.0": {
+        "dependencies": {
+          "entity_classes": "1.0.0"
+        },
+        "runtime": {
+          "manager_classes.dll": {}
         }
       }
     }
@@ -179,7 +187,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "logic_layer/1.0.0": {
+    "entity_classes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "manager_classes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
