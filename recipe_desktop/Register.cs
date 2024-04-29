@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using data_access;
 using manager_classes;
+using enum_classes.Users;
 
 namespace recipe_desktop
 {

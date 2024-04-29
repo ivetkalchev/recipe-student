@@ -127,3 +127,5 @@ C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-window
 C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\ref\recipe_desktop.dll
 C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.dll
 C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.pdb
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions_classes.dll
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions_classes.pdb

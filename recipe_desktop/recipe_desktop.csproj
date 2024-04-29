@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\data_access\data_access.csproj" />
+    <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
     <ProjectReference Include="..\manager_classes\manager_classes.csproj" />
   </ItemGroup>
 

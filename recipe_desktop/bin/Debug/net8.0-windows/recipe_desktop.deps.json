@@ -10,6 +10,7 @@
         "dependencies": {
           "System.Data.SqlClient": "4.8.6",
           "data_access": "1.0.0",
+          "enum_classes": "1.0.0",
           "manager_classes": "1.0.0"
         },
         "runtime": {
@@ -112,9 +113,19 @@
           "enum_classes.dll": {}
         }
       },
-      "manager_classes/1.0.0": {
+      "exceptions_classes/1.0.0": {
         "dependencies": {
           "entity_classes": "1.0.0"
+        },
+        "runtime": {
+          "exceptions_classes.dll": {}
+        }
+      },
+      "manager_classes/1.0.0": {
+        "dependencies": {
+          "entity_classes": "1.0.0",
+          "enum_classes": "1.0.0",
+          "exceptions_classes": "1.0.0"
         },
         "runtime": {
           "manager_classes.dll": {}
@@ -202,6 +213,11 @@
       "sha512": ""
     },
     "enum_classes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "exceptions_classes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
