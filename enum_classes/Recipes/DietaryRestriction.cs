@@ -8,9 +8,9 @@ namespace enum_classes.Recipes
 {
     public enum DietaryRestriction
     {
-        None,
         Vegan,
         Vegetarian,
-        GlutenFree
+        GlutenFree,
+        None
     }
 }

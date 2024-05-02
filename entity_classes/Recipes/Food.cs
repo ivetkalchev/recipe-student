@@ -1,9 +1,11 @@
-﻿using enum_classes.Recipes;
+﻿using entity_classes.Users;
+using enum_classes.Recipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using entity_classes.Ingredients;
 
 namespace entity_classes.Recipes
 {
@@ -11,13 +13,13 @@ namespace entity_classes.Recipes
     {
         private bool isSpicy;
         private int servings;
-        public Food(int idRecipe, bool isApproved, string title, List<Ingredient> ingredients, string instructions,
-            DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, bool isSpicy, int servings) 
-            : base(idRecipe, isApproved, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime)
+        public Food(int idRecipe, User user, string title, List<Ingredient> ingredients,
+            string instructions, DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime,
+            bool isSpicy, int servings)
+            : base(idRecipe, user, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime)
         {
             this.isSpicy = isSpicy;
             this.servings = servings;
- 
         }
         public override decimal CalculatePrice()
         {
@@ -37,6 +39,10 @@ namespace entity_classes.Recipes
         public bool GetSpiciness()
         {
             return isSpicy;
+        }
+        public int GetServings()
+        {
+            return servings;
         }
     }
 }

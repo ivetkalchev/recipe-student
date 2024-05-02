@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace enum_classes.Recipes
+namespace enum_classes.Ingredients
 {
     public enum Unit
     {
@@ -13,7 +13,6 @@ namespace enum_classes.Recipes
         Litre,
         Millilitre,
         Tablespoon,
-        Teaspoon,
-        Cup
+        Teaspoon
     }
 }

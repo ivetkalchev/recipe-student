@@ -1,4 +1,5 @@
-﻿using enum_classes.Recipes;
+﻿using entity_classes.Users;
+using enum_classes.Recipes;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using entity_classes.Ingredients;
 
 namespace entity_classes.Recipes
 {
@@ -14,10 +16,10 @@ namespace entity_classes.Recipes
         private bool isAlcoholic;
         private bool hasCaffeine;
         private int pours;
-        public Drink(int idRecipe, bool isApproved, string title, List<Ingredient> ingredients, string instructions, 
-            DietaryRestriction dietaryRestriction,Difficulty difficulty, int cookingTime, bool isAlcoholic, bool hasCaffeine, 
-            int pours)
-            : base(idRecipe, isApproved, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime)
+        public Drink(int idRecipe, User user, string title, List<Ingredient> ingredients,
+            string instructions, DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime,
+            bool isAlcoholic, bool hasCaffeine, int pours)
+            : base(idRecipe, user, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime)
         {
             this.isAlcoholic = isAlcoholic;
             this.hasCaffeine = hasCaffeine;
@@ -45,6 +47,10 @@ namespace entity_classes.Recipes
         public bool GetCaffeineContent()
         {
             return hasCaffeine;
+        }
+        public int GetPours()
+        {
+            return pours;
         }
     }
 }

@@ -195,7 +195,6 @@
             ClientSize = new Size(1006, 721);
             Controls.Add(panLogin);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";

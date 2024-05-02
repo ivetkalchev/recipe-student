@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using entity_classes.Users;
-using enum_classes.Recipes;
+using enum_classes.Ingredients;
 
-namespace entity_classes.Recipes
+namespace entity_classes.Ingredients
 {
     public class Ingredient
     {
@@ -23,13 +23,20 @@ namespace entity_classes.Recipes
             this.quantity = quantity;
             this.price = price;
         }
-        public decimal GetQuantity() 
-        { 
+        public string GetName()
+        {
+            return name;
+        }
+        public Unit GetUnit()
+        {
+            return unit;
+        }
+        public decimal GetQuantity()
+        {
             return quantity;
         }
-
-        public decimal GetPrice() 
-        { 
+        public decimal GetPrice()
+        {
             return price;
         }
     }

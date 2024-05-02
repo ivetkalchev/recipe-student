@@ -10,21 +10,26 @@ namespace entity_classes.Reviews
 {
     public class Review
     {
+        private int idReview;
         private Recipe recipe;
         private User user;
-
-        private int idReview;
         private string reviewText;
-        public Review(int idReview, Recipe recipe, User user, string reviewText)
+        private decimal ratingValue;
+        public Review(int idReview, Recipe recipe, User user, string reviewText, decimal ratingValue)
         {
             this.idReview = idReview;
             this.recipe = recipe;
             this.user = user;
             this.reviewText = reviewText;
+            this.ratingValue = ratingValue;
         }
-        public void SetReviewText(string updatedReviewText)
+        public string GetReviewText()
         {
-            reviewText = updatedReviewText;
+            return reviewText;
+        }
+        public decimal GetRatingValue()
+        {
+            return ratingValue;
         }
     }
 }

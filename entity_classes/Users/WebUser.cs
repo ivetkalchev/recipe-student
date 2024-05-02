@@ -10,15 +10,32 @@ namespace entity_classes.Users
 {
     public class WebUser : User
     {
-        private int submittedRecipes;
-        private int approvedRecipes;
-        private int deniedRecipes;
-        public WebUser(int idUser, string username, string email, string password, int submittedRecipes, 
-            int approvedRecipes, int deniedRecipes) : base(idUser, username, email, password)
+        private List<Recipe> approvedRecipes;
+        private List<Recipe> favouriteRecipes;
+        public WebUser(int idUser, string username, string email, string password,
+            List<Recipe> approvedRecipes, List<Recipe> favouriteRecipes)
+            : base(idUser, username, email, password)
         {
-            this.submittedRecipes = submittedRecipes;
             this.approvedRecipes = approvedRecipes;
-            this.deniedRecipes = deniedRecipes;
+            this.favouriteRecipes = favouriteRecipes;
+        }
+        public List<Recipe> GetApprovedRecipes()
+        {
+            return approvedRecipes;
+        }
+        public List<Recipe> GetFavouritesRecipes()
+        {
+            return favouriteRecipes;
+        }
+        public List<Recipe> AddToFavourites(Recipe recipe)
+        {
+            favouriteRecipes.Add(recipe);
+            return favouriteRecipes;
+        }
+        public List<Recipe> RemoveFromToDoList(Recipe recipe)
+        {
+            favouriteRecipes.Remove(recipe);
+            return favouriteRecipes;
         }
     }
 }

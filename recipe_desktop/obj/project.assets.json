@@ -183,26 +183,12 @@
           "bin/placeholder/enum_classes.dll": {}
         }
       },
-      "exceptions_classes/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "entity_classes": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/exceptions_classes.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/exceptions_classes.dll": {}
-        }
-      },
       "manager_classes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0",
-          "exceptions_classes": "1.0.0"
+          "enum_classes": "1.0.0"
         },
         "compile": {
           "bin/placeholder/manager_classes.dll": {}
@@ -541,11 +527,6 @@
       "type": "project",
       "path": "../enum_classes/enum_classes.csproj",
       "msbuildProject": "../enum_classes/enum_classes.csproj"
-    },
-    "exceptions_classes/1.0.0": {
-      "type": "project",
-      "path": "../exceptions/exceptions_classes.csproj",
-      "msbuildProject": "../exceptions/exceptions_classes.csproj"
     },
     "manager_classes/1.0.0": {
       "type": "project",

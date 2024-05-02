@@ -6,24 +6,26 @@ using System.Text;
 using System.Threading.Tasks;
 using entity_classes;
 using enum_classes.Recipes;
+using entity_classes.Users;
+using entity_classes.Ingredients;
 
 namespace entity_classes.Recipes
 {
     public abstract class Recipe
     {
         private int idRecipe;
-        private bool isApproved;
+        private User user;
         private string title;
         private List<Ingredient> ingredients;
         private string instructions;
         private DietaryRestriction dietaryRestriction;
         private Difficulty difficulty;
         private int cookingTime;
-        protected Recipe(int idRecipe, bool isApproved, string title, List<Ingredient> ingredients, string instructions, 
+        public Recipe(int idRecipe, User user, string title, List<Ingredient> ingredients, string instructions, 
             DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime)
         {
             this.idRecipe = idRecipe;
-            this.isApproved = false;
+            this.user = user;
             this.title = title;
             this.ingredients = ingredients;
             this.instructions = instructions;
@@ -32,19 +34,19 @@ namespace entity_classes.Recipes
             this.cookingTime = cookingTime;
         }
         public abstract decimal CalculatePrice();
-        public List<Ingredient> GetIngredients()
-        {
-            return ingredients;
-        }
-        public void SetApproval(bool isApproved)
-        {
-            this.isApproved = isApproved;
-        }
         public string GetTitle()
         {
             return title;
         }
-        public DietaryRestriction GetDietaryRestriction()
+        public List<Ingredient> GetIngredients()
+        {
+            return ingredients;
+        }
+        public string GetInstructions()
+        {
+            return instructions;
+        }
+        public DietaryRestriction GetDietaryRestrictions()
         {
             return dietaryRestriction;
         }
