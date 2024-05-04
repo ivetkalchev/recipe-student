@@ -1,0 +1,217 @@
+﻿namespace recipe_desktop
+{
+    partial class LoginUC
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            panel1 = new Panel();
+            lblText = new Label();
+            lblRegister = new Label();
+            lblForgottenPassword = new Label();
+            btnLogin = new Button();
+            btnClear = new Button();
+            tbPassword = new TextBox();
+            lblPassword = new Label();
+            lblUsername = new Label();
+            tbUsername = new TextBox();
+            label1 = new Label();
+            panel1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(125, 147, 208);
+            panel1.Controls.Add(lblText);
+            panel1.Controls.Add(lblRegister);
+            panel1.Controls.Add(lblForgottenPassword);
+            panel1.Controls.Add(btnLogin);
+            panel1.Controls.Add(btnClear);
+            panel1.Controls.Add(tbPassword);
+            panel1.Controls.Add(lblPassword);
+            panel1.Controls.Add(lblUsername);
+            panel1.Controls.Add(tbUsername);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(8, 7);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(640, 709);
+            panel1.TabIndex = 0;
+            // 
+            // lblText
+            // 
+            lblText.AutoSize = true;
+            lblText.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblText.ForeColor = Color.White;
+            lblText.Location = new Point(145, 572);
+            lblText.Name = "lblText";
+            lblText.Size = new Size(334, 35);
+            lblText.TabIndex = 9;
+            lblText.Text = "You don’t have an account?";
+            lblText.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lblRegister
+            // 
+            lblRegister.AutoSize = true;
+            lblRegister.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblRegister.ForeColor = Color.FromArgb(61, 83, 143);
+            lblRegister.Location = new Point(256, 607);
+            lblRegister.Name = "lblRegister";
+            lblRegister.Size = new Size(111, 35);
+            lblRegister.TabIndex = 8;
+            lblRegister.Text = "Register";
+            lblRegister.TextAlign = ContentAlignment.TopCenter;
+            lblRegister.Click += lblRegister_Click;
+            lblRegister.MouseLeave += lblRegister_MouseLeave;
+            lblRegister.MouseHover += lblRegister_MouseHover;
+            // 
+            // lblForgottenPassword
+            // 
+            lblForgottenPassword.AutoSize = true;
+            lblForgottenPassword.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            lblForgottenPassword.ForeColor = Color.FromArgb(61, 83, 143);
+            lblForgottenPassword.Location = new Point(299, 420);
+            lblForgottenPassword.Name = "lblForgottenPassword";
+            lblForgottenPassword.Size = new Size(250, 35);
+            lblForgottenPassword.TabIndex = 7;
+            lblForgottenPassword.Text = "Forgotten password";
+            lblForgottenPassword.TextAlign = ContentAlignment.TopCenter;
+            lblForgottenPassword.Click += lblForgottenPassword_Click;
+            lblForgottenPassword.MouseLeave += lblForgottenPassword_MouseLeave;
+            lblForgottenPassword.MouseHover += lblForgottenPassword_MouseHover;
+            // 
+            // btnLogin
+            // 
+            btnLogin.BackColor = Color.White;
+            btnLogin.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnLogin.FlatAppearance.BorderSize = 2;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnLogin.ForeColor = Color.FromArgb(46, 76, 157);
+            btnLogin.Location = new Point(75, 520);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(474, 49);
+            btnLogin.TabIndex = 6;
+            btnLogin.Text = "LOGIN";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
+            // 
+            // btnClear
+            // 
+            btnClear.BackColor = Color.FromArgb(61, 83, 143);
+            btnClear.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnClear.FlatAppearance.BorderSize = 2;
+            btnClear.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
+            btnClear.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
+            btnClear.FlatStyle = FlatStyle.Flat;
+            btnClear.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnClear.ForeColor = Color.White;
+            btnClear.Location = new Point(75, 465);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(474, 49);
+            btnClear.TabIndex = 5;
+            btnClear.Text = "CLEAR";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
+            // 
+            // tbPassword
+            // 
+            tbPassword.Font = new Font("Segoe UI", 18F);
+            tbPassword.Location = new Point(75, 370);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(474, 47);
+            tbPassword.TabIndex = 4;
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            lblPassword.ForeColor = Color.White;
+            lblPassword.Location = new Point(66, 327);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(147, 40);
+            lblPassword.TabIndex = 3;
+            lblPassword.Text = "Password";
+            lblPassword.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lblUsername
+            // 
+            lblUsername.AutoSize = true;
+            lblUsername.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            lblUsername.ForeColor = Color.White;
+            lblUsername.Location = new Point(66, 222);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(156, 40);
+            lblUsername.TabIndex = 2;
+            lblUsername.Text = "Username";
+            lblUsername.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // tbUsername
+            // 
+            tbUsername.Font = new Font("Segoe UI", 18F);
+            tbUsername.Location = new Point(75, 265);
+            tbUsername.Name = "tbUsername";
+            tbUsername.Size = new Size(474, 47);
+            tbUsername.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(102, 56);
+            label1.Name = "label1";
+            label1.Size = new Size(430, 134);
+            label1.TabIndex = 0;
+            label1.Text = "Student Recipe \nSharing Platform";
+            // 
+            // LoginUC
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(61, 83, 143);
+            Controls.Add(panel1);
+            Name = "LoginUC";
+            Size = new Size(654, 721);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Panel panel1;
+        private Label label1;
+        private TextBox tbUsername;
+        private Label lblUsername;
+        private TextBox tbPassword;
+        private Label lblPassword;
+        private Button btnClear;
+        private Button btnLogin;
+        private Label lblForgottenPassword;
+        private Label lblText;
+        private Label lblRegister;
+    }
+}

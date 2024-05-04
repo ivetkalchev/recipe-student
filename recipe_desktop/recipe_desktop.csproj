@@ -9,15 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6">
-      <TreatAsUsed>true</TreatAsUsed>
-    </PackageReference>
+    <Compile Update="RegisterUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ForgottenPasswordUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\data_access\data_access.csproj" />
-    <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
-    <ProjectReference Include="..\manager_classes\manager_classes.csproj" />
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

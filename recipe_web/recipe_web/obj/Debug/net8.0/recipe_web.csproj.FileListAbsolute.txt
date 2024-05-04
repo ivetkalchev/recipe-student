@@ -168,3 +168,5 @@ C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\bin\Debug\net8.0
 C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\manager_classes.dll
 C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\manager_classes.pdb
 C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\entity_classes.pdb
+C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\enum_classes.dll
+C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\enum_classes.pdb

@@ -99,13 +99,22 @@
         }
       },
       "entity_classes/1.0.0": {
+        "dependencies": {
+          "enum_classes": "1.0.0"
+        },
         "runtime": {
           "entity_classes.dll": {}
         }
       },
+      "enum_classes/1.0.0": {
+        "runtime": {
+          "enum_classes.dll": {}
+        }
+      },
       "manager_classes/1.0.0": {
         "dependencies": {
-          "entity_classes": "1.0.0"
+          "entity_classes": "1.0.0",
+          "enum_classes": "1.0.0"
         },
         "runtime": {
           "manager_classes.dll": {}
@@ -188,6 +197,11 @@
       "sha512": ""
     },
     "entity_classes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "enum_classes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
