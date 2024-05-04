@@ -338,6 +338,7 @@
             btnSubmit.TabIndex = 6;
             btnSubmit.Text = "SUBMIT";
             btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // lblUsername
             // 

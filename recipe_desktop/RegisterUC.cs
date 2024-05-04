@@ -239,5 +239,16 @@ namespace recipe_desktop
         {
             lblLogin.ForeColor = Color.FromArgb(61, 83, 143);
         }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            //add logic
+
+            HomePageForm homePage = new HomePageForm();
+            homePage.Show();
+
+            Form parentForm = this.ParentForm;
+            parentForm.Hide();
+        }
     }
 }

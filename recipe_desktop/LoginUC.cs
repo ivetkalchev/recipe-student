@@ -102,7 +102,13 @@ namespace recipe_desktop
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            //add logic
 
+            HomePageForm homePage = new HomePageForm();
+            homePage.Show();
+
+            Form parentForm = this.ParentForm;
+            parentForm.Hide();
         }
         private void lblRegister_Click(object sender, EventArgs e)
         {

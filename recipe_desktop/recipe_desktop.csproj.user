@@ -10,5 +10,11 @@
     <Compile Update="LoginUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="MenuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="SideBarPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

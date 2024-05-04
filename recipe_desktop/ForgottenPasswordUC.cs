@@ -78,7 +78,13 @@ namespace recipe_desktop
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            //add logic
 
+            HomePageForm homePage = new HomePageForm();
+            homePage.Show();
+
+            Form parentForm = this.ParentForm;
+            parentForm.Hide();
         }
         private void btnClear_Click(object sender, EventArgs e)
         {

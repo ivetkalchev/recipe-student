@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="HomepageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="RegisterUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
