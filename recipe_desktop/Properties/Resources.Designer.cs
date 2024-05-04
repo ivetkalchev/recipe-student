@@ -73,6 +73,16 @@ namespace recipe_desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap analytics_xxl_2 {
+            get {
+                object obj = ResourceManager.GetObject("analytics-xxl 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_eye_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-eye-30", resourceCulture);
@@ -86,6 +96,46 @@ namespace recipe_desktop.Properties {
         internal static System.Drawing.Bitmap Login {
             get {
                 object obj = ResourceManager.GetObject("Login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logout_xxl_2 {
+            get {
+                object obj = ResourceManager.GetObject("logout-xxl 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pizza_xxl_2 {
+            get {
+                object obj = ResourceManager.GetObject("pizza-xxl 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_25_xxl_2 {
+            get {
+                object obj = ResourceManager.GetObject("settings-25-xxl 2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_xxl_2 {
+            get {
+                object obj = ResourceManager.GetObject("user-xxl 2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

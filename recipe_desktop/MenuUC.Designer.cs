@@ -28,18 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            menu = new Label();
             SuspendLayout();
+            // 
+            // menu
+            // 
+            menu.Anchor = AnchorStyles.None;
+            menu.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            menu.ForeColor = Color.White;
+            menu.Image = Properties.Resources.analytics_xxl_2;
+            menu.ImageAlign = ContentAlignment.TopCenter;
+            menu.Location = new Point(0, 0);
+            menu.Name = "menu";
+            menu.Padding = new Padding(0, 15, 0, 15);
+            menu.Size = new Size(195, 120);
+            menu.TabIndex = 0;
+            menu.Text = "label";
+            menu.TextAlign = ContentAlignment.BottomCenter;
             // 
             // MenuUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.Transparent;
+            Controls.Add(menu);
             Name = "MenuUC";
             Size = new Size(198, 120);
+            Paint += MenuUC_Paint;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Label menu;
     }
 }

@@ -29,8 +29,14 @@
         private void InitializeComponent()
         {
             panelBar = new Panel();
-            panel1 = new Panel();
+            pamelHeader = new Panel();
             sideBarPanel1 = new SideBarPanel();
+            Settings = new MenuUC();
+            Employees = new MenuUC();
+            Recipes = new MenuUC();
+            Dashboard = new MenuUC();
+            Log_Out = new MenuUC();
+            sideBarPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelBar
@@ -41,17 +47,22 @@
             panelBar.Size = new Size(1902, 56);
             panelBar.TabIndex = 0;
             // 
-            // panel1
+            // pamelHeader
             // 
-            panel1.BackColor = Color.FromArgb(127, 149, 209);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 56);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1902, 77);
-            panel1.TabIndex = 2;
+            pamelHeader.BackColor = Color.FromArgb(127, 149, 209);
+            pamelHeader.Dock = DockStyle.Top;
+            pamelHeader.Location = new Point(0, 56);
+            pamelHeader.Name = "pamelHeader";
+            pamelHeader.Size = new Size(1902, 77);
+            pamelHeader.TabIndex = 2;
             // 
             // sideBarPanel1
             // 
+            sideBarPanel1.Controls.Add(Log_Out);
+            sideBarPanel1.Controls.Add(Settings);
+            sideBarPanel1.Controls.Add(Employees);
+            sideBarPanel1.Controls.Add(Recipes);
+            sideBarPanel1.Controls.Add(Dashboard);
             sideBarPanel1.Dock = DockStyle.Left;
             sideBarPanel1.gradientBottom = Color.FromArgb(46, 79, 166);
             sideBarPanel1.gradientTop = Color.FromArgb(127, 149, 209);
@@ -60,6 +71,61 @@
             sideBarPanel1.Size = new Size(198, 900);
             sideBarPanel1.TabIndex = 3;
             // 
+            // Settings
+            // 
+            Settings.BackColor = Color.Transparent;
+            Settings.Cursor = Cursors.Hand;
+            Settings.Icon = Properties.Resources.settings_25_xxl_2;
+            Settings.Location = new Point(0, 407);
+            Settings.MenuTitle = "Settings";
+            Settings.Name = "Settings";
+            Settings.Size = new Size(198, 123);
+            Settings.TabIndex = 3;
+            // 
+            // Employees
+            // 
+            Employees.BackColor = Color.Transparent;
+            Employees.Cursor = Cursors.Hand;
+            Employees.Icon = Properties.Resources.user_xxl_2;
+            Employees.Location = new Point(0, 278);
+            Employees.MenuTitle = "Employees";
+            Employees.Name = "Employees";
+            Employees.Size = new Size(198, 123);
+            Employees.TabIndex = 2;
+            // 
+            // Recipes
+            // 
+            Recipes.BackColor = Color.Transparent;
+            Recipes.Cursor = Cursors.Hand;
+            Recipes.Icon = Properties.Resources.pizza_xxl_2;
+            Recipes.Location = new Point(0, 149);
+            Recipes.MenuTitle = "Recipe";
+            Recipes.Name = "Recipes";
+            Recipes.Size = new Size(198, 123);
+            Recipes.TabIndex = 1;
+            // 
+            // Dashboard
+            // 
+            Dashboard.BackColor = Color.Transparent;
+            Dashboard.Cursor = Cursors.Hand;
+            Dashboard.Icon = Properties.Resources.analytics_xxl_2;
+            Dashboard.Location = new Point(0, 20);
+            Dashboard.MenuTitle = "Dashboard";
+            Dashboard.Name = "Dashboard";
+            Dashboard.Size = new Size(198, 123);
+            Dashboard.TabIndex = 0;
+            // 
+            // Log_Out
+            // 
+            Log_Out.BackColor = Color.Transparent;
+            Log_Out.Cursor = Cursors.Hand;
+            Log_Out.Icon = Properties.Resources.logout_xxl_2;
+            Log_Out.Location = new Point(-3, 536);
+            Log_Out.MenuTitle = "Log Out";
+            Log_Out.Name = "Log_Out";
+            Log_Out.Size = new Size(198, 123);
+            Log_Out.TabIndex = 4;
+            // 
             // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -67,7 +133,7 @@
             BackColor = Color.White;
             ClientSize = new Size(1902, 1033);
             Controls.Add(sideBarPanel1);
-            Controls.Add(panel1);
+            Controls.Add(pamelHeader);
             Controls.Add(panelBar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "HomePageForm";
@@ -76,13 +142,19 @@
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += HomePageForm_Load;
+            sideBarPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panelBar;
-        private Panel panel1;
+        private Panel pamelHeader;
         private SideBarPanel sideBarPanel1;
+        private MenuUC Dashboard;
+        private MenuUC Settings;
+        private MenuUC Employees;
+        private MenuUC Recipes;
+        private MenuUC Log_Out;
     }
 }

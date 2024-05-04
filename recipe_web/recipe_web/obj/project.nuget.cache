@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LfSwWBY0n8oPwwx6ALoJxrbcN3uPmWMnu5uYr1JiE8XZ2ee0iUDXPrLEl2BFuO16bLUMA4pTi0o3PYKbv9Dvgw==",
+  "dgSpecHash": "yYLX57/JForx3nzCY4yMGgYg7oQgaN3LTyM2v5yRu1chQ3aIdWHjBwZVuYAAyppRTNDFA39IwA0y00n0QNuoTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
+  "projectFilePath": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivetk\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ivetk\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

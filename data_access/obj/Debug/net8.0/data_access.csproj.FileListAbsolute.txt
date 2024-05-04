@@ -34,3 +34,15 @@ C:\Users\ivetk\Desktop\individual-project\data_access\obj\Debug\net8.0\data_acce
 C:\Users\ivetk\Desktop\individual-project\data_access\obj\Debug\net8.0\refint\data_access.dll
 C:\Users\ivetk\Desktop\individual-project\data_access\obj\Debug\net8.0\data_access.pdb
 C:\Users\ivetk\Desktop\individual-project\data_access\obj\Debug\net8.0\ref\data_access.dll
+I:\individual-project\data_access\bin\Debug\net8.0\data_access.deps.json
+I:\individual-project\data_access\bin\Debug\net8.0\data_access.dll
+I:\individual-project\data_access\bin\Debug\net8.0\data_access.pdb
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.csproj.AssemblyReference.cache
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.GeneratedMSBuildEditorConfig.editorconfig
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.AssemblyInfoInputs.cache
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.AssemblyInfo.cs
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.csproj.CoreCompileInputs.cache
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.dll
+I:\individual-project\data_access\obj\Debug\net8.0\refint\data_access.dll
+I:\individual-project\data_access\obj\Debug\net8.0\data_access.pdb
+I:\individual-project\data_access\obj\Debug\net8.0\ref\data_access.dll

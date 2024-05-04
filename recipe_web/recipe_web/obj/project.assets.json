@@ -546,11 +546,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
+      "projectUniqueName": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
       "projectName": "recipe_web",
-      "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
+      "projectPath": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
       "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\obj\\",
+      "outputPath": "I:\\individual-project\\recipe_web\\recipe_web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -567,11 +567,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
-              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj"
+            "I:\\individual-project\\data_access\\data_access.csproj": {
+              "projectPath": "I:\\individual-project\\data_access\\data_access.csproj"
             },
-            "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
-              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj"
+            "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
+              "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
             }
           }
         }

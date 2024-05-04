@@ -83,6 +83,7 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
+            lblLogin.Cursor = Cursors.Hand;
             lblLogin.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblLogin.ForeColor = Color.White;
             lblLogin.Location = new Point(478, 561);
@@ -98,6 +99,7 @@
             // btnClear
             // 
             btnClear.BackColor = Color.FromArgb(61, 83, 143);
+            btnClear.Cursor = Cursors.Hand;
             btnClear.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnClear.FlatAppearance.BorderSize = 2;
             btnClear.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
@@ -128,6 +130,7 @@
             // lblRegister
             // 
             lblRegister.AutoSize = true;
+            lblRegister.Cursor = Cursors.Hand;
             lblRegister.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblRegister.ForeColor = Color.FromArgb(61, 83, 143);
             lblRegister.Location = new Point(72, 564);
@@ -143,6 +146,7 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.White;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnSubmit.FlatAppearance.BorderSize = 2;
             btnSubmit.FlatStyle = FlatStyle.Flat;

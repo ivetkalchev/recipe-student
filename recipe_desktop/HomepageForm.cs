@@ -1,4 +1,5 @@
 using System.Drawing.Printing;
+using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -44,12 +45,12 @@ namespace recipe_desktop
 
         protected override CreateParams CreateParams
         {
-            get 
+            get
             {
                 m_aeroEnabled = CheckAeroEnabled();
                 CreateParams cp = base.CreateParams;
                 if (!m_aeroEnabled)
-                    cp.ClassStyle |= CS_DROPSHADOW; 
+                    cp.ClassStyle |= CS_DROPSHADOW;
                 return cp;
             }
         }
@@ -57,7 +58,7 @@ namespace recipe_desktop
         {
             if (Environment.OSVersion.Version.Major >= 6)
             {
-                int enabled = 0; DwmIsCompositionEnabled(ref enabled );
+                int enabled = 0; DwmIsCompositionEnabled(ref enabled);
                 return (enabled == 1) ? true : false;
             }
             return false;
@@ -88,9 +89,56 @@ namespace recipe_desktop
                 m.Result = (IntPtr)HTCAPTION;
         }
 
+        List<MenuUC> menuButtons;
         public HomePageForm()
         {
             InitializeComponent();
+            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Employees, Settings, Log_Out };
+            ClickMenu(menuButtons);
+        }
+
+        private void ClickMenu(List<MenuUC> _menu)
+        {
+            foreach (var menu in _menu)
+            {
+                menu.MenuClick += Menu_menuClick;
+            }
+        }
+
+
+        private void Menu_menuClick(object sender, EventArgs e)
+        {
+            MenuUC _menuButton = (MenuUC)sender;
+
+            switch (_menuButton.Name)
+            {
+                case "Dashboard":
+
+                    break;
+
+                case "Recipes":
+                    
+                    break;
+
+                case "Employees":
+                    
+                    break;
+
+                case "Settings":
+
+                    break;
+
+                case "Log_Out":
+                    LogOut();
+                    break;
+            }
+        }
+        private void LogOut()
+        {
+            AuthenticationForm authForm = new AuthenticationForm();
+            authForm.Show();
+
+            this.Close();
         }
         private void HomePageForm_Load(object sender, EventArgs e)
         {

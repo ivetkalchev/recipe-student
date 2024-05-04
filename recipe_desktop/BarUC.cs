@@ -18,12 +18,7 @@ namespace recipe_desktop
         }
         private void lblClose_Click(object sender, EventArgs e)
         {
-            Form form = this.FindForm();
-
-            if (form != null)
-            {
-                form.Close();
-            }
+            Application.Exit();
         }
         private void lblClose_MouseHover(object sender, EventArgs e)
         {

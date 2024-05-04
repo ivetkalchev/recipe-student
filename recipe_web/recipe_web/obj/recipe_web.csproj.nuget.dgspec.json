@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj": {}
+    "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
+    "I:\\individual-project\\data_access\\data_access.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj",
+        "projectUniqueName": "I:\\individual-project\\data_access\\data_access.csproj",
         "projectName": "data_access",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj",
+        "projectPath": "I:\\individual-project\\data_access\\data_access.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\obj\\",
+        "outputPath": "I:\\individual-project\\data_access\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj": {
+    "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj",
+        "projectUniqueName": "I:\\individual-project\\entity_classes\\entity_classes.csproj",
         "projectName": "entity_classes",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj",
+        "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\obj\\",
+        "outputPath": "I:\\individual-project\\entity_classes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -94,8 +94,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj"
+              "I:\\individual-project\\enum_classes\\enum_classes.csproj": {
+                "projectPath": "I:\\individual-project\\enum_classes\\enum_classes.csproj"
               }
             }
           }
@@ -134,14 +134,14 @@
         }
       }
     },
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj": {
+    "I:\\individual-project\\enum_classes\\enum_classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj",
+        "projectUniqueName": "I:\\individual-project\\enum_classes\\enum_classes.csproj",
         "projectName": "enum_classes",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj",
+        "projectPath": "I:\\individual-project\\enum_classes\\enum_classes.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\obj\\",
+        "outputPath": "I:\\individual-project\\enum_classes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -194,14 +194,14 @@
         }
       }
     },
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
+    "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj",
+        "projectUniqueName": "I:\\individual-project\\manager_classes\\manager_classes.csproj",
         "projectName": "manager_classes",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj",
+        "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\obj\\",
+        "outputPath": "I:\\individual-project\\manager_classes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -218,11 +218,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj"
+              "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
+                "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj"
               },
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\enum_classes\\enum_classes.csproj"
+              "I:\\individual-project\\enum_classes\\enum_classes.csproj": {
+                "projectPath": "I:\\individual-project\\enum_classes\\enum_classes.csproj"
               }
             }
           }
@@ -261,14 +261,14 @@
         }
       }
     },
-    "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj": {
+    "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
+        "projectUniqueName": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
         "projectName": "recipe_web",
-        "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
+        "projectPath": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\recipe_web\\recipe_web\\obj\\",
+        "outputPath": "I:\\individual-project\\recipe_web\\recipe_web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -285,11 +285,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\data_access\\data_access.csproj"
+              "I:\\individual-project\\data_access\\data_access.csproj": {
+                "projectPath": "I:\\individual-project\\data_access\\data_access.csproj"
               },
-              "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj": {
-                "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\manager_classes\\manager_classes.csproj"
+              "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
+                "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
               }
             }
           }

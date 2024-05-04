@@ -237,6 +237,7 @@
             // 
             // picPassword
             // 
+            picPassword.Cursor = Cursors.Hand;
             picPassword.Image = Properties.Resources.icons8_eye_30;
             picPassword.Location = new Point(575, 122);
             picPassword.Name = "picPassword";
@@ -270,6 +271,7 @@
             // btnClear
             // 
             btnClear.BackColor = Color.FromArgb(61, 83, 143);
+            btnClear.Cursor = Cursors.Hand;
             btnClear.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnClear.FlatAppearance.BorderSize = 2;
             btnClear.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
@@ -312,6 +314,7 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
+            lblLogin.Cursor = Cursors.Hand;
             lblLogin.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblLogin.ForeColor = Color.FromArgb(61, 83, 143);
             lblLogin.Location = new Point(282, 614);
@@ -327,6 +330,7 @@
             // btnSubmit
             // 
             btnSubmit.BackColor = Color.White;
+            btnSubmit.Cursor = Cursors.Hand;
             btnSubmit.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnSubmit.FlatAppearance.BorderSize = 2;
             btnSubmit.FlatStyle = FlatStyle.Flat;

@@ -65,6 +65,7 @@
             // 
             // picPassword
             // 
+            picPassword.Cursor = Cursors.Hand;
             picPassword.Image = Properties.Resources.icons8_eye_30;
             picPassword.Location = new Point(512, 339);
             picPassword.Name = "picPassword";
@@ -89,6 +90,7 @@
             // lblRegister
             // 
             lblRegister.AutoSize = true;
+            lblRegister.Cursor = Cursors.Hand;
             lblRegister.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblRegister.ForeColor = Color.FromArgb(61, 83, 143);
             lblRegister.Location = new Point(256, 607);
@@ -104,6 +106,7 @@
             // lblForgottenPassword
             // 
             lblForgottenPassword.AutoSize = true;
+            lblForgottenPassword.Cursor = Cursors.Hand;
             lblForgottenPassword.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblForgottenPassword.ForeColor = Color.FromArgb(61, 83, 143);
             lblForgottenPassword.Location = new Point(299, 420);
@@ -119,6 +122,7 @@
             // btnLogin
             // 
             btnLogin.BackColor = Color.White;
+            btnLogin.Cursor = Cursors.Hand;
             btnLogin.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnLogin.FlatAppearance.BorderSize = 2;
             btnLogin.FlatStyle = FlatStyle.Flat;
@@ -135,6 +139,7 @@
             // btnClear
             // 
             btnClear.BackColor = Color.FromArgb(61, 83, 143);
+            btnClear.Cursor = Cursors.Hand;
             btnClear.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnClear.FlatAppearance.BorderSize = 2;
             btnClear.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);

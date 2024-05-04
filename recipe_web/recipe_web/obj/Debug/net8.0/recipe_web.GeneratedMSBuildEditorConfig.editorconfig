@@ -9,63 +9,63 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = recipe_web
 build_property.RootNamespace = recipe_web
-build_property.ProjectDir = C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web\
+build_property.ProjectDir = I:\individual-project\recipe_web\recipe_web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ivetk\Desktop\individual-project\recipe_web\recipe_web
+build_property.MSBuildProjectDirectory = I:\individual-project\recipe_web\recipe_web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Cookies.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Cookies.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29va2llcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Error.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Index.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Login.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Mealprep.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Mealprep.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVhbHByZXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Privacy.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Recipes.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Recipes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVjaXBlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Register.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/UserProfile.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/UserProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlclByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/_ViewImports.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/_ViewStart.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ivetk/Desktop/individual-project/recipe_web/recipe_web/Pages/Shared/_Layout.cshtml]
+[I:/individual-project/recipe_web/recipe_web/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-kwqyapgp0f
