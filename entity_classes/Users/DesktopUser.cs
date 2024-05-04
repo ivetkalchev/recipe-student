@@ -20,13 +20,12 @@ namespace entity_classes.Users
         private int bsn;
         private Gender gender;
         private DateTime birthdate;
-        private SecurityQuestion securityQuestion;
         private string securityAnswer;
         private bool isActive;
         private List<Recipe> uploadedRecipes;
         public DesktopUser(int idUser, string username, string email, string password, 
             Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate, 
-            SecurityQuestion securityQuestion, string securityAnswer, bool isActive, List<Recipe> uploadedRecipes) 
+            string securityAnswer, bool isActive, List<Recipe> uploadedRecipes) 
             : base(idUser, username, email, password)
         {
             this.role = role;
@@ -35,7 +34,6 @@ namespace entity_classes.Users
             this.bsn = bsn;
             this.gender = gender;
             this.birthdate = birthdate;
-            this.securityQuestion = securityQuestion;
             this.securityAnswer = securityAnswer;
             this.isActive = isActive;
             this.uploadedRecipes = uploadedRecipes;
@@ -68,11 +66,6 @@ namespace entity_classes.Users
         public DateTime GetBirthdate()
         {
             return birthdate;
-        }
-
-        public SecurityQuestion GetSecurityQuestion()
-        {
-            return securityQuestion;
         }
 
         public string GetSecurityAnswer()

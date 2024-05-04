@@ -19,3 +19,9 @@ C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-window
 C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.LoginUC.resources
 C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.ForgottenPasswordUC.resources
 C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.RegisterUC.resources
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\entity_classes.dll
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.dll
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\entity_classes.pdb
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.pdb
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.csproj.AssemblyReference.cache
+C:\Users\ivetk\Desktop\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_d.E7FD3E76.Up2Date

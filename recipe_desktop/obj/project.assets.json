@@ -1,11 +1,48 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {}
+    "net8.0-windows7.0": {
+      "entity_classes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "enum_classes": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/entity_classes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/entity_classes.dll": {}
+        }
+      },
+      "enum_classes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/enum_classes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/enum_classes.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "entity_classes/1.0.0": {
+      "type": "project",
+      "path": "../entity_classes/entity_classes.csproj",
+      "msbuildProject": "../entity_classes/entity_classes.csproj"
+    },
+    "enum_classes/1.0.0": {
+      "type": "project",
+      "path": "../enum_classes/enum_classes.csproj",
+      "msbuildProject": "../enum_classes/enum_classes.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": []
+    "net8.0-windows7.0": [
+      "entity_classes >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\ivetk\\.nuget\\packages\\": {}
@@ -33,7 +70,11 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj": {
+              "projectPath": "C:\\Users\\ivetk\\Desktop\\individual-project\\entity_classes\\entity_classes.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

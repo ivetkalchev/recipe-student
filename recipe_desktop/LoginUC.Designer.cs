@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            picPassword = new PictureBox();
             lblText = new Label();
             lblRegister = new Label();
             lblForgottenPassword = new Label();
@@ -40,11 +41,13 @@
             tbUsername = new TextBox();
             label1 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picPassword).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(125, 147, 208);
+            panel1.Controls.Add(picPassword);
             panel1.Controls.Add(lblText);
             panel1.Controls.Add(lblRegister);
             panel1.Controls.Add(lblForgottenPassword);
@@ -59,6 +62,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(640, 709);
             panel1.TabIndex = 0;
+            // 
+            // picPassword
+            // 
+            picPassword.Image = Properties.Resources.icons8_eye_30;
+            picPassword.Location = new Point(512, 339);
+            picPassword.Name = "picPassword";
+            picPassword.Size = new Size(37, 28);
+            picPassword.SizeMode = PictureBoxSizeMode.StretchImage;
+            picPassword.TabIndex = 15;
+            picPassword.TabStop = false;
+            picPassword.Click += picPassword_Click;
             // 
             // lblText
             // 
@@ -139,10 +153,12 @@
             // tbPassword
             // 
             tbPassword.Font = new Font("Segoe UI", 18F);
+            tbPassword.ForeColor = Color.Black;
             tbPassword.Location = new Point(75, 370);
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(474, 47);
             tbPassword.TabIndex = 4;
+            tbPassword.UseSystemPasswordChar = true;
             // 
             // lblPassword
             // 
@@ -171,6 +187,7 @@
             // tbUsername
             // 
             tbUsername.Font = new Font("Segoe UI", 18F);
+            tbUsername.ForeColor = Color.Black;
             tbUsername.Location = new Point(75, 265);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(474, 47);
@@ -197,6 +214,7 @@
             Size = new Size(654, 721);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picPassword).EndInit();
             ResumeLayout(false);
         }
 
@@ -213,5 +231,6 @@
         private Label lblForgottenPassword;
         private Label lblText;
         private Label lblRegister;
+        private PictureBox picPassword;
     }
 }

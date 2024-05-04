@@ -13,34 +13,60 @@ namespace recipe_desktop
 {
     public partial class ForgottenPasswordUC : UserControl
     {
-        private string textSecurityAnswer = " your answer";
+        private string textUsername = " username";
+        private string textSecurityAnswer = " answer";
         public ForgottenPasswordUC()
         {
             InitializeComponent();
-            textHolderSecAnswer();
+
+            textHolderUsername();
+            textHolderSecurityAnswer();
         }
-        private void tbSecAnswer_GotFocus(object sender, EventArgs e)
+        private void tbUsername_GotFocus(object sender, EventArgs e)
         {
-            if (tbSecAnswer.Text == textSecurityAnswer)
+            if (tbUsername.Text == textUsername)
             {
-                tbSecAnswer.Text = "";
-                tbSecAnswer.ForeColor = SystemColors.WindowText;
+                tbUsername.Text = "";
+                tbUsername.ForeColor = SystemColors.WindowText;
             }
         }
-        private void tbSecAnswer_LostFocus(object sender, EventArgs e)
+        private void tbUsername_LostFocus(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbSecAnswer.Text))
+            if (string.IsNullOrWhiteSpace(tbUsername.Text))
             {
-                tbSecAnswer.Text = textSecurityAnswer;
-                tbSecAnswer.ForeColor = SystemColors.GrayText;
+                tbUsername.Text = textUsername;
+                tbUsername.ForeColor = SystemColors.GrayText;
             }
         }
-        private void textHolderSecAnswer()
+        private void textHolderUsername()
         {
-            tbSecAnswer.Text = textSecurityAnswer;
-            tbSecAnswer.ForeColor = SystemColors.GrayText;
-            tbSecAnswer.GotFocus += tbSecAnswer_GotFocus;
-            tbSecAnswer.LostFocus += tbSecAnswer_LostFocus;
+            tbUsername.Text = textUsername;
+            tbUsername.ForeColor = SystemColors.GrayText;
+            tbUsername.GotFocus += tbUsername_GotFocus;
+            tbUsername.LostFocus += tbUsername_LostFocus;
+        }
+        private void tbSecurityAnswer_GotFocus(object sender, EventArgs e)
+        {
+            if (tbSecurityAnswer.Text == textSecurityAnswer)
+            {
+                tbSecurityAnswer.Text = "";
+                tbSecurityAnswer.ForeColor = SystemColors.WindowText;
+            }
+        }
+        private void tbSecurityAnswer_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbSecurityAnswer.Text))
+            {
+                tbSecurityAnswer.Text = textSecurityAnswer;
+                tbSecurityAnswer.ForeColor = SystemColors.GrayText;
+            }
+        }
+        private void textHolderSecurityAnswer()
+        {
+            tbSecurityAnswer.Text = textSecurityAnswer;
+            tbSecurityAnswer.ForeColor = SystemColors.GrayText;
+            tbSecurityAnswer.GotFocus += tbSecurityAnswer_GotFocus;
+            tbSecurityAnswer.LostFocus += tbSecurityAnswer_LostFocus;
         }
         private void lblRegister_MouseHover(object sender, EventArgs e)
         {
@@ -54,18 +80,33 @@ namespace recipe_desktop
         {
 
         }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
-            tbSecAnswer.Clear();
-            textHolderSecAnswer();
-        }
+            tbUsername.Clear();
+            tbSecurityAnswer.Clear();
 
+            textHolderUsername();
+            textHolderSecurityAnswer();
+        }
         private void lblRegister_Click(object sender, EventArgs e)
         {
             AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
             parentForm.ClearPanel();
             parentForm.LoadRegister();
+        }
+        private void lblLogin_MouseHover(object sender, EventArgs e)
+        {
+            lblLogin.ForeColor = Color.FromArgb(61, 83, 143);
+        }
+        private void lblLogin_MouseLeave(object sender, EventArgs e)
+        {
+            lblLogin.ForeColor = Color.FromArgb(255, 255, 255);
+        }
+        private void lblLogin_Click(object sender, EventArgs e)
+        {
+            AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
+            parentForm.ClearPanel();
+            parentForm.LoadLogin();
         }
     }
 }

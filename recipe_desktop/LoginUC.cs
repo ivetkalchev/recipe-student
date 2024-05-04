@@ -104,12 +104,15 @@ namespace recipe_desktop
         {
 
         }
-
         private void lblRegister_Click(object sender, EventArgs e)
         {
             AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
             parentForm.ClearPanel();
             parentForm.LoadRegister();
+        }
+        private void picPassword_Click(object sender, EventArgs e)
+        {
+            tbPassword.UseSystemPasswordChar = !tbPassword.UseSystemPasswordChar;
         }
     }
 }

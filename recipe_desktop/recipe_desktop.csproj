@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\entity_classes\entity_classes.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="RegisterUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
