@@ -31,5 +31,13 @@ namespace entity_classes.Users
         {
             return password;
         }
+        public string HashPassword(string password)
+        {
+            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password));
+        }
+        public bool IsPasswordCorrect(string input)
+        {
+            return HashPassword(input) == password;
+        }
     }
 }

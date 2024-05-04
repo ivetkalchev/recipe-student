@@ -30,12 +30,14 @@
         {
             panelBar = new Panel();
             pamelHeader = new Panel();
+            lblHeaderText = new Label();
             sideBarPanel1 = new SideBarPanel();
+            Log_Out = new MenuUC();
             Settings = new MenuUC();
             Employees = new MenuUC();
             Recipes = new MenuUC();
             Dashboard = new MenuUC();
-            Log_Out = new MenuUC();
+            pamelHeader.SuspendLayout();
             sideBarPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,11 +52,24 @@
             // pamelHeader
             // 
             pamelHeader.BackColor = Color.FromArgb(127, 149, 209);
+            pamelHeader.Controls.Add(lblHeaderText);
             pamelHeader.Dock = DockStyle.Top;
             pamelHeader.Location = new Point(0, 56);
             pamelHeader.Name = "pamelHeader";
             pamelHeader.Size = new Size(1902, 77);
             pamelHeader.TabIndex = 2;
+            // 
+            // lblHeaderText
+            // 
+            lblHeaderText.Dock = DockStyle.Fill;
+            lblHeaderText.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            lblHeaderText.ForeColor = Color.White;
+            lblHeaderText.Location = new Point(0, 0);
+            lblHeaderText.Name = "lblHeaderText";
+            lblHeaderText.Size = new Size(1902, 77);
+            lblHeaderText.TabIndex = 0;
+            lblHeaderText.Text = "Dashboard";
+            lblHeaderText.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // sideBarPanel1
             // 
@@ -70,6 +85,17 @@
             sideBarPanel1.Name = "sideBarPanel1";
             sideBarPanel1.Size = new Size(198, 900);
             sideBarPanel1.TabIndex = 3;
+            // 
+            // Log_Out
+            // 
+            Log_Out.BackColor = Color.Transparent;
+            Log_Out.Cursor = Cursors.Hand;
+            Log_Out.Icon = Properties.Resources.logout_xxl_2;
+            Log_Out.Location = new Point(-3, 536);
+            Log_Out.MenuTitle = "Log Out";
+            Log_Out.Name = "Log_Out";
+            Log_Out.Size = new Size(198, 123);
+            Log_Out.TabIndex = 4;
             // 
             // Settings
             // 
@@ -115,17 +141,6 @@
             Dashboard.Size = new Size(198, 123);
             Dashboard.TabIndex = 0;
             // 
-            // Log_Out
-            // 
-            Log_Out.BackColor = Color.Transparent;
-            Log_Out.Cursor = Cursors.Hand;
-            Log_Out.Icon = Properties.Resources.logout_xxl_2;
-            Log_Out.Location = new Point(-3, 536);
-            Log_Out.MenuTitle = "Log Out";
-            Log_Out.Name = "Log_Out";
-            Log_Out.Size = new Size(198, 123);
-            Log_Out.TabIndex = 4;
-            // 
             // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -142,6 +157,7 @@
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += HomePageForm_Load;
+            pamelHeader.ResumeLayout(false);
             sideBarPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -156,5 +172,6 @@
         private MenuUC Employees;
         private MenuUC Recipes;
         private MenuUC Log_Out;
+        private Label lblHeaderText;
     }
 }

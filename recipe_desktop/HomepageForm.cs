@@ -113,18 +113,22 @@ namespace recipe_desktop
             switch (_menuButton.Name)
             {
                 case "Dashboard":
+                    lblHeaderText.Text = "Dashboard";
 
                     break;
 
                 case "Recipes":
-                    
+                    lblHeaderText.Text = "Recipes";
+
                     break;
 
                 case "Employees":
-                    
+                    lblHeaderText.Text = "Employees";
+
                     break;
 
                 case "Settings":
+                    lblHeaderText.Text = "Settings";
 
                     break;
 

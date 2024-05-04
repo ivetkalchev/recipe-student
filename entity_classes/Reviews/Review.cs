@@ -15,13 +15,15 @@ namespace entity_classes.Reviews
         private User user;
         private string reviewText;
         private decimal ratingValue;
-        public Review(int idReview, Recipe recipe, User user, string reviewText, decimal ratingValue)
+        private DateTime publishDate;
+        public Review(int idReview, Recipe recipe, User user, string reviewText, decimal ratingValue, DateTime publishDate)
         {
             this.idReview = idReview;
             this.recipe = recipe;
             this.user = user;
             this.reviewText = reviewText;
             this.ratingValue = ratingValue;
+            this.publishDate = publishDate;
         }
         public string GetReviewText()
         {
@@ -30,6 +32,10 @@ namespace entity_classes.Reviews
         public decimal GetRatingValue()
         {
             return ratingValue;
+        }
+        public DateTime GetPublishDate()
+        {
+            return publishDate;
         }
     }
 }

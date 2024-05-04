@@ -36,6 +36,7 @@ namespace recipe_desktop
             textHolderSecurityAnswer();
 
             LoadCbGender();
+            cbGender.SelectedIndex = 0;
         }
         private void tbUsername_GotFocus(object sender, EventArgs e)
         {
@@ -87,7 +88,11 @@ namespace recipe_desktop
 
             textHolderUsername();
             textHolderPassword();
-
+            textHolderEmail();
+            textHolderBsn();
+            textHolderFirstName();
+            textHolderLastName();
+            textHolderSecurityAnswer();
         }
         private void textHolderUsername()
         {
