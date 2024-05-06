@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using data_access;
 
 namespace recipe_web.Pages
 {

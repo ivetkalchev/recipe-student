@@ -9,15 +9,7 @@ namespace DTOs
 {
     public class FoodDTO
     {
-        public int IdRecipe { get; private set; }
-        public int IdUser { get; private set; }
-        public string Title { get; private set; }
-        public string Instructions { get; private set; }
-        public DietaryRestriction DietaryRestriction { get; private set; }
-        public Difficulty Difficulty { get; private set; }
-        public int CookingTime { get; private set; }
-        public DateTime PublishDate { get; private set; }
-        public bool IsSpicy { get; private set; }
-        public int Servings { get; private set; }
+        public bool IsSpicy { get; set; }
+        public int Servings { get; set; }
     }
 }

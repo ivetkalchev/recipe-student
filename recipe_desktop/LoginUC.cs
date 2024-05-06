@@ -8,75 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using manager_classes;
+using DTOs;
 
 namespace recipe_desktop
 {
     public partial class LoginUC : UserControl
     {
-        private string textUsername = " username";
-        private string textPassword = " password";
-        public LoginUC()
+        private UserManager userManager;
+        public LoginUC(UserManager userManager)
         {
             InitializeComponent();
 
-            textHolderUsername();
-            textHolderPassword();
-
             label1.TextAlign = ContentAlignment.MiddleCenter;
-        }
-        private void tbUsername_GotFocus(object sender, EventArgs e)
-        {
-            if (tbUsername.Text == textUsername)
-            {
-                tbUsername.Text = "";
-                tbUsername.ForeColor = SystemColors.WindowText;
-            }
-        }
-        private void tbUsername_LostFocus(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbUsername.Text))
-            {
-                tbUsername.Text = textUsername;
-                tbUsername.ForeColor = SystemColors.GrayText;
-            }
-        }
-        private void tbPassword_GotFocus(object sender, EventArgs e)
-        {
-            if (tbPassword.Text == textPassword)
-            {
-                tbPassword.Text = "";
-                tbPassword.ForeColor = SystemColors.WindowText;
-            }
-        }
-        private void tbPassword_LostFocus(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbPassword.Text))
-            {
-                tbPassword.Text = textPassword;
-                tbPassword.ForeColor = SystemColors.GrayText;
-            }
+            this.userManager = userManager;
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
             tbUsername.Clear();
             tbPassword.Clear();
-
-            textHolderUsername();
-            textHolderPassword();
-        }
-        private void textHolderUsername()
-        {
-            tbUsername.Text = textUsername;
-            tbUsername.ForeColor = SystemColors.GrayText;
-            tbUsername.GotFocus += tbUsername_GotFocus;
-            tbUsername.LostFocus += tbUsername_LostFocus;
-        }
-        private void textHolderPassword()
-        {
-            tbPassword.Text = textPassword;
-            tbPassword.ForeColor = SystemColors.GrayText;
-            tbPassword.GotFocus += tbPassword_GotFocus;
-            tbPassword.LostFocus += tbPassword_LostFocus;
         }
         private void lblRegister_MouseHover(object sender, EventArgs e)
         {
@@ -100,15 +51,48 @@ namespace recipe_desktop
             parentForm.ClearPanel();
             parentForm.LoadForgottenPassword();
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //add logic
+            string username = tbUsername.Text;
+            string password = tbPassword.Text;
 
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Please enter both username and password.");
+                return;
+            }
+
+            if (userManager.AuthenticateUser(username, password, out DesktopUserDTO user))
+            {
+                if (user != null)
+                {
+                    MessageBox.Show($"Login successful! Welcome, {user.Username}.");
+
+                    // Open home page or perform any other necessary actions
+                    OpenHomePage();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to retrieve user information. Please try again.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password. Please try again.");
+
+                tbPassword.Clear();
+                tbUsername.Focus();
+            }
+        }
+        
+        private void OpenHomePage()
+        {
             HomePageForm homePage = new HomePageForm();
             homePage.Show();
 
             Form parentForm = this.ParentForm;
-            parentForm.Hide();
+            parentForm.Close();
         }
         private void lblRegister_Click(object sender, EventArgs e)
         {

@@ -9,16 +9,8 @@ namespace DTOs
 {
     public class DrinkDTO
     {
-        public int IdRecipe { get; private set; }
-        public int IdUser { get; private set; }
-        public string Title { get; private set; }
-        public string Instructions { get; private set; }
-        public DietaryRestriction DietaryRestriction { get; private set; }
-        public Difficulty Difficulty { get; private set; }
-        public int CookingTime { get; private set; }
-        public DateTime PublishDate { get; private set; }
-        public bool IsAlcoholic { get; private set; }
-        public bool HasCaffeine { get; private set; }
-        public int Pours { get; private set; }
+        public bool IsAlcoholic { get; set; }
+        public bool HasCaffeine { get; set; }
+        public int Pours { get; set; }
     }
 }

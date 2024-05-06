@@ -1,57 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using DAOs;
+using DTOs;
 using entity_classes.Users;
 
 namespace manager_classes
 {
     public class UserManager
     {
-        private List<User> users;
-        public UserManager()
+        private IUserDAO userDAO;
+
+        public UserManager(IUserDAO userDAO)
         {
-            users = new List<User>();
+            this.userDAO = userDAO;
         }
 
-        public void CreateUser(User user)
+        public bool IsUsernameTaken(string username)
         {
-            users.Add(user);
+            return userDAO.IsUsernameTaken(username);
         }
 
-        public void FireUser(User user)
+        public bool IsEmailTaken(string email)
         {
-            users.Remove(user);
+            return userDAO.IsEmailTaken(email);
         }
 
-        public List<User> GetAllUsers()
+        public bool IsBsnTaken(int bsn)
         {
-            return users;
+            return userDAO.IsBsnTaken(bsn);
         }
-        public List<User> GetAllWebUsers()
+        public string HashPassword(string password)
         {
-            List<User> webUsers = new List<User>();
-            foreach (User user in users)
+            using (SHA256 sha256 = SHA256.Create())
             {
-                if (user is WebUser)
+                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+                return Convert.ToBase64String(hashBytes);
+            }
+        }
+
+        public void CreateUser(DesktopUserDTO user)
+        {
+            try
+            {
+                if (userDAO != null)
                 {
-                    webUsers.Add(user);
+                    userDAO.CreateUser(user);
+                }
+                else
+                {
+                    throw new InvalidOperationException("UserDAO is not initialized.");
                 }
             }
-            return webUsers;
-        }
-        public List<User> GetAllDesktopUsers()
-        {
-            List<User> desktopUsers = new List<User>();
-            foreach (User user in users)
+            catch (Exception ex)
             {
-                if (user is DesktopUser)
-                {
-                    desktopUsers.Add(user);
-                }
+                Console.WriteLine("Exception occurred while creating user: " + ex.Message);
             }
-            return desktopUsers;
+        }
+
+        public bool AuthenticateUser(string username, string password, out DesktopUserDTO user)
+        {
+            user = null;
+            try
+            {
+                return userDAO.AuthenticateUser(username, password, out user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception occurred while authenticating user: " + ex.Message);
+                return false;
+            }
+        }
+
+        public DesktopUserDTO GetUserByUsername(string username)
+        {
+            try
+            {
+                return userDAO.GetUserByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception occurred while retrieving user by username: " + ex.Message);
+                throw;
+            }
         }
     }
 }

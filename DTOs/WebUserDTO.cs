@@ -4,11 +4,8 @@ using enum_classes.Users;
 
 namespace DTOs
 {
-    public class WebUserDTO
+    public class WebUserDTO : UserDTO
     {
-		public int IdUser { get; private set; }
-		public string Username { get; private set; }
-		public string Email { get; private set; }
-		public string Password { get; private set; }
-	}
+        public string Caption { get; set; }
+    }
 }

@@ -14,9 +14,9 @@ namespace entity_classes.Recipes
         private bool isSpicy;
         private int servings;
         public Food(int idRecipe, User user, string title, List<Ingredient> ingredients,
-            string instructions, DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, DateTime publishDate,
+            string instructions, DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, DateTime publishDate, byte[] recipePic,
             bool isSpicy, int servings)
-            : base(idRecipe, user, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime, publishDate)
+            : base(idRecipe, user, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime, publishDate, recipePic)
         {
             this.isSpicy = isSpicy;
             this.servings = servings;

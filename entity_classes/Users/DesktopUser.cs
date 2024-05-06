@@ -21,11 +21,10 @@ namespace entity_classes.Users
         private Gender gender;
         private DateTime birthdate;
         private string securityAnswer;
-        private bool isActive;
         private List<Recipe> uploadedRecipes;
-        public DesktopUser(int idUser, string username, string email, string password, 
+        public DesktopUser(int idUser, string username, string email, string password,
             Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate, 
-            string securityAnswer, bool isActive, List<Recipe> uploadedRecipes) 
+            string securityAnswer, List<Recipe> uploadedRecipes) 
             : base(idUser, username, email, password)
         {
             this.role = role;
@@ -35,7 +34,6 @@ namespace entity_classes.Users
             this.gender = gender;
             this.birthdate = birthdate;
             this.securityAnswer = securityAnswer;
-            this.isActive = isActive;
             this.uploadedRecipes = uploadedRecipes;
         }
         public Role GetRole()
@@ -71,11 +69,6 @@ namespace entity_classes.Users
         public string GetSecurityAnswer()
         {
             return securityAnswer;
-        }
-
-        public string GetActivity()
-        {
-            return isActive ? "Active" : "Inactive";
         }
 
         public List<Recipe> GetUploadedRecipes()

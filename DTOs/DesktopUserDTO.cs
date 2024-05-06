@@ -4,19 +4,14 @@ using enum_classes.Users;
 
 namespace DTOs
 {
-    public class DesktopUserDTO
+    public class DesktopUserDTO : UserDTO
     {
-        public int IdUser { get; private set; }
-        public string Username { get; private set; }
-        public string Email { get; private set; }
-        public string Password { get; private set; }
-        public Role Role { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public int Bsn { get; private set; }
-        public Gender Gender { get; private set; }
-        public DateTime Birthdate { get; private set; }
-        public string SecurityAnswer { get; private set; }
-        public bool IsActive { get; private set; }
+        public Role Role { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Bsn { get; set; }
+        public Gender Gender { get; set; }
+        public DateTime Birthdate { get; set; }
+        public string SecurityAnswer { get; set; }
     }
 }

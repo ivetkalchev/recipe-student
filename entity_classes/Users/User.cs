@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace entity_classes.Users
             this.idUser = idUser;
             this.username = username;
             this.email = email;
-            this.password = password;
+            this.password = password; 
         }
         public string GetUsername()
         {
@@ -30,14 +31,6 @@ namespace entity_classes.Users
         public string GetPassword()
         {
             return password;
-        }
-        public string HashPassword(string password)
-        {
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password));
-        }
-        public bool IsPasswordCorrect(string input)
-        {
-            return HashPassword(input) == password;
         }
     }
 }

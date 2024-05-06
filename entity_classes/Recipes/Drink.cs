@@ -17,9 +17,9 @@ namespace entity_classes.Recipes
         private bool hasCaffeine;
         private int pours;
         public Drink(int idRecipe, User user, string title, List<Ingredient> ingredients,
-            string instructions, DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, DateTime publishDate,
+            string instructions, DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, DateTime publishDate, byte[] recipePic,
             bool isAlcoholic, bool hasCaffeine, int pours)
-            : base(idRecipe, user, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime, publishDate)
+            : base(idRecipe, user, title, ingredients, instructions, dietaryRestriction, difficulty, cookingTime, publishDate, recipePic)
         {
             this.isAlcoholic = isAlcoholic;
             this.hasCaffeine = hasCaffeine;
