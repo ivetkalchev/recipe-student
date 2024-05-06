@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DAOs;
+using DTOs;
+using manager_classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +16,11 @@ namespace recipe_desktop
 {
     public partial class ForgottenPasswordUC : UserControl
     {
-
-        public ForgottenPasswordUC()
+        private UserManager userManager;
+        public ForgottenPasswordUC(UserManager userManager)
         {
             InitializeComponent();
+            this.userManager = userManager;
         }
         private void lblRegister_MouseHover(object sender, EventArgs e)
         {
@@ -28,13 +32,37 @@ namespace recipe_desktop
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            //add logic
+            string username = tbUsername.Text;
+            string securityAnswer = tbSecurityAnswer.Text;
+            string newPassword = tbNewPassword.Text;
 
-            HomePageForm homePage = new HomePageForm();
-            homePage.Show();
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(securityAnswer) || string.IsNullOrWhiteSpace(newPassword))
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
 
-            Form parentForm = this.ParentForm;
-            parentForm.Hide();
+            if (userManager.ValidateSecurityAnswer(username, securityAnswer))
+            {
+                if (userManager.UpdatePassword(username, newPassword))
+                {
+                    MessageBox.Show("Password updated successfully.");
+
+                    HomePageForm homePage = new HomePageForm();
+                    homePage.Show();
+
+                    Form parentForm = this.ParentForm;
+                    parentForm.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update password.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Incorrect security answer.");
+            }
         }
         private void btnClear_Click(object sender, EventArgs e)
         {

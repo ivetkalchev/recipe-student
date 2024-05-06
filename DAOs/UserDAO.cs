@@ -40,7 +40,6 @@ namespace DAOs
                 }
             }
         }
-
         public bool IsBsnTaken(int bsn)
         {
 
@@ -66,7 +65,6 @@ namespace DAOs
                 }
             }
         }
-
         public bool IsEmailTaken(string email)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
@@ -91,7 +89,6 @@ namespace DAOs
                 }
             }
         }
-
         public void CreateUser(DesktopUserDTO user)
         {
             if (IsUsernameTaken(user.Username))
@@ -130,7 +127,6 @@ namespace DAOs
 
                     string desktopUserQuery = @"INSERT INTO DesktopUser (id_user, role, first_name, last_name, bsn, gender, birthdate, security_answer) 
                             VALUES (@IdUser, @Role, @FirstName, @LastName, @Bsn, @Gender, @Birthdate, @SecurityAnswer);";
-
 
                     SqlCommand desktopUserCommand = new SqlCommand(desktopUserQuery, connection);
                     desktopUserCommand.Parameters.AddWithValue("@IdUser", userId);
@@ -176,32 +172,29 @@ namespace DAOs
                 }
             }
         }
-
-        public string GetUserRole(string username)
+        public bool ValidateSecurityAnswer(string username, string securityAnswer)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
             {
-                try
-                {
-                    connection.Open();
+                connection.Open();
+                var command = new SqlCommand("SELECT security_answer FROM DesktopUser WHERE id_user = (SELECT id_user FROM [User] WHERE Username = @Username)", connection);
+                command.Parameters.AddWithValue("@Username", username);
 
-                    string query = @"SELECT Role FROM [User] WHERE Username = @Username";
-
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Username", username);
-
-                    object result = command.ExecuteScalar();
-
-                    return result != null ? result.ToString() : null;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Exception occurred while retrieving user role: " + ex.Message);
-                    return null;
-                }
+                var storedAnswer = command.ExecuteScalar() as string;
+                return storedAnswer != null && storedAnswer.Equals(securityAnswer, StringComparison.OrdinalIgnoreCase);
             }
         }
-
+        public bool UpdatePassword(string username, string newPassword)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
+            {
+                connection.Open();
+                var command = new SqlCommand("UPDATE [User] SET [password] = @Password WHERE [username] = @Username", connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", PasswordHasher.HashPassword(newPassword));
+                return command.ExecuteNonQuery() == 1;
+            }
+        }
     }
 }
 

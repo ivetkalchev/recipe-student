@@ -52,7 +52,6 @@ namespace recipe_desktop
             parentForm.ClearPanel();
             parentForm.LoadForgottenPassword();
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = tbUsername.Text.Trim();
@@ -60,7 +59,7 @@ namespace recipe_desktop
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Please enter both username and password.");
+                MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
@@ -70,7 +69,6 @@ namespace recipe_desktop
 
             if (isValidCredentials)
             {
-                string userRole = userManager.GetUserRole(username);
                 MessageBox.Show($"Login successful. Welcome, {username}!");
                 OpenHomePage();
             }
@@ -82,8 +80,6 @@ namespace recipe_desktop
                 tbUsername.Focus();
             }
         }
-
-
         private void OpenHomePage()
         {
             HomePageForm homePage = new HomePageForm();

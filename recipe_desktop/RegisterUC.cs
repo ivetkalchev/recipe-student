@@ -92,7 +92,7 @@ namespace recipe_desktop
                 !isBsnValid ||
                 string.IsNullOrWhiteSpace(securityAnswer))
             {
-                MessageBox.Show("Please fill in all fields correctly.");
+                MessageBox.Show("Please fill in all fields.");
                 return;
             }
 

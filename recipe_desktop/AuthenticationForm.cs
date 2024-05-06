@@ -15,7 +15,6 @@ namespace recipe_desktop
 
             userManager = new UserManager(new UserDAO());
         }
-
         public void CheckConnection()
         {
             if (!DatabaseConnection.CheckConnection())
@@ -29,20 +28,17 @@ namespace recipe_desktop
                 return;
             }
         }
-
         private void AuthenticationForm_Load(object sender, EventArgs e)
         {           
             LoadBar();
             LoadLogin();
         }
-
         private void LoadBar()
         {
             BarUC barUC = new BarUC();
             barUC.Dock = DockStyle.Fill;
             panelBar.Controls.Add(barUC);
         }
-
         public void ClearPanel()
         {
             panelInput.Controls.Clear();
@@ -53,14 +49,12 @@ namespace recipe_desktop
             loginUC.Dock = DockStyle.Fill;
             panelInput.Controls.Add(loginUC);
         }
-
         public void LoadForgottenPassword()
         {
-            ForgottenPasswordUC fpUC = new ForgottenPasswordUC();
+            ForgottenPasswordUC fpUC = new ForgottenPasswordUC(userManager);
             fpUC.Dock = DockStyle.Fill;
             panelInput.Controls.Add(fpUC);
         }
-
         public void LoadRegister()
         {
             RegisterUC registerUC = new RegisterUC();
