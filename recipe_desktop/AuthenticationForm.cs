@@ -11,7 +11,7 @@ namespace recipe_desktop
         public AuthenticationForm()
         {
             InitializeComponent();
-            CheckConnection();
+            //CheckConnection();
 
             userManager = new UserManager(new UserDAO());
         }

@@ -12,7 +12,6 @@ using System.IO;
 using System.Collections;
 using System.Security.Cryptography;
 
-
 namespace DAOs
 {
     public class UserDAO : DatabaseConnection, IUserDAO
@@ -152,123 +151,56 @@ namespace DAOs
                 }
             }
         }
-        public bool AuthenticateUser(string username, string password, out DesktopUserDTO user)
+        public bool ValidateUserCredentials(string username, string password)
         {
-            user = null;
-
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
             {
                 try
                 {
                     connection.Open();
 
-                    string query = @"SELECT Id, Username, Email, Password FROM [User] WHERE Username = @Username";
+                    string query = @"SELECT COUNT(*) FROM [User] WHERE Username = @Username AND Password = @Password";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
 
-                    SqlDataReader reader = command.ExecuteReader();
+                    int count = (int)command.ExecuteScalar();
 
-                    if (reader.Read())
-                    {
-                        string hashedPasswordFromDb = reader["Password"].ToString();
-
-                        if (VerifyPassword(password, hashedPasswordFromDb))
-                        {
-                            user = new DesktopUserDTO
-                            {
-                                IdUser = Convert.ToInt32(reader["Id"]),
-                                Username = reader["Username"].ToString(),
-                                Email = reader["Email"].ToString(),
-                            };
-
-                            Console.WriteLine("User authenticated successfully: " + user.Username);
-                            return true;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid password for the user: " + username);
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("No user found with the given username: " + username);
-                        return false;
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine("SQL Exception occurred: " + ex.Message);
-                    Console.WriteLine("Inner Exception: " + ex.InnerException?.Message);
-                    return false;
+                    return count > 0;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Exception occurred while authenticating user: " + ex.Message);
+                    Console.WriteLine("Exception occurred while validating user credentials: " + ex.Message);
                     return false;
                 }
             }
         }
 
-
-        private bool VerifyPassword(string plainPassword, string hashedPassword)
+        public string GetUserRole(string username)
         {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(plainPassword));
-                string hashedInputPassword = Convert.ToBase64String(hashBytes);
-                return hashedInputPassword == hashedPassword;
-            }
-        }
-
-        public DesktopUserDTO GetUserByUsername(string username)
-        {
-            DesktopUserDTO user = null;
-
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
             {
                 try
                 {
                     connection.Open();
 
-                    string query = @"SELECT Id, Username, Email FROM [User] WHERE Username = @Username";
+                    string query = @"SELECT Role FROM [User] WHERE Username = @Username";
 
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
 
-                    SqlDataReader reader = command.ExecuteReader();
+                    object result = command.ExecuteScalar();
 
-                    if (reader.Read())
-                    {
-                        user = new DesktopUserDTO
-                        {
-                            IdUser = Convert.ToInt32(reader["Id"]),
-                            Username = reader["Username"].ToString(),
-                            Email = reader["Email"].ToString(),
-                        };
-
-                        Console.WriteLine("User found: " + user.Username);
-                    }
-                    else
-                    {
-                        Console.WriteLine("No user found with the given username: " + username);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    Console.WriteLine("SQL Exception occurred: " + ex.Message);
-                    Console.WriteLine("Inner Exception: " + ex.InnerException?.Message);
+                    return result != null ? result.ToString() : null;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Exception occurred while retrieving user by username: " + ex.Message);
+                    Console.WriteLine("Exception occurred while retrieving user role: " + ex.Message);
+                    return null;
                 }
             }
-
-            return user;
         }
-
 
     }
 }

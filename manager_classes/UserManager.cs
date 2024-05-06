@@ -9,7 +9,7 @@ using entity_classes.Users;
 
 namespace manager_classes
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private IUserDAO userDAO;
 
@@ -32,15 +32,6 @@ namespace manager_classes
         {
             return userDAO.IsBsnTaken(bsn);
         }
-        public string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
-                return Convert.ToBase64String(hashBytes);
-            }
-        }
 
         public void CreateUser(DesktopUserDTO user)
         {
@@ -60,32 +51,13 @@ namespace manager_classes
                 Console.WriteLine("Exception occurred while creating user: " + ex.Message);
             }
         }
-
-        public bool AuthenticateUser(string username, string password, out DesktopUserDTO user)
+        public bool ValidateUserCredentials(string username, string password)
         {
-            user = null;
-            try
-            {
-                return userDAO.AuthenticateUser(username, password, out user);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception occurred while authenticating user: " + ex.Message);
-                return false;
-            }
+            return userDAO.ValidateUserCredentials(username, password);
         }
-
-        public DesktopUserDTO GetUserByUsername(string username)
+        public string GetUserRole(string username)
         {
-            try
-            {
-                return userDAO.GetUserByUsername(username);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception occurred while retrieving user by username: " + ex.Message);
-                throw;
-            }
+            return userDAO.GetUserRole(username);
         }
     }
 }

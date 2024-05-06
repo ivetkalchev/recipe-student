@@ -11,6 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using manager_classes;
 using DTOs;
+using DAOs;
 
 namespace recipe_desktop
 {
@@ -54,8 +55,8 @@ namespace recipe_desktop
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = tbUsername.Text;
-            string password = tbPassword.Text;
+            string username = tbUsername.Text.Trim();
+            string password = tbPassword.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -63,19 +64,15 @@ namespace recipe_desktop
                 return;
             }
 
-            if (userManager.AuthenticateUser(username, password, out DesktopUserDTO user))
-            {
-                if (user != null)
-                {
-                    MessageBox.Show($"Login successful! Welcome, {user.Username}.");
+            string hashedPassword = PasswordHasher.HashPassword(password);
 
-                    // Open home page or perform any other necessary actions
-                    OpenHomePage();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to retrieve user information. Please try again.");
-                }
+            bool isValidCredentials = userManager.ValidateUserCredentials(username, hashedPassword);
+
+            if (isValidCredentials)
+            {
+                string userRole = userManager.GetUserRole(username);
+                MessageBox.Show($"Login successful. Welcome, {username}!");
+                OpenHomePage();
             }
             else
             {
@@ -85,14 +82,12 @@ namespace recipe_desktop
                 tbUsername.Focus();
             }
         }
-        
+
+
         private void OpenHomePage()
         {
             HomePageForm homePage = new HomePageForm();
             homePage.Show();
-
-            Form parentForm = this.ParentForm;
-            parentForm.Close();
         }
         private void lblRegister_Click(object sender, EventArgs e)
         {

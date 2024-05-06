@@ -1,14 +1,14 @@
 ﻿using DTOs;
 
-namespace DAOs
+namespace manager_classes
 {
-    public interface IUserDAO
+    public interface IUserManager
     {
         void CreateUser(DesktopUserDTO user);
-        string GetUserRole(string username);
         bool IsBsnTaken(int bsn);
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);
         bool ValidateUserCredentials(string username, string password);
+        string GetUserRole(string username);
     }
 }

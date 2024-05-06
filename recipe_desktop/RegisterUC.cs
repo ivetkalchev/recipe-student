@@ -114,7 +114,7 @@ namespace recipe_desktop
                 return;
             }
 
-            string hashedPassword = userManager.HashPassword(plainPassword);
+            string hashedPassword = PasswordHasher.HashPassword(plainPassword);
 
             DesktopUserDTO newUser = new DesktopUserDTO
             {
