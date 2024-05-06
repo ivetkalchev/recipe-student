@@ -22,9 +22,8 @@ namespace entity_classes.Recipes
         private Difficulty difficulty;
         private int cookingTime;
         private DateTime publishDate;
-        private byte[] recipePic;
         public Recipe(int idRecipe, User user, string title, List<Ingredient> ingredients, string instructions, 
-            DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, DateTime publishDate, byte[] recipePic)
+            DietaryRestriction dietaryRestriction, Difficulty difficulty, int cookingTime, DateTime publishDate)
         {
             this.idRecipe = idRecipe;
             this.user = user;
@@ -35,7 +34,6 @@ namespace entity_classes.Recipes
             this.difficulty = difficulty;
             this.cookingTime = cookingTime;
             this.publishDate = publishDate;
-            this.recipePic = recipePic;
         }
         public abstract decimal CalculatePrice();
         public string GetTitle()
@@ -65,10 +63,6 @@ namespace entity_classes.Recipes
         public DateTime GetPublishDate() 
         {
             return publishDate;
-        }
-        public byte[] GetRecipePic() 
-        {
-            return recipePic;
         }
     }
 }

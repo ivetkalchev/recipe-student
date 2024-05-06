@@ -11,6 +11,7 @@ using entity_classes.Users;
 using System.IO;
 using System.Collections;
 using System.Security.Cryptography;
+using System.Data.Common;
 
 namespace DAOs
 {

@@ -1,6 +1,4 @@
-﻿using DTOs;
-using enum_classes.Recipes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAOs
 {
-    public class RecipeDAO : DatabaseConnection
+    public interface IDatabaseConnection
     {
-
+        bool CheckConnection();
     }
 }

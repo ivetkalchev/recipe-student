@@ -18,7 +18,6 @@ namespace DTOs
         public string Difficulty { get; set; }
         public int CookingTime { get; set; }
         public DateTime PublishDate { get; set; }
-        public byte[] RecipePic { get; set; }
 
     }
 }

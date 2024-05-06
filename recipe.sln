@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "enum_classes", "enum_classe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "recipe_desktop", "recipe_desktop\recipe_desktop.csproj", "{6C96DEF0-4858-45A0-9BED-04869E6A34CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{D0A6B735-BF23-4566-A03A-C0B0D11ED8E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTOs", "DTOs\DTOs.csproj", "{D0A6B735-BF23-4566-A03A-C0B0D11ED8E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAOs", "DAOs\DAOs.csproj", "{4F3171C7-2354-46BC-89C2-2A4009096B8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAOs", "DAOs\DAOs.csproj", "{4F3171C7-2354-46BC-89C2-2A4009096B8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{50B9BBC9-E583-436E-A29F-98A82D278BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{4F3171C7-2354-46BC-89C2-2A4009096B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F3171C7-2354-46BC-89C2-2A4009096B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F3171C7-2354-46BC-89C2-2A4009096B8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B9BBC9-E583-436E-A29F-98A82D278BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B9BBC9-E583-436E-A29F-98A82D278BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B9BBC9-E583-436E-A29F-98A82D278BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B9BBC9-E583-436E-A29F-98A82D278BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
