@@ -27,6 +27,7 @@ namespace recipe_desktop
 
             LoadCbGender();
             cbGender.SelectedIndex = 0;
+            dtpBirthdate.Value = DateTime.Now;
 
             userManager = new UserManager(new UserDAO());
         }
