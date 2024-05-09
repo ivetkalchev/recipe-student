@@ -18,10 +18,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = I:\individual-project\recipe_web\recipe_web
 build_property._RazorSourceGeneratorDebug = 
 
-[I:/individual-project/recipe_web/recipe_web/Pages/Cookies.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29va2llcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [I:/individual-project/recipe_web/recipe_web/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

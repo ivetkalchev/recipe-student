@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\primaryLayout.css"
     },
     {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\recipe.css",
+      "PackagePath": "staticwebassets\\css\\recipe.css"
+    },
+    {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\Login.jpg",
       "PackagePath": "staticwebassets\\images\\Login.jpg"
     },

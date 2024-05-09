@@ -2,11 +2,14 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    max-width: 100%;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    background-color: #7D93D0;
+    
 }
 
 .logo_container {
@@ -63,13 +66,10 @@ body {
 
     .header_image img {
         width: 100vw; 
-        max-height: auto;
+        max-height: 700px;
     }
 
-
 .footer_container {
-    position: fixed;
-    bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;

@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/authenticationLayout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/cookies.css" asp-append-version="true" />
     <link rel="icon" type="image/png" href="~/images/logo.png" />
     <title>@ViewBag.Title</title>
 </head>
@@ -11,5 +12,46 @@
     <div>
         @RenderBody()
     </div>
+
+    @if (!Context.Request.Cookies.ContainsKey("cookie-card") && !Context.Request.HasFormContentType)
+    {
+        <div id="cookie-popup" class="cookie-card">
+            <span class="title">🍪 Cookie Notice</span>
+            <p class="description">
+                We use cookies to ensure that we give you the best experience on our website.
+            </p>
+            <div class="actions">
+                <button id="accept-btn" class="accept" type="button">Accept</button>
+                <button id="decline-btn" class="pref" type="button">Decline</button>
+            </div>
+        </div>
+    }
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cookiePopup = document.getElementById("cookie-popup");
+            const acceptBtn = document.getElementById("accept-btn");
+            const declineBtn = document.getElementById("decline-btn");
+
+            // Check if the user has already accepted or declined
+            if (document.cookie.includes("cookieAccepted=true")) {
+                cookiePopup.style.display = "none"; // Hide the popup if already accepted
+            } else {
+                cookiePopup.style.display = "block"; // Show the popup if not accepted
+            }
+
+            // Add event listeners for accept and decline buttons
+            acceptBtn.addEventListener("click", function () {
+                document.cookie = "cookieAccepted=true; max-age=" + (365 * 24 * 60 * 60) + "; path=/";
+                cookiePopup.style.display = "none"; // Hide the popup after accepting
+            });
+
+            declineBtn.addEventListener("click", function () {
+                // You can add your logic for declining cookies here
+                cookiePopup.style.display = "none"; // Hide the popup after declining
+            });
+        });
+    </script>
+
 </body>
 </html>

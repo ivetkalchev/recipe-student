@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gmd4kzDuRW8dAxkzER4Y2zP/2QaLrHJwrz1IzFKuRgQ=",
+  "Hash": "C7T78qDz6nst+J3NMTtWXMnPqmWqSktyqPM1+Mjlb5Q=",
   "Source": "recipe_web",
   "BasePath": "_content/recipe_web",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\primaryLayout.css"
+    },
+    {
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\recipe.css",
+      "SourceId": "recipe_web",
+      "SourceType": "Discovered",
+      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
+      "BasePath": "_content/recipe_web",
+      "RelativePath": "css/recipe.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\recipe.css"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\email.png",
