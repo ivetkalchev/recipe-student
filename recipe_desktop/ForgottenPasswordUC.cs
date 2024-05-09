@@ -42,15 +42,15 @@ namespace recipe_desktop
                 return;
             }
 
+            string hashedNewPassword = PasswordHasher.HashPassword(newPassword);
+
             if (userManager.ValidateSecurityAnswer(username, securityAnswer))
             {
-                if (userManager.UpdatePassword(username, newPassword))
+                if (userManager.UpdateDesktopPassword(username, hashedNewPassword))
                 {
                     MessageBox.Show("Password updated successfully.");
-
                     HomePageForm homePage = new HomePageForm();
                     homePage.Show();
-
                     Form parentForm = this.ParentForm;
                     parentForm.Hide();
                 }
@@ -64,6 +64,7 @@ namespace recipe_desktop
                 MessageBox.Show("Incorrect security answer.");
             }
         }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             tbUsername.Clear();
@@ -88,6 +89,11 @@ namespace recipe_desktop
             AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
             parentForm.ClearPanel();
             parentForm.LoadLogin();
+        }
+
+        private void picPassword_Click(object sender, EventArgs e)
+        {
+            tbNewPassword.UseSystemPasswordChar = !tbNewPassword.UseSystemPasswordChar;
         }
     }
 }

@@ -2,5 +2,25 @@
 @model recipe_web.Pages.UserProfileModel
 @{
     ViewData["Title"] = "User Profile";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="message_container">
+        <p>@Model.UserDto.Username's Profile</p>
+    </div>
+
+    <div class="profile_container">
+        <img src="profile-placeholder.png" alt="Profile Picture" class="profile_picture">
+        <div class="username">@Model.UserDto.Username</div>
+        <div class="description">Short description</div>
+        <div class="buttons_profile">
+            <button type="button" onclick="editProfile()">Edit</button>
+            <button type="button" onclick="changePassword()">Change Password</button>
+        </div>
+    </div>
+</body>

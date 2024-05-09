@@ -36,45 +36,6 @@ namespace entity_classes.Users
             this.securityAnswer = securityAnswer;
             this.uploadedRecipes = uploadedRecipes;
         }
-        public Role GetRole()
-        {
-            return role;
-        }
-
-        public string GetFirstName()
-        {
-            return firstName;
-        }
-
-        public string GetLastName()
-        {
-            return lastName;
-        }
-
-        public int GetBsn()
-        {
-            return bsn;
-        }
-
-        public Gender GetGender()
-        {
-            return gender;
-        }
-
-        public DateTime GetBirthdate()
-        {
-            return birthdate;
-        }
-
-        public string GetSecurityAnswer()
-        {
-            return securityAnswer;
-        }
-
-        public List<Recipe> GetUploadedRecipes()
-        {
-            return uploadedRecipes;
-        }
     }
 }
 

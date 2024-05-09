@@ -40,17 +40,5 @@ namespace entity_classes.Recipes
 
             return totalPrice;
         }
-        public bool GetAlcoholicContent()
-        {
-            return isAlcoholic;
-        }
-        public bool GetCaffeineContent()
-        {
-            return hasCaffeine;
-        }
-        public int GetPours()
-        {
-            return pours;
-        }
     }
 }

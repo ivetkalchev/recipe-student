@@ -43,10 +43,12 @@ namespace recipe_web.Pages
                 return Page();
             }
 
+            // Hash the new password
             string hashedNewPassword = PasswordHasher.HashPassword(NewPassword);
 
-            var updateResult = userManager.UpdatePassword(Username, hashedNewPassword);
-            
+            // Use the method for updating web user's password
+            var updateResult = userManager.UpdateWebUserPassword(Username, hashedNewPassword);
+
             if (updateResult)
             {
                 TempData["SuccessMessage"] = "Password changed successfully.";

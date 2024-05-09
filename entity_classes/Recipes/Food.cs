@@ -36,13 +36,5 @@ namespace entity_classes.Recipes
 
             return totalPrice;
         }
-        public bool GetSpiciness()
-        {
-            return isSpicy;
-        }
-        public int GetServings()
-        {
-            return servings;
-        }
     }
 }

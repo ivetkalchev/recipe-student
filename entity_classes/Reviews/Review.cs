@@ -25,17 +25,5 @@ namespace entity_classes.Reviews
             this.ratingValue = ratingValue;
             this.publishDate = publishDate;
         }
-        public string GetReviewText()
-        {
-            return reviewText;
-        }
-        public decimal GetRatingValue()
-        {
-            return ratingValue;
-        }
-        public DateTime GetPublishDate()
-        {
-            return publishDate;
-        }
     }
 }

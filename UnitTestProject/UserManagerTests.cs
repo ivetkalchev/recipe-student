@@ -84,16 +84,16 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void UpdatePassword_ValidUsernameAndNewPassword_CallsUpdatePassword()
+        public void UpdateDesktopPassword_ValidUsernameAndNewPassword_CallsUpdateDesktopPassword()
         {
             var mockUserDAO = new Mock<IUserDAO>();
             var userManager = new UserManager(mockUserDAO.Object);
             string username = "testUser";
             string newPassword = "newPassword";
 
-            userManager.UpdatePassword(username, newPassword);
+            userManager.UpdateDesktopPassword(username, newPassword);
 
-            mockUserDAO.Verify(dao => dao.UpdatePassword(username, newPassword), Times.Once());
+            mockUserDAO.Verify(dao => dao.UpdateDesktopPassword(username, newPassword), Times.Once());
         }
     }
 }

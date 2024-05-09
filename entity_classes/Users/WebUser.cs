@@ -18,14 +18,6 @@ namespace entity_classes.Users
             this.caption = caption;
             this.favouriteRecipes = favouriteRecipes;
         }
-        public string GetCaption()
-        {  
-            return caption; 
-        }
-        public List<Recipe> GetFavouritesRecipes()
-        {
-            return favouriteRecipes;
-        }
         public void AddToFavourites(Recipe recipe)
         {
             if (recipe == null)

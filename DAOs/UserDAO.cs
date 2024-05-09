@@ -153,27 +153,16 @@ namespace DAOs
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
             {
-                try
-                {
-                    connection.Open();
-
-                    string query = @"SELECT COUNT(*) FROM [User] WHERE Username = @Username AND Password = @Password";
-
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    int count = (int)command.ExecuteScalar();
-
-                    return count > 0;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Exception occurred while validating user credentials: " + ex.Message);
-                    return false;
-                }
+                connection.Open();
+                string query = @"SELECT COUNT(*) FROM [User] WHERE Username = @Username AND Password = @Password";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
             }
         }
+
         public bool ValidateSecurityAnswer(string username, string securityAnswer)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
@@ -186,17 +175,18 @@ namespace DAOs
                 return storedAnswer != null && storedAnswer.Equals(securityAnswer, StringComparison.OrdinalIgnoreCase);
             }
         }
-        public bool UpdatePassword(string username, string newPassword)
+        public bool UpdateDesktopPassword(string username, string newPassword)
         {
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
             {
                 connection.Open();
-                var command = new SqlCommand("UPDATE [User] SET [password] = @Password WHERE [username] = @Username", connection);
+                var command = new SqlCommand("UPDATE [User] SET Password = @Password WHERE Username = @Username", connection);
                 command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", PasswordHasher.HashPassword(newPassword));
+                command.Parameters.AddWithValue("@Password", newPassword); // Assume newPassword is already hashed
                 return command.ExecuteNonQuery() == 1;
             }
         }
+
         public void CreateWebUser(WebUserDTO user)
         {
             if (IsUsernameTaken(user.Username))
@@ -264,6 +254,67 @@ namespace DAOs
                 }
             }
         }
+        public WebUserDTO GetWebUserByUsername(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = @"
+            SELECT u.Username, u.Email, w.Caption
+            FROM [User] u
+            INNER JOIN WebUser w ON u.id_user = w.id_user
+            WHERE u.Username = @Username";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new WebUserDTO
+                            {
+                                Username = reader["Username"].ToString(),
+                                Email = reader["Email"].ToString(),
+                                Caption = reader["Caption"].ToString()
+                            };
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception occurred while retrieving web user data: " + ex.Message);
+                    return null;
+                }
+            }
+        }
+        public bool UpdateWebUserPassword(string username, string newPassword)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
+            {
+                try
+                {
+                    connection.Open();
+                    var command = new SqlCommand("UPDATE [User] SET Password = @Password WHERE Username = @Username", connection);
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", newPassword); // Assuming newPassword is already hashed
+                    return command.ExecuteNonQuery() == 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error occurred while updating password: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+
     }
 }
 

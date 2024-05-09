@@ -23,14 +23,6 @@ namespace entity_classes.Ingredients
             this.quantity = quantity;
             this.price = price;
         }
-        public string GetName()
-        {
-            return name;
-        }
-        public Unit GetUnit()
-        {
-            return unit;
-        }
         public decimal GetQuantity()
         {
             return quantity;

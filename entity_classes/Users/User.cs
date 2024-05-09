@@ -20,17 +20,5 @@ namespace entity_classes.Users
             this.email = email;
             this.password = password; 
         }
-        public string GetUsername()
-        {
-            return username;
-        }
-        public string GetEmail()
-        {
-            return email;
-        }
-        public string GetPassword()
-        {
-            return password;
-        }
     }
 }

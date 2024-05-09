@@ -14,10 +14,15 @@ builder.Services.AddScoped<UserManager>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Login"; // Your Login page path
-        options.LogoutPath = "/Logout"; // Your Logout page path
-        options.AccessDeniedPath = "/AccessDenied"; // Path when access is denied
+        options.LoginPath = new PathString("/Login");
+        options.LogoutPath = new PathString("/Logout");
+        options.AccessDeniedPath = new PathString("/AccessDenied");
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest; // or Always if you're using HTTPS
+        options.SlidingExpiration = true;
     });
+
 
 var app = builder.Build();
 

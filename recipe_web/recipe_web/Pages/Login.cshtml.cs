@@ -51,24 +51,23 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            string hashedPassword = PasswordHasher.HashPassword(Password);
-
-            if (!userManager.ValidateWebUserCredentials(Username, hashedPassword))
+            if (!userManager.ValidateWebUserCredentials(Username, Password))
             {
                 ModelState.AddModelError("Password", "Wrong credentials.");
                 return Page();
             }
 
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, Username)
-    };
+{
+    new Claim(ClaimTypes.Name, Username),
+};
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
             return RedirectToPage("/Index");
+
         }
 
     }

@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            picPassword = new PictureBox();
+            lblNewPassword = new Label();
+            tbNewPassword = new TextBox();
             lblUsername = new Label();
             tbUsername = new TextBox();
             lblLogin = new Label();
@@ -38,14 +41,14 @@
             lblSecQuestion = new Label();
             tbSecurityAnswer = new TextBox();
             label1 = new Label();
-            lblNewPassword = new Label();
-            tbNewPassword = new TextBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picPassword).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(125, 147, 208);
+            panel1.Controls.Add(picPassword);
             panel1.Controls.Add(lblNewPassword);
             panel1.Controls.Add(tbNewPassword);
             panel1.Controls.Add(lblUsername);
@@ -61,6 +64,39 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(640, 709);
             panel1.TabIndex = 0;
+            // 
+            // picPassword
+            // 
+            picPassword.Cursor = Cursors.Hand;
+            picPassword.Image = Properties.Resources.icons8_eye_30;
+            picPassword.Location = new Point(514, 374);
+            picPassword.Name = "picPassword";
+            picPassword.Size = new Size(37, 28);
+            picPassword.SizeMode = PictureBoxSizeMode.StretchImage;
+            picPassword.TabIndex = 16;
+            picPassword.TabStop = false;
+            picPassword.Click += picPassword_Click;
+            // 
+            // lblNewPassword
+            // 
+            lblNewPassword.AutoSize = true;
+            lblNewPassword.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            lblNewPassword.ForeColor = Color.White;
+            lblNewPassword.Location = new Point(72, 362);
+            lblNewPassword.Name = "lblNewPassword";
+            lblNewPassword.Size = new Size(217, 40);
+            lblNewPassword.TabIndex = 16;
+            lblNewPassword.Text = "New Password";
+            lblNewPassword.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // tbNewPassword
+            // 
+            tbNewPassword.Font = new Font("Segoe UI", 18F);
+            tbNewPassword.Location = new Point(77, 405);
+            tbNewPassword.Name = "tbNewPassword";
+            tbNewPassword.Size = new Size(474, 47);
+            tbNewPassword.TabIndex = 15;
+            tbNewPassword.UseSystemPasswordChar = true;
             // 
             // lblUsername
             // 
@@ -181,26 +217,6 @@
             label1.TabIndex = 0;
             label1.Text = "Forgotten Password";
             // 
-            // lblNewPassword
-            // 
-            lblNewPassword.AutoSize = true;
-            lblNewPassword.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
-            lblNewPassword.ForeColor = Color.White;
-            lblNewPassword.Location = new Point(72, 362);
-            lblNewPassword.Name = "lblNewPassword";
-            lblNewPassword.Size = new Size(217, 40);
-            lblNewPassword.TabIndex = 16;
-            lblNewPassword.Text = "New Password";
-            lblNewPassword.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // tbNewPassword
-            // 
-            tbNewPassword.Font = new Font("Segoe UI", 18F);
-            tbNewPassword.Location = new Point(77, 405);
-            tbNewPassword.Name = "tbNewPassword";
-            tbNewPassword.Size = new Size(474, 47);
-            tbNewPassword.TabIndex = 15;
-            // 
             // ForgottenPasswordUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -211,6 +227,7 @@
             Size = new Size(654, 721);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picPassword).EndInit();
             ResumeLayout(false);
         }
 
@@ -228,5 +245,6 @@
         private TextBox tbUsername;
         private Label lblNewPassword;
         private TextBox tbNewPassword;
+        private PictureBox picPassword;
     }
 }

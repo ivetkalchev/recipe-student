@@ -44,25 +44,5 @@ namespace entity_classes.Recipes
         {
             return ingredients;
         }
-        public string GetInstructions()
-        {
-            return instructions;
-        }
-        public DietaryRestriction GetDietaryRestrictions()
-        {
-            return dietaryRestriction;
-        }
-        public Difficulty GetDifficulty()
-        {
-            return difficulty;
-        }
-        public int GetCookingTime()
-        {
-            return cookingTime;
-        }
-        public DateTime GetPublishDate() 
-        {
-            return publishDate;
-        }
     }
 }
