@@ -6,6 +6,7 @@ using manager_classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using DAOs;
 
 namespace recipe_web.Pages
 {
@@ -50,17 +51,17 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            if (!userManager.ValidateUserCredentials(Username, Password))
+            string hashedPassword = PasswordHasher.HashPassword(Password);
+
+            if (!userManager.ValidateUserCredentials(Username, hashedPassword))
             {
                 ModelState.AddModelError("Password", "Wrong credentials.");
                 return Page();
             }
 
-            bool cookiesAccepted = HttpContext.Request.Cookies.ContainsKey("cookieAccepted") && HttpContext.Request.Cookies["cookieAccepted"] == "true";
             var claims = new List<Claim>
     {
-        new Claim(ClaimTypes.Name, Username),
-        new Claim("CookiesAccepted", cookiesAccepted ? "true" : "false")
+        new Claim(ClaimTypes.Name, Username)
     };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -69,5 +70,6 @@ namespace recipe_web.Pages
 
             return RedirectToPage("/Index");
         }
+
     }
 }

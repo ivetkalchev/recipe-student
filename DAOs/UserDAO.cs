@@ -218,7 +218,6 @@ namespace DAOs
 
                 try
                 {
-                    string hashedPassword = PasswordHasher.HashPassword(user.Password);
                     string userQuery = @"INSERT INTO [User] (Username, Email, Password) 
                                  VALUES (@Username, @Email, @Password);
                                  SELECT SCOPE_IDENTITY();";
@@ -226,7 +225,7 @@ namespace DAOs
                     SqlCommand userCommand = new SqlCommand(userQuery, connection, transaction);
                     userCommand.Parameters.AddWithValue("@Username", user.Username);
                     userCommand.Parameters.AddWithValue("@Email", user.Email);
-                    userCommand.Parameters.AddWithValue("@Password", hashedPassword);
+                    userCommand.Parameters.AddWithValue("@Password", user.Password);
 
                     int newUserId = Convert.ToInt32(userCommand.ExecuteScalar());
 

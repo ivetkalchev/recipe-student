@@ -48,7 +48,8 @@ namespace manager_classes
         }
         public bool ValidateUserCredentials(string username, string password)
         {
-            return userDAO.ValidateUserCredentials(username, password);
+            string hashedPassword = PasswordHasher.HashPassword(password);
+            return userDAO.ValidateUserCredentials(username, hashedPassword);
         }
         public bool ValidateSecurityAnswer(string username, string securityAnswer)
         {
@@ -78,7 +79,7 @@ namespace manager_classes
         }
         public bool UserExists(string username)
         {
-            return userDAO.IsUsernameTaken(username); // Assuming IsUsernameTaken checks for existence
+            return userDAO.IsUsernameTaken(username);
         }
 
     }
