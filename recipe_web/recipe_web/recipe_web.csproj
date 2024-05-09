@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DAOs\DAOs.csproj" />
+    <ProjectReference Include="..\..\DTOs\DTOs.csproj" />
     <ProjectReference Include="..\..\manager_classes\manager_classes.csproj" />
   </ItemGroup>
 

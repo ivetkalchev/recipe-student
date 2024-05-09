@@ -90,7 +90,7 @@ namespace DAOs
                 }
             }
         }
-        public void CreateUser(DesktopUserDTO user)
+        public void CreateDesktopUser(DesktopUserDTO user)
         {
             if (IsUsernameTaken(user.Username))
             {
@@ -109,6 +109,7 @@ namespace DAOs
                 Console.WriteLine("Email is already taken.");
                 return;
             }
+
             using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
             {
                 try
@@ -194,6 +195,74 @@ namespace DAOs
                 command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("@Password", PasswordHasher.HashPassword(newPassword));
                 return command.ExecuteNonQuery() == 1;
+            }
+        }
+        public void CreateWebUser(WebUserDTO user)
+        {
+            if (IsUsernameTaken(user.Username))
+            {
+                Console.WriteLine("Username is already taken.");
+                return;
+            }
+
+            if (IsEmailTaken(user.Email))
+            {
+                Console.WriteLine("Email is already taken.");
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
+            {
+                connection.Open();
+                SqlTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    string hashedPassword = PasswordHasher.HashPassword(user.Password);
+                    string userQuery = @"INSERT INTO [User] (Username, Email, Password) 
+                                 VALUES (@Username, @Email, @Password);
+                                 SELECT SCOPE_IDENTITY();";
+
+                    SqlCommand userCommand = new SqlCommand(userQuery, connection, transaction);
+                    userCommand.Parameters.AddWithValue("@Username", user.Username);
+                    userCommand.Parameters.AddWithValue("@Email", user.Email);
+                    userCommand.Parameters.AddWithValue("@Password", hashedPassword);
+
+                    int newUserId = Convert.ToInt32(userCommand.ExecuteScalar());
+
+                    if (newUserId > 0)
+                    {
+                        string finalCaption = string.IsNullOrEmpty(user.Caption) ? "Caption not added yet" : user.Caption;
+                        string webUserQuery = @"INSERT INTO WebUser (id_user, caption) 
+                                        VALUES (@IdUser, @Caption);";
+
+                        SqlCommand webUserCommand = new SqlCommand(webUserQuery, connection, transaction);
+                        webUserCommand.Parameters.AddWithValue("@IdUser", newUserId);
+                        webUserCommand.Parameters.AddWithValue("@Caption", finalCaption);
+
+                        int result = webUserCommand.ExecuteNonQuery();
+
+                        if (result > 0)
+                        {
+                            transaction.Commit();
+                            Console.WriteLine("Web user created successfully.");
+                        }
+                        else
+                        {
+                            throw new Exception("Failed to insert web user data.");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Failed to insert user data.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Error occurred while creating web user: " + ex.Message);
+                    throw;
+                }
             }
         }
     }

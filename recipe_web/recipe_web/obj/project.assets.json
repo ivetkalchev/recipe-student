@@ -1301,6 +1301,8 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "AutoMapper >= 13.0.1",
+      "DAOs >= 1.0.0",
+      "DTOs >= 1.0.0",
       "Microsoft.Extensions.Configuration.Binder >= 8.0.1",
       "Microsoft.Extensions.Configuration.FileExtensions >= 8.0.0",
       "Microsoft.Extensions.Configuration.Json >= 8.0.0",
@@ -1335,6 +1337,12 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "I:\\individual-project\\DAOs\\DAOs.csproj": {
+              "projectPath": "I:\\individual-project\\DAOs\\DAOs.csproj"
+            },
+            "I:\\individual-project\\DTOs\\DTOs.csproj": {
+              "projectPath": "I:\\individual-project\\DTOs\\DTOs.csproj"
+            },
             "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
               "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
             }

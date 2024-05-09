@@ -1,7 +1,13 @@
+using DAOs;
+using manager_classes;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IUserDAO, UserDAO>();
+builder.Services.AddScoped<UserManager>();
 
 var app = builder.Build();
 

@@ -18,9 +18,17 @@
         <ul class="nav_list">
             <li class="item_list"><a href="/">Homepage</a></li>
             <li class="item_list"><a href="/Recipes">Recipes</a></li>
-            <li class="item_list"><a href="/UserProfile">User Profile</a></li>
-            <li class="item_list"><a href="/ToDoList">To Do List</a></li>
-            <li class="item_list"><a href="/Login">Login</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="item_list"><a href="/UserProfile">User Profile</a></li>
+                <li class="item_list"><a href="/ToDoList">To Do List</a></li>
+                <li class="item_list"><a href="/ChangePassword">Change Password</a></li>
+                <li class="item_list"><a href="/Logout">Log Out</a></li>
+            }
+            else
+            {
+                <li class="item_list"><a href="/Login">Login</a></li>
+            }
         </ul>
     </nav>
 

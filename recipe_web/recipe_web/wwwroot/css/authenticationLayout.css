@@ -89,3 +89,7 @@ a, .forgot_password a {
         color: white;
         text-decoration: none;
     }
+
+.alert_success {
+    margin-bottom: 20px;
+}

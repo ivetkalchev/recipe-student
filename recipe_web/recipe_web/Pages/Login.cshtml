@@ -4,10 +4,18 @@
 	ViewData["Title"] = "Login";
     Layout = "~/Pages/Shared/_LayoutLogin.cshtml";
 }
-
+    
     <div class="container">
         <div class="panel">
             <h1>Login</h1>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert_success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
             <form method="post">
             <div class="form_input">
                     <label asp-for="Username">Username</label>
@@ -19,6 +27,7 @@
                     <input asp-for="Password" type="password" required />
                     <span asp-validation-for="Password"></span>
                 </div>
+
             <div class="forgot_password">
                 <p class="forgot_password"><a asp-page="/ForgottenPassword">Forgotten password</a></p>
 

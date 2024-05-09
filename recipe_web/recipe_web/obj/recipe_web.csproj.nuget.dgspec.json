@@ -466,6 +466,12 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "I:\\individual-project\\DAOs\\DAOs.csproj": {
+                "projectPath": "I:\\individual-project\\DAOs\\DAOs.csproj"
+              },
+              "I:\\individual-project\\DTOs\\DTOs.csproj": {
+                "projectPath": "I:\\individual-project\\DTOs\\DTOs.csproj"
+              },
               "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
                 "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
               }

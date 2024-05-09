@@ -4,7 +4,8 @@ namespace manager_classes
 {
     public interface IUserManager
     {
-        void CreateUser(DesktopUserDTO user);
+        void CreateDesktopUser(DesktopUserDTO user);
+        void CreateWebUser(WebUserDTO user);
         bool IsBsnTaken(int bsn);
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);

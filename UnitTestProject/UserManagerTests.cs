@@ -10,15 +10,15 @@ namespace UnitTestProject
     public class UserManagerTests
     {
         [TestMethod]
-        public void CreateUser_ValidUser_CallsCreateUser()
+        public void CreateDesktopUser_ValidUser_CallsCreateDesktopUser()
         {
             var mockUserDAO = new Mock<IUserDAO>();
             var userManager = new UserManager(mockUserDAO.Object);
             var user = new DesktopUserDTO();
 
-            userManager.CreateUser(user);
+            userManager.CreateDesktopUser(user);
 
-            mockUserDAO.Verify(dao => dao.CreateUser(user), Times.Once());
+            mockUserDAO.Verify(dao => dao.CreateDesktopUser(user), Times.Once());
         }
 
         [TestMethod]

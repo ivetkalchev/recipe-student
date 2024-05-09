@@ -28,13 +28,13 @@ namespace manager_classes
         {
             return userDAO.IsBsnTaken(bsn);
         }
-        public void CreateUser(DesktopUserDTO user)
+        public void CreateDesktopUser(DesktopUserDTO user)
         {
             try
             {
                 if (userDAO != null)
                 {
-                    userDAO.CreateUser(user);
+                    userDAO.CreateDesktopUser(user);
                 }
                 else
                 {
@@ -57,6 +57,24 @@ namespace manager_classes
         public bool UpdatePassword(string username, string newPassword)
         {
             return userDAO.UpdatePassword(username, newPassword);
+        }
+        public void CreateWebUser(WebUserDTO user)
+        {
+            try
+            {
+                if (userDAO != null)
+                {
+                    userDAO.CreateWebUser(user);
+                }
+                else
+                {
+                    throw new InvalidOperationException("UserDAO is not initialized.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception occurred while creating web user: " + ex.Message);
+            }
         }
     }
 }

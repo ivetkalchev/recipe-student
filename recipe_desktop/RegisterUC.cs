@@ -130,7 +130,7 @@ namespace recipe_desktop
                 SecurityAnswer = securityAnswer,
             };
 
-            userManager.CreateUser(newUser);
+            userManager.CreateDesktopUser(newUser);
 
             MessageBox.Show($"User registered successfully!");
             ClearFields();
