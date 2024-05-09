@@ -65,7 +65,7 @@ namespace recipe_desktop
 
             string hashedPassword = PasswordHasher.HashPassword(password);
 
-            bool isValidCredentials = userManager.ValidateUserCredentials(username, hashedPassword);
+            bool isValidCredentials = userManager.ValidateDesktopUserCredentials(username, hashedPassword);
 
             if (isValidCredentials)
             {

@@ -53,7 +53,7 @@ namespace recipe_web.Pages
 
             string hashedPassword = PasswordHasher.HashPassword(Password);
 
-            if (!userManager.ValidateUserCredentials(Username, hashedPassword))
+            if (!userManager.ValidateWebUserCredentials(Username, hashedPassword))
             {
                 ModelState.AddModelError("Password", "Wrong credentials.");
                 return Page();

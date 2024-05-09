@@ -58,14 +58,14 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void ValidateUserCredentials_ValidCredentials_CallsValidateUserCredentials()
+        public void ValidateDesktopUserCredentials_ValidCredentials_CallsValidateDesktopUserCredentials()
         {
             var mockUserDAO = new Mock<IUserDAO>();
             var userManager = new UserManager(mockUserDAO.Object);
             string username = "testUser";
             string password = "password";
 
-            userManager.ValidateUserCredentials(username, password);
+            userManager.ValidateDesktopUserCredentials(username, password);
 
             mockUserDAO.Verify(dao => dao.ValidateUserCredentials(username, password), Times.Once());
         }

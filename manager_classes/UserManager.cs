@@ -46,7 +46,11 @@ namespace manager_classes
                 Console.WriteLine("Exception occurred while creating user: " + ex.Message);
             }
         }
-        public bool ValidateUserCredentials(string username, string password)
+        public bool ValidateDesktopUserCredentials(string username, string password)
+        {
+            return userDAO.ValidateUserCredentials(username, password);
+        }
+        public bool ValidateWebUserCredentials(string username, string password)
         {
             string hashedPassword = PasswordHasher.HashPassword(password);
             return userDAO.ValidateUserCredentials(username, hashedPassword);
