@@ -2,26 +2,32 @@
 @model RegisterModel
 @{
     ViewData["Title"] = "Register";
+    Layout = "~/Pages/Shared/_LayoutLogin.cshtml";
 }
 
-<h1>Register</h1>
-
-<form method="post">
-    <div>
-        <label asp-for="Username"></label>
-        <input asp-for="Username" />
-        <span asp-validation-for="Username"></span>
+<div class="container">
+    <div class="panel">
+        <h1>Register</h1>
+        <form method="post">
+            <div class="form_input">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" required />
+                <span asp-validation-for="Username"></span>
+            </div>
+            <div class="form_input">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" required />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="form_input">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" required />
+                <span asp-validation-for="Email"></span>
+            </div>
+            <button type="submit" class="button">Register</button>
+        </form>
+        <div class="login_footer">
+            <p>You already have an account? <br> <a asp-page="/Login">Login</a></p>
+        </div>
     </div>
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-    </div>
-    <button type="submit">Register</button>
-</form>
-<p>You already have an account? <a asp-page="/Login">Login here</a>.</p>
+</div>

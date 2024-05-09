@@ -10,7 +10,7 @@
     padding: 20px;
     margin-bottom: 20px;
     text-align: center;
-    z-index: 9999; /* Ensure the cookie banner appears above other elements */
+    z-index: 9999;
 }
 
 .cookie-text p[b-kwqyapgp0f] {
@@ -52,3 +52,4 @@
     background-color: #f8f9fa;
     z-index: 9998;
 }
+/* _content/recipe_web/Pages/Shared/_LayoutLogin.cshtml.rz.scp.css */

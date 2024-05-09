@@ -2,20 +2,31 @@
 @model recipe_web.Pages.LoginModel
 @{
 	ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_LayoutLogin.cshtml";
 }
-<h1>Login</h1>
 
-<form method="post">
-    <div>
-        <label asp-for="Username"></label>
-        <input asp-for="Username"/>
-        <span asp-validation-for="Username"></span>
+    <div class="container">
+        <div class="panel">
+            <h1>Login</h1>
+            <form method="post">
+            <div class="form_input">
+                    <label asp-for="Username">Username</label>
+                    <input asp-for="Username" required />
+                    <span asp-validation-for="Username"></span>
+                </div>
+            <div class="form_input">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" required />
+                    <span asp-validation-for="Password"></span>
+                </div>
+            <div class="forgot_password">
+                <p class="forgot_password"><a asp-page="/ForgottenPassword">Forgotten password</a></p>
+
+                </div>
+                <button type="submit" class="button">Login</button>
+            </form>
+        <div class="login_footer">
+                <p>Don't have an account? <br> <a asp-page="/Register">Register</a></p>
+            </div>
+        </div>
     </div>
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password"/>
-        <span asp-validation-for="Password"></span>
-    </div>
-    <button type="submit">Login</button>
-</form>
-    <p>Don't have an account? <a asp-page="/Register">Register here</a>.</p>

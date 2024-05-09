@@ -205,9 +205,7 @@ I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\staticwebassets\msb
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.recipe_web.props
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.recipe_web.props
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\staticwebassets.pack.json
-I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\scopedcss\bundle\recipe_web.styles.css
-I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\scopedcss\projectbundle\recipe_web.bundle.scp.css
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.csproj.Up2Date
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.dll
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\refint\recipe_web.dll

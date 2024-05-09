@@ -1,20 +1,32 @@
 {
   "Files": [
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\recipe_web.bundle.scp.css",
-      "PackagePath": "staticwebassets\\recipe_web.bundle.scp.css"
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\authenticationLayout.css",
+      "PackagePath": "staticwebassets\\css\\authenticationLayout.css"
     },
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\cookies.css",
+      "PackagePath": "staticwebassets\\css\\cookies.css"
     },
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\favicon.png",
-      "PackagePath": "staticwebassets\\images\\favicon.png"
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\primaryLayout.css",
+      "PackagePath": "staticwebassets\\css\\primaryLayout.css"
+    },
+    {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\Login.jpg",
+      "PackagePath": "staticwebassets\\images\\Login.jpg"
+    },
+    {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\email.png",
+      "PackagePath": "staticwebassets\\images\\email.png"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\header.jpg",
       "PackagePath": "staticwebassets\\images\\header.jpg"
+    },
+    {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\js\\site.js",

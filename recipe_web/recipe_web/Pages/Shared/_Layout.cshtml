@@ -4,45 +4,54 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="icon" type="image/png" href="~/images/favicon.png" />
+    <link rel="stylesheet" href="~/css/primaryLayout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/cookies.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/images/logo.png" />
 </head>
 <body>
-    <header id="header_container">
-        <img src="~/images/header.jpg" alt="header" class="header_img">
-        <div class="header_heading">Student Recipe Sharing</div>
-    </header>
-    <nav id="nav_container">
-        <ul>
-            <li><a href="/">Homepage</a></li>
-            <li><a href="/recipes">Recipes</a></li>
-            <li><a href="/userprofile">User Profile</a></li>
-            <li><a href="/mealprep">Meal Prep</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+
+    <nav class="nav_container">
+        <div class="logo_container">
+            <img src="~/images/logo.png" alt="logo cooking hat" height="76px" width="65px" />
+            <p>Student <br>Sharing <br>Recipe</p>
+        </div>
+        <ul class="nav_list">
+            <li class="item_list"><a href="/">Homepage</a></li>
+            <li class="item_list"><a href="/Recipes">Recipes</a></li>
+            <li class="item_list"><a href="/UserProfile">User Profile</a></li>
+            <li class="item_list"><a href="/ToDoList">To Do List</a></li>
+            <li class="item_list"><a href="/Login">Login</a></li>
         </ul>
     </nav>
-    <div id="content_container">
+
+    <div class="header_image">
+        <img src="~/images/header.jpg" alt="header image" />
+    </div>
+
+    <div class="content_container">
         @RenderBody()
     </div>
+
     @if (!Context.Request.Cookies.ContainsKey("cookie_consent") && !Context.Request.HasFormContentType)
     {
-        <div id="cookie-consent" class="cookie-consent">
-            <div class="cookie-text">
+        <div id="cookie_consent" class="cookie_consent">
+            <div class="cookie_text">
                 <p>This website uses cookies to ensure you get the best experience on our website.</p>
             </div>
-            <div class="cookie-buttons">
+            <div class="cookie_buttons">
                 <form method="post">
-                    <button type="submit" name="accept-cookies" class="accept-button">Accept</button>
-                    <button type="submit" name="decline-cookies" class="decline-button">Decline</button>
+                    <button type="submit" name="accept_cookies" class="accept_button">Accept</button>
+                    <button type="submit" name="decline_cookies" class="decline_button">Decline</button>
                 </form>
             </div>
         </div>
     }
 
-    <footer id="footer_container">
-        <a href="mailto:i.kalcheva@student.fontys.nl">Contact us</a><br>
-        &copy; @DateTime.Now.Year - Student Recipe Sharing
+    <footer class="footer_container">
+        <p>College Cuisine Innovations Inc.<br>
+            Contact us<br>
+        <a href="mailto:i.kalcheva@student.fontys.nl"><img src="~/images/email.png" alt="email icon" height="50px" width="50px"/></a></p>
     </footer>
+
 </body>
 </html>
