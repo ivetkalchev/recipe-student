@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Homepage";
     Layout = "~/Pages/Shared/_Layout.cshtml";
+    bool cookiesAccepted = User.Claims.FirstOrDefault(c => c.Type == "CookiesAccepted")?.Value == "true";
 }
 
 <head>

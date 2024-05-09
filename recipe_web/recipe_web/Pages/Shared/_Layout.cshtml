@@ -23,7 +23,7 @@
                 <li class="item_list"><a href="/UserProfile">User Profile</a></li>
                 <li class="item_list"><a href="/ToDoList">To Do List</a></li>
                 <li class="item_list"><a href="/ChangePassword">Change Password</a></li>
-                <li class="item_list"><a href="/Logout">Log Out</a></li>
+                <li class="item_list"><a href="/LogOut">Log Out</a></li>
             }
             else
             {
@@ -45,7 +45,7 @@
         <div id="cookie-popup" class="cookie-card">
             <span class="title">🍪 Cookie Notice</span>
             <p class="description">
-                We use cookies to ensure that we give you the best experience on our website.
+                We use cookies to ensure that we give you <br>the best experience on our website.
             </p>
             <div class="actions">
                 <button id="accept-btn" class="accept" type="button">Accept</button>
@@ -60,31 +60,32 @@
         <a href="mailto:i.kalcheva@student.fontys.nl"><img src="~/images/email.png" alt="email icon" height="50px" width="50px"/></a></p>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cookiePopup = document.getElementById("cookie-popup");
+            const acceptBtn = document.getElementById("accept-btn");
+            const declineBtn = document.getElementById("decline-btn");
+
+            // Check if the user has already accepted or declined
+            if (document.cookie.includes("cookieAccepted=true")) {
+                cookiePopup.style.display = "none"; // Hide the popup if already accepted
+            } else {
+                cookiePopup.style.display = "block"; // Show the popup if not accepted
+            }
+
+            // Add event listeners for accept and decline buttons
+            acceptBtn.addEventListener("click", function () {
+                document.cookie = "cookieAccepted=true; max-age=" + (365 * 24 * 60 * 60) + "; path=/";
+                cookiePopup.style.display = "none"; // Hide the popup after accepting
+            });
+
+            declineBtn.addEventListener("click", function () {
+                // You can add your logic for declining cookies here
+                cookiePopup.style.display = "none"; // Hide the popup after declining
+            });
+        });
+
+    </script>
+
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const cookiePopup = document.getElementById("cookie-popup");
-        const acceptBtn = document.getElementById("accept-btn");
-        const declineBtn = document.getElementById("decline-btn");
-
-        // Check if the user has already accepted or declined
-        if (document.cookie.includes("cookieAccepted=true")) {
-            cookiePopup.style.display = "none"; // Hide the popup if already accepted
-        } else {
-            cookiePopup.style.display = "block"; // Show the popup if not accepted
-        }
-
-        // Add event listeners for accept and decline buttons
-        acceptBtn.addEventListener("click", function () {
-            document.cookie = "cookieAccepted=true; max-age=" + (365 * 24 * 60 * 60) + "; path=/";
-            cookiePopup.style.display = "none"; // Hide the popup after accepting
-        });
-
-        declineBtn.addEventListener("click", function () {
-            // You can add your logic for declining cookies here
-            cookiePopup.style.display = "none"; // Hide the popup after declining
-        });
-    });
-
-</script>
 </html>

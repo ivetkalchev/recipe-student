@@ -76,5 +76,10 @@ namespace manager_classes
                 Console.WriteLine("Exception occurred while creating web user: " + ex.Message);
             }
         }
+        public bool UserExists(string username)
+        {
+            return userDAO.IsUsernameTaken(username); // Assuming IsUsernameTaken checks for existence
+        }
+
     }
 }

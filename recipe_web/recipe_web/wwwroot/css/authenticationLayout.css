@@ -90,6 +90,10 @@ a, .forgot_password a {
         text-decoration: none;
     }
 
-.alert_success {
+.success_alert {
+    margin-bottom: 20px;
+}
+
+.error_alert {
     margin-bottom: 20px;
 }

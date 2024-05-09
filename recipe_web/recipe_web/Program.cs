@@ -1,5 +1,6 @@
 using DAOs;
 using manager_classes;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,13 +10,21 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUserDAO, UserDAO>();
 builder.Services.AddScoped<UserManager>();
 
+// Adding authentication services
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login"; // Your Login page path
+        options.LogoutPath = "/Logout"; // Your Logout page path
+        options.AccessDeniedPath = "/AccessDenied"; // Path when access is denied
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -24,6 +33,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); // This must be called before UseAuthorization
 app.UseAuthorization();
 
 app.MapRazorPages();

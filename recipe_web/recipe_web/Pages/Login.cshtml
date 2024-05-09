@@ -1,41 +1,42 @@
 ﻿@page
 @model recipe_web.Pages.LoginModel
 @{
-	ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login";
     Layout = "~/Pages/Shared/_LayoutLogin.cshtml";
 }
-    
-    <div class="container">
-        <div class="panel">
-            <h1>Login</h1>
+
+<div class="container">
+    <div class="panel">
+        <h1>Login</h1>
 
         @if (TempData["SuccessMessage"] != null)
         {
-            <div class="alert_success">
+            <div class="success_alert">
                 @TempData["SuccessMessage"]
             </div>
         }
 
-            <form method="post">
+        <form method="post">
             <div class="form_input">
-                    <label asp-for="Username">Username</label>
-                    <input asp-for="Username" required />
-                    <span asp-validation-for="Username"></span>
-                </div>
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" required />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
             <div class="form_input">
-                    <label asp-for="Password">Password</label>
-                    <input asp-for="Password" type="password" required />
-                    <span asp-validation-for="Password"></span>
-                </div>
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" required />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
 
             <div class="forgot_password">
-                <p class="forgot_password"><a asp-page="/ForgottenPassword">Forgotten password</a></p>
-
-                </div>
-                <button type="submit" class="button">Login</button>
-            </form>
-        <div class="login_footer">
-                <p>Don't have an account? <br> <a asp-page="/Register">Register</a></p>
+                <p><a asp-page="/ForgottenPassword">Forgotten password?</a></p>
             </div>
+            <button type="submit" class="button">Login</button>
+        </form>
+
+        <div class="login_footer">
+            <p>Don't have an account? <br> <a asp-page="/Register">Register</a></p>
         </div>
     </div>
+</div>
+
