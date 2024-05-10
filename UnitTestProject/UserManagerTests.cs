@@ -95,5 +95,68 @@ namespace UnitTestProject
 
             mockUserDAO.Verify(dao => dao.UpdateDesktopPassword(username, newPassword), Times.Once());
         }
+
+        [TestMethod]
+        public void CreateWebUser_ValidUser_CallsCreateWebUser()
+        {
+            var mockUserDAO = new Mock<IUserDAO>();
+            var userManager = new UserManager(mockUserDAO.Object);
+            var user = new WebUserDTO();
+
+            userManager.CreateWebUser(user);
+
+            mockUserDAO.Verify(dao => dao.CreateWebUser(user), Times.Once());
+        }
+
+        [TestMethod]
+        public void ValidateWebUserCredentials_ValidCredentials_CallsValidateWebUserCredentials()
+        {
+            var mockUserDAO = new Mock<IUserDAO>();
+            var userManager = new UserManager(mockUserDAO.Object);
+            string username = "webUser";
+            string password = "password";
+            string hashedPassword = PasswordHasher.HashPassword(password);
+
+            userManager.ValidateWebUserCredentials(username, password);
+
+            mockUserDAO.Verify(dao => dao.ValidateUserCredentials(username, hashedPassword), Times.Once());
+        }
+
+        [TestMethod]
+        public void UpdateWebUserPassword_ValidUsernameAndNewPassword_CallsUpdateWebUserPassword()
+        {
+            var mockUserDAO = new Mock<IUserDAO>();
+            var userManager = new UserManager(mockUserDAO.Object);
+            string username = "webUser";
+            string newPassword = "newSecurePassword";
+
+            userManager.UpdateWebUserPassword(username, newPassword);
+
+            mockUserDAO.Verify(dao => dao.UpdateWebUserPassword(username, newPassword), Times.Once());
+        }
+
+        [TestMethod]
+        public void UserExists_ValidUsername_CallsIsUsernameTaken()
+        {
+            var mockUserDAO = new Mock<IUserDAO>();
+            var userManager = new UserManager(mockUserDAO.Object);
+            string username = "existingUser";
+
+            userManager.UserExists(username);
+
+            mockUserDAO.Verify(dao => dao.IsUsernameTaken(username), Times.Once());
+        }
+
+        [TestMethod]
+        public void GetWebUserByUsername_ValidUsername_CallsGetWebUserByUsername()
+        {
+            var mockUserDAO = new Mock<IUserDAO>();
+            var userManager = new UserManager(mockUserDAO.Object);
+            string username = "webUser";
+
+            userManager.GetWebUserByUsername(username);
+
+            mockUserDAO.Verify(dao => dao.GetWebUserByUsername(username), Times.Once());
+        }
     }
 }
