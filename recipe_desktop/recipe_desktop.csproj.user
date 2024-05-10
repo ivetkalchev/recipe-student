@@ -4,16 +4,16 @@
     <Compile Update="AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="BarUC.cs">
+    <Compile Update="menu_uc\BarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="LoginUC.cs">
+    <Compile Update="authentication\LoginUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="MenuUC.cs">
+    <Compile Update="menu_uc\MenuUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="SideBarPanel.cs">
+    <Compile Update="menu_uc\SideBarPanel.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

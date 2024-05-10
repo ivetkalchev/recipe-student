@@ -1,0 +1,39 @@
+﻿@page
+@model recipe_web.Pages.EditProfileModel
+@{
+    ViewData["Title"] = "Edit Profile";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/editProfile.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="message_container">
+        <p><b>@Model.UserDto.Username's Profile Settings (under maintenance)</b></p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="form_input">
+        <img src="@(Model.ProfilePic?.ImagePath ?? "/images/profile_picture.jpg")" alt="Profile Picture" class="profile_picture">
+        <div class="input_group">
+            <p>Username:</p>
+            <input type="text" asp-for="UserDto.Username" />
+        </div>
+        <div class="input_group">
+            <p>Email:</p>
+            <input type="email" asp-for="UserDto.Email" />
+        </div>
+        <div class="input_group">
+            <p>Caption:</p>
+            <input type="text" asp-for="UserDto.Caption" />
+        </div>
+        <div class="input_group">
+            <p>Profile Picture:</p>
+            <input type="file" id="fileUpload" name="fileUpload" />
+        </div>
+        <div class="buttons_profile">
+            <button type="submit" class="button">Confirm</button>
+        </div>
+    </form>
+</body>

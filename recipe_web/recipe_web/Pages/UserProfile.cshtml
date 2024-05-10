@@ -11,16 +11,16 @@
 
 <body>
     <div class="message_container">
-        <p>@Model.UserDto.Username's Profile</p>
+        <p><b>@Model.UserDto.Username's Profile</b></p>
     </div>
 
     <div class="profile_container">
-        <img src="profile-placeholder.png" alt="Profile Picture" class="profile_picture">
-        <div class="username">@Model.UserDto.Username</div>
-        <div class="description">Short description</div>
+        <img src="@(Model.ProfilePic?.ImagePath ?? "/images/profile_picture.jpg")" alt="Profile Picture" class="profile_picture">
+        <div class="username"><b>@Model.UserDto.Username</b></div>
+        <div class="description">@Model.UserDto.Caption</div>
         <div class="buttons_profile">
-            <button type="button" onclick="editProfile()">Edit</button>
-            <button type="button" onclick="changePassword()">Change Password</button>
+            <a class="button" href="/EditProfile">Edit</a>
+            <a class="button" href="/ChangePassword">Change Password</a>
         </div>
     </div>
 </body>

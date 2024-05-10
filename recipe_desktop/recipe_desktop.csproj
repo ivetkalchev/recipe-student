@@ -22,13 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="main_panel_uc\SettingsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="HomepageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="RegisterUC.cs">
+    <Compile Update="authentication\RegisterUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ForgottenPasswordUC.cs">
+    <Compile Update="authentication\ForgottenPasswordUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

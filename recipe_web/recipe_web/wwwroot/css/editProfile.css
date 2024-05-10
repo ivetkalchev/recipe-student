@@ -1,0 +1,66 @@
+﻿.message_container, .input_group, .buttons_profile {
+    font-size: 20px;
+    color: #3D538F;
+    text-align: center;
+    padding: 4px;
+    font-weight: bold;
+}
+
+.message_container {
+    font-size: 25px;
+    color: white;
+    background-color: #3D538F;
+    text-align: center;
+    padding: 20px;
+    margin-top: -10px;
+    width: 100%;
+    height: 70px;
+}
+
+.form_input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.profile_picture {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.input_group input, #fileUpload {
+    width: 50vh;
+    padding: 8px;
+    text-align: left;
+    border: 2px solid #202080;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.buttons_profile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.button {
+    padding: 10px 70px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3D538F;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+    .button:hover {
+        background-color: #0056b3;
+        font-weight: bold;
+    }

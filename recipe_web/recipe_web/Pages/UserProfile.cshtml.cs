@@ -11,6 +11,7 @@ namespace recipe_web.Pages
     {
         private readonly UserManager userManager;
         public WebUserDTO UserDto { get; set; }
+        public ProfilePicDTO ProfilePic { get; set; }
         public string Username { get; private set; }
 
         public UserProfileModel(UserManager userManager)

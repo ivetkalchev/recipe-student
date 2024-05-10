@@ -80,3 +80,4 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensio
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SettingsUC.resources

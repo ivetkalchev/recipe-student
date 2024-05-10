@@ -105,7 +105,6 @@ namespace recipe_desktop
             }
         }
 
-
         private void Menu_menuClick(object sender, EventArgs e)
         {
             MenuUC _menuButton = (MenuUC)sender;

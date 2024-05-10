@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "R6kwABxD9lc2t6CDo9nABEQEnxiKNmRrLMagC7/rOEE=",
+  "Hash": "IKoofUOF2xXpxUeoyGoWKLq1WmOhHeWk8vrbyreT6zk=",
   "Source": "recipe_web",
   "BasePath": "_content/recipe_web",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "wwwroot\\css\\cookies.css"
     },
     {
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\editProfile.css",
+      "SourceId": "recipe_web",
+      "SourceType": "Discovered",
+      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
+      "BasePath": "_content/recipe_web",
+      "RelativePath": "css/editProfile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\editProfile.css"
+    },
+    {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\primaryLayout.css",
       "SourceId": "recipe_web",
       "SourceType": "Discovered",
@@ -91,25 +110,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\profile.css"
-    },
-    {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\recipe.css",
-      "SourceId": "recipe_web",
-      "SourceType": "Discovered",
-      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
-      "BasePath": "_content/recipe_web",
-      "RelativePath": "css/recipe.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\recipe.css"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\email.png",
@@ -186,6 +186,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
+    },
+    {
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\profile_picture.jpg",
+      "SourceId": "recipe_web",
+      "SourceType": "Discovered",
+      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
+      "BasePath": "_content/recipe_web",
+      "RelativePath": "images/profile_picture.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\profile_picture.jpg"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\js\\site.js",

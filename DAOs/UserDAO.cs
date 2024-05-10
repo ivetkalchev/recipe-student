@@ -12,6 +12,7 @@ using System.IO;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Data.Common;
+using System.Transactions;
 
 namespace DAOs
 {
@@ -182,7 +183,7 @@ namespace DAOs
                 connection.Open();
                 var command = new SqlCommand("UPDATE [User] SET Password = @Password WHERE Username = @Username", connection);
                 command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", newPassword); // Assume newPassword is already hashed
+                command.Parameters.AddWithValue("@Password", newPassword);
                 return command.ExecuteNonQuery() == 1;
             }
         }
@@ -304,7 +305,7 @@ namespace DAOs
                     connection.Open();
                     var command = new SqlCommand("UPDATE [User] SET Password = @Password WHERE Username = @Username", connection);
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", newPassword); // Assuming newPassword is already hashed
+                    command.Parameters.AddWithValue("@Password", newPassword);
                     return command.ExecuteNonQuery() == 1;
                 }
                 catch (Exception ex)
@@ -314,7 +315,69 @@ namespace DAOs
                 }
             }
         }
+        public bool UploadProfilePicture(int userId, string imagePath, string imageType)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
+            {
+                try
+                {
+                    connection.Open();
 
-    }
+                    string query = @"
+                INSERT INTO ProfilePicture (id_user, image_path, image_type)
+                VALUES (@IdUser, @ImagePath, @ImageType);";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@IdUser", userId);
+                    command.Parameters.AddWithValue("@ImagePath", imagePath);
+                    command.Parameters.AddWithValue("@ImageType", imageType);
+
+                    int result = command.ExecuteNonQuery();
+                    return result == 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error occurred while uploading profile picture: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+        public ProfilePicDTO GetProfilePicByUsername(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(DatabaseConnection.connection))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = @"
+                SELECT p.image_path, p.image_type 
+                FROM ProfilePicture p
+                JOIN [User] u ON p.id_user = u.id_user
+                WHERE u.Username = @Username";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new ProfilePicDTO
+                            {
+                                Username = username,
+                                ImagePath = reader["image_path"].ToString(),
+                                ImageType = reader["image_type"].ToString()
+                            };
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error occurred while retrieving profile picture: " + ex.Message);
+                    return null;
+                }
+                return null;
+            }
+        }
+	}
 }
-

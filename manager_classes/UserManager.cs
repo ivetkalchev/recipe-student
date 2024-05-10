@@ -1,5 +1,6 @@
 ﻿using DAOs;
 using DTOs;
+using entity_classes.Users;
 
 namespace manager_classes
 {
@@ -84,5 +85,5 @@ namespace manager_classes
         {
             return userDAO.GetWebUserByUsername(username);
         }
-    }
+	}
 }

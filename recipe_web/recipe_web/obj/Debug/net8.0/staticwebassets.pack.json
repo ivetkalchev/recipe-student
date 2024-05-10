@@ -9,16 +9,16 @@
       "PackagePath": "staticwebassets\\css\\cookies.css"
     },
     {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\editProfile.css",
+      "PackagePath": "staticwebassets\\css\\editProfile.css"
+    },
+    {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\primaryLayout.css",
       "PackagePath": "staticwebassets\\css\\primaryLayout.css"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\profile.css",
       "PackagePath": "staticwebassets\\css\\profile.css"
-    },
-    {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\recipe.css",
-      "PackagePath": "staticwebassets\\css\\recipe.css"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\Login.jpg",
@@ -35,6 +35,10 @@
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\profile_picture.jpg",
+      "PackagePath": "staticwebassets\\images\\profile_picture.jpg"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\js\\site.js",

@@ -37,6 +37,7 @@
             Employees = new MenuUC();
             Recipes = new MenuUC();
             Dashboard = new MenuUC();
+            mainPanel = new Panel();
             pamelHeader.SuspendLayout();
             sideBarPanel1.SuspendLayout();
             SuspendLayout();
@@ -125,7 +126,7 @@
             Recipes.Cursor = Cursors.Hand;
             Recipes.Icon = Properties.Resources.pizza_xxl_2;
             Recipes.Location = new Point(0, 149);
-            Recipes.MenuTitle = "Recipe";
+            Recipes.MenuTitle = "Recipes";
             Recipes.Name = "Recipes";
             Recipes.Size = new Size(198, 123);
             Recipes.TabIndex = 1;
@@ -141,12 +142,20 @@
             Dashboard.Size = new Size(198, 123);
             Dashboard.TabIndex = 0;
             // 
+            // mainPanel
+            // 
+            mainPanel.Location = new Point(213, 151);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(1677, 870);
+            mainPanel.TabIndex = 4;
+            // 
             // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(mainPanel);
             Controls.Add(sideBarPanel1);
             Controls.Add(pamelHeader);
             Controls.Add(panelBar);
@@ -173,5 +182,6 @@
         private MenuUC Recipes;
         private MenuUC Log_Out;
         private Label lblHeaderText;
+        private Panel mainPanel;
     }
 }
