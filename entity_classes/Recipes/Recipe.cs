@@ -36,10 +36,6 @@ namespace entity_classes.Recipes
             this.publishDate = publishDate;
         }
         public abstract decimal CalculatePrice();
-        public string GetTitle()
-        {
-            return title;
-        }
         public List<Ingredient> GetIngredients()
         {
             return ingredients;
