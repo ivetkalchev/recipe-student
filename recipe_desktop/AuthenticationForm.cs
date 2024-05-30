@@ -1,4 +1,4 @@
-using DBHelpers;
+using db_helpers;
 using manager_classes;
 using System;
 using System.Windows.Forms;
@@ -51,13 +51,6 @@ namespace recipe_desktop
             LoginUC loginUC = new LoginUC(userManager);
             loginUC.Dock = DockStyle.Fill;
             panelInput.Controls.Add(loginUC);
-        }
-
-        public void LoadForgottenPassword()
-        {
-            ForgottenPasswordUC fpUC = new ForgottenPasswordUC(userManager);
-            fpUC.Dock = DockStyle.Fill;
-            panelInput.Controls.Add(fpUC);
         }
 
         public void LoadRegister()

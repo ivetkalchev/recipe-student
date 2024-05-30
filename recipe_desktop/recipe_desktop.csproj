@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\entity_classes\entity_classes.csproj" />
+    <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
+    <ProjectReference Include="..\exceptions\exceptions.csproj" />
     <ProjectReference Include="..\manager_classes\manager_classes.csproj" />
   </ItemGroup>
 
@@ -29,9 +31,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="authentication\RegisterUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="authentication\ForgottenPasswordUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

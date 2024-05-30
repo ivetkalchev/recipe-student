@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace UnitTestProject
+namespace unit_tests
 {
     [TestClass]
     public class DatabaseConnectionTests
@@ -10,7 +10,7 @@ namespace UnitTestProject
         public void CheckConnection()
         {
             var expected = true;
-            var isConnected = DBHelpers.DBConnection.CheckConnection();
+            var isConnected = db_helpers.DBConnection.CheckConnection();
 
             Assert.AreEqual(expected, isConnected);
         }

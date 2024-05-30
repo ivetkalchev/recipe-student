@@ -1,11 +1,13 @@
-﻿using DBHelpers;
-using entity_classes;
+﻿using entity_classes;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using exceptions;
+using db_helpers;
 
 namespace manager_classes
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private List<User> users = new List<User>();
         private IDBUserHelper dbHelper;
@@ -22,9 +24,19 @@ namespace manager_classes
                 return false;
             }
 
-            if (IsEmailTaken(desktopUser.GetEmail()) || IsBSNTaken(desktopUser.GetBsn()) || IsUsernameTaken(desktopUser.GetUsername()))
+            if (IsEmailTaken(desktopUser.GetEmail()))
             {
-                return false;
+                throw new AlreadyExistException("email");
+            }
+
+            if (IsUsernameTaken(desktopUser.GetUsername()))
+            {
+                throw new AlreadyExistException("username");
+            }
+
+            if (IsBSNTaken(desktopUser.GetBsn()))
+            {
+                throw new AlreadyExistException("BSN");
             }
 
             desktopUser = new DesktopUser(
@@ -51,8 +63,8 @@ namespace manager_classes
         private bool IsValidUser(DesktopUser user)
         {
             return IsValidBsn(user.GetBsn()) &&
-                   IsValidName(user.GetFirstName()) &&
-                   IsValidName(user.GetLastName()) &&
+                   IsValidName(user.GetFirstName(), "first name") &&
+                   IsValidName(user.GetLastName(), "last name") &&
                    IsValidBirthdate(user.GetBirthdate()) &&
                    IsValidPassword(user.GetPassword()) &&
                    IsValidEmail(user.GetEmail());
@@ -60,29 +72,54 @@ namespace manager_classes
 
         private bool IsValidBsn(int bsn)
         {
-            return bsn.ToString().Length == 8 || bsn.ToString().Length == 9;
+            string bsnString = bsn.ToString();
+            if (bsnString.Length != 8 && bsnString.Length != 9)
+            {
+                throw new InvalidBsnLengthException();
+            }
+            if (!Regex.IsMatch(bsnString, @"^\d+$"))
+            {
+                throw new InvalidBsnFormatException();
+            }
+            return true;
         }
 
-        private bool IsValidName(string name)
+        private bool IsValidName(string name, string nameType)
         {
-            return Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+            {
+                throw new InvalidNameException(nameType);
+            }
+            return true;
         }
 
         private bool IsValidBirthdate(DateTime birthdate)
         {
             int age = DateTime.Now.Year - birthdate.Year;
             if (birthdate > DateTime.Now.AddYears(-age)) age--;
-            return age >= 14;
+            if (age < 14)
+            {
+                throw new InvalidBirthdateException();
+            }
+            return true;
         }
 
         private bool IsValidPassword(string password)
         {
-            return Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$");
+            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"))
+            {
+                throw new InvalidPasswordException();
+            }
+            return true;
         }
 
         private bool IsValidEmail(string email)
         {
-            return email.Contains("@");
+            if (!email.Contains("@"))
+            {
+                throw new InvalidEmailException();
+            }
+            return true;
         }
 
         private string CapitalizeFirstLetter(string text)

@@ -18,10 +18,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = I:\individual-project\recipe_web\recipe_web
 build_property._RazorSourceGeneratorDebug = 
 
-[I:/individual-project/recipe_web/recipe_web/Pages/ChangePassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [I:/individual-project/recipe_web/recipe_web/Pages/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

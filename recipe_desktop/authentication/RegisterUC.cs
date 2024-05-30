@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using entity_classes;
 using manager_classes;
-using Microsoft.VisualBasic.ApplicationServices;
 using enum_classes;
+using exceptions;
 
 namespace recipe_desktop
 {
     public partial class RegisterUC : UserControl
     {
-        private UserManager userManager;
-        public RegisterUC(UserManager userManager)
+        private IUserManager userManager;
+
+        public RegisterUC(IUserManager userManager)
         {
             InitializeComponent();
 
@@ -95,12 +88,10 @@ namespace recipe_desktop
                 return;
             }
 
-            // Create the Role object (assuming role ID 2 is for Employee)
             Role employeeRole = new Role(2, "Employee", new List<Permission>());
 
-            // Create a new DesktopUser
             DesktopUser newUser = new DesktopUser(
-                0, // The ID will be set by the database
+                0, 
                 username,
                 email,
                 plainPassword,
@@ -113,16 +104,18 @@ namespace recipe_desktop
                 securityAnswer
             );
 
-            // Attempt to register the user
-            if (userManager.RegisterDesktopUser(newUser))
+            try
             {
-                MessageBox.Show("User registered successfully!");
-                ClearFields();
-                LoadLogin();
+                if (userManager.RegisterDesktopUser(newUser))
+                {
+                    MessageBox.Show("User registered successfully!");
+                    ClearFields();
+                    LoadLogin();
+                }
             }
-            else
+            catch (InvalidUserException ex)
             {
-                MessageBox.Show("Registration failed. The email or BSN might already be taken.");
+                MessageBox.Show(ex.Message);
             }
         }
 

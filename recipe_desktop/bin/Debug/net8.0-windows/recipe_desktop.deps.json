@@ -14,6 +14,8 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "System.Data.SqlClient": "4.8.6",
           "entity_classes": "1.0.0",
+          "enum_classes": "1.0.0",
+          "exceptions": "1.0.0",
           "manager_classes": "1.0.0"
         },
         "runtime": {
@@ -236,7 +238,7 @@
           "System.Text.Encodings.Web": "8.0.0"
         }
       },
-      "DBHelpers/1.0.0": {
+      "db_helpers/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
@@ -247,7 +249,7 @@
           "enum_classes": "1.0.0"
         },
         "runtime": {
-          "DBHelpers.dll": {}
+          "db_helpers.dll": {}
         }
       },
       "entity_classes/1.0.0": {
@@ -275,17 +277,23 @@
           "enum_classes.dll": {}
         }
       },
+      "exceptions/1.0.0": {
+        "runtime": {
+          "exceptions.dll": {}
+        }
+      },
       "manager_classes/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "DBHelpers": "1.0.0",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "System.Data.SqlClient": "4.8.6",
+          "db_helpers": "1.0.0",
           "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0"
+          "enum_classes": "1.0.0",
+          "exceptions": "1.0.0"
         },
         "runtime": {
           "manager_classes.dll": {}
@@ -460,7 +468,7 @@
       "path": "system.text.json/8.0.0",
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
     },
-    "DBHelpers/1.0.0": {
+    "db_helpers/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -471,6 +479,11 @@
       "sha512": ""
     },
     "enum_classes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "exceptions/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

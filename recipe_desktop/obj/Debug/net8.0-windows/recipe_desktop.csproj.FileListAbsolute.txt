@@ -39,7 +39,6 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.pdb
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.csproj.AssemblyReference.cache
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AuthenticationForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.BarUC.resources
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.ForgottenPasswordUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePageForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.LoginUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.MenuUC.resources
@@ -77,5 +76,7 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensio
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SettingsUC.resources
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DBHelpers.dll
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DBHelpers.pdb
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\db_helpers.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions.pdb
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\db_helpers.pdb

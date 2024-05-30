@@ -1,6 +1,6 @@
 ﻿using entity_classes;
 
-namespace DBHelpers
+namespace db_helpers
 {
     public interface IDBUserHelper
     {

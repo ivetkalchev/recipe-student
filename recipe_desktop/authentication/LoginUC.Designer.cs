@@ -32,7 +32,6 @@
             picPassword = new PictureBox();
             lblText = new Label();
             lblRegister = new Label();
-            lblForgottenPassword = new Label();
             btnLogin = new Button();
             btnClear = new Button();
             tbPassword = new TextBox();
@@ -50,7 +49,6 @@
             panel1.Controls.Add(picPassword);
             panel1.Controls.Add(lblText);
             panel1.Controls.Add(lblRegister);
-            panel1.Controls.Add(lblForgottenPassword);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(btnClear);
             panel1.Controls.Add(tbPassword);
@@ -80,7 +78,7 @@
             lblText.AutoSize = true;
             lblText.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
-            lblText.Location = new Point(145, 572);
+            lblText.Location = new Point(145, 562);
             lblText.Name = "lblText";
             lblText.Size = new Size(334, 35);
             lblText.TabIndex = 9;
@@ -93,7 +91,7 @@
             lblRegister.Cursor = Cursors.Hand;
             lblRegister.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblRegister.ForeColor = Color.FromArgb(61, 83, 143);
-            lblRegister.Location = new Point(256, 607);
+            lblRegister.Location = new Point(256, 597);
             lblRegister.Name = "lblRegister";
             lblRegister.Size = new Size(111, 35);
             lblRegister.TabIndex = 8;
@@ -102,22 +100,6 @@
             lblRegister.Click += lblRegister_Click;
             lblRegister.MouseLeave += lblRegister_MouseLeave;
             lblRegister.MouseHover += lblRegister_MouseHover;
-            // 
-            // lblForgottenPassword
-            // 
-            lblForgottenPassword.AutoSize = true;
-            lblForgottenPassword.Cursor = Cursors.Hand;
-            lblForgottenPassword.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            lblForgottenPassword.ForeColor = Color.FromArgb(61, 83, 143);
-            lblForgottenPassword.Location = new Point(299, 420);
-            lblForgottenPassword.Name = "lblForgottenPassword";
-            lblForgottenPassword.Size = new Size(250, 35);
-            lblForgottenPassword.TabIndex = 7;
-            lblForgottenPassword.Text = "Forgotten password";
-            lblForgottenPassword.TextAlign = ContentAlignment.TopCenter;
-            lblForgottenPassword.Click += lblForgottenPassword_Click;
-            lblForgottenPassword.MouseLeave += lblForgottenPassword_MouseLeave;
-            lblForgottenPassword.MouseHover += lblForgottenPassword_MouseHover;
             // 
             // btnLogin
             // 
@@ -128,7 +110,7 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnLogin.ForeColor = Color.FromArgb(46, 76, 157);
-            btnLogin.Location = new Point(75, 520);
+            btnLogin.Location = new Point(75, 510);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(474, 49);
             btnLogin.TabIndex = 6;
@@ -147,7 +129,7 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(75, 465);
+            btnClear.Location = new Point(75, 442);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(474, 49);
             btnClear.TabIndex = 5;
@@ -208,6 +190,7 @@
             label1.Size = new Size(430, 134);
             label1.TabIndex = 0;
             label1.Text = "Student Recipe \nSharing Platform";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LoginUC
             // 
@@ -233,7 +216,6 @@
         private Label lblPassword;
         private Button btnClear;
         private Button btnLogin;
-        private Label lblForgottenPassword;
         private Label lblText;
         private Label lblRegister;
         private PictureBox picPassword;

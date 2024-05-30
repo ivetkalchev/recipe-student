@@ -4,14 +4,14 @@
     "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj": {}
   },
   "projects": {
-    "I:\\individual-project\\DAOs\\DBHelpers.csproj": {
+    "I:\\individual-project\\db_helpers\\db_helpers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\individual-project\\DAOs\\DBHelpers.csproj",
-        "projectName": "DBHelpers",
-        "projectPath": "I:\\individual-project\\DAOs\\DBHelpers.csproj",
+        "projectUniqueName": "I:\\individual-project\\db_helpers\\db_helpers.csproj",
+        "projectName": "db_helpers",
+        "projectPath": "I:\\individual-project\\db_helpers\\db_helpers.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "I:\\individual-project\\DAOs\\obj\\",
+        "outputPath": "I:\\individual-project\\db_helpers\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -264,6 +264,67 @@
         }
       }
     },
+    "I:\\individual-project\\exceptions\\exceptions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "I:\\individual-project\\exceptions\\exceptions.csproj",
+        "projectName": "exceptions",
+        "projectPath": "I:\\individual-project\\exceptions\\exceptions.csproj",
+        "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
+        "outputPath": "I:\\individual-project\\exceptions\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -289,14 +350,17 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "I:\\individual-project\\DAOs\\DBHelpers.csproj": {
-                "projectPath": "I:\\individual-project\\DAOs\\DBHelpers.csproj"
+              "I:\\individual-project\\db_helpers\\db_helpers.csproj": {
+                "projectPath": "I:\\individual-project\\db_helpers\\db_helpers.csproj"
               },
               "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
                 "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj"
               },
               "I:\\individual-project\\enum_classes\\enum_classes.csproj": {
                 "projectPath": "I:\\individual-project\\enum_classes\\enum_classes.csproj"
+              },
+              "I:\\individual-project\\exceptions\\exceptions.csproj": {
+                "projectPath": "I:\\individual-project\\exceptions\\exceptions.csproj"
               }
             }
           }
@@ -386,9 +450,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "I:\\individual-project\\DAOs\\DBHelpers.csproj": {
-                "projectPath": "I:\\individual-project\\DAOs\\DBHelpers.csproj"
-              },
               "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
                 "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
               }
@@ -410,10 +471,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[13.0.1, )"
-            },
             "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
               "version": "[8.0.1, )"

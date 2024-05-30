@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace DBHelpers
+namespace db_helpers
 {
     public class DBConnection
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBHelpers
+namespace db_helpers
 {
     public interface IDBConnection
     {

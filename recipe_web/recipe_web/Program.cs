@@ -1,4 +1,4 @@
-using DBHelpers;
+using db_helpers;
 using manager_classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 

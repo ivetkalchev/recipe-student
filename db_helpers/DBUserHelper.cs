@@ -7,7 +7,7 @@ using System.Security;
 using entity_classes;
 using enum_classes;
 
-namespace DBHelpers
+namespace db_helpers
 {
     public class DBUserHelper : DBConnection, IDBUserHelper
     {
@@ -38,7 +38,7 @@ namespace DBHelpers
 
                     SqlCommand insertDesktopUserCmd = new SqlCommand(insertDesktopUserQuery, conn, transaction);
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdUser", userId);
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", 2); // Ensure role is set to Employee
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", 2); 
                     insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", desktopUser.GetFirstName());
                     insertDesktopUserCmd.Parameters.AddWithValue("@LastName", desktopUser.GetLastName());
                     insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", desktopUser.GetBsn());

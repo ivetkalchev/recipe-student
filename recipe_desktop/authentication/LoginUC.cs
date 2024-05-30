@@ -15,12 +15,10 @@ namespace recipe_desktop
 {
     public partial class LoginUC : UserControl
     {
-        private UserManager userManager;
-        public LoginUC(UserManager userManager)
+        private IUserManager userManager;
+        public LoginUC(IUserManager userManager)
         {
             InitializeComponent();
-
-            label1.TextAlign = ContentAlignment.MiddleCenter;
             this.userManager = userManager;
         }
         private void btnClear_Click(object sender, EventArgs e)
@@ -36,20 +34,6 @@ namespace recipe_desktop
         {
             lblRegister.ForeColor = Color.FromArgb(61, 83, 143);
         }
-        private void lblForgottenPassword_MouseHover(object sender, EventArgs e)
-        {
-            lblForgottenPassword.ForeColor = Color.FromArgb(255, 255, 255);
-        }
-        private void lblForgottenPassword_MouseLeave(object sender, EventArgs e)
-        {
-            lblForgottenPassword.ForeColor = Color.FromArgb(61, 83, 143);
-        }
-        private void lblForgottenPassword_Click(object sender, EventArgs e)
-        {
-            AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
-            parentForm.ClearPanel();
-            parentForm.LoadForgottenPassword();
-        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = tbUsername.Text.Trim();
@@ -60,8 +44,6 @@ namespace recipe_desktop
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
-
-
         }
         private void OpenHomePage()
         {
