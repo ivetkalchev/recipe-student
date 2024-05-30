@@ -7,10 +7,9 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using entity_classes.Recipes;
-using enum_classes.Users;
+using enum_classes;
 
-namespace entity_classes.Users
+namespace entity_classes
 {
     public class DesktopUser : User
     {
@@ -21,10 +20,9 @@ namespace entity_classes.Users
         private Gender gender;
         private DateTime birthdate;
         private string securityAnswer;
-        private List<Recipe> uploadedRecipes;
         public DesktopUser(int idUser, string username, string email, string password,
-            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate, 
-            string securityAnswer, List<Recipe> uploadedRecipes) 
+            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate,
+            string securityAnswer)
             : base(idUser, username, email, password)
         {
             this.role = role;
@@ -34,7 +32,41 @@ namespace entity_classes.Users
             this.gender = gender;
             this.birthdate = birthdate;
             this.securityAnswer = securityAnswer;
-            this.uploadedRecipes = uploadedRecipes;
+        }
+
+        public Role GetRole()
+        {
+            return role;
+        }
+
+        public string GetFirstName()
+        {
+            return firstName;
+        }
+
+        public string GetLastName()
+        {
+            return lastName;
+        }
+
+        public int GetBsn()
+        {
+            return bsn;
+        }
+
+        public Gender GetGender()
+        {
+            return gender;
+        }
+
+        public DateTime GetBirthdate()
+        {
+            return birthdate;
+        }
+
+        public string GetSecurityAnswer()
+        {
+            return securityAnswer;
         }
     }
 }

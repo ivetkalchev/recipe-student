@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using manager_classes;
-using DAOs;
 
 namespace recipe_web.Pages
 {
@@ -28,35 +27,6 @@ namespace recipe_web.Pages
         public ChangePasswordModel(UserManager userManager)
         {
             this.userManager = userManager;
-        }
-
-        public IActionResult OnPost()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            if (!userManager.UserExists(Username))
-            {
-                ModelState.AddModelError("Username", "The specified user does not exist.");
-                return Page();
-            }
-
-            string hashedNewPassword = PasswordHasher.HashPassword(NewPassword);
-
-            var updateResult = userManager.UpdateWebUserPassword(Username, hashedNewPassword);
-
-            if (updateResult)
-            {
-                TempData["SuccessMessage"] = "Password changed successfully.";
-                return RedirectToPage("/Login");
-            }
-            else
-            {
-                ModelState.AddModelError("", "An error occurred while changing the password.");
-                return Page();
-            }
         }
     }
 }

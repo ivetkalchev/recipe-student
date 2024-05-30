@@ -1,4 +1,4 @@
-using DAOs;
+using DBHelpers;
 using manager_classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<IUserDAO, UserDAO>();
+builder.Services.AddScoped<IDBUserHelper, DBUserHelper>();
 builder.Services.AddScoped<UserManager>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -20,7 +20,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
         options.SlidingExpiration = true;
     });
-
 
 var app = builder.Build();
 

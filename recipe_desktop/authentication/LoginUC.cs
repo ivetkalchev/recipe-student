@@ -10,8 +10,6 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using manager_classes;
-using DTOs;
-using DAOs;
 
 namespace recipe_desktop
 {
@@ -63,22 +61,7 @@ namespace recipe_desktop
                 return;
             }
 
-            string hashedPassword = PasswordHasher.HashPassword(password);
 
-            bool isValidCredentials = userManager.ValidateDesktopUserCredentials(username, hashedPassword);
-
-            if (isValidCredentials)
-            {
-                MessageBox.Show($"Login successful. Welcome, {username}!");
-                OpenHomePage();
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password. Please try again.");
-
-                tbPassword.Clear();
-                tbUsername.Focus();
-            }
         }
         private void OpenHomePage()
         {

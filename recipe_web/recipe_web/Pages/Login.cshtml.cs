@@ -1,4 +1,4 @@
-using entity_classes.Users;
+using entity_classes;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +6,6 @@ using manager_classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
-using DAOs;
 
 namespace recipe_web.Pages
 {
@@ -45,17 +44,7 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            if (!userManager.UserExists(Username))
-            {
-                ModelState.AddModelError("Username", "The user does not exist.");
-                return Page();
-            }
-
-            if (!userManager.ValidateWebUserCredentials(Username, Password))
-            {
-                ModelState.AddModelError("Password", "Wrong credentials.");
-                return Page();
-            }
+            
 
             var claims = new List<Claim>
 {

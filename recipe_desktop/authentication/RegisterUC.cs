@@ -9,19 +9,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using entity_classes.Users;
-using enum_classes.Users;
+using entity_classes;
 using manager_classes;
-using DAOs;
-using DTOs;
 using Microsoft.VisualBasic.ApplicationServices;
+using enum_classes;
 
 namespace recipe_desktop
 {
     public partial class RegisterUC : UserControl
     {
-        private UserManager userManager;            
-        public RegisterUC()
+        private UserManager userManager;
+        public RegisterUC(UserManager userManager)
         {
             InitializeComponent();
 
@@ -29,7 +27,7 @@ namespace recipe_desktop
             cbGender.SelectedIndex = 0;
             dtpBirthdate.Value = DateTime.Now;
 
-            userManager = new UserManager(new UserDAO());
+            this.userManager = userManager;
         }
 
         private void picPassword_Click(object sender, EventArgs e)
@@ -87,7 +85,7 @@ namespace recipe_desktop
 
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(plainPassword) ||
-                 string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(firstName) ||
                 string.IsNullOrWhiteSpace(lastName) ||
                 !isBsnValid ||
@@ -97,44 +95,35 @@ namespace recipe_desktop
                 return;
             }
 
-            if (userManager.IsUsernameTaken(username))
+            // Create the Role object (assuming role ID 2 is for Employee)
+            Role employeeRole = new Role(2, "Employee", new List<Permission>());
+
+            // Create a new DesktopUser
+            DesktopUser newUser = new DesktopUser(
+                0, // The ID will be set by the database
+                username,
+                email,
+                plainPassword,
+                employeeRole,
+                firstName,
+                lastName,
+                bsn,
+                gender,
+                birthdate,
+                securityAnswer
+            );
+
+            // Attempt to register the user
+            if (userManager.RegisterDesktopUser(newUser))
             {
-                MessageBox.Show("Username is already taken.");
-                return;
+                MessageBox.Show("User registered successfully!");
+                ClearFields();
+                LoadLogin();
             }
-
-            if (userManager.IsEmailTaken(email))
+            else
             {
-                MessageBox.Show("Email is already taken.");
-                return;
+                MessageBox.Show("Registration failed. The email or BSN might already be taken.");
             }
-
-            if (userManager.IsBsnTaken(bsn))
-            {
-                MessageBox.Show("BSN is already taken.");
-                return;
-            }
-
-            string hashedPassword = PasswordHasher.HashPassword(plainPassword);
-
-            DesktopUserDTO newUser = new DesktopUserDTO
-            {
-                Username = username,
-                Password = hashedPassword,
-                Email = email,
-                FirstName = firstName,
-                LastName = lastName,
-                Bsn = bsn,
-                Gender = gender,
-                Birthdate = birthdate,
-                SecurityAnswer = securityAnswer,
-            };
-
-            userManager.CreateDesktopUser(newUser);
-
-            MessageBox.Show($"User registered successfully!");
-            ClearFields();
-            LoadLogin();
         }
 
         private void ClearFields()

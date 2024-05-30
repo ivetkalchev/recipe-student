@@ -5,16 +5,16 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAOs
+namespace manager_classes
 {
-    public static class PasswordHasher
+    public static class Hasher
     {
-        public static string HashPassword(string password)
+        public static string HashText(string text)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-                byte[] hashBytes = sha256.ComputeHash(passwordBytes);
+                byte[] textBytes = Encoding.UTF8.GetBytes(text);
+                byte[] hashBytes = sha256.ComputeHash(textBytes);
                 return Convert.ToBase64String(hashBytes);
             }
         }

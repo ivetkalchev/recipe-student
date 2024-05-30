@@ -236,20 +236,7 @@
           "System.Text.Encodings.Web": "8.0.0"
         }
       },
-      "DAOs/1.0.0": {
-        "dependencies": {
-          "AutoMapper": "13.0.1",
-          "DTOs": "1.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "8.0.1",
-          "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
-          "Microsoft.Extensions.Configuration.Json": "8.0.0",
-          "System.Data.SqlClient": "4.8.6"
-        },
-        "runtime": {
-          "DAOs.dll": {}
-        }
-      },
-      "DTOs/1.0.0": {
+      "DBHelpers/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
@@ -260,7 +247,7 @@
           "enum_classes": "1.0.0"
         },
         "runtime": {
-          "DTOs.dll": {}
+          "DBHelpers.dll": {}
         }
       },
       "entity_classes/1.0.0": {
@@ -291,8 +278,7 @@
       "manager_classes/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
-          "DAOs": "1.0.0",
-          "DTOs": "1.0.0",
+          "DBHelpers": "1.0.0",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
@@ -474,12 +460,7 @@
       "path": "system.text.json/8.0.0",
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
     },
-    "DAOs/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "DTOs/1.0.0": {
+    "DBHelpers/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

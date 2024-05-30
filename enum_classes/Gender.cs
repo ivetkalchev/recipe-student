@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace enum_classes.Recipes
+namespace enum_classes
 {
-    public enum Difficulty
+    public enum Gender
     {
-        Easy,
-        Medium,
-        Hard
+        Male,
+        Female,
+        Other
     }
+
 }

@@ -66,12 +66,8 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x64\n
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DAOs.dll
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DTOs.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\manager_classes.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\manager_classes.pdb
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DAOs.pdb
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DTOs.pdb
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Binder.dll
@@ -81,3 +77,5 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensio
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SettingsUC.resources
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DBHelpers.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DBHelpers.pdb

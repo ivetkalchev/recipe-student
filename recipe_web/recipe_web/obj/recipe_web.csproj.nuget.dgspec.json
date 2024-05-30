@@ -4,12 +4,12 @@
     "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj": {}
   },
   "projects": {
-    "I:\\individual-project\\DAOs\\DAOs.csproj": {
+    "I:\\individual-project\\DAOs\\DBHelpers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\individual-project\\DAOs\\DAOs.csproj",
-        "projectName": "DAOs",
-        "projectPath": "I:\\individual-project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "I:\\individual-project\\DAOs\\DBHelpers.csproj",
+        "projectName": "DBHelpers",
+        "projectPath": "I:\\individual-project\\DAOs\\DBHelpers.csproj",
         "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
         "outputPath": "I:\\individual-project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
@@ -22,92 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
-            "projectReferences": {
-              "I:\\individual-project\\DTOs\\DTOs.csproj": {
-                "projectPath": "I:\\individual-project\\DTOs\\DTOs.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        }
-      },
-      "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
-          "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[13.0.1, )"
-            },
-            "Microsoft.Extensions.Configuration.Binder": {
-              "target": "Package",
-              "version": "[8.0.1, )"
-            },
-            "Microsoft.Extensions.Configuration.FileExtensions": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "Microsoft.Extensions.Configuration.Json": {
-              "target": "Package",
-              "version": "[8.0.0, )"
-            },
-            "System.Data.SqlClient": {
-              "target": "Package",
-              "version": "[4.8.6, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "I:\\individual-project\\DTOs\\DTOs.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "I:\\individual-project\\DTOs\\DTOs.csproj",
-        "projectName": "DTOs",
-        "projectPath": "I:\\individual-project\\DTOs\\DTOs.csproj",
-        "packagesPath": "C:\\Users\\ivetk\\.nuget\\packages\\",
-        "outputPath": "I:\\individual-project\\DTOs\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\ivetk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -175,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -197,6 +112,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -261,7 +177,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -283,6 +199,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -343,7 +260,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -365,17 +282,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "I:\\individual-project\\DAOs\\DAOs.csproj": {
-                "projectPath": "I:\\individual-project\\DAOs\\DAOs.csproj"
-              },
-              "I:\\individual-project\\DTOs\\DTOs.csproj": {
-                "projectPath": "I:\\individual-project\\DTOs\\DTOs.csproj"
+              "I:\\individual-project\\DAOs\\DBHelpers.csproj": {
+                "projectPath": "I:\\individual-project\\DAOs\\DBHelpers.csproj"
               },
               "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
                 "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj"
@@ -442,7 +357,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -464,17 +379,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "I:\\individual-project\\DAOs\\DAOs.csproj": {
-                "projectPath": "I:\\individual-project\\DAOs\\DAOs.csproj"
-              },
-              "I:\\individual-project\\DTOs\\DTOs.csproj": {
-                "projectPath": "I:\\individual-project\\DTOs\\DTOs.csproj"
+              "I:\\individual-project\\DAOs\\DBHelpers.csproj": {
+                "projectPath": "I:\\individual-project\\DAOs\\DBHelpers.csproj"
               },
               "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
                 "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
@@ -537,7 +450,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

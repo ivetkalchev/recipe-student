@@ -35,9 +35,10 @@
             // 
             lblClose.AutoSize = true;
             lblClose.Cursor = Cursors.Hand;
+            lblClose.Dock = DockStyle.Right;
             lblClose.Font = new Font("Snap ITC", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblClose.ForeColor = Color.White;
-            lblClose.Location = new Point(1844, 0);
+            lblClose.Location = new Point(1908, 0);
             lblClose.Name = "lblClose";
             lblClose.Size = new Size(60, 54);
             lblClose.TabIndex = 0;

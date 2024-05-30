@@ -1,6 +1,4 @@
-﻿using DAOs;
-using DTOs;
-using manager_classes;
+﻿using manager_classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,27 +40,7 @@ namespace recipe_desktop
                 return;
             }
 
-            string hashedNewPassword = PasswordHasher.HashPassword(newPassword);
-
-            if (userManager.ValidateSecurityAnswer(username, securityAnswer))
-            {
-                if (userManager.UpdateDesktopPassword(username, hashedNewPassword))
-                {
-                    MessageBox.Show("Password updated successfully.");
-                    HomePageForm homePage = new HomePageForm();
-                    homePage.Show();
-                    Form parentForm = this.ParentForm;
-                    parentForm.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to update password.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Incorrect security answer.");
-            }
+            
         }
 
         private void btnClear_Click(object sender, EventArgs e)

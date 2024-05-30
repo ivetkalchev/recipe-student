@@ -16,8 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAOs\DAOs.csproj" />
-    <ProjectReference Include="..\DTOs\DTOs.csproj" />
+    <ProjectReference Include="..\DAOs\DBHelpers.csproj" />
     <ProjectReference Include="..\entity_classes\entity_classes.csproj" />
     <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
   </ItemGroup>

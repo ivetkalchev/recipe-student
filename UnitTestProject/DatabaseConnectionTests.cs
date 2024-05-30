@@ -10,7 +10,7 @@ namespace UnitTestProject
         public void CheckConnection()
         {
             var expected = true;
-            var isConnected = DAOs.DatabaseConnection.CheckConnection();
+            var isConnected = DBHelpers.DBConnection.CheckConnection();
 
             Assert.AreEqual(expected, isConnected);
         }

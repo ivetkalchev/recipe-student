@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace entity_classes.Users
+namespace entity_classes
 {
     public abstract class User
     {
@@ -18,7 +18,23 @@ namespace entity_classes.Users
             this.idUser = idUser;
             this.username = username;
             this.email = email;
-            this.password = password; 
+            this.password = password;
+        }
+        public int GetIdUser()
+        {
+            return idUser;
+        }
+        public string GetUsername()
+        {
+            return username;
+        }
+        public string GetEmail()
+        {
+            return email;
+        }
+        public string GetPassword()
+        {
+            return password;
         }
     }
 }
