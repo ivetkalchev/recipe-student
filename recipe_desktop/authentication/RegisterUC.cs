@@ -70,10 +70,6 @@ namespace recipe_desktop
             string email = tbEmail.Text;
             string firstName = tbFirstName.Text;
             string lastName = tbLastName.Text;
-            int bsn;
-            bool isBsnValid = int.TryParse(tbBsn.Text, out bsn);
-            Gender gender = (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString());
-            DateTime birthdate = dtpBirthdate.Value.Date;
             string securityAnswer = tbSecurityAnswer.Text;
 
             if (string.IsNullOrWhiteSpace(username) ||
@@ -81,17 +77,22 @@ namespace recipe_desktop
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(firstName) ||
                 string.IsNullOrWhiteSpace(lastName) ||
-                !isBsnValid ||
+                string.IsNullOrWhiteSpace(tbBsn.Text) ||
                 string.IsNullOrWhiteSpace(securityAnswer))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
+            int bsn = Convert.ToInt32(tbBsn.Text);
+            Gender gender = (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString());
+            DateTime birthdate = dtpBirthdate.Value.Date;
+
+
             Role employeeRole = new Role(2, "Employee", new List<Permission>());
 
             DesktopUser newUser = new DesktopUser(
-                0, 
+                0,
                 username,
                 email,
                 plainPassword,
@@ -131,5 +132,16 @@ namespace recipe_desktop
             dtpBirthdate.Value = DateTime.Now;
             tbSecurityAnswer.Clear();
         }
+
+        private void tbBsn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for BSN.");
+
+                e.Handled = true;
+            }
+        }
+
     }
 }

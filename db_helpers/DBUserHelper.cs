@@ -38,7 +38,7 @@ namespace db_helpers
 
                     SqlCommand insertDesktopUserCmd = new SqlCommand(insertDesktopUserQuery, conn, transaction);
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdUser", userId);
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", 2); 
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", 2);
                     insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", desktopUser.GetFirstName());
                     insertDesktopUserCmd.Parameters.AddWithValue("@LastName", desktopUser.GetLastName());
                     insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", desktopUser.GetBsn());
@@ -55,6 +55,75 @@ namespace db_helpers
                     transaction.Rollback();
                     Console.WriteLine("Error inserting DesktopUser: " + ex.Message);
                 }
+            }
+        }
+
+        public bool IsUsernameTaken(string username)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE username = @Username";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking username: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool IsEmailTaken(string email)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE email = @Email";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking email: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool IsBSNTaken(int bsn)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = "SELECT COUNT(*) FROM [dbo].[DesktopUser] WHERE bsn = @Bsn";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Bsn", bsn);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking BSN: " + ex.Message);
+                return false;
             }
         }
 

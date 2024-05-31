@@ -214,6 +214,7 @@
             tbBsn.Name = "tbBsn";
             tbBsn.Size = new Size(276, 36);
             tbBsn.TabIndex = 17;
+            tbBsn.KeyPress += tbBsn_KeyPress;
             // 
             // lblEmail
             // 

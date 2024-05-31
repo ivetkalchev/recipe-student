@@ -24,14 +24,14 @@ namespace manager_classes
                 return false;
             }
 
-            if (IsEmailTaken(desktopUser.GetEmail()))
-            {
-                throw new AlreadyExistException("email");
-            }
-
             if (IsUsernameTaken(desktopUser.GetUsername()))
             {
                 throw new AlreadyExistException("username");
+            }
+
+            if (IsEmailTaken(desktopUser.GetEmail()))
+            {
+                throw new AlreadyExistException("email");
             }
 
             if (IsBSNTaken(desktopUser.GetBsn()))
@@ -62,18 +62,18 @@ namespace manager_classes
 
         private bool IsValidUser(DesktopUser user)
         {
-            return IsValidBsn(user.GetBsn()) &&
+            return IsValidPassword(user.GetPassword()) &&
+                   IsValidEmail(user.GetEmail()) &&
+                   IsValidBsn(user.GetBsn()) &&
                    IsValidName(user.GetFirstName(), "first name") &&
                    IsValidName(user.GetLastName(), "last name") &&
-                   IsValidBirthdate(user.GetBirthdate()) &&
-                   IsValidPassword(user.GetPassword()) &&
-                   IsValidEmail(user.GetEmail());
+                   IsValidBirthdate(user.GetBirthdate());
         }
 
         private bool IsValidBsn(int bsn)
         {
             string bsnString = bsn.ToString();
-            if (bsnString.Length != 8 && bsnString.Length != 9)
+            if (bsnString.Length < 8 || bsnString.Length > 9)
             {
                 throw new InvalidBsnLengthException();
             }
@@ -104,12 +104,18 @@ namespace manager_classes
             return true;
         }
 
-        private bool IsValidPassword(string password)
+        public bool IsValidPassword(string password)
         {
-            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"))
+            if (password.Length < 8)
             {
-                throw new InvalidPasswordException();
+                throw new InvalidPasswordLengthException();
             }
+
+            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
+            {
+                throw new InvalidPasswordFormatException();
+            }
+
             return true;
         }
 
@@ -145,38 +151,17 @@ namespace manager_classes
 
         public bool IsUsernameTaken(string username)
         {
-            foreach (User user in users)
-            {
-                if (user.GetUsername().Equals(username))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return dbHelper.IsUsernameTaken(username);
         }
 
         public bool IsEmailTaken(string email)
         {
-            foreach (User user in users)
-            {
-                if (user.GetEmail().Equals(email))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return dbHelper.IsEmailTaken(email);
         }
 
         public bool IsBSNTaken(int bsn)
         {
-            foreach (User user in users)
-            {
-                if (user is DesktopUser desktopUser && desktopUser.GetBsn() == bsn)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return dbHelper.IsBSNTaken(bsn);
         }
     }
 }

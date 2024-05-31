@@ -30,9 +30,13 @@
         public InvalidBirthdateException() : base("You are too young to register. The user's age must be at least 14 years old.") { }
     }
 
-    public class InvalidPasswordException : InvalidUserException
+    public class InvalidPasswordFormatException : InvalidUserException
     {
-        public InvalidPasswordException() : base("The password you provided is not valid. The password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.") { }
+        public InvalidPasswordFormatException() : base("The password you provided is not valid. The password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.") { }
+    }
+    public class InvalidPasswordLengthException : InvalidUserException
+    {
+        public InvalidPasswordLengthException() : base("The password you provided is not valid. The password must be at least 8 characters long.") { }
     }
 
     public class InvalidEmailException : InvalidUserException
