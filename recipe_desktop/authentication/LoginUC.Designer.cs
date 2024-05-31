@@ -78,7 +78,7 @@
             lblText.AutoSize = true;
             lblText.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblText.ForeColor = Color.White;
-            lblText.Location = new Point(145, 562);
+            lblText.Location = new Point(146, 562);
             lblText.Name = "lblText";
             lblText.Size = new Size(334, 35);
             lblText.TabIndex = 9;
@@ -110,7 +110,7 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnLogin.ForeColor = Color.FromArgb(46, 76, 157);
-            btnLogin.Location = new Point(75, 510);
+            btnLogin.Location = new Point(75, 497);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(474, 49);
             btnLogin.TabIndex = 6;

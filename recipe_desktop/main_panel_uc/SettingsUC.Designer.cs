@@ -45,7 +45,6 @@
             picProfile = new PictureBox();
             btnEdit = new Button();
             btnSave = new Button();
-            btnUploadPic = new Button();
             ((System.ComponentModel.ISupportInitialize)picProfile).BeginInit();
             SuspendLayout();
             // 
@@ -54,7 +53,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblUsername.ForeColor = Color.FromArgb(61, 83, 143);
-            lblUsername.Location = new Point(446, 425);
+            lblUsername.Location = new Point(441, 406);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(156, 40);
             lblUsername.TabIndex = 4;
@@ -65,7 +64,7 @@
             // 
             tbUsername.Font = new Font("Segoe UI", 18F);
             tbUsername.ForeColor = Color.Black;
-            tbUsername.Location = new Point(644, 420);
+            tbUsername.Location = new Point(639, 399);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(474, 47);
             tbUsername.TabIndex = 3;
@@ -75,7 +74,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblFirstName.ForeColor = Color.FromArgb(61, 83, 143);
-            lblFirstName.Location = new Point(446, 319);
+            lblFirstName.Location = new Point(441, 298);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(166, 40);
             lblFirstName.TabIndex = 6;
@@ -86,7 +85,7 @@
             // 
             tbFirstName.Font = new Font("Segoe UI", 18F);
             tbFirstName.ForeColor = Color.Black;
-            tbFirstName.Location = new Point(644, 314);
+            tbFirstName.Location = new Point(639, 293);
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(474, 47);
             tbFirstName.TabIndex = 5;
@@ -96,7 +95,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblLastName.ForeColor = Color.FromArgb(61, 83, 143);
-            lblLastName.Location = new Point(446, 372);
+            lblLastName.Location = new Point(441, 351);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(162, 40);
             lblLastName.TabIndex = 7;
@@ -107,7 +106,7 @@
             // 
             tbLastName.Font = new Font("Segoe UI", 18F);
             tbLastName.ForeColor = Color.Black;
-            tbLastName.Location = new Point(644, 367);
+            tbLastName.Location = new Point(639, 346);
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(474, 47);
             tbLastName.TabIndex = 8;
@@ -117,7 +116,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(61, 83, 143);
-            lblEmail.Location = new Point(446, 478);
+            lblEmail.Location = new Point(443, 457);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(91, 40);
             lblEmail.TabIndex = 12;
@@ -128,7 +127,7 @@
             // 
             tbEmail.Font = new Font("Segoe UI", 18F);
             tbEmail.ForeColor = Color.Black;
-            tbEmail.Location = new Point(644, 473);
+            tbEmail.Location = new Point(639, 452);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(474, 47);
             tbEmail.TabIndex = 11;
@@ -137,7 +136,7 @@
             // 
             tbBirthdate.Font = new Font("Segoe UI", 18F);
             tbBirthdate.ForeColor = Color.Black;
-            tbBirthdate.Location = new Point(644, 526);
+            tbBirthdate.Location = new Point(639, 505);
             tbBirthdate.Name = "tbBirthdate";
             tbBirthdate.Size = new Size(474, 47);
             tbBirthdate.TabIndex = 13;
@@ -147,7 +146,7 @@
             lblBirthdate.AutoSize = true;
             lblBirthdate.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblBirthdate.ForeColor = Color.FromArgb(61, 83, 143);
-            lblBirthdate.Location = new Point(446, 531);
+            lblBirthdate.Location = new Point(441, 510);
             lblBirthdate.Name = "lblBirthdate";
             lblBirthdate.Size = new Size(146, 40);
             lblBirthdate.TabIndex = 14;
@@ -159,7 +158,7 @@
             lblBsn.AutoSize = true;
             lblBsn.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblBsn.ForeColor = Color.FromArgb(61, 83, 143);
-            lblBsn.Location = new Point(446, 584);
+            lblBsn.Location = new Point(441, 563);
             lblBsn.Name = "lblBsn";
             lblBsn.Size = new Size(75, 40);
             lblBsn.TabIndex = 16;
@@ -170,7 +169,7 @@
             // 
             tbBSN.Font = new Font("Segoe UI", 18F);
             tbBSN.ForeColor = Color.Black;
-            tbBSN.Location = new Point(644, 579);
+            tbBSN.Location = new Point(639, 558);
             tbBSN.Name = "tbBSN";
             tbBSN.Size = new Size(474, 47);
             tbBSN.TabIndex = 15;
@@ -180,7 +179,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblRole.ForeColor = Color.FromArgb(61, 83, 143);
-            lblRole.Location = new Point(446, 640);
+            lblRole.Location = new Point(443, 616);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(77, 40);
             lblRole.TabIndex = 19;
@@ -191,16 +190,17 @@
             // 
             tbRole.Font = new Font("Segoe UI", 18F);
             tbRole.ForeColor = Color.Black;
-            tbRole.Location = new Point(644, 635);
+            tbRole.Location = new Point(639, 611);
             tbRole.Name = "tbRole";
             tbRole.Size = new Size(474, 47);
             tbRole.TabIndex = 20;
             // 
             // picProfile
             // 
-            picProfile.Location = new Point(768, 28);
+            picProfile.Image = Properties.Resources.Profile_PNG_Clipart;
+            picProfile.Location = new Point(757, 47);
             picProfile.Name = "picProfile";
-            picProfile.Size = new Size(207, 193);
+            picProfile.Size = new Size(214, 210);
             picProfile.SizeMode = PictureBoxSizeMode.StretchImage;
             picProfile.TabIndex = 21;
             picProfile.TabStop = false;
@@ -216,7 +216,7 @@
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(644, 701);
+            btnEdit.Location = new Point(639, 696);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(474, 49);
             btnEdit.TabIndex = 22;
@@ -233,7 +233,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnSave.ForeColor = Color.FromArgb(46, 76, 157);
-            btnSave.Location = new Point(644, 756);
+            btnSave.Location = new Point(639, 751);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(474, 49);
             btnSave.TabIndex = 23;
@@ -241,29 +241,10 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
-            // btnUploadPic
-            // 
-            btnUploadPic.BackColor = Color.FromArgb(61, 83, 143);
-            btnUploadPic.Cursor = Cursors.Hand;
-            btnUploadPic.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
-            btnUploadPic.FlatAppearance.BorderSize = 2;
-            btnUploadPic.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
-            btnUploadPic.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
-            btnUploadPic.FlatStyle = FlatStyle.Flat;
-            btnUploadPic.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            btnUploadPic.ForeColor = Color.White;
-            btnUploadPic.Location = new Point(768, 243);
-            btnUploadPic.Name = "btnUploadPic";
-            btnUploadPic.Size = new Size(207, 49);
-            btnUploadPic.TabIndex = 24;
-            btnUploadPic.Text = "UPLOAD";
-            btnUploadPic.UseVisualStyleBackColor = false;
-            // 
             // SettingsUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnUploadPic);
             Controls.Add(btnSave);
             Controls.Add(btnEdit);
             Controls.Add(picProfile);
@@ -307,6 +288,5 @@
         private PictureBox picProfile;
         private Button btnEdit;
         private Button btnSave;
-        private Button btnUploadPic;
     }
 }

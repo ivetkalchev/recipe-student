@@ -14,8 +14,8 @@ namespace recipe_desktop
         {
             InitializeComponent();
 
-            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-            this.currentUser = user ?? throw new ArgumentNullException(nameof(user));
+            this.userManager = userManager;
+            this.currentUser = user;
 
             btnSave.Enabled = false;
 
@@ -29,7 +29,7 @@ namespace recipe_desktop
             tbLastName.Text = currentUser.GetLastName();
             tbUsername.Text = currentUser.GetUsername();
             tbEmail.Text = currentUser.GetEmail();
-            tbBirthdate.Text = currentUser.GetBirthdate().ToString("yyyy-MM-dd");
+            tbBirthdate.Text = currentUser.GetBirthdate().ToString("dd-MM-yyyy");
             tbBSN.Text = currentUser.GetBsn().ToString();
             tbRole.Text = currentUser.GetRole().GetName();
         }
@@ -47,7 +47,7 @@ namespace recipe_desktop
             }
 
             userManager.UpdateUserDetails(currentUser, newLastName, newUsername, newEmail);
-            MessageBox.Show("Changes saved successfully! Reset the application to see the changes.");
+            MessageBox.Show("Changes saved successfully!");
 
             btnSave.Enabled = false;
             LockTextBoxes();
