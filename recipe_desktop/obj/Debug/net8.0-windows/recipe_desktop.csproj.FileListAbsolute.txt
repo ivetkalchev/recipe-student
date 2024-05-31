@@ -80,3 +80,6 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\db_helpers.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions.pdb
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\db_helpers.pdb
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.DashBoardUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.RecipesUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EmployeesUC.resources

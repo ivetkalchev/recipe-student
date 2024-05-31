@@ -256,5 +256,41 @@ namespace db_helpers
 
             return permissions;
         }
+
+        public void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail)
+        {
+            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    string updateQuery = @"
+                    UPDATE [dbo].[User]
+                    SET username = @Username, email = @Email
+                    WHERE id_user = @UserId;
+
+                    UPDATE [dbo].[DesktopUser]
+                    SET last_name = @LastName
+                    WHERE id_user = @UserId;";
+
+                    SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
+                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@Username", newUsername);
+                    cmd.Parameters.AddWithValue("@Email", newEmail);
+                    cmd.Parameters.AddWithValue("@LastName", newLastName);
+
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Error updating user details: " + ex.Message);
+                }
+            }
+        }
+
     }
 }

@@ -1,5 +1,10 @@
-using System.Drawing.Printing;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
+using manager_classes;
+using entity_classes;
+using db_helpers;
 
 namespace recipe_desktop
 {
@@ -15,17 +20,19 @@ namespace recipe_desktop
         private const int WM_NCPAINT = 0x0085;
         private const int WM_ACTIVATEAPP = 0x001C;
 
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
+        private DesktopUser currentUser;
+        private IUserManager userManager;
 
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS pMarInset);
-        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
 
+        [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
         public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
         [System.Runtime.InteropServices.DllImport("dwmapi.dll")]
-
         public static extern int DwmIsCompositionEnabled(ref int pfEnabled);
-        [System.Runtime.InteropServices.DllImport("Ddi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
+        [System.Runtime.InteropServices.DllImport("Ddi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
             int nLeftRect,
             int nTopRect,
@@ -33,7 +40,7 @@ namespace recipe_desktop
             int nBottomRect,
             int nWidthEllipse,
             int nHeightEllipse
-            );
+        );
 
         public struct MARGINS
         {
@@ -54,15 +61,18 @@ namespace recipe_desktop
                 return cp;
             }
         }
+
         private bool CheckAeroEnabled()
         {
             if (Environment.OSVersion.Version.Major >= 6)
             {
-                int enabled = 0; DwmIsCompositionEnabled(ref enabled);
+                int enabled = 0;
+                DwmIsCompositionEnabled(ref enabled);
                 return (enabled == 1) ? true : false;
             }
             return false;
         }
+
         protected override void WndProc(ref Message m)
         {
             switch (m.Msg)
@@ -90,11 +100,14 @@ namespace recipe_desktop
         }
 
         List<MenuUC> menuButtons;
-        public HomePageForm()
+
+        public HomePageForm(IUserManager userManager, DesktopUser user)
         {
             InitializeComponent();
             menuButtons = new List<MenuUC>() { Dashboard, Recipes, Employees, Settings, Log_Out };
             ClickMenu(menuButtons);
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+            this.currentUser = user ?? throw new ArgumentNullException(nameof(user));
         }
 
         private void ClickMenu(List<MenuUC> _menu)
@@ -108,27 +121,28 @@ namespace recipe_desktop
         private void Menu_menuClick(object sender, EventArgs e)
         {
             MenuUC _menuButton = (MenuUC)sender;
+            ClearPanel();
 
             switch (_menuButton.Name)
             {
                 case "Dashboard":
                     lblHeaderText.Text = "Dashboard";
-
+                    LoadDashboard();
                     break;
 
                 case "Recipes":
                     lblHeaderText.Text = "Recipes";
-
+                    LoadRecipes();
                     break;
 
                 case "Employees":
                     lblHeaderText.Text = "Employees";
-
+                    LoadEmployees();
                     break;
 
                 case "Settings":
                     lblHeaderText.Text = "Settings";
-
+                    LoadSettings();
                     break;
 
                 case "Log_Out":
@@ -136,22 +150,58 @@ namespace recipe_desktop
                     break;
             }
         }
+
         private void LogOut()
         {
             AuthenticationForm authForm = new AuthenticationForm();
             authForm.Show();
-
             this.Close();
         }
+
         private void HomePageForm_Load(object sender, EventArgs e)
         {
             LoadBar();
+            LoadDashboard();
         }
+
         private void LoadBar()
         {
             BarUC barUC = new BarUC();
             barUC.Dock = DockStyle.Fill;
             panelBar.Controls.Add(barUC);
+        }
+
+        public void LoadSettings()
+        {
+            SettingsUC settingsUC = new SettingsUC(userManager, currentUser);
+            settingsUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(settingsUC);
+        }
+
+        public void LoadDashboard()
+        {
+            DashBoardUC dashboardUC = new DashBoardUC(currentUser);
+            dashboardUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(dashboardUC);
+        }
+
+        public void LoadRecipes()
+        {
+            RecipesUC recipesUC = new RecipesUC();
+            recipesUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(recipesUC);
+        }
+
+        public void LoadEmployees()
+        {
+            EmployeesUC employeesUC = new EmployeesUC();
+            employeesUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(employeesUC);
+        }
+
+        public void ClearPanel()
+        {
+            mainPanel.Controls.Clear();
         }
     }
 }

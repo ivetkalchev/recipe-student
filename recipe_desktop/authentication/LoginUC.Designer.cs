@@ -151,7 +151,7 @@
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
-            lblPassword.ForeColor = Color.White;
+            lblPassword.ForeColor = Color.FromArgb(61, 83, 143);
             lblPassword.Location = new Point(66, 327);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(147, 40);
@@ -163,7 +163,7 @@
             // 
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
-            lblUsername.ForeColor = Color.White;
+            lblUsername.ForeColor = Color.FromArgb(61, 83, 143);
             lblUsername.Location = new Point(66, 222);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(156, 40);

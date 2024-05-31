@@ -24,12 +24,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="main_panel_uc\EmployeesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="main_panel_uc\RecipesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="main_panel_uc\DashboardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="main_panel_uc\SettingsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="HomepageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="HomepageForm.cs" />
     <Compile Update="authentication\RegisterUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

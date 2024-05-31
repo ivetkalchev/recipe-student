@@ -19,4 +19,8 @@
     <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
 </Project>

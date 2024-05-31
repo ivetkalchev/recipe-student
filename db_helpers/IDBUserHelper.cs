@@ -9,5 +9,6 @@ namespace db_helpers
         bool IsBSNTaken(int bsn);
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);
+        void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail);
     }
 }

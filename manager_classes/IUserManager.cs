@@ -8,7 +8,8 @@ namespace manager_classes
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);
         bool IsValidPassword(string password);
-        DesktopUser LoginDesktopUser(string email, string password);
+        DesktopUser LoginDesktopUser(string username, string password);
         bool RegisterDesktopUser(DesktopUser desktopUser);
+        void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail);
     }
 }

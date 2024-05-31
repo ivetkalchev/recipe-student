@@ -10,7 +10,6 @@ namespace manager_classes
     public class UserManager : IUserManager
     {
         private IDBUserHelper dbHelper;
-
         public UserManager(IDBUserHelper dbHelper)
         {
             this.dbHelper = dbHelper;
@@ -152,6 +151,11 @@ namespace manager_classes
         public bool IsBSNTaken(int bsn)
         {
             return dbHelper.IsBSNTaken(bsn);
+        }
+
+        public void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail)
+        {
+            dbHelper.UpdateUserDetails(user, newLastName, newUsername, newEmail);
         }
     }
 }
