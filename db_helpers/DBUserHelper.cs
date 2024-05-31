@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
-using System.Security;
 using entity_classes;
 using enum_classes;
 
@@ -56,6 +53,68 @@ namespace db_helpers
                     Console.WriteLine("Error inserting DesktopUser: " + ex.Message);
                 }
             }
+        }
+
+        public DesktopUser GetDesktopUser(string username, string hashedPassword)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = @"
+                        SELECT u.id_user, u.username, u.email, u.password, u.id_profile_pic, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer,
+                               p.name AS profile_pic_name, p.data AS profile_pic_data, p.content_type AS profile_pic_content_type
+                        FROM [dbo].[User] u
+                        INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
+                        LEFT JOIN [dbo].[UserProfilePicture] p ON u.id_profile_pic = p.id_profile_pic
+                        WHERE u.username = @Username AND u.password = @Password";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Role role = GetRoleById((int)reader["id_role"]);
+                            UserProfilePicture profilePicture = null;
+
+                            if (!reader.IsDBNull(reader.GetOrdinal("profile_pic_name")))
+                            {
+                                profilePicture = new UserProfilePicture(
+                                    reader["profile_pic_name"].ToString(),
+                                    (byte[])reader["profile_pic_data"],
+                                    reader["profile_pic_content_type"].ToString()
+                                );
+                            }
+
+                            return new DesktopUser(
+                                (int)reader["id_user"],
+                                reader["username"].ToString(),
+                                reader["email"].ToString(),
+                                reader["password"].ToString(),
+                                role,
+                                reader["first_name"].ToString(),
+                                reader["last_name"].ToString(),
+                                (int)reader["bsn"],
+                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                (DateTime)reader["birthdate"],
+                                reader["security_answer"].ToString(),
+                                profilePicture
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error retrieving DesktopUser: " + ex.Message);
+            }
+
+            return null;
         }
 
         public bool IsUsernameTaken(string username)
@@ -125,54 +184,6 @@ namespace db_helpers
                 Console.WriteLine("Error checking BSN: " + ex.Message);
                 return false;
             }
-        }
-
-        public DesktopUser GetDesktopUser(string email, string hashedPassword)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
-                {
-                    conn.Open();
-
-                    string query = @"
-                        SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
-                        FROM [dbo].[User] u
-                        INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
-                        WHERE u.email = @Email AND u.password = @Password";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            Role role = GetRoleById((int)reader["id_role"]);
-                            return new DesktopUser(
-                                (int)reader["id_user"],
-                                reader["username"].ToString(),
-                                reader["email"].ToString(),
-                                reader["password"].ToString(),
-                                role,
-                                reader["first_name"].ToString(),
-                                reader["last_name"].ToString(),
-                            (int)reader["bsn"],
-                            (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
-                            );
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error retrieving DesktopUser: " + ex.Message);
-            }
-
-            return null;
         }
 
         private Role GetRoleById(int roleId)

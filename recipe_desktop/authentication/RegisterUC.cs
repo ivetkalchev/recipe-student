@@ -11,7 +11,7 @@ namespace recipe_desktop
     public partial class RegisterUC : UserControl
     {
         private IUserManager userManager;
-
+        private UserProfilePicture userProfilePicture;
         public RegisterUC(IUserManager userManager)
         {
             InitializeComponent();
@@ -44,8 +44,8 @@ namespace recipe_desktop
         private void LoadLogin()
         {
             AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
-            parentForm?.ClearPanel();
-            parentForm?.LoadLogin();
+            parentForm.ClearPanel();
+            parentForm.LoadLogin();
         }
 
         private void lblLogin_Click(object sender, EventArgs e)
@@ -88,7 +88,6 @@ namespace recipe_desktop
             Gender gender = (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString());
             DateTime birthdate = dtpBirthdate.Value.Date;
 
-
             Role employeeRole = new Role(2, "Employee", new List<Permission>());
 
             DesktopUser newUser = new DesktopUser(
@@ -102,7 +101,8 @@ namespace recipe_desktop
                 bsn,
                 gender,
                 birthdate,
-                securityAnswer
+                securityAnswer,
+                userProfilePicture
             );
 
             try

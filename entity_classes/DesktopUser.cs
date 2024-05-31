@@ -20,9 +20,11 @@ namespace entity_classes
         private Gender gender;
         private DateTime birthdate;
         private string securityAnswer;
+        private UserProfilePicture profilePicture;
+
         public DesktopUser(int idUser, string username, string email, string password,
             Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate,
-            string securityAnswer)
+            string securityAnswer, UserProfilePicture profilePicture)
             : base(idUser, username, email, password)
         {
             this.role = role;
@@ -32,6 +34,7 @@ namespace entity_classes
             this.gender = gender;
             this.birthdate = birthdate;
             this.securityAnswer = securityAnswer;
+            this.profilePicture = profilePicture;
         }
 
         public Role GetRole()
@@ -67,6 +70,11 @@ namespace entity_classes
         public string GetSecurityAnswer()
         {
             return securityAnswer;
+        }
+
+        public UserProfilePicture GetProfilePicture()
+        {
+            return profilePicture;
         }
     }
 }

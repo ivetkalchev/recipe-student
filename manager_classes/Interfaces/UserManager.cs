@@ -1,15 +1,14 @@
-﻿using entity_classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using exceptions;
 using db_helpers;
+using entity_classes;
 
 namespace manager_classes
 {
     public class UserManager : IUserManager
     {
-        private List<User> users = new List<User>();
         private IDBUserHelper dbHelper;
 
         public UserManager(IDBUserHelper dbHelper)
@@ -24,14 +23,14 @@ namespace manager_classes
                 return false;
             }
 
-            if (IsUsernameTaken(desktopUser.GetUsername()))
-            {
-                throw new AlreadyExistException("username");
-            }
-
             if (IsEmailTaken(desktopUser.GetEmail()))
             {
                 throw new AlreadyExistException("email");
+            }
+
+            if (IsUsernameTaken(desktopUser.GetUsername()))
+            {
+                throw new AlreadyExistException("username");
             }
 
             if (IsBSNTaken(desktopUser.GetBsn()))
@@ -50,10 +49,9 @@ namespace manager_classes
                 desktopUser.GetBsn(),
                 desktopUser.GetGender(),
                 desktopUser.GetBirthdate(),
-                CapitalizeFirstLetter(Hasher.HashText(desktopUser.GetSecurityAnswer()))
+                CapitalizeFirstLetter(Hasher.HashText(desktopUser.GetSecurityAnswer())),
+                desktopUser.GetProfilePicture()
             );
-
-            users.Add(desktopUser);
 
             dbHelper.InsertDesktopUser(desktopUser);
 
@@ -136,17 +134,9 @@ namespace manager_classes
             return char.ToUpper(text[0]) + text.Substring(1).ToLower();
         }
 
-        public DesktopUser LoginDesktopUser(string email, string password)
+        public DesktopUser LoginDesktopUser(string username, string password)
         {
-            foreach (User user in users)
-            {
-                if (user.GetEmail().Equals(email) && user.GetPassword().Equals(Hasher.HashText(password)))
-                {
-                    return user as DesktopUser;
-                }
-            }
-
-            return dbHelper.GetDesktopUser(email, Hasher.HashText(password));
+            return dbHelper.GetDesktopUser(username, Hasher.HashText(password));
         }
 
         public bool IsUsernameTaken(string username)

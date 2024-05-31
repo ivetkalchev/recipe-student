@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using manager_classes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace recipe_desktop
 {
@@ -43,6 +44,17 @@ namespace recipe_desktop
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
+            }
+
+            var user = userManager.LoginDesktopUser(username, password);
+            if (user != null)
+            {
+                MessageBox.Show("Login successful!");
+                OpenHomePage();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.");
             }
         }
         private void OpenHomePage()
