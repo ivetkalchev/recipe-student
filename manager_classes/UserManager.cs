@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using exceptions;
 using db_helpers;
 using entity_classes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace manager_classes
 {
@@ -48,8 +49,7 @@ namespace manager_classes
                 desktopUser.GetBsn(),
                 desktopUser.GetGender(),
                 desktopUser.GetBirthdate(),
-                CapitalizeFirstLetter(Hasher.HashText(desktopUser.GetSecurityAnswer())),
-                desktopUser.GetProfilePicture()
+                CapitalizeFirstLetter(Hasher.HashText(desktopUser.GetSecurityAnswer()))
             );
 
             dbHelper.InsertDesktopUser(desktopUser);

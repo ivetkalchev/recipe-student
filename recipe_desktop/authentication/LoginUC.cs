@@ -46,7 +46,7 @@ namespace recipe_desktop
             var user = userManager.LoginDesktopUser(username, password);
             if (user != null)
             {
-                MessageBox.Show("Login successful!");
+                MessageBox.Show($"Login successful! Welcome, {username}!");
                 OpenHomePage(user);
             }
             else

@@ -64,11 +64,9 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                        SELECT u.id_user, u.username, u.email, u.password, u.id_profile_pic, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer,
-                               p.name AS profile_pic_name, p.data AS profile_pic_data, p.content_type AS profile_pic_content_type
+                        SELECT u.id_user, u.username, u.email, u.password, u.id_profile_pic, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
                         FROM [dbo].[User] u
                         INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
-                        LEFT JOIN [dbo].[UserProfilePicture] p ON u.id_profile_pic = p.id_profile_pic
                         WHERE u.username = @Username AND u.password = @Password";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -80,16 +78,6 @@ namespace db_helpers
                         if (reader.Read())
                         {
                             Role role = GetRoleById((int)reader["id_role"]);
-                            UserProfilePicture profilePicture = null;
-
-                            if (!reader.IsDBNull(reader.GetOrdinal("profile_pic_name")))
-                            {
-                                profilePicture = new UserProfilePicture(
-                                    reader["profile_pic_name"].ToString(),
-                                    (byte[])reader["profile_pic_data"],
-                                    reader["profile_pic_content_type"].ToString()
-                                );
-                            }
 
                             return new DesktopUser(
                                 (int)reader["id_user"],
@@ -102,8 +90,7 @@ namespace db_helpers
                                 (int)reader["bsn"],
                                 (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
                                 (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString(),
-                                profilePicture
+                                reader["security_answer"].ToString()
                             );
                         }
                     }
@@ -291,6 +278,5 @@ namespace db_helpers
                 }
             }
         }
-
     }
 }

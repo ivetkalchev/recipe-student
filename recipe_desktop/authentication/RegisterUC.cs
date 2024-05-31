@@ -11,7 +11,6 @@ namespace recipe_desktop
     public partial class RegisterUC : UserControl
     {
         private IUserManager userManager;
-        private UserProfilePicture userProfilePicture;
         public RegisterUC(IUserManager userManager)
         {
             InitializeComponent();
@@ -101,8 +100,7 @@ namespace recipe_desktop
                 bsn,
                 gender,
                 birthdate,
-                securityAnswer,
-                userProfilePicture
+                securityAnswer
             );
 
             try
