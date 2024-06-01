@@ -76,5 +76,15 @@ namespace recipe_desktop
             btnSave.Enabled = true;
             UnlockTextBoxes();
         }
+
+        private void tbLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                MessageBox.Show("The last name is invalid. Your last name must contain only alphabetic characters.");
+
+                e.Handled = true;
+            }
+        }
     }
 }

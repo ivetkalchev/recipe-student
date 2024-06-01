@@ -141,5 +141,24 @@ namespace recipe_desktop
             }
         }
 
+        private void tbFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                MessageBox.Show("The first name is invalid. Your first name must contain only alphabetic characters.");
+
+                e.Handled = true;
+            }
+        }
+
+        private void tbLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                MessageBox.Show("The last name is invalid. Your last name must contain only alphabetic characters.");
+
+                e.Handled = true;
+            }
+        }
     }
 }

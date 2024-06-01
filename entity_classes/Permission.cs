@@ -11,15 +11,5 @@ namespace entity_classes
             this.id = id;
             this.name = name;
         }
-
-        public int GetId()
-        {
-            return id;
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
     }
 }

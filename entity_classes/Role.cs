@@ -16,31 +16,10 @@ namespace entity_classes
             this.permissions = permissions;
         }
 
-        public int GetId()
-        {
-            return id;
-        }
-
         public string GetName()
         {
             return name;
         }
 
-        public List<Permission> GetPermissions()
-        {
-            return permissions;
-        }
-
-        public bool HasPermission(string permissionName)
-        {
-            foreach (Permission p in permissions)
-            {
-                if (p.GetName().Equals(permissionName))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
     }
 }

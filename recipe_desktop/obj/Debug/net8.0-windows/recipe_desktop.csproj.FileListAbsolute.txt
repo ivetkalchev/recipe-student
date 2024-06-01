@@ -83,3 +83,4 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\db_helpers.pdb
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.DashBoardUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.RecipesUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EmployeesUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.main_panel_uc.SingleEmployeeUC.resources

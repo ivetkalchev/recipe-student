@@ -110,6 +110,7 @@
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(474, 47);
             tbLastName.TabIndex = 8;
+            tbLastName.KeyPress += tbLastName_KeyPress;
             // 
             // lblEmail
             // 
@@ -179,7 +180,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblRole.ForeColor = Color.FromArgb(61, 83, 143);
-            lblRole.Location = new Point(443, 616);
+            lblRole.Location = new Point(439, 616);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(77, 40);
             lblRole.TabIndex = 19;

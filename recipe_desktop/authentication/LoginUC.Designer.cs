@@ -110,7 +110,7 @@
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnLogin.ForeColor = Color.FromArgb(46, 76, 157);
-            btnLogin.Location = new Point(75, 497);
+            btnLogin.Location = new Point(75, 437);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(474, 49);
             btnLogin.TabIndex = 6;
@@ -129,7 +129,7 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnClear.ForeColor = Color.White;
-            btnClear.Location = new Point(75, 442);
+            btnClear.Location = new Point(75, 492);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(474, 49);
             btnClear.TabIndex = 5;
@@ -185,7 +185,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(102, 56);
+            label1.Location = new Point(101, 74);
             label1.Name = "label1";
             label1.Size = new Size(430, 134);
             label1.TabIndex = 0;

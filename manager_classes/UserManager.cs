@@ -4,13 +4,13 @@ using System.Text.RegularExpressions;
 using exceptions;
 using db_helpers;
 using entity_classes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace manager_classes
 {
     public class UserManager : IUserManager
     {
         private IDBUserHelper dbHelper;
+
         public UserManager(IDBUserHelper dbHelper)
         {
             this.dbHelper = dbHelper;
@@ -156,6 +156,21 @@ namespace manager_classes
         public void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail)
         {
             dbHelper.UpdateUserDetails(user, newLastName, newUsername, newEmail);
+        }
+
+        public List<DesktopUser> GetAllDesktopUsers()
+        {
+            return dbHelper.GetAllDesktopUsers();
+        }
+
+        public void DeleteUser(DesktopUser user)
+        {
+            dbHelper.DeleteUser(user);
+        }
+
+        public void PromoteUserToAdmin(DesktopUser user)
+        {
+            dbHelper.PromoteUserToAdmin(user);
         }
     }
 }

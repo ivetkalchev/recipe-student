@@ -12,20 +12,7 @@ namespace recipe_desktop
         public AuthenticationForm()
         {
             InitializeComponent();
-            CheckConnection();
             userManager = new UserManager(new DBUserHelper());
-        }
-
-        public void CheckConnection()
-        {
-            if (!DBConnection.CheckConnection())
-            {
-                MessageBox.Show("Failed to connect to the database.");
-            }
-            else
-            {
-                MessageBox.Show("Connected to the database.");
-            }
         }
 
         private void AuthenticationForm_Load(object sender, EventArgs e)

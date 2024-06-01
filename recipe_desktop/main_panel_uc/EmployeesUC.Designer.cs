@@ -28,44 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            checkBox1 = new CheckBox();
-            label1 = new Label();
+            panelEmployee = new Panel();
+            btnNext = new Button();
+            btnPrevious = new Button();
             SuspendLayout();
             // 
-            // checkBox1
+            // panelEmployee
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(17, 196);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(101, 24);
-            checkBox1.TabIndex = 0;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
+            panelEmployee.Location = new Point(13, 139);
+            panelEmployee.Margin = new Padding(5);
+            panelEmployee.Name = "panelEmployee";
+            panelEmployee.Padding = new Padding(4);
+            panelEmployee.Size = new Size(1650, 654);
+            panelEmployee.TabIndex = 0;
             // 
-            // label1
+            // btnNext
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(1624, 247);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
+            btnNext.BackColor = Color.FromArgb(61, 83, 143);
+            btnNext.Cursor = Cursors.Hand;
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnNext.FlatAppearance.BorderSize = 2;
+            btnNext.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
+            btnNext.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnNext.ForeColor = Color.White;
+            btnNext.Location = new Point(812, 806);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(161, 49);
+            btnNext.TabIndex = 6;
+            btnNext.Text = "NEXT";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
             // 
-            // SettingsUC
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.White;
+            btnPrevious.Cursor = Cursors.Hand;
+            btnPrevious.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnPrevious.FlatAppearance.BorderSize = 2;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnPrevious.ForeColor = Color.FromArgb(46, 76, 157);
+            btnPrevious.Location = new Point(620, 807);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(161, 49);
+            btnPrevious.TabIndex = 8;
+            btnPrevious.Text = "PREVIOUS";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
+            // 
+            // EmployeesUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
-            Controls.Add(checkBox1);
-            Name = "SettingsUC";
-            Size = new Size(1677, 870);
+            AutoSize = true;
+            BackColor = Color.White;
+            Controls.Add(btnPrevious);
+            Controls.Add(btnNext);
+            Controls.Add(panelEmployee);
+            Name = "EmployeesUC";
+            Size = new Size(1698, 870);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private CheckBox checkBox1;
-        private Label label1;
+        private Panel panelEmployee;
+        private Button btnNext;
+        private Button btnPrevious;
     }
 }

@@ -7,6 +7,9 @@
     <Compile Update="HomepageForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="main_panel_uc\SingleEmployeeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="menu_uc\BarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

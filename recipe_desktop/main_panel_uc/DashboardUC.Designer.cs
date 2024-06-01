@@ -61,6 +61,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             Controls.Add(lblGuide);
             Controls.Add(lblWelcomeUser);
             Name = "DashBoardUC";

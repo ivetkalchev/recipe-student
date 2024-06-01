@@ -64,7 +64,7 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                        SELECT u.id_user, u.username, u.email, u.password, u.id_profile_pic, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
+                        SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
                         FROM [dbo].[User] u
                         INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
                         WHERE u.username = @Username AND u.password = @Password";
@@ -277,6 +277,111 @@ namespace db_helpers
                     Console.WriteLine("Error updating user details: " + ex.Message);
                 }
             }
+        }
+
+        public void DeleteUser(DesktopUser user)
+        {
+            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    string deleteUserQuery = @"
+                        DELETE FROM [dbo].[DesktopUser] WHERE id_user = @UserId;
+                        DELETE FROM [dbo].[User] WHERE id_user = @UserId;";
+
+                    SqlCommand cmd = new SqlCommand(deleteUserQuery, conn, transaction);
+                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Error deleting user: " + ex.Message);
+                }
+            }
+        }
+
+        public void PromoteUserToAdmin(DesktopUser user)
+        {
+            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    string promoteUserQuery = @"
+                        UPDATE [dbo].[DesktopUser]
+                        SET id_role = (SELECT id_role FROM [dbo].[Role] WHERE role_name = 'Admin')
+                        WHERE id_user = @UserId;";
+
+                    SqlCommand cmd = new SqlCommand(promoteUserQuery, conn, transaction);
+                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Error promoting user: " + ex.Message);
+                }
+            }
+        }
+
+        public List<DesktopUser> GetAllDesktopUsers()
+        {
+            List<DesktopUser> users = new List<DesktopUser>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
+                FROM [dbo].[User] u
+                INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Role role = GetRoleById((int)reader["id_role"]);
+
+                            DesktopUser user = new DesktopUser(
+                                (int)reader["id_user"],
+                                reader["username"].ToString(),
+                                reader["email"].ToString(),
+                                reader["password"].ToString(),
+                                role,
+                                reader["first_name"].ToString(),
+                                reader["last_name"].ToString(),
+                                (int)reader["bsn"],
+                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                (DateTime)reader["birthdate"],
+                                reader["security_answer"].ToString()
+                            );
+
+                            users.Add(user);
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error connecting to the database: " + ex.Message);
+            }
+
+            return users;
         }
     }
 }

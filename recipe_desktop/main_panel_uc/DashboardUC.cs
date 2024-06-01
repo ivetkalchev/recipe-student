@@ -21,8 +21,9 @@ namespace recipe_desktop
                 lblGuide.Text = "Here is a little guide on how to use the application as an Admin:\n" +
                                 "Dashboard: The Dashboard section provides an overview of statistics, related to the application, \n" +
                                 "such as users and recipes.\n" +
-                                "Recipes: The Recipes section allows you to manage, upload, and view all available recipes. \n" +
-                                "Employees: The Employees section is where you can manage information, fire, and promote employees.\n" +
+                                "Recipes: The Recipes section allows you to upload, edit, delete and view all available recipes. \n" +
+                                "Employees: The Employees section is where you can manage information, fire, and promote \n" +
+                                "employees to admins.\n" +
                                 "Settings: The Settings section allows you to change your personal information.\n" +
                                 "Log Out: The Log Out option allows you to exit the application.";
             }
@@ -31,7 +32,7 @@ namespace recipe_desktop
                 lblGuide.Text = "Here is a little guide on how to use the application as an Employee:\n" +
                                 "Dashboard: The Dashboard section provides an overview of statistics, related to the application, \n" +
                                 "such as users and recipes.\n" +
-                                "Recipes: The Recipes section allows you to manage, upload, and view all available recipes.\n" +
+                                "Recipes: The Recipes section allows you to upload, edit, delete and view all available recipes. \n" +
                                 "Settings: The Settings section allows you to change your personal information.\n" +
                                 "Log Out: The Log Out option allows you to exit the application.";
             }

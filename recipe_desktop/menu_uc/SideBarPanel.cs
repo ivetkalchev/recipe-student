@@ -11,7 +11,6 @@ namespace recipe_desktop
     {
         public Color gradientTop {  get; set; }
         public Color gradientBottom { get; set; }
-
         protected override void OnPaint(PaintEventArgs e)
         {
             LinearGradientBrush linear = new LinearGradientBrush(this.ClientRectangle, this.gradientTop, this.gradientBottom, 90F);

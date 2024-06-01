@@ -115,10 +115,10 @@
             // 
             dtpBirthdate.CalendarForeColor = SystemColors.AppWorkspace;
             dtpBirthdate.CalendarTitleForeColor = SystemColors.ActiveBorder;
-            dtpBirthdate.Font = new Font("Segoe UI", 13F);
-            dtpBirthdate.Location = new Point(328, 378);
+            dtpBirthdate.Font = new Font("Segoe UI", 14F);
+            dtpBirthdate.Location = new Point(328, 377);
             dtpBirthdate.Name = "dtpBirthdate";
-            dtpBirthdate.Size = new Size(276, 36);
+            dtpBirthdate.Size = new Size(276, 39);
             dtpBirthdate.TabIndex = 26;
             dtpBirthdate.Value = new DateTime(2024, 5, 4, 0, 0, 0, 0);
             // 
@@ -174,6 +174,7 @@
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(276, 36);
             tbLastName.TabIndex = 21;
+            tbLastName.KeyPress += tbLastName_KeyPress;
             // 
             // lblFirstName
             // 
@@ -194,6 +195,7 @@
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(276, 36);
             tbFirstName.TabIndex = 19;
+            tbFirstName.KeyPress += tbFirstName_KeyPress;
             // 
             // lblBsn
             // 
