@@ -37,16 +37,15 @@ namespace recipe_desktop
         private void btnSave_Click(object sender, EventArgs e)
         {
             string newLastName = tbLastName.Text;
-            string newUsername = tbUsername.Text;
             string newEmail = tbEmail.Text;
 
-            if (string.IsNullOrWhiteSpace(newLastName) || string.IsNullOrWhiteSpace(newUsername) || string.IsNullOrWhiteSpace(newEmail))
+            if (string.IsNullOrWhiteSpace(newLastName) || string.IsNullOrWhiteSpace(newEmail))
             {
                 MessageBox.Show("All fields must be filled.");
                 return;
             }
 
-            userManager.UpdateUserDetails(currentUser, newLastName, newUsername, newEmail);
+            userManager.UpdateUserDetails(currentUser, newLastName, newEmail);
             MessageBox.Show("Changes saved successfully!");
 
             btnSave.Enabled = false;
@@ -67,7 +66,6 @@ namespace recipe_desktop
         private void UnlockTextBoxes()
         {
             tbLastName.Enabled = true;
-            tbUsername.Enabled = true;
             tbEmail.Enabled = true;
         }
 

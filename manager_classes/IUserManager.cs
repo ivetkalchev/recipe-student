@@ -13,6 +13,6 @@ namespace manager_classes
         DesktopUser LoginDesktopUser(string username, string password);
         void PromoteUserToAdmin(DesktopUser user);
         bool RegisterDesktopUser(DesktopUser desktopUser);
-        void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail);
+        void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail);
     }
 }

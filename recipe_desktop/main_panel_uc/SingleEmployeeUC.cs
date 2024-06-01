@@ -37,7 +37,7 @@ namespace recipe_desktop.main_panel_uc
             SetEmail(user.GetEmail());
             SetRole(user.GetRole().GetName());
 
-            btnPromote.Visible = user.GetRole().GetName() != "Admin";
+            btnPromote.Enabled = user.GetRole().GetName() != "Admin";
         }
 
         public void SetId(int id)

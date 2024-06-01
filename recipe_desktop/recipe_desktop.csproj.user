@@ -27,6 +27,9 @@
     <EmbeddedResource Update="AuthenticationForm.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="main_panel_uc\DashboardUC.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="menu_uc\BarUC.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

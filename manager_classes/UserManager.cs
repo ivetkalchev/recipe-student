@@ -153,9 +153,9 @@ namespace manager_classes
             return dbHelper.IsBSNTaken(bsn);
         }
 
-        public void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail)
+        public void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail)
         {
-            dbHelper.UpdateUserDetails(user, newLastName, newUsername, newEmail);
+            dbHelper.UpdateUserDetails(user, newLastName, newEmail);
         }
 
         public List<DesktopUser> GetAllDesktopUsers()

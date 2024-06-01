@@ -87,7 +87,7 @@ namespace recipe_desktop
             Gender gender = (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString());
             DateTime birthdate = dtpBirthdate.Value.Date;
 
-            Role employeeRole = new Role(2, "Employee", new List<Permission>());
+            Role employeeRole = new Role(2, "Employee");
 
             DesktopUser newUser = new DesktopUser(
                 0,
@@ -107,7 +107,7 @@ namespace recipe_desktop
             {
                 if (userManager.RegisterDesktopUser(newUser))
                 {
-                    MessageBox.Show("User registered successfully!");
+                    MessageBox.Show($"{username} is registered successfully! Please login now.");
                     ClearFields();
                     LoadLogin();
                 }

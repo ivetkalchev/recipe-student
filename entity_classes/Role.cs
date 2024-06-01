@@ -7,13 +7,11 @@ namespace entity_classes
     {
         private int id;
         private string name;
-        private List<Permission> permissions;
 
-        public Role(int id, string name, List<Permission> permissions)
+        public Role(int id, string name)
         {
             this.id = id;
             this.name = name;
-            this.permissions = permissions;
         }
 
         public string GetName()

@@ -12,6 +12,6 @@ namespace db_helpers
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);
         void PromoteUserToAdmin(DesktopUser user);
-        void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail);
+        void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail);
     }
 }

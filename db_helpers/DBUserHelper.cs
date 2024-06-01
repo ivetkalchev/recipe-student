@@ -191,8 +191,7 @@ namespace db_helpers
                         {
                             return new Role(
                                 (int)reader["id_role"],
-                                reader["role_name"].ToString(),
-                                GetPermissionsByRoleId((int)reader["id_role"])
+                                reader["role_name"].ToString()
                             );
                         }
                     }
@@ -205,46 +204,7 @@ namespace db_helpers
             return null;
         }
 
-        private List<Permission> GetPermissionsByRoleId(int roleId)
-        {
-            List<Permission> permissions = new List<Permission>();
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
-                {
-                    conn.Open();
-
-                    string query = @"
-                        SELECT p.id_permission, p.permission_name
-                        FROM [dbo].[Permission] p
-                        INNER JOIN [dbo].[RoleToPermission] rp ON p.id_permission = rp.id_permission
-                        WHERE rp.id_role = @RoleId";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@RoleId", roleId);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            permissions.Add(new Permission(
-                                (int)reader["id_permission"],
-                                reader["permission_name"].ToString()
-                            ));
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error retrieving Permissions: " + ex.Message);
-            }
-
-            return permissions;
-        }
-
-        public void UpdateUserDetails(DesktopUser user, string newLastName, string newUsername, string newEmail)
+        public void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
             {
@@ -255,7 +215,7 @@ namespace db_helpers
                 {
                     string updateQuery = @"
                     UPDATE [dbo].[User]
-                    SET username = @Username, email = @Email
+                    SET email = @Email
                     WHERE id_user = @UserId;
 
                     UPDATE [dbo].[DesktopUser]
@@ -264,7 +224,6 @@ namespace db_helpers
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
                     cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
-                    cmd.Parameters.AddWithValue("@Username", newUsername);
                     cmd.Parameters.AddWithValue("@Email", newEmail);
                     cmd.Parameters.AddWithValue("@LastName", newLastName);
 
