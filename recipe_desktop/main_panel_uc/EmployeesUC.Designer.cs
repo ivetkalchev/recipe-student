@@ -54,7 +54,7 @@
             panelEmployee.Margin = new Padding(5);
             panelEmployee.Name = "panelEmployee";
             panelEmployee.Padding = new Padding(4);
-            panelEmployee.Size = new Size(1650, 654);
+            panelEmployee.Size = new Size(1650, 659);
             panelEmployee.TabIndex = 0;
             // 
             // btnNext
@@ -68,7 +68,7 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnNext.ForeColor = Color.White;
-            btnNext.Location = new Point(812, 806);
+            btnNext.Location = new Point(856, 815);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(161, 49);
             btnNext.TabIndex = 6;
@@ -85,7 +85,7 @@
             btnPrevious.FlatStyle = FlatStyle.Flat;
             btnPrevious.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnPrevious.ForeColor = Color.FromArgb(46, 76, 157);
-            btnPrevious.Location = new Point(620, 807);
+            btnPrevious.Location = new Point(657, 815);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.Size = new Size(161, 49);
             btnPrevious.TabIndex = 8;
@@ -239,9 +239,9 @@
             // picSearch
             // 
             picSearch.Image = Properties.Resources.search;
-            picSearch.Location = new Point(1610, 25);
+            picSearch.Location = new Point(1613, 15);
             picSearch.Name = "picSearch";
-            picSearch.Size = new Size(50, 47);
+            picSearch.Size = new Size(50, 49);
             picSearch.SizeMode = PictureBoxSizeMode.StretchImage;
             picSearch.TabIndex = 13;
             picSearch.TabStop = false;
@@ -251,7 +251,7 @@
             // 
             tbSearch.Font = new Font("Segoe UI", 18F);
             tbSearch.ForeColor = Color.FromArgb(46, 79, 166);
-            tbSearch.Location = new Point(1278, 25);
+            tbSearch.Location = new Point(1278, 17);
             tbSearch.Name = "tbSearch";
             tbSearch.Size = new Size(326, 47);
             tbSearch.TabIndex = 14;
@@ -272,7 +272,7 @@
             Controls.Add(btnNext);
             Controls.Add(panelEmployee);
             Name = "EmployeesUC";
-            Size = new Size(1698, 870);
+            Size = new Size(1698, 877);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picSearch).EndInit();

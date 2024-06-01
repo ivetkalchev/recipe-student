@@ -9,11 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
+	<PackageReference Include="LiveChartsCore.SkiaSharpView.WinForms" Version="2.0.0-rc2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,9 +30,7 @@
     <Compile Update="main_panel_uc\RecipesUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="main_panel_uc\DashboardUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="main_panel_uc\DashboardUC.cs" />
     <Compile Update="main_panel_uc\SettingsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

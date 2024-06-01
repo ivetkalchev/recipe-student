@@ -146,7 +146,7 @@
             // 
             mainPanel.Location = new Point(213, 151);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(1677, 870);
+            mainPanel.Size = new Size(1677, 882);
             mainPanel.TabIndex = 4;
             // 
             // HomePageForm

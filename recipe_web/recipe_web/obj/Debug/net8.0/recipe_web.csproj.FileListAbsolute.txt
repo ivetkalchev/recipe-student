@@ -212,7 +212,6 @@ I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\refint\recipe_web.d
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.pdb
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\recipe_web.genruntimeconfig.cache
 I:\individual-project\recipe_web\recipe_web\obj\Debug\net8.0\ref\recipe_web.dll
-I:\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\AutoMapper.dll
 I:\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
 I:\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\db_helpers.dll
 I:\individual-project\recipe_web\recipe_web\bin\Debug\net8.0\db_helpers.pdb

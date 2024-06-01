@@ -102,7 +102,7 @@ namespace recipe_desktop
 
         public void LoadDashboard()
         {
-            DashBoardUC dashboardUC = new DashBoardUC(currentUser);
+            DashBoardUC dashboardUC = new DashBoardUC(userManager, currentUser);
             dashboardUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(dashboardUC);
         }
