@@ -20,8 +20,4 @@
     <ProjectReference Include="..\exceptions\exceptions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>
