@@ -63,7 +63,7 @@
             // tbUsername
             // 
             tbUsername.Font = new Font("Segoe UI", 18F);
-            tbUsername.ForeColor = Color.Black;
+            tbUsername.ForeColor = Color.FromArgb(46, 79, 166);
             tbUsername.Location = new Point(639, 399);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(474, 47);
@@ -84,7 +84,7 @@
             // tbFirstName
             // 
             tbFirstName.Font = new Font("Segoe UI", 18F);
-            tbFirstName.ForeColor = Color.Black;
+            tbFirstName.ForeColor = Color.FromArgb(46, 79, 166);
             tbFirstName.Location = new Point(639, 293);
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(474, 47);
@@ -105,7 +105,7 @@
             // tbLastName
             // 
             tbLastName.Font = new Font("Segoe UI", 18F);
-            tbLastName.ForeColor = Color.Black;
+            tbLastName.ForeColor = Color.FromArgb(46, 79, 166);
             tbLastName.Location = new Point(639, 346);
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(474, 47);
@@ -127,7 +127,7 @@
             // tbEmail
             // 
             tbEmail.Font = new Font("Segoe UI", 18F);
-            tbEmail.ForeColor = Color.Black;
+            tbEmail.ForeColor = Color.FromArgb(46, 79, 166);
             tbEmail.Location = new Point(639, 452);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(474, 47);
@@ -136,7 +136,7 @@
             // tbBirthdate
             // 
             tbBirthdate.Font = new Font("Segoe UI", 18F);
-            tbBirthdate.ForeColor = Color.Black;
+            tbBirthdate.ForeColor = Color.FromArgb(46, 79, 166);
             tbBirthdate.Location = new Point(639, 505);
             tbBirthdate.Name = "tbBirthdate";
             tbBirthdate.Size = new Size(474, 47);
@@ -169,7 +169,7 @@
             // tbBSN
             // 
             tbBSN.Font = new Font("Segoe UI", 18F);
-            tbBSN.ForeColor = Color.Black;
+            tbBSN.ForeColor = Color.FromArgb(46, 79, 166);
             tbBSN.Location = new Point(639, 558);
             tbBSN.Name = "tbBSN";
             tbBSN.Size = new Size(474, 47);
@@ -190,7 +190,7 @@
             // tbRole
             // 
             tbRole.Font = new Font("Segoe UI", 18F);
-            tbRole.ForeColor = Color.Black;
+            tbRole.ForeColor = Color.FromArgb(46, 79, 166);
             tbRole.Location = new Point(639, 611);
             tbRole.Name = "tbRole";
             tbRole.Size = new Size(474, 47);

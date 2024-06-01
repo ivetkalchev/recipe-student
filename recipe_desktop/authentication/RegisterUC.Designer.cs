@@ -94,6 +94,7 @@
             // tbSecurityAnswer
             // 
             tbSecurityAnswer.Font = new Font("Segoe UI", 13F);
+            tbSecurityAnswer.ForeColor = Color.Black;
             tbSecurityAnswer.Location = new Point(37, 457);
             tbSecurityAnswer.Name = "tbSecurityAnswer";
             tbSecurityAnswer.Size = new Size(567, 36);
@@ -113,9 +114,13 @@
             // 
             // dtpBirthdate
             // 
-            dtpBirthdate.CalendarForeColor = SystemColors.AppWorkspace;
-            dtpBirthdate.CalendarTitleForeColor = SystemColors.ActiveBorder;
+            dtpBirthdate.CalendarForeColor = Color.FromArgb(46, 79, 166);
+            dtpBirthdate.CalendarMonthBackground = Color.FromArgb(46, 79, 166);
+            dtpBirthdate.CalendarTitleBackColor = Color.FromArgb(46, 79, 166);
+            dtpBirthdate.CalendarTitleForeColor = Color.FromArgb(46, 79, 166);
+            dtpBirthdate.CalendarTrailingForeColor = Color.FromArgb(46, 79, 166);
             dtpBirthdate.Font = new Font("Segoe UI", 14F);
+            dtpBirthdate.Format = DateTimePickerFormat.Short;
             dtpBirthdate.Location = new Point(328, 377);
             dtpBirthdate.Name = "dtpBirthdate";
             dtpBirthdate.Size = new Size(276, 39);
@@ -137,6 +142,7 @@
             // cbGender
             // 
             cbGender.Font = new Font("Segoe UI", 13F);
+            cbGender.ForeColor = Color.Black;
             cbGender.FormattingEnabled = true;
             cbGender.Location = new Point(37, 378);
             cbGender.Name = "cbGender";
@@ -170,6 +176,7 @@
             // tbLastName
             // 
             tbLastName.Font = new Font("Segoe UI", 13F);
+            tbLastName.ForeColor = Color.Black;
             tbLastName.Location = new Point(328, 301);
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(276, 36);
@@ -191,6 +198,7 @@
             // tbFirstName
             // 
             tbFirstName.Font = new Font("Segoe UI", 13F);
+            tbFirstName.ForeColor = Color.Black;
             tbFirstName.Location = new Point(37, 301);
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(276, 36);
@@ -212,6 +220,7 @@
             // tbBsn
             // 
             tbBsn.Font = new Font("Segoe UI", 13F);
+            tbBsn.ForeColor = Color.Black;
             tbBsn.Location = new Point(328, 227);
             tbBsn.Name = "tbBsn";
             tbBsn.Size = new Size(276, 36);
@@ -233,6 +242,7 @@
             // tbEmail
             // 
             tbEmail.Font = new Font("Segoe UI", 13F);
+            tbEmail.ForeColor = Color.Black;
             tbEmail.Location = new Point(37, 227);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(276, 36);
@@ -265,6 +275,7 @@
             // tbPassword
             // 
             tbPassword.Font = new Font("Segoe UI", 13F);
+            tbPassword.ForeColor = Color.Black;
             tbPassword.Location = new Point(328, 150);
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(276, 36);
@@ -362,6 +373,7 @@
             // tbUsername
             // 
             tbUsername.Font = new Font("Segoe UI", 13F);
+            tbUsername.ForeColor = Color.Black;
             tbUsername.Location = new Point(37, 150);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(276, 36);

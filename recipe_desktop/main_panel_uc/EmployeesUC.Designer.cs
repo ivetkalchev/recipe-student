@@ -250,7 +250,7 @@
             // tbSearch
             // 
             tbSearch.Font = new Font("Segoe UI", 18F);
-            tbSearch.ForeColor = Color.FromArgb(0, 0, 192);
+            tbSearch.ForeColor = Color.FromArgb(46, 79, 166);
             tbSearch.Location = new Point(1278, 25);
             tbSearch.Name = "tbSearch";
             tbSearch.Size = new Size(326, 47);
