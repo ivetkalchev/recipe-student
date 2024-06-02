@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using entity_classes;
-using enum_classes;
 
 namespace db_helpers
 {
@@ -30,21 +29,20 @@ namespace db_helpers
                     int userId = Convert.ToInt32(insertUserCmd.ExecuteScalar());
 
                     string insertDesktopUserQuery = @"
-                        INSERT INTO [dbo].[DesktopUser] (id_user, id_role, first_name, last_name, bsn, gender, birthdate, security_answer)
-                        VALUES (@IdUser, @IdRole, @FirstName, @LastName, @Bsn, @Gender, @Birthdate, @SecurityAnswer);";
+                        INSERT INTO [dbo].[DesktopUser] (id_user, id_role, first_name, last_name, bsn, id_gender, birthdate, security_answer)
+                        VALUES (@IdUser, @IdRole, @FirstName, @LastName, @Bsn, @IdGender, @Birthdate, @SecurityAnswer);";
 
                     SqlCommand insertDesktopUserCmd = new SqlCommand(insertDesktopUserQuery, conn, transaction);
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdUser", userId);
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", 2);
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", desktopUser.GetRole().GetId());
                     insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", desktopUser.GetFirstName());
                     insertDesktopUserCmd.Parameters.AddWithValue("@LastName", desktopUser.GetLastName());
                     insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", desktopUser.GetBsn());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@Gender", desktopUser.GetGender().ToString());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdGender", desktopUser.GetGender().GetId());
                     insertDesktopUserCmd.Parameters.AddWithValue("@Birthdate", desktopUser.GetBirthdate());
                     insertDesktopUserCmd.Parameters.AddWithValue("@SecurityAnswer", desktopUser.GetSecurityAnswer());
 
                     insertDesktopUserCmd.ExecuteNonQuery();
-
                     transaction.Commit();
                 }
                 catch (Exception ex)
@@ -64,10 +62,10 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                        SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
-                        FROM [dbo].[User] u
-                        INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
-                        WHERE u.username = @Username AND u.password = @Password";
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                FROM [dbo].[User] u
+                INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
+                WHERE u.username = @Username AND u.password = @Password";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Username", username);
@@ -78,6 +76,7 @@ namespace db_helpers
                         if (reader.Read())
                         {
                             Role role = GetRoleById((int)reader["id_role"]);
+                            Gender gender = GetGenderById((int)reader["id_gender"]);
 
                             return new DesktopUser(
                                 (int)reader["id_user"],
@@ -88,7 +87,7 @@ namespace db_helpers
                                 reader["first_name"].ToString(),
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
-                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                gender,
                                 (DateTime)reader["birthdate"],
                                 reader["security_answer"].ToString()
                             );
@@ -304,7 +303,7 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.gender, d.birthdate, d.security_answer
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
                 FROM [dbo].[User] u
                 INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user";
 
@@ -315,6 +314,7 @@ namespace db_helpers
                         while (reader.Read())
                         {
                             Role role = GetRoleById((int)reader["id_role"]);
+                            Gender gender = GetGenderById((int)reader["id_gender"]);
 
                             DesktopUser user = new DesktopUser(
                                 (int)reader["id_user"],
@@ -325,7 +325,7 @@ namespace db_helpers
                                 reader["first_name"].ToString(),
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
-                                (Gender)Enum.Parse(typeof(Gender), reader["gender"].ToString()),
+                                gender,
                                 (DateTime)reader["birthdate"],
                                 reader["security_answer"].ToString()
                             );
@@ -341,6 +341,54 @@ namespace db_helpers
             }
 
             return users;
+        }
+        public List<Gender> GetAllGenders()
+        {
+            List<Gender> genders = new List<Gender>();
+
+            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            {
+                conn.Open();
+                string query = "SELECT id_gender, gender FROM Gender";
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        genders.Add(new Gender(reader.GetInt32(0), reader.GetString(1)));
+                    }
+                }
+            }
+            return genders;
+        }
+
+        public Gender GetGenderById(int genderId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "SELECT id_gender, gender FROM [dbo].[Gender] WHERE id_gender = @GenderId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@GenderId", genderId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Gender(reader.GetInt32(0), reader.GetString(1));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error retrieving Gender: " + ex.Message);
+            }
+
+            return null;
         }
     }
 }

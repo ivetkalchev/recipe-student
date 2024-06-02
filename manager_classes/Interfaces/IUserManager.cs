@@ -6,6 +6,8 @@ namespace manager_classes
     {
         void DeleteUser(DesktopUser user);
         List<DesktopUser> GetAllDesktopUsers();
+        List<Gender> GetAllGenders();
+        Gender GetGenderByName(string genderName);
         bool IsBSNTaken(int bsn);
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);

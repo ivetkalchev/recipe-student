@@ -5,27 +5,18 @@ using System.Windows.Forms;
 
 namespace recipe_desktop
 {
-    public partial class AuthenticationForm : Form
+    public partial class Authentication : Form
     {
         private UserManager userManager;
-
-        public AuthenticationForm()
+        public Authentication()
         {
             InitializeComponent();
-            userManager = new UserManager(new DBUserHelper());
+            userManager = new UserManager(new DBUserHelper()); //?
         }
 
         private void AuthenticationForm_Load(object sender, EventArgs e)
         {
-            LoadBar();
             LoadLogin();
-        }
-
-        private void LoadBar()
-        {
-            BarUC barUC = new BarUC();
-            barUC.Dock = DockStyle.Fill;
-            panelBar.Controls.Add(barUC);
         }
 
         public void ClearPanel()

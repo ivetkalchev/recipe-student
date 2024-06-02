@@ -7,7 +7,6 @@ using System.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using enum_classes;
 
 namespace entity_classes
 {

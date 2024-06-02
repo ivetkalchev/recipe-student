@@ -6,7 +6,9 @@ namespace db_helpers
     {
         void DeleteUser(DesktopUser user);
         List<DesktopUser> GetAllDesktopUsers();
+        List<Gender> GetAllGenders();
         DesktopUser GetDesktopUser(string username, string hashedPassword);
+        Gender GetGenderById(int genderId);
         void InsertDesktopUser(DesktopUser desktopUser);
         bool IsBSNTaken(int bsn);
         bool IsEmailTaken(string email);

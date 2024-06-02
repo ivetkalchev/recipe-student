@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "manager_classes", "manager_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "entity_classes", "entity_classes\entity_classes.csproj", "{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "enum_classes", "enum_classes\enum_classes.csproj", "{3902AB3A-C4A9-44EF-B412-25586D92E6DB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "recipe_desktop", "recipe_desktop\recipe_desktop.csproj", "{6C96DEF0-4858-45A0-9BED-04869E6A34CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "exceptions", "exceptions\exceptions.csproj", "{8EF60C26-B731-480D-AA1E-F954FB7EFA81}"
@@ -37,10 +35,6 @@ Global
 		{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3902AB3A-C4A9-44EF-B412-25586D92E6DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3902AB3A-C4A9-44EF-B412-25586D92E6DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3902AB3A-C4A9-44EF-B412-25586D92E6DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3902AB3A-C4A9-44EF-B412-25586D92E6DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C96DEF0-4858-45A0-9BED-04869E6A34CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C96DEF0-4858-45A0-9BED-04869E6A34CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C96DEF0-4858-45A0-9BED-04869E6A34CE}.Release|Any CPU.ActiveCfg = Release|Any CPU

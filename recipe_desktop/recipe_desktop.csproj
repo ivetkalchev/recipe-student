@@ -18,13 +18,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\entity_classes\entity_classes.csproj" />
-    <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
     <ProjectReference Include="..\exceptions\exceptions.csproj" />
     <ProjectReference Include="..\manager_classes\manager_classes.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="main_panel_uc\EmployeesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="main_panel_uc\IngredientsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="main_panel_uc\RecipesUC.cs">

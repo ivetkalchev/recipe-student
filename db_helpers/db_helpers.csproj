@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\entity_classes\entity_classes.csproj" />
-    <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
   </ItemGroup>
 
 </Project>

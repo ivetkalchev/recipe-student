@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace entity_classes
 {
-    public class Role
+    public class Gender
     {
         private int id;
         private string name;
 
-        public Role(int id, string name)
+        public Gender(int id, string name)
         {
             this.id = id;
             this.name = name;

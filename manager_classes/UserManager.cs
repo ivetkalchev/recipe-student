@@ -172,5 +172,23 @@ namespace manager_classes
         {
             dbHelper.PromoteUserToAdmin(user);
         }
+
+        public List<Gender> GetAllGenders()
+        {
+            return dbHelper.GetAllGenders();
+        }
+
+        public Gender GetGenderByName(string genderName)
+        {
+            var genders = dbHelper.GetAllGenders();
+            foreach (var gender in genders)
+            {
+                if (gender.GetName().Equals(genderName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return gender;
+                }
+            }
+            return null;
+        }
     }
 }

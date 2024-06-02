@@ -28,44 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            checkBox1 = new CheckBox();
-            label1 = new Label();
+            btnAddRecipe = new Button();
             SuspendLayout();
             // 
-            // checkBox1
+            // btnAddRecipe
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(411, 60);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(101, 24);
-            checkBox1.TabIndex = 0;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(1624, 247);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
+            btnAddRecipe.BackColor = Color.FromArgb(61, 83, 143);
+            btnAddRecipe.Cursor = Cursors.Hand;
+            btnAddRecipe.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnAddRecipe.FlatAppearance.BorderSize = 2;
+            btnAddRecipe.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
+            btnAddRecipe.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
+            btnAddRecipe.FlatStyle = FlatStyle.Flat;
+            btnAddRecipe.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnAddRecipe.ForeColor = Color.White;
+            btnAddRecipe.Location = new Point(988, 799);
+            btnAddRecipe.Name = "btnAddRecipe";
+            btnAddRecipe.Size = new Size(474, 49);
+            btnAddRecipe.TabIndex = 7;
+            btnAddRecipe.Text = "ADD A RECIPE";
+            btnAddRecipe.UseVisualStyleBackColor = false;
             // 
             // RecipesUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
-            Controls.Add(checkBox1);
+            Controls.Add(btnAddRecipe);
             Name = "RecipesUC";
             Size = new Size(1677, 870);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private CheckBox checkBox1;
-        private Label label1;
+        private Button btnAddRecipe;
     }
 }

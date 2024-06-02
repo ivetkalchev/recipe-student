@@ -12,15 +12,13 @@ namespace entity_classes
         private string name;
         private Unit unit;
         private decimal price;
-        private decimal quantity;
 
-        public Ingredient(int idIngredient, string name, Unit unit, decimal price, decimal quantity)
+        public Ingredient(int idIngredient, string name, Unit unit, decimal price)
         {
             this.idIngredient = idIngredient;
             this.name = name;
             this.unit = unit;
             this.price = price;
-            this.quantity = quantity;
         }
 
         public int getIdIngredient()
@@ -41,11 +39,6 @@ namespace entity_classes
         public decimal GetPrice()
         {
             return price;
-        }
-
-        public decimal GetQuantity()
-        {
-            return quantity;
         }
     }
 }

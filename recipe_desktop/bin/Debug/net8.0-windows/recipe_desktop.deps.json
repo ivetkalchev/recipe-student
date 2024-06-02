@@ -14,7 +14,6 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "WinForms.DataVisualization": "1.9.2",
           "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0",
           "exceptions": "1.0.0",
           "manager_classes": "1.0.0"
         },
@@ -406,8 +405,7 @@
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "System.Data.SqlClient": "4.8.6",
-          "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0"
+          "entity_classes": "1.0.0"
         },
         "runtime": {
           "db_helpers.dll": {}
@@ -417,21 +415,10 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
-          "Microsoft.Extensions.Configuration.Json": "8.0.0",
-          "enum_classes": "1.0.0"
-        },
-        "runtime": {
-          "entity_classes.dll": {}
-        }
-      },
-      "enum_classes/1.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Binder": "8.0.1",
-          "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0"
         },
         "runtime": {
-          "enum_classes.dll": {}
+          "entity_classes.dll": {}
         }
       },
       "exceptions/1.0.0": {
@@ -447,7 +434,6 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "db_helpers": "1.0.0",
           "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0",
           "exceptions": "1.0.0"
         },
         "runtime": {
@@ -727,11 +713,6 @@
       "sha512": ""
     },
     "entity_classes/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "enum_classes/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

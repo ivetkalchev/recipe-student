@@ -681,8 +681,7 @@
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "System.Data.SqlClient": "4.8.6",
-          "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0"
+          "entity_classes": "1.0.0"
         },
         "compile": {
           "bin/placeholder/db_helpers.dll": {}
@@ -697,29 +696,13 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
-          "Microsoft.Extensions.Configuration.Json": "8.0.0",
-          "enum_classes": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/entity_classes.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/entity_classes.dll": {}
-        }
-      },
-      "enum_classes/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Binder": "8.0.1",
-          "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0"
         },
         "compile": {
-          "bin/placeholder/enum_classes.dll": {}
+          "bin/placeholder/entity_classes.dll": {}
         },
         "runtime": {
-          "bin/placeholder/enum_classes.dll": {}
+          "bin/placeholder/entity_classes.dll": {}
         }
       },
       "exceptions/1.0.0": {
@@ -742,7 +725,6 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "db_helpers": "1.0.0",
           "entity_classes": "1.0.0",
-          "enum_classes": "1.0.0",
           "exceptions": "1.0.0"
         },
         "compile": {
@@ -1988,11 +1970,6 @@
       "path": "../entity_classes/entity_classes.csproj",
       "msbuildProject": "../entity_classes/entity_classes.csproj"
     },
-    "enum_classes/1.0.0": {
-      "type": "project",
-      "path": "../enum_classes/enum_classes.csproj",
-      "msbuildProject": "../enum_classes/enum_classes.csproj"
-    },
     "exceptions/1.0.0": {
       "type": "project",
       "path": "../exceptions/exceptions.csproj",
@@ -2012,7 +1989,6 @@
       "Microsoft.Extensions.Configuration.Json >= 8.0.0",
       "WinForms.DataVisualization >= 1.9.2",
       "entity_classes >= 1.0.0",
-      "enum_classes >= 1.0.0",
       "exceptions >= 1.0.0",
       "manager_classes >= 1.0.0"
     ]
@@ -2047,9 +2023,6 @@
           "projectReferences": {
             "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
               "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj"
-            },
-            "I:\\individual-project\\enum_classes\\enum_classes.csproj": {
-              "projectPath": "I:\\individual-project\\enum_classes\\enum_classes.csproj"
             },
             "I:\\individual-project\\exceptions\\exceptions.csproj": {
               "projectPath": "I:\\individual-project\\exceptions\\exceptions.csproj"

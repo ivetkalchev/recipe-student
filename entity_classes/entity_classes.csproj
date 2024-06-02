@@ -12,8 +12,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\enum_classes\enum_classes.csproj" />
-  </ItemGroup>
-
 </Project>

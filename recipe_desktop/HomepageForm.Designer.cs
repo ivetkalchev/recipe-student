@@ -1,6 +1,6 @@
 ﻿namespace recipe_desktop
 {
-    partial class HomePageForm : Form
+    partial class HomePage : Form
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,27 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelBar = new Panel();
             pamelHeader = new Panel();
             lblHeaderText = new Label();
             sideBarPanel1 = new SideBarPanel();
-            Log_Out = new MenuUC();
+            Ingredients = new MenuUC();
             Settings = new MenuUC();
+            Log_Out = new MenuUC();
             Employees = new MenuUC();
             Recipes = new MenuUC();
             Dashboard = new MenuUC();
             mainPanel = new Panel();
+            baruc1 = new BarUC();
+            panelBar = new Panel();
             pamelHeader.SuspendLayout();
             sideBarPanel1.SuspendLayout();
+            panelBar.SuspendLayout();
             SuspendLayout();
-            // 
-            // panelBar
-            // 
-            panelBar.Dock = DockStyle.Top;
-            panelBar.Location = new Point(0, 0);
-            panelBar.Name = "panelBar";
-            panelBar.Size = new Size(1902, 56);
-            panelBar.TabIndex = 0;
             // 
             // pamelHeader
             // 
@@ -74,8 +69,9 @@
             // 
             // sideBarPanel1
             // 
-            sideBarPanel1.Controls.Add(Log_Out);
+            sideBarPanel1.Controls.Add(Ingredients);
             sideBarPanel1.Controls.Add(Settings);
+            sideBarPanel1.Controls.Add(Log_Out);
             sideBarPanel1.Controls.Add(Employees);
             sideBarPanel1.Controls.Add(Recipes);
             sideBarPanel1.Controls.Add(Dashboard);
@@ -87,34 +83,46 @@
             sideBarPanel1.Size = new Size(198, 900);
             sideBarPanel1.TabIndex = 3;
             // 
-            // Log_Out
+            // Ingredients
             // 
-            Log_Out.BackColor = Color.Transparent;
-            Log_Out.Cursor = Cursors.Hand;
-            Log_Out.Icon = Properties.Resources.logout_xxl_2;
-            Log_Out.Location = new Point(-3, 536);
-            Log_Out.MenuTitle = "Log Out";
-            Log_Out.Name = "Log_Out";
-            Log_Out.Size = new Size(198, 123);
-            Log_Out.TabIndex = 4;
+            Ingredients.BackColor = Color.Transparent;
+            Ingredients.Cursor = Cursors.Hand;
+            Ingredients.Icon = Properties.Resources.bunch_ingredients_64_1;
+            Ingredients.Location = new Point(-3, 278);
+            Ingredients.MenuTitle = "Ingredients";
+            Ingredients.Name = "Ingredients";
+            Ingredients.Size = new Size(198, 123);
+            Ingredients.TabIndex = 5;
+            Ingredients.Tag = "";
             // 
             // Settings
             // 
             Settings.BackColor = Color.Transparent;
             Settings.Cursor = Cursors.Hand;
             Settings.Icon = Properties.Resources.settings_25_xxl_2;
-            Settings.Location = new Point(0, 407);
+            Settings.Location = new Point(0, 536);
             Settings.MenuTitle = "Settings";
             Settings.Name = "Settings";
             Settings.Size = new Size(198, 123);
             Settings.TabIndex = 3;
+            // 
+            // Log_Out
+            // 
+            Log_Out.BackColor = Color.Transparent;
+            Log_Out.Cursor = Cursors.Hand;
+            Log_Out.Icon = Properties.Resources.logout_xxl_2;
+            Log_Out.Location = new Point(0, 665);
+            Log_Out.MenuTitle = "Log Out";
+            Log_Out.Name = "Log_Out";
+            Log_Out.Size = new Size(198, 123);
+            Log_Out.TabIndex = 4;
             // 
             // Employees
             // 
             Employees.BackColor = Color.Transparent;
             Employees.Cursor = Cursors.Hand;
             Employees.Icon = Properties.Resources.user_xxl_2;
-            Employees.Location = new Point(0, 278);
+            Employees.Location = new Point(0, 407);
             Employees.MenuTitle = "Employees";
             Employees.Name = "Employees";
             Employees.Size = new Size(198, 123);
@@ -149,7 +157,25 @@
             mainPanel.Size = new Size(1677, 882);
             mainPanel.TabIndex = 4;
             // 
-            // HomePageForm
+            // baruc1
+            // 
+            baruc1.BackColor = Color.FromArgb(61, 83, 143);
+            baruc1.Dock = DockStyle.Top;
+            baruc1.Location = new Point(0, 0);
+            baruc1.Name = "baruc1";
+            baruc1.Size = new Size(1902, 64);
+            baruc1.TabIndex = 0;
+            // 
+            // panelBar
+            // 
+            panelBar.Controls.Add(baruc1);
+            panelBar.Dock = DockStyle.Top;
+            panelBar.Location = new Point(0, 0);
+            panelBar.Name = "panelBar";
+            panelBar.Size = new Size(1902, 56);
+            panelBar.TabIndex = 0;
+            // 
+            // HomePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -160,20 +186,19 @@
             Controls.Add(pamelHeader);
             Controls.Add(panelBar);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "HomePageForm";
+            Name = "HomePage";
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
-            Load += HomePageForm_Load;
+            Load += HomePage_Load;
             pamelHeader.ResumeLayout(false);
             sideBarPanel1.ResumeLayout(false);
+            panelBar.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel panelBar;
         private Panel pamelHeader;
         private SideBarPanel sideBarPanel1;
         private MenuUC Dashboard;
@@ -183,5 +208,8 @@
         private MenuUC Log_Out;
         private Label lblHeaderText;
         private Panel mainPanel;
+        private MenuUC Ingredients;
+        private BarUC baruc1;
+        private Panel panelBar;
     }
 }

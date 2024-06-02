@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using entity_classes;
 using manager_classes;
-using enum_classes;
 using exceptions;
 
 namespace recipe_desktop
@@ -14,12 +14,9 @@ namespace recipe_desktop
         public RegisterUC(IUserManager userManager)
         {
             InitializeComponent();
-
-            LoadCbGender();
-            cbGender.SelectedIndex = 0;
-            dtpBirthdate.Value = DateTime.Now;
-
             this.userManager = userManager;
+            LoadGender();
+            dtpBirthdate.Value = DateTime.Now;
         }
 
         private void picPassword_Click(object sender, EventArgs e)
@@ -32,17 +29,23 @@ namespace recipe_desktop
             ClearFields();
         }
 
-        private void LoadCbGender()
+        private void LoadGender()
         {
-            foreach (Gender gender in Enum.GetValues(typeof(Gender)))
+            var genders = userManager.GetAllGenders();
+            cbGenders.Items.Clear();
+            foreach (var gender in genders)
             {
-                cbGender.Items.Add(gender);
+                cbGenders.Items.Add(gender.GetName());
+            }
+            if (cbGenders.Items.Count > 0)
+            {
+                cbGenders.SelectedIndex = 0;
             }
         }
 
         private void LoadLogin()
         {
-            AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
+            Authentication parentForm = this.ParentForm as Authentication;
             parentForm.ClearPanel();
             parentForm.LoadLogin();
         }
@@ -83,10 +86,14 @@ namespace recipe_desktop
                 return;
             }
 
-            int bsn = Convert.ToInt32(tbBsn.Text);
-            Gender gender = (Gender)Enum.Parse(typeof(Gender), cbGender.SelectedItem.ToString());
-            DateTime birthdate = dtpBirthdate.Value.Date;
+            if (!int.TryParse(tbBsn.Text, out int bsn))
+            {
+                MessageBox.Show("Please enter a valid numeric BSN.");
+                return;
+            }
 
+            Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
+            DateTime birthdate = dtpBirthdate.Value.Date;
             Role employeeRole = new Role(2, "Employee");
 
             DesktopUser newUser = new DesktopUser(
@@ -107,7 +114,7 @@ namespace recipe_desktop
             {
                 if (userManager.RegisterDesktopUser(newUser))
                 {
-                    MessageBox.Show($"{username} is registered successfully! Please login now.");
+                    MessageBox.Show($"{username} is registered successfully!");
                     ClearFields();
                     LoadLogin();
                 }
@@ -126,7 +133,7 @@ namespace recipe_desktop
             tbBsn.Clear();
             tbFirstName.Clear();
             tbLastName.Clear();
-            cbGender.SelectedIndex = 0;
+            cbGenders.SelectedIndex = 0;
             dtpBirthdate.Value = DateTime.Now;
             tbSecurityAnswer.Clear();
         }
@@ -136,7 +143,6 @@ namespace recipe_desktop
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 MessageBox.Show("Please enter only numeric values for BSN.");
-
                 e.Handled = true;
             }
         }
@@ -146,7 +152,6 @@ namespace recipe_desktop
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
             {
                 MessageBox.Show("The first name is invalid. Your first name must contain only alphabetic characters.");
-
                 e.Handled = true;
             }
         }
@@ -156,7 +161,6 @@ namespace recipe_desktop
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
             {
                 MessageBox.Show("The last name is invalid. Your last name must contain only alphabetic characters.");
-
                 e.Handled = true;
             }
         }

@@ -33,7 +33,7 @@
             lblSecQuestion = new Label();
             dtpBirthdate = new DateTimePicker();
             lblBirthdate = new Label();
-            cbGender = new ComboBox();
+            cbGenders = new ComboBox();
             lblGender = new Label();
             lblLastName = new Label();
             tbLastName = new TextBox();
@@ -65,7 +65,7 @@
             panel1.Controls.Add(lblSecQuestion);
             panel1.Controls.Add(dtpBirthdate);
             panel1.Controls.Add(lblBirthdate);
-            panel1.Controls.Add(cbGender);
+            panel1.Controls.Add(cbGenders);
             panel1.Controls.Add(lblGender);
             panel1.Controls.Add(lblLastName);
             panel1.Controls.Add(tbLastName);
@@ -139,15 +139,15 @@
             lblBirthdate.Text = "Birthdate";
             lblBirthdate.TextAlign = ContentAlignment.TopCenter;
             // 
-            // cbGender
+            // cbGenders
             // 
-            cbGender.Font = new Font("Segoe UI", 13F);
-            cbGender.ForeColor = Color.Black;
-            cbGender.FormattingEnabled = true;
-            cbGender.Location = new Point(37, 378);
-            cbGender.Name = "cbGender";
-            cbGender.Size = new Size(276, 38);
-            cbGender.TabIndex = 24;
+            cbGenders.Font = new Font("Segoe UI", 13F);
+            cbGenders.ForeColor = Color.Black;
+            cbGenders.FormattingEnabled = true;
+            cbGenders.Location = new Point(37, 378);
+            cbGenders.Name = "cbGenders";
+            cbGenders.Size = new Size(276, 38);
+            cbGenders.TabIndex = 24;
             // 
             // lblGender
             // 
@@ -417,7 +417,7 @@
         private Label lblPassword;
         private TextBox tbPassword;
         private PictureBox picPassword;
-        private ComboBox cbGender;
+        private ComboBox cbGenders;
         private Label lblGender;
         private Label lblLastName;
         private TextBox tbLastName;

@@ -1,27 +1,30 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using manager_classes;
-using entity_classes;
 using db_helpers;
+using entity_classes;
 
 namespace recipe_desktop
 {
-    public partial class HomePageForm : Form
+    public partial class HomePage : Form
     {
         private DesktopUser currentUser;
         private IUserManager userManager;
+        private IIngredientManager ingredientManager;
 
         List<MenuUC> menuButtons;
 
-        public HomePageForm(IUserManager userManager, DesktopUser user)
+        public HomePage(IUserManager userManager, DesktopUser user)
         {
             InitializeComponent();
-            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Employees, Settings, Log_Out };
+
+            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };
             ClickMenu(menuButtons);
+
             this.userManager = userManager;
             this.currentUser = user;
+            this.ingredientManager = new IngredientManager(new DBIngredientHelper());
 
             if (currentUser.GetRole().GetName() != "Admin")
             {
@@ -54,6 +57,11 @@ namespace recipe_desktop
                     LoadRecipes();
                     break;
 
+                case "Ingredients":
+                    lblHeaderText.Text = "Ingredients";
+                    LoadIngredients();
+                    break;
+
                 case "Employees":
                     if (Employees.Enabled)
                     {
@@ -75,22 +83,14 @@ namespace recipe_desktop
 
         private void LogOut()
         {
-            AuthenticationForm authForm = new AuthenticationForm();
+            Authentication authForm = new Authentication();
             authForm.Show();
             this.Close();
         }
 
-        private void HomePageForm_Load(object sender, EventArgs e)
+        private void HomePage_Load(object sender, EventArgs e)
         {
-            LoadBar();
             LoadDashboard();
-        }
-
-        private void LoadBar()
-        {
-            BarUC barUC = new BarUC();
-            barUC.Dock = DockStyle.Fill;
-            panelBar.Controls.Add(barUC);
         }
 
         public void LoadSettings()
@@ -119,6 +119,13 @@ namespace recipe_desktop
             EmployeesUC employeesUC = new EmployeesUC(userManager);
             employeesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(employeesUC);
+        }
+
+        public void LoadIngredients()
+        {
+            IngredientsUC ingredientsUC = new IngredientsUC(ingredientManager);
+            ingredientsUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(ingredientsUC);
         }
 
         public void ClearPanel()

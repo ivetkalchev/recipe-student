@@ -33,13 +33,9 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\recipe_desktop.run
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\recipe_desktop.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\recipe_desktop.pdb
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\entity_classes.dll
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\entity_classes.pdb
-I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\enum_classes.pdb
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.csproj.AssemblyReference.cache
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AuthenticationForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.BarUC.resources
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePageForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.LoginUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.MenuUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Properties.Resources.resources
@@ -101,3 +97,6 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\osx\nativ
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Authentication.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePage.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.IngredientsUC.resources

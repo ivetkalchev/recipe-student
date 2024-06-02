@@ -1,6 +1,6 @@
 ﻿namespace recipe_desktop
 {
-    partial class AuthenticationForm
+    partial class Authentication
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,25 +29,38 @@
         private void InitializeComponent()
         {
             panelBar = new Panel();
+            baruc1 = new BarUC();
             panelInput = new Panel();
+            panelBar.SuspendLayout();
             SuspendLayout();
             // 
             // panelBar
             // 
+            panelBar.Controls.Add(baruc1);
             panelBar.Dock = DockStyle.Top;
             panelBar.Location = new Point(0, 0);
             panelBar.Name = "panelBar";
             panelBar.Size = new Size(1902, 56);
             panelBar.TabIndex = 0;
             // 
+            // baruc1
+            // 
+            baruc1.BackColor = Color.FromArgb(61, 83, 143);
+            baruc1.Dock = DockStyle.Top;
+            baruc1.Location = new Point(0, 0);
+            baruc1.Name = "baruc1";
+            baruc1.Size = new Size(1902, 64);
+            baruc1.TabIndex = 0;
+            // 
             // panelInput
             // 
+            panelInput.BackColor = Color.FromArgb(125, 147, 208);
             panelInput.Location = new Point(639, 208);
             panelInput.Name = "panelInput";
             panelInput.Size = new Size(654, 721);
             panelInput.TabIndex = 1;
             // 
-            // AuthenticationForm
+            // Authentication
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -56,12 +69,13 @@
             Controls.Add(panelInput);
             Controls.Add(panelBar);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "AuthenticationForm";
+            Name = "Authentication";
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
             Load += AuthenticationForm_Load;
+            panelBar.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -69,5 +83,6 @@
 
         private Panel panelBar;
         private Panel panelInput;
+        private BarUC baruc1;
     }
 }

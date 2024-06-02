@@ -36,12 +36,13 @@ namespace entity_classes
             return hasCaffeineContent; 
         }
 
+        //fix
         public override decimal CalculatePrice()
         {
             decimal total = 0;
             foreach (var ingredient in GetIngredients())
             {
-                total += ingredient.GetPrice() * ingredient.GetQuantity();
+                //total += ingredient.GetPrice() * ingredient.GetQuantity();
             }
             return total * pours;
         }
