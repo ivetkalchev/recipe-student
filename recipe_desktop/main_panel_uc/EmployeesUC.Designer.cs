@@ -113,7 +113,7 @@
             lblPfp.AutoSize = true;
             lblPfp.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPfp.ForeColor = Color.White;
-            lblPfp.Location = new Point(29, 6);
+            lblPfp.Location = new Point(15, 6);
             lblPfp.Name = "lblPfp";
             lblPfp.Size = new Size(66, 38);
             lblPfp.TabIndex = 16;
@@ -124,7 +124,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(768, 6);
+            lblEmail.Location = new Point(737, 6);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(89, 38);
             lblEmail.TabIndex = 15;
@@ -135,7 +135,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRole.ForeColor = Color.White;
-            lblRole.Location = new Point(1132, 6);
+            lblRole.Location = new Point(1110, 6);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(74, 38);
             lblRole.TabIndex = 14;
@@ -146,7 +146,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(553, 6);
+            lblUsername.Location = new Point(532, 6);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(148, 38);
             lblUsername.TabIndex = 13;
@@ -179,7 +179,7 @@
             lblId.AutoSize = true;
             lblId.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblId.ForeColor = Color.White;
-            lblId.Location = new Point(116, 6);
+            lblId.Location = new Point(111, 6);
             lblId.Name = "lblId";
             lblId.Size = new Size(47, 38);
             lblId.TabIndex = 10;

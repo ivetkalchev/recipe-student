@@ -346,22 +346,30 @@ namespace db_helpers
         {
             List<Gender> genders = new List<Gender>();
 
-            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            try
             {
-                conn.Open();
-                string query = "SELECT id_gender, gender FROM Gender";
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
-                    while (reader.Read())
+                    conn.Open();
+                    string query = "SELECT id_gender, gender FROM [dbo].[Gender]";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        genders.Add(new Gender(reader.GetInt32(0), reader.GetString(1)));
+                        while (reader.Read())
+                        {
+                            genders.Add(new Gender(reader.GetInt32(0), reader.GetString(1)));
+                        }
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error retrieving genders from the database: " + ex.Message);
+            }
             return genders;
         }
+
 
         public Gender GetGenderById(int genderId)
         {
