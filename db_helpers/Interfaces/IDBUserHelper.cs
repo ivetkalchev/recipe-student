@@ -9,7 +9,7 @@ namespace db_helpers
         List<Gender> GetAllGenders();
         DesktopUser GetDesktopUser(string username, string hashedPassword);
         Gender GetGenderById(int genderId);
-        void InsertDesktopUser(DesktopUser desktopUser);
+        void InsertDesktopUser(DesktopUser newUser);
         bool IsBSNTaken(int bsn);
         bool IsEmailTaken(string email);
         bool IsUsernameTaken(string username);

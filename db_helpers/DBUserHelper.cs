@@ -7,7 +7,7 @@ namespace db_helpers
 {
     public class DBUserHelper : DBConnection, IDBUserHelper
     {
-        public void InsertDesktopUser(DesktopUser desktopUser)
+        public void InsertDesktopUser(DesktopUser newUser)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
             {
@@ -22,9 +22,9 @@ namespace db_helpers
                         SELECT SCOPE_IDENTITY();";
 
                     SqlCommand insertUserCmd = new SqlCommand(insertUserQuery, conn, transaction);
-                    insertUserCmd.Parameters.AddWithValue("@Username", desktopUser.GetUsername());
-                    insertUserCmd.Parameters.AddWithValue("@Email", desktopUser.GetEmail());
-                    insertUserCmd.Parameters.AddWithValue("@Password", desktopUser.GetPassword());
+                    insertUserCmd.Parameters.AddWithValue("@Username", newUser.GetUsername());
+                    insertUserCmd.Parameters.AddWithValue("@Email", newUser.GetEmail());
+                    insertUserCmd.Parameters.AddWithValue("@Password", newUser.GetPassword());
 
                     int userId = Convert.ToInt32(insertUserCmd.ExecuteScalar());
 
@@ -34,13 +34,13 @@ namespace db_helpers
 
                     SqlCommand insertDesktopUserCmd = new SqlCommand(insertDesktopUserQuery, conn, transaction);
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdUser", userId);
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", desktopUser.GetRole().GetId());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", desktopUser.GetFirstName());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@LastName", desktopUser.GetLastName());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", desktopUser.GetBsn());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdGender", desktopUser.GetGender().GetId());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@Birthdate", desktopUser.GetBirthdate());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@SecurityAnswer", desktopUser.GetSecurityAnswer());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", newUser.GetRole().GetId());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", newUser.GetFirstName());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@LastName", newUser.GetLastName());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", newUser.GetBsn());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdGender", newUser.GetGender().GetId());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@Birthdate", newUser.GetBirthdate());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@SecurityAnswer", newUser.GetSecurityAnswer());
 
                     insertDesktopUserCmd.ExecuteNonQuery();
                     transaction.Commit();

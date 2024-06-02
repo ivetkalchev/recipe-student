@@ -102,7 +102,7 @@ namespace recipe_desktop
 
         public void LoadDashboard()
         {
-            DashBoardUC dashboardUC = new DashBoardUC(userManager, currentUser);
+            DashBoardUC dashboardUC = new DashBoardUC(userManager, currentUser, ingredientManager);
             dashboardUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(dashboardUC);
         }
@@ -116,7 +116,7 @@ namespace recipe_desktop
 
         public void LoadEmployees()
         {
-            EmployeesUC employeesUC = new EmployeesUC(userManager);
+            EmployeeUC employeesUC = new EmployeeUC(userManager);
             employeesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(employeesUC);
         }

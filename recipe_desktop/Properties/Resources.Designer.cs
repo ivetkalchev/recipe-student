@@ -63,6 +63,16 @@ namespace recipe_desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2770013 {
+            get {
+                object obj = ResourceManager.GetObject("2770013", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3d538f__1_ {
             get {
                 object obj = ResourceManager.GetObject("#3d538f (1)", resourceCulture);

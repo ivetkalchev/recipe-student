@@ -75,8 +75,6 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\exceptions.pdb
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\db_helpers.pdb
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.DashBoardUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.RecipesUC.resources
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EmployeesUC.resources
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.main_panel_uc.SingleEmployeeUC.resources
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\WinForms.DataVisualization.Utilities.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\WinForms.DataVisualization.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\HarfBuzzSharp.dll
@@ -100,3 +98,6 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x86\n
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Authentication.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePage.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.IngredientsUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EmployeeUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleEmployeeUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleIngredientUC.resources

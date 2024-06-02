@@ -51,5 +51,15 @@ namespace manager_classes
                 throw new AlreadyExistIngredientException(name);
             }
         }
+
+        public List<Ingredient> GetAllIngredients()
+        {
+            return dbHelper.GetAllIngredients();
+        }
+
+        public void DeleteIngredient(Ingredient ingredient)
+        {
+            dbHelper.DeleteIngredient(ingredient);
+        }
     }
 }

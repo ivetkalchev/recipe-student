@@ -1,6 +1,6 @@
 ﻿namespace recipe_desktop
 {
-    partial class EmployeesUC
+    partial class EmployeeUC
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelEmployee = new Panel();
+            lblNoResults = new Label();
             btnNext = new Button();
             btnPrevious = new Button();
             panel1 = new Panel();
@@ -57,6 +58,17 @@
             panelEmployee.Size = new Size(1650, 659);
             panelEmployee.TabIndex = 0;
             // 
+            // lblNoResults
+            // 
+            lblNoResults.AutoSize = true;
+            lblNoResults.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNoResults.ForeColor = Color.Firebrick;
+            lblNoResults.Location = new Point(1013, 23);
+            lblNoResults.Name = "lblNoResults";
+            lblNoResults.Size = new Size(259, 41);
+            lblNoResults.TabIndex = 17;
+            lblNoResults.Text = "No Results Found";
+            // 
             // btnNext
             // 
             btnNext.BackColor = Color.FromArgb(61, 83, 143);
@@ -68,7 +80,7 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnNext.ForeColor = Color.White;
-            btnNext.Location = new Point(856, 815);
+            btnNext.Location = new Point(882, 815);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(161, 49);
             btnNext.TabIndex = 6;
@@ -85,7 +97,7 @@
             btnPrevious.FlatStyle = FlatStyle.Flat;
             btnPrevious.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnPrevious.ForeColor = Color.FromArgb(46, 76, 157);
-            btnPrevious.Location = new Point(657, 815);
+            btnPrevious.Location = new Point(692, 815);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.Size = new Size(161, 49);
             btnPrevious.TabIndex = 8;
@@ -256,12 +268,13 @@
             tbSearch.Size = new Size(326, 47);
             tbSearch.TabIndex = 14;
             // 
-            // EmployeesUC
+            // EmployeeUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.White;
+            Controls.Add(lblNoResults);
             Controls.Add(tbSearch);
             Controls.Add(picSearch);
             Controls.Add(btnAll);
@@ -271,7 +284,7 @@
             Controls.Add(btnPrevious);
             Controls.Add(btnNext);
             Controls.Add(panelEmployee);
-            Name = "EmployeesUC";
+            Name = "EmployeeUC";
             Size = new Size(1698, 877);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -298,5 +311,6 @@
         private Label lblPfp;
         private PictureBox picSearch;
         private TextBox tbSearch;
+        private Label lblNoResults;
     }
 }

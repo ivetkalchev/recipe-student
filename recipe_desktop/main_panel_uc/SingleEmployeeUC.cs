@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace recipe_desktop.main_panel_uc
+namespace recipe_desktop
 {
     public partial class SingleEmployeeUC : UserControl
     {

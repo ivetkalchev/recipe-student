@@ -5,6 +5,8 @@ namespace manager_classes
     public interface IIngredientManager
     {
         void AddIngredient(Ingredient newIngredient);
+        void DeleteIngredient(Ingredient ingredient);
+        List<Ingredient> GetAllIngredients();
         List<Unit> GetAllUnits();
     }
 }

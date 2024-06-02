@@ -6,22 +6,27 @@ using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using LiveChartsCore.SkiaSharpView.WinForms;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace recipe_desktop
 {
     public partial class DashBoardUC : UserControl
     {
         private IUserManager userManager;
-        public DashBoardUC(IUserManager userManager, DesktopUser user)
+        private IIngredientManager ingredientManager;
+        public DashBoardUC(IUserManager userManager, DesktopUser user, IIngredientManager ingredientManager)
         {
             InitializeComponent();
             this.userManager = userManager;
+            this.ingredientManager = ingredientManager;
 
             lblWelcomeUser.Text = $"Welcome, {user.GetFirstName()} {user.GetLastName()}!";
 
             SetGuideText(user.GetRole().GetName());
 
-            LoadPieChart();
+            LoadPieChartUsers();
+            LoadPieChartIngredients();
         }
 
         private void SetGuideText(string roleName)
@@ -50,7 +55,7 @@ namespace recipe_desktop
             }
         }
 
-        private void LoadPieChart()
+        private void LoadPieChartUsers()
         {
             var users = userManager.GetAllDesktopUsers();
             int employeeCount = 0;
@@ -58,23 +63,73 @@ namespace recipe_desktop
 
             foreach (var user in users)
             {
-                if (user.GetRole().GetName() == "Employee")
+                var roleName = user.GetRole().GetName();
+                if (roleName == "Employee")
                 {
                     employeeCount++;
                 }
-                else if (user.GetRole().GetName() == "Admin")
+                else if (roleName == "Admin")
                 {
                     adminCount++;
                 }
             }
 
-            pieChart.Series = new ISeries[]
+            pieChartUsers.Series = new ISeries[]
             {
-                new PieSeries<double> { Values = new double[] { employeeCount }, Name = "Employees" },
-                new PieSeries<double> { Values = new double[] { adminCount }, Name = "Admins" }
+        new PieSeries<double>
+        {
+            Values = new double[] { employeeCount },
+            Name = "Employees",
+            Fill = new SolidColorPaint(new SKColor(98, 14, 80))
+        },
+        new PieSeries<double>
+        {
+            Values = new double[] { adminCount },
+            Name = "Admins",
+            Fill = new SolidColorPaint(new SKColor(182, 113, 169))
+        }
             };
 
-            pieChart.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
+            pieChartUsers.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
         }
+
+        private void LoadPieChartIngredients()
+        {
+            var ingredients = ingredientManager.GetAllIngredients();
+            int litreCount = 0;
+            int kilogramCount = 0;
+
+            foreach (var ingredient in ingredients)
+            {
+                var unitName = ingredient.GetUnit().GetName();
+                if (unitName == "litre")
+                {
+                    litreCount++;
+                }
+                else if (unitName == "kilogram")
+                {
+                    kilogramCount++;
+                }
+            }
+
+            pieChartIngredients.Series = new ISeries[]
+            {
+        new PieSeries<double>
+        {
+            Values = new double[] { litreCount },
+            Name = "Litre Ingredients",
+            Fill = new SolidColorPaint(new SKColor(127, 149, 209))
+        },
+        new PieSeries<double>
+        {
+            Values = new double[] { kilogramCount },
+            Name = "Kilogram Ingredients",
+            Fill = new SolidColorPaint(new SKColor(46, 79, 166))
+        }
+            };
+
+            pieChartIngredients.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
+        }
+
     }
 }

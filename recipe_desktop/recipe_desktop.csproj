@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="main_panel_uc\EmployeesUC.cs">
+    <Compile Update="main_panel_uc\EmployeeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="main_panel_uc\IngredientsUC.cs">
@@ -37,7 +37,13 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="HomepageForm.cs" />
-    <Compile Update="authentication\RegisterUC.cs">
+    <Compile Update="authentication_uc\RegisterUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="main_panel_uc\SingleIngredientUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="main_panel_uc\SingleEmployeeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

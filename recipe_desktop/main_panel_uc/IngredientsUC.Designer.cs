@@ -38,8 +38,22 @@
             lblUsername = new Label();
             lblFirstName = new Label();
             lblLastName = new Label();
+            panelIngredients = new Panel();
+            btnPrevious = new Button();
+            btnNext = new Button();
+            tbSearch = new TextBox();
+            picSearch = new PictureBox();
+            panel2 = new Panel();
+            lblPfp = new Label();
+            lblPrice = new Label();
+            lblUnit = new Label();
+            lblName = new Label();
+            lblId = new Label();
+            lblNoResults = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrice).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picSearch).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // lblAddIngredient
@@ -48,7 +62,7 @@
             lblAddIngredient.BackColor = Color.Transparent;
             lblAddIngredient.Font = new Font("Segoe UI Semibold", 22F, FontStyle.Bold);
             lblAddIngredient.ForeColor = Color.White;
-            lblAddIngredient.Location = new Point(126, 31);
+            lblAddIngredient.Location = new Point(59, 28);
             lblAddIngredient.Name = "lblAddIngredient";
             lblAddIngredient.Size = new Size(343, 50);
             lblAddIngredient.TabIndex = 8;
@@ -69,7 +83,7 @@
             panel1.Controls.Add(lblLastName);
             panel1.Location = new Point(29, 29);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1628, 221);
+            panel1.Size = new Size(1628, 215);
             panel1.TabIndex = 9;
             // 
             // lblEuro
@@ -77,7 +91,7 @@
             lblEuro.AutoSize = true;
             lblEuro.Font = new Font("Segoe UI", 23F, FontStyle.Bold);
             lblEuro.ForeColor = Color.White;
-            lblEuro.Location = new Point(883, 124);
+            lblEuro.Location = new Point(907, 126);
             lblEuro.Name = "lblEuro";
             lblEuro.Size = new Size(44, 52);
             lblEuro.TabIndex = 26;
@@ -88,9 +102,9 @@
             cbUnits.Font = new Font("Segoe UI", 18F);
             cbUnits.ForeColor = Color.FromArgb(46, 79, 166);
             cbUnits.FormattingEnabled = true;
-            cbUnits.Location = new Point(641, 129);
+            cbUnits.Location = new Point(594, 127);
             cbUnits.Name = "cbUnits";
-            cbUnits.Size = new Size(83, 49);
+            cbUnits.Size = new Size(231, 49);
             cbUnits.TabIndex = 25;
             // 
             // nudPrice
@@ -99,7 +113,7 @@
             nudPrice.Font = new Font("Segoe UI", 18F);
             nudPrice.ForeColor = Color.FromArgb(46, 79, 166);
             nudPrice.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
-            nudPrice.Location = new Point(933, 126);
+            nudPrice.Location = new Point(957, 129);
             nudPrice.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudPrice.Name = "nudPrice";
             nudPrice.Size = new Size(192, 47);
@@ -114,7 +128,7 @@
             btnUpload.FlatStyle = FlatStyle.Flat;
             btnUpload.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnUpload.ForeColor = Color.FromArgb(46, 76, 157);
-            btnUpload.Location = new Point(1250, 124);
+            btnUpload.Location = new Point(1244, 128);
             btnUpload.Name = "btnUpload";
             btnUpload.Size = new Size(255, 49);
             btnUpload.TabIndex = 15;
@@ -126,7 +140,7 @@
             // 
             tbName.Font = new Font("Segoe UI", 18F);
             tbName.ForeColor = Color.FromArgb(46, 79, 166);
-            tbName.Location = new Point(136, 131);
+            tbName.Location = new Point(65, 131);
             tbName.Name = "tbName";
             tbName.Size = new Size(411, 47);
             tbName.TabIndex = 14;
@@ -136,7 +150,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(926, 86);
+            lblUsername.Location = new Point(949, 89);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(78, 38);
             lblUsername.TabIndex = 13;
@@ -147,7 +161,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(126, 90);
+            lblFirstName.Location = new Point(57, 87);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(93, 38);
             lblFirstName.TabIndex = 11;
@@ -158,23 +172,178 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
             lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(632, 87);
+            lblLastName.Location = new Point(586, 87);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(70, 38);
             lblLastName.TabIndex = 12;
             lblLastName.Text = "Unit";
             // 
+            // panelIngredients
+            // 
+            panelIngredients.Location = new Point(7, 382);
+            panelIngredients.Margin = new Padding(5);
+            panelIngredients.Name = "panelIngredients";
+            panelIngredients.Padding = new Padding(4);
+            panelIngredients.Size = new Size(1650, 437);
+            panelIngredients.TabIndex = 10;
+            // 
+            // btnPrevious
+            // 
+            btnPrevious.BackColor = Color.White;
+            btnPrevious.Cursor = Cursors.Hand;
+            btnPrevious.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnPrevious.FlatAppearance.BorderSize = 2;
+            btnPrevious.FlatStyle = FlatStyle.Flat;
+            btnPrevious.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnPrevious.ForeColor = Color.FromArgb(46, 76, 157);
+            btnPrevious.Location = new Point(670, 827);
+            btnPrevious.Name = "btnPrevious";
+            btnPrevious.Size = new Size(161, 49);
+            btnPrevious.TabIndex = 12;
+            btnPrevious.Text = "PREVIOUS";
+            btnPrevious.UseVisualStyleBackColor = false;
+            btnPrevious.Click += btnPrevious_Click;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = Color.FromArgb(61, 83, 143);
+            btnNext.Cursor = Cursors.Hand;
+            btnNext.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnNext.FlatAppearance.BorderSize = 2;
+            btnNext.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
+            btnNext.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
+            btnNext.FlatStyle = FlatStyle.Flat;
+            btnNext.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnNext.ForeColor = Color.White;
+            btnNext.Location = new Point(853, 827);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(161, 49);
+            btnNext.TabIndex = 11;
+            btnNext.Text = "NEXT";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnNext_Click;
+            // 
+            // tbSearch
+            // 
+            tbSearch.Font = new Font("Segoe UI", 18F);
+            tbSearch.ForeColor = Color.FromArgb(46, 79, 166);
+            tbSearch.Location = new Point(1273, 268);
+            tbSearch.Name = "tbSearch";
+            tbSearch.Size = new Size(326, 47);
+            tbSearch.TabIndex = 16;
+            // 
+            // picSearch
+            // 
+            picSearch.Image = Properties.Resources.search;
+            picSearch.Location = new Point(1605, 266);
+            picSearch.Name = "picSearch";
+            picSearch.Size = new Size(50, 49);
+            picSearch.SizeMode = PictureBoxSizeMode.StretchImage;
+            picSearch.TabIndex = 15;
+            picSearch.TabStop = false;
+            picSearch.Click += picSearch_Click;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(46, 79, 166);
+            panel2.Controls.Add(lblPfp);
+            panel2.Controls.Add(lblPrice);
+            panel2.Controls.Add(lblUnit);
+            panel2.Controls.Add(lblName);
+            panel2.Controls.Add(lblId);
+            panel2.Location = new Point(22, 323);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1635, 51);
+            panel2.TabIndex = 17;
+            // 
+            // lblPfp
+            // 
+            lblPfp.AutoSize = true;
+            lblPfp.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPfp.ForeColor = Color.White;
+            lblPfp.Location = new Point(72, 6);
+            lblPfp.Name = "lblPfp";
+            lblPfp.Size = new Size(66, 38);
+            lblPfp.TabIndex = 16;
+            lblPfp.Text = "PFP";
+            // 
+            // lblPrice
+            // 
+            lblPrice.AutoSize = true;
+            lblPrice.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrice.ForeColor = Color.White;
+            lblPrice.Location = new Point(853, 6);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(81, 38);
+            lblPrice.TabIndex = 14;
+            lblPrice.Text = "Price";
+            // 
+            // lblUnit
+            // 
+            lblUnit.AutoSize = true;
+            lblUnit.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblUnit.ForeColor = Color.White;
+            lblUnit.Location = new Point(608, 6);
+            lblUnit.Name = "lblUnit";
+            lblUnit.Size = new Size(73, 38);
+            lblUnit.TabIndex = 13;
+            lblUnit.Text = "Unit";
+            // 
+            // lblName
+            // 
+            lblName.AutoSize = true;
+            lblName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblName.ForeColor = Color.White;
+            lblName.Location = new Point(365, 6);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(95, 38);
+            lblName.TabIndex = 11;
+            lblName.Text = "Name";
+            // 
+            // lblId
+            // 
+            lblId.AutoSize = true;
+            lblId.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblId.ForeColor = Color.White;
+            lblId.Location = new Point(207, 6);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(47, 38);
+            lblId.TabIndex = 10;
+            lblId.Text = "ID";
+            // 
+            // lblNoResults
+            // 
+            lblNoResults.AutoSize = true;
+            lblNoResults.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNoResults.ForeColor = Color.Firebrick;
+            lblNoResults.Location = new Point(1008, 274);
+            lblNoResults.Name = "lblNoResults";
+            lblNoResults.Size = new Size(259, 41);
+            lblNoResults.TabIndex = 18;
+            lblNoResults.Text = "No Results Found";
+            // 
             // IngredientsUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblNoResults);
+            Controls.Add(panel2);
+            Controls.Add(tbSearch);
+            Controls.Add(picSearch);
+            Controls.Add(btnPrevious);
+            Controls.Add(btnNext);
+            Controls.Add(panelIngredients);
             Controls.Add(panel1);
             Name = "IngredientsUC";
-            Size = new Size(1677, 870);
+            Size = new Size(1677, 891);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrice).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picSearch).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -188,5 +357,18 @@
         private NumericUpDown nudPrice;
         private Label lblEuro;
         private ComboBox cbUnits;
+        private Panel panelIngredients;
+        private Button btnPrevious;
+        private Button btnNext;
+        private TextBox tbSearch;
+        private PictureBox picSearch;
+        private Panel panel2;
+        private Label lblPfp;
+        private Label lblPrice;
+        private Label lblUnit;
+        private Label label2;
+        private Label lblName;
+        private Label lblId;
+        private Label lblNoResults;
     }
 }

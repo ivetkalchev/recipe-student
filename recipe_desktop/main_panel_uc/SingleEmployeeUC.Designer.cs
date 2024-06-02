@@ -1,4 +1,4 @@
-﻿namespace recipe_desktop.main_panel_uc
+﻿namespace recipe_desktop
 {
     partial class SingleEmployeeUC
     {

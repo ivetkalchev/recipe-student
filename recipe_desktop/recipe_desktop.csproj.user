@@ -10,13 +10,10 @@
     <Compile Update="main_panel_uc\DashboardUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="main_panel_uc\SingleEmployeeUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="menu_uc\BarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="authentication\LoginUC.cs">
+    <Compile Update="authentication_uc\LoginUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="menu_uc\MenuUC.cs">
