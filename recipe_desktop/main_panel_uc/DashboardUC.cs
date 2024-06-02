@@ -32,6 +32,7 @@ namespace recipe_desktop
                                 "Dashboard: The Dashboard section provides an overview of statistics, related to the application, \n" +
                                 "such as users and recipes.\n" +
                                 "Recipes: The Recipes section allows you to upload, edit, delete and view all available recipes. \n" +
+                                "Ingredients: The Ingredients section allows you to upload, edit, delete and view all ingredients. \n" +
                                 "Employees: The Employees section is where you can manage information, fire, and promote \n" +
                                 "employees to admins.\n" +
                                 "Settings: The Settings section allows you to change your personal information.\n" +
@@ -43,6 +44,7 @@ namespace recipe_desktop
                                 "Dashboard: The Dashboard section provides an overview of statistics, related to the application, \n" +
                                 "such as users and recipes.\n" +
                                 "Recipes: The Recipes section allows you to upload, edit, delete and view all available recipes. \n" +
+                                "Ingredients: The Ingredients section allows you to upload, edit, delete and view all ingredients. \n" +
                                 "Settings: The Settings section allows you to change your personal information.\n" +
                                 "Log Out: The Log Out option allows you to exit the application.";
             }

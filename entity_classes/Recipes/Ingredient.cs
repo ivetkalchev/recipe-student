@@ -21,7 +21,7 @@ namespace entity_classes
             this.price = price;
         }
 
-        public int getIdIngredient()
+        public int GetIdIngredient()
         {
             return idIngredient;
         }

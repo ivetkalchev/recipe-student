@@ -1,10 +1,7 @@
-﻿using entity_classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using entity_classes;
 
 namespace db_helpers
 {
@@ -14,22 +11,75 @@ namespace db_helpers
         {
             List<Unit> units = new List<Unit>();
 
-            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            try
             {
-                conn.Open();
-                string query = "SELECT id_unit, unit FROM Unit";
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
-                    while (reader.Read())
+                    conn.Open();
+                    string query = "SELECT * FROM Unit";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        units.Add(new Unit(reader.GetInt32(0), reader.GetString(1)));
+                        while (reader.Read())
+                        {
+                            units.Add(new Unit((int)reader["id_unit"], reader["unit"].ToString()));
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching units: " + ex.Message);
+                throw new Exception("Unable to fetch units. Please try again later.");
+            }
 
             return units;
+        }
+
+        public void AddIngredient(Ingredient ingredient)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO Ingredient (name, id_unit, price) VALUES (@Name, @UnitId, @Price)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Name", ingredient.GetName());
+                    cmd.Parameters.AddWithValue("@UnitId", ingredient.GetUnit().GetId());
+                    cmd.Parameters.AddWithValue("@Price", ingredient.GetPrice());
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error adding ingredient: " + ex.Message);
+                throw new Exception("Unable to add ingredient. Please try again later.");
+            }
+        }
+
+        public bool IsIngredientExist(string name)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Ingredient WHERE name = @Name";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Name", name);
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking if ingredient exists: " + ex.Message);
+                throw new Exception("Unable to verify ingredient existence. Please try again later.");
+            }
         }
     }
 }

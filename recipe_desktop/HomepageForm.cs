@@ -24,7 +24,7 @@ namespace recipe_desktop
 
             this.userManager = userManager;
             this.currentUser = user;
-            this.ingredientManager = new IngredientManager(new DBIngredientHelper());
+            //this.ingredientManager = new IngredientManager(new DBIngredientHelper());
 
             if (currentUser.GetRole().GetName() != "Admin")
             {

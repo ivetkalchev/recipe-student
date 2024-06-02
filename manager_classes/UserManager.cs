@@ -16,58 +16,59 @@ namespace manager_classes
             this.dbHelper = dbHelper;
         }
 
-        public bool RegisterDesktopUser(DesktopUser desktopUser)
+        public bool RegisterDesktopUser(DesktopUser newUser)
         {
-            if (!IsValidUser(desktopUser))
+            if (IsUserTaken(newUser) || !IsValidUser(newUser))
             {
                 return false;
             }
 
-            if (IsEmailTaken(desktopUser.GetEmail()))
-            {
-                throw new AlreadyExistException("email");
-            }
-
-            if (IsUsernameTaken(desktopUser.GetUsername()))
-            {
-                throw new AlreadyExistException("username");
-            }
-
-            if (IsBSNTaken(desktopUser.GetBsn()))
-            {
-                throw new AlreadyExistException("BSN");
-            }
-
-            desktopUser = new DesktopUser(
-                desktopUser.GetIdUser(),
-                desktopUser.GetUsername(),
-                desktopUser.GetEmail(),
-                Hasher.HashText(desktopUser.GetPassword()),
-                desktopUser.GetRole(),
-                CapitalizeFirstLetter(desktopUser.GetFirstName()),
-                CapitalizeFirstLetter(desktopUser.GetLastName()),
-                desktopUser.GetBsn(),
-                desktopUser.GetGender(),
-                desktopUser.GetBirthdate(),
-                CapitalizeFirstLetter(Hasher.HashText(desktopUser.GetSecurityAnswer()))
+            newUser = new DesktopUser(
+                newUser.GetIdUser(),
+                newUser.GetUsername(),
+                newUser.GetEmail(),
+                Hasher.HashText(newUser.GetPassword()),
+                newUser.GetRole(),
+                CapitalizeFirstLetter(newUser.GetFirstName()),
+                CapitalizeFirstLetter(newUser.GetLastName()),
+                newUser.GetBsn(),
+                newUser.GetGender(),
+                newUser.GetBirthdate(),
+                CapitalizeFirstLetter(Hasher.HashText(newUser.GetSecurityAnswer()))
             );
 
-            dbHelper.InsertDesktopUser(desktopUser);
-
+            dbHelper.InsertDesktopUser(newUser);
             return true;
         }
 
-        private bool IsValidUser(DesktopUser user)
+        private bool IsValidUser(DesktopUser newUser)
         {
-            return IsValidPassword(user.GetPassword()) &&
-                   IsValidEmail(user.GetEmail()) &&
-                   IsValidBsn(user.GetBsn()) &&
-                   IsValidName(user.GetFirstName(), "first name") &&
-                   IsValidName(user.GetLastName(), "last name") &&
-                   IsValidBirthdate(user.GetBirthdate());
+            return IsPasswordValid(newUser.GetPassword()) &&
+                   IsEmailValid(newUser.GetEmail()) &&
+                   IsBsnValid(newUser.GetBsn()) &&
+                   IsNameValid(newUser.GetFirstName(), "first name") &&
+                   IsNameValid(newUser.GetLastName(), "last name") &&
+                   IsBirthdateValid(newUser.GetBirthdate());
         }
 
-        private bool IsValidBsn(int bsn)
+        private bool IsUserTaken(DesktopUser newUser)
+        {
+            if (IsUsernameTaken(newUser.GetUsername()))
+            {
+                throw new AlreadyExistUserException("username");
+            }
+            if (IsEmailTaken(newUser.GetEmail()))
+            {
+                throw new AlreadyExistUserException("email");
+            }
+            if (IsBSNTaken(newUser.GetBsn()))
+            {
+                throw new AlreadyExistUserException("BSN");
+            }
+            return false;
+        }
+
+        private bool IsBsnValid(int bsn)
         {
             string bsnString = bsn.ToString();
             if (bsnString.Length < 8 || bsnString.Length > 9)
@@ -81,7 +82,7 @@ namespace manager_classes
             return true;
         }
 
-        private bool IsValidName(string name, string nameType)
+        private bool IsNameValid(string name, string nameType)
         {
             if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
             {
@@ -90,7 +91,7 @@ namespace manager_classes
             return true;
         }
 
-        private bool IsValidBirthdate(DateTime birthdate)
+        private bool IsBirthdateValid(DateTime birthdate)
         {
             int age = DateTime.Now.Year - birthdate.Year;
             if (birthdate > DateTime.Now.AddYears(-age)) age--;
@@ -101,7 +102,7 @@ namespace manager_classes
             return true;
         }
 
-        public bool IsValidPassword(string password)
+        public bool IsPasswordValid(string password)
         {
             if (password.Length < 8)
             {
@@ -116,7 +117,7 @@ namespace manager_classes
             return true;
         }
 
-        private bool IsValidEmail(string email)
+        private bool IsEmailValid(string email)
         {
             if (!email.Contains("@"))
             {

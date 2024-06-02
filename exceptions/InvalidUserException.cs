@@ -5,9 +5,9 @@
         public InvalidUserException(string message) : base(message) { }
     }
 
-    public class AlreadyExistException : InvalidUserException
+    public class AlreadyExistUserException : InvalidUserException
     {
-        public AlreadyExistException(string credentialType) : base($"The {credentialType} is already taken.") { }
+        public AlreadyExistUserException(string credentialType) : base($"The {credentialType} is already taken.") { }
     }
 
     public class InvalidBsnLengthException : InvalidUserException

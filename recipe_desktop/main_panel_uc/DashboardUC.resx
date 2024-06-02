@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblGuide.Text" xml:space="preserve">
-    <value>Here is a little guide on how to use the application:
-Dashboard: The Dashboard section provides an overview of statistics, related to the application, 
-such as users and recipes.
-Recipes: The Recipes section allows you to manage, upload, and view all available recipes 
-(depending on your permissions).
-Employees: The Employees section is where you can manage information, fire, and promote 
-employees (depending on your permissions).
-Settings: The Settings section allows you to change your personal information.
-Log Out: The Log Out option allows you to exit the application.
-</value>
-  </data>
 </root>

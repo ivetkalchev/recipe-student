@@ -69,9 +69,13 @@ namespace recipe_desktop
         {
             string username = tbUsername.Text;
             string plainPassword = tbPassword.Text;
+            Role employeeRole = new Role(2, "Employee");
             string email = tbEmail.Text;
+            string bsnText = tbBsn.Text;
             string firstName = tbFirstName.Text;
             string lastName = tbLastName.Text;
+            Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
+            DateTime birthdate = dtpBirthdate.Value.Date;
             string securityAnswer = tbSecurityAnswer.Text;
 
             if (string.IsNullOrWhiteSpace(username) ||
@@ -79,22 +83,18 @@ namespace recipe_desktop
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(firstName) ||
                 string.IsNullOrWhiteSpace(lastName) ||
-                string.IsNullOrWhiteSpace(tbBsn.Text) ||
+                string.IsNullOrWhiteSpace(bsnText) ||
                 string.IsNullOrWhiteSpace(securityAnswer))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            if (!int.TryParse(tbBsn.Text, out int bsn))
+            if (!int.TryParse(bsnText, out int bsn))
             {
-                MessageBox.Show("Please enter a valid numeric BSN.");
+                MessageBox.Show("Please enter a valid BSN.");
                 return;
             }
-
-            Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
-            DateTime birthdate = dtpBirthdate.Value.Date;
-            Role employeeRole = new Role(2, "Employee");
 
             DesktopUser newUser = new DesktopUser(
                 0,
@@ -112,19 +112,16 @@ namespace recipe_desktop
 
             try
             {
-                if (userManager.RegisterDesktopUser(newUser))
-                {
-                    MessageBox.Show($"{username} is registered successfully!");
-                    ClearFields();
-                    LoadLogin();
-                }
+                userManager.RegisterDesktopUser(newUser);
+                MessageBox.Show($"{username} is registered successfully!");
+                ClearFields();
+                LoadLogin();        
             }
             catch (InvalidUserException ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void ClearFields()
         {
             tbUsername.Clear();

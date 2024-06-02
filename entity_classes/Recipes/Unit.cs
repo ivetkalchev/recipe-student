@@ -17,6 +17,10 @@ namespace entity_classes
             this.name = name;
         }
 
+        public int GetId()
+        {
+            return id;
+        }
         public string GetName()
         {
             return name;

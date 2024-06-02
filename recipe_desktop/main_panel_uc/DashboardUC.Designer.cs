@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashBoardUC));
             lblWelcomeUser = new Label();
             lblGuide = new Label();
             pieChart = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
@@ -49,13 +48,13 @@
             // lblGuide
             // 
             lblGuide.AutoSize = true;
-            lblGuide.Font = new Font("Segoe UI", 20F);
+            lblGuide.Font = new Font("Segoe UI", 17F);
             lblGuide.ForeColor = Color.FromArgb(46, 79, 166);
-            lblGuide.Location = new Point(54, 101);
+            lblGuide.Location = new Point(61, 111);
             lblGuide.Name = "lblGuide";
-            lblGuide.Size = new Size(1452, 414);
+            lblGuide.Size = new Size(349, 40);
             lblGuide.TabIndex = 3;
-            lblGuide.Text = resources.GetString("lblGuide.Text");
+            lblGuide.Text = "{guide for the application}";
             lblGuide.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // pieChart
@@ -63,12 +62,12 @@
             pieChart.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             pieChart.InitialRotation = 0D;
             pieChart.IsClockwise = true;
-            pieChart.Location = new Point(54, 500);
+            pieChart.Location = new Point(61, 500);
             pieChart.MaxAngle = 360D;
             pieChart.MaxValue = null;
             pieChart.MinValue = 0D;
             pieChart.Name = "pieChart";
-            pieChart.Size = new Size(508, 398);
+            pieChart.Size = new Size(572, 398);
             pieChart.TabIndex = 0;
             pieChart.Total = null;
             // 
