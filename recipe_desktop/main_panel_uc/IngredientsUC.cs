@@ -37,6 +37,7 @@ namespace recipe_desktop
         {
             string name = tbName.Text.Trim();
             Unit selectedUnit = null;
+
             foreach (var unit in ingredientManager.GetAllUnits())
             {
                 if (unit.GetName() == cbUnits.SelectedItem.ToString())
@@ -50,8 +51,16 @@ namespace recipe_desktop
 
             try
             {
-                //ingredientManager.AddIngredient(Ingredient ingredient);
-                MessageBox.Show("Ingredient added successfully!");
+                Ingredient newIngredient = new Ingredient(
+                    0, 
+                    name, 
+                    selectedUnit, 
+                    price
+                );
+
+                ingredientManager.AddIngredient(newIngredient);
+
+                MessageBox.Show($"{name} was added successfully!");
                 ClearFields();
             }
             catch (InvalidIngredientException ex)

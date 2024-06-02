@@ -4,7 +4,7 @@ namespace manager_classes
 {
     public interface IIngredientManager
     {
-        void AddIngredient(string name, Unit unit, decimal price);
+        void AddIngredient(Ingredient newIngredient);
         List<Unit> GetAllUnits();
     }
 }

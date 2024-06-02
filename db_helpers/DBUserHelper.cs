@@ -65,7 +65,7 @@ namespace db_helpers
                 SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
                 FROM [dbo].[User] u
                 INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
-                WHERE u.username = @Username AND u.password = @Password";
+                WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Username", username);
@@ -102,6 +102,7 @@ namespace db_helpers
 
             return null;
         }
+
 
         public bool IsUsernameTaken(string username)
         {

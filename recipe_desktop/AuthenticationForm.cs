@@ -11,7 +11,7 @@ namespace recipe_desktop
         public Authentication()
         {
             InitializeComponent();
-            userManager = new UserManager(new DBUserHelper()); //?
+            userManager = new UserManager(new DBUserHelper());
         }
 
         private void AuthenticationForm_Load(object sender, EventArgs e)

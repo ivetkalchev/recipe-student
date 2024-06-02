@@ -5,7 +5,7 @@ using db_helpers;
 
 namespace manager_classes
 {
-    public class IngredientManager
+    public class IngredientManager : IIngredientManager
     {
         private IDBIngredientHelper dbHelper;
 
@@ -19,14 +19,13 @@ namespace manager_classes
             return dbHelper.GetAllUnits();
         }
 
-        public void AddIngredient(Ingredient ingredient)
+        public void AddIngredient(Ingredient newIngredient)
         {
-            //ValidateIngredientName(ingredient.GetName());
-            //ValidateIngredientPrice(price);
-            //CheckIfIngredientExists(name);
+            ValidateIngredientName(newIngredient.GetName());
+            ValidateIngredientPrice(newIngredient.GetPrice());
+            CheckIfIngredientExists(newIngredient.GetName());
 
-            //Ingredient ingredient = new Ingredient(0, name, unit, price);
-            //dbHelper.AddIngredient(ingredient);
+            dbHelper.AddIngredient(newIngredient);
         }
 
         private void ValidateIngredientName(string name)
