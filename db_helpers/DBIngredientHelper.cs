@@ -60,7 +60,7 @@ namespace db_helpers
             }
         }
 
-        public bool IsIngredientExist(string name)
+        public bool DoesIngredientExist(string name)
         {
             try
             {

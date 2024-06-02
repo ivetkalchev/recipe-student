@@ -76,19 +76,19 @@ namespace recipe_desktop
 
             pieChartUsers.Series = new ISeries[]
             {
-        new PieSeries<double>
-        {
-            Values = new double[] { employeeCount },
-            Name = "Employees",
-            Fill = new SolidColorPaint(new SKColor(98, 14, 80))
-        },
-        new PieSeries<double>
-        {
-            Values = new double[] { adminCount },
-            Name = "Admins",
-            Fill = new SolidColorPaint(new SKColor(182, 113, 169))
-        }
-            };
+            new PieSeries<double>
+            {
+                Values = new double[] { employeeCount },
+                Name = "Employees",
+                Fill = new SolidColorPaint(new SKColor(98, 14, 80))
+            },
+            new PieSeries<double>
+            {
+                Values = new double[] { adminCount },
+                Name = "Admins",
+                Fill = new SolidColorPaint(new SKColor(182, 113, 169))
+            }
+                };
 
             pieChartUsers.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
         }
@@ -114,22 +114,21 @@ namespace recipe_desktop
 
             pieChartIngredients.Series = new ISeries[]
             {
-        new PieSeries<double>
-        {
-            Values = new double[] { litreCount },
-            Name = "Litre Ingredients",
-            Fill = new SolidColorPaint(new SKColor(127, 149, 209))
-        },
-        new PieSeries<double>
-        {
-            Values = new double[] { kilogramCount },
-            Name = "Kilogram Ingredients",
-            Fill = new SolidColorPaint(new SKColor(46, 79, 166))
-        }
-            };
+            new PieSeries<double>
+            {
+                Values = new double[] { litreCount },
+                Name = "Litre Ingredients",
+                Fill = new SolidColorPaint(new SKColor(127, 149, 209))
+            },
+            new PieSeries<double>
+            {
+                Values = new double[] { kilogramCount },
+                Name = "Kilogram Ingredients",
+                Fill = new SolidColorPaint(new SKColor(46, 79, 166))
+            }
+                };
 
             pieChartIngredients.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
         }
-
     }
 }

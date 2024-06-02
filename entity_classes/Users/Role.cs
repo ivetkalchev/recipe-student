@@ -7,7 +7,6 @@ namespace entity_classes
     {
         private int id;
         private string name;
-
         public Role(int id, string name)
         {
             this.id = id;

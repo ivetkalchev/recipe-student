@@ -46,7 +46,7 @@ namespace manager_classes
 
         private void CheckIfIngredientExists(string name)
         {
-            if (dbHelper.IsIngredientExist(name))
+            if (dbHelper.DoesIngredientExist(name))
             {
                 throw new AlreadyExistIngredientException(name);
             }

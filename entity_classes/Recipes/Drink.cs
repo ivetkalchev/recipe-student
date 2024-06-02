@@ -13,7 +13,7 @@ namespace entity_classes
         private bool hasCaffeineContent;
 
         public Drink(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan cookingTime,
-            List<Ingredient> ingredients, DietRestriction dietRestriction, Difficulty difficulty, int pours, bool isAlcholic, bool hasCaffeineContent)
+            List<RecipeIngredient> ingredients, DietRestriction dietRestriction, Difficulty difficulty, int pours, bool isAlcholic, bool hasCaffeineContent)
             : base(idRecipe, title, description, instructions, user, publishDate, cookingTime, ingredients, dietRestriction, difficulty)
         {
             this.pours = pours;
@@ -36,13 +36,12 @@ namespace entity_classes
             return hasCaffeineContent; 
         }
 
-        //fix
         public override decimal CalculatePrice()
         {
             decimal total = 0;
             foreach (var ingredient in GetIngredients())
             {
-                //total += ingredient.GetPrice() * ingredient.GetQuantity();
+                total += ingredient.GetIngredient().GetPrice() * ingredient.GetQuantity();
             }
             return total * pours;
         }

@@ -8,6 +8,6 @@ namespace db_helpers
         void DeleteIngredient(Ingredient ingredient);
         List<Ingredient> GetAllIngredients();
         List<Unit> GetAllUnits();
-        bool IsIngredientExist(string name);
+        bool DoesIngredientExist(string name);
     }
 }
