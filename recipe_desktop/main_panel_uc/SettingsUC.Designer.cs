@@ -36,7 +36,6 @@
             tbLastName = new TextBox();
             lblEmail = new Label();
             tbEmail = new TextBox();
-            tbBirthdate = new TextBox();
             lblBirthdate = new Label();
             lblBsn = new Label();
             tbBSN = new TextBox();
@@ -45,6 +44,9 @@
             picProfile = new PictureBox();
             btnEdit = new Button();
             btnSave = new Button();
+            cbGenders = new ComboBox();
+            label1 = new Label();
+            dtpBirthdate = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)picProfile).BeginInit();
             SuspendLayout();
             // 
@@ -63,7 +65,7 @@
             // tbUsername
             // 
             tbUsername.Font = new Font("Segoe UI", 18F);
-            tbUsername.ForeColor = Color.FromArgb(46, 79, 166);
+            tbUsername.ForeColor = Color.Black;
             tbUsername.Location = new Point(639, 399);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(474, 47);
@@ -84,11 +86,12 @@
             // tbFirstName
             // 
             tbFirstName.Font = new Font("Segoe UI", 18F);
-            tbFirstName.ForeColor = Color.FromArgb(46, 79, 166);
+            tbFirstName.ForeColor = Color.Black;
             tbFirstName.Location = new Point(639, 293);
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(474, 47);
             tbFirstName.TabIndex = 5;
+            tbFirstName.KeyPress += tbFirstName_KeyPress;
             // 
             // lblLastName
             // 
@@ -105,7 +108,7 @@
             // tbLastName
             // 
             tbLastName.Font = new Font("Segoe UI", 18F);
-            tbLastName.ForeColor = Color.FromArgb(46, 79, 166);
+            tbLastName.ForeColor = Color.Black;
             tbLastName.Location = new Point(639, 346);
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(474, 47);
@@ -127,20 +130,11 @@
             // tbEmail
             // 
             tbEmail.Font = new Font("Segoe UI", 18F);
-            tbEmail.ForeColor = Color.FromArgb(46, 79, 166);
+            tbEmail.ForeColor = Color.Black;
             tbEmail.Location = new Point(639, 452);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(474, 47);
             tbEmail.TabIndex = 11;
-            // 
-            // tbBirthdate
-            // 
-            tbBirthdate.Font = new Font("Segoe UI", 18F);
-            tbBirthdate.ForeColor = Color.FromArgb(46, 79, 166);
-            tbBirthdate.Location = new Point(639, 505);
-            tbBirthdate.Name = "tbBirthdate";
-            tbBirthdate.Size = new Size(474, 47);
-            tbBirthdate.TabIndex = 13;
             // 
             // lblBirthdate
             // 
@@ -169,18 +163,19 @@
             // tbBSN
             // 
             tbBSN.Font = new Font("Segoe UI", 18F);
-            tbBSN.ForeColor = Color.FromArgb(46, 79, 166);
+            tbBSN.ForeColor = Color.Black;
             tbBSN.Location = new Point(639, 558);
             tbBSN.Name = "tbBSN";
             tbBSN.Size = new Size(474, 47);
             tbBSN.TabIndex = 15;
+            tbBSN.KeyPress += tbBsn_KeyPress;
             // 
             // lblRole
             // 
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblRole.ForeColor = Color.FromArgb(61, 83, 143);
-            lblRole.Location = new Point(439, 616);
+            lblRole.Location = new Point(441, 616);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(77, 40);
             lblRole.TabIndex = 19;
@@ -190,7 +185,7 @@
             // tbRole
             // 
             tbRole.Font = new Font("Segoe UI", 18F);
-            tbRole.ForeColor = Color.FromArgb(46, 79, 166);
+            tbRole.ForeColor = Color.Black;
             tbRole.Location = new Point(639, 611);
             tbRole.Name = "tbRole";
             tbRole.Size = new Size(474, 47);
@@ -217,7 +212,7 @@
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnEdit.ForeColor = Color.White;
-            btnEdit.Location = new Point(639, 696);
+            btnEdit.Location = new Point(639, 736);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(474, 49);
             btnEdit.TabIndex = 22;
@@ -234,7 +229,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnSave.ForeColor = Color.FromArgb(46, 76, 157);
-            btnSave.Location = new Point(639, 751);
+            btnSave.Location = new Point(639, 791);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(474, 49);
             btnSave.TabIndex = 23;
@@ -242,10 +237,50 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
+            // cbGenders
+            // 
+            cbGenders.Font = new Font("Segoe UI", 18F);
+            cbGenders.ForeColor = Color.Black;
+            cbGenders.FormattingEnabled = true;
+            cbGenders.Location = new Point(639, 664);
+            cbGenders.Name = "cbGenders";
+            cbGenders.Size = new Size(474, 49);
+            cbGenders.TabIndex = 45;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(61, 83, 143);
+            label1.Location = new Point(441, 669);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 40);
+            label1.TabIndex = 46;
+            label1.Text = "Gender";
+            label1.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // dtpBirthdate
+            // 
+            dtpBirthdate.CalendarForeColor = Color.FromArgb(182, 113, 169);
+            dtpBirthdate.CalendarMonthBackground = Color.FromArgb(182, 113, 169);
+            dtpBirthdate.CalendarTitleBackColor = Color.FromArgb(182, 113, 169);
+            dtpBirthdate.CalendarTitleForeColor = Color.FromArgb(182, 113, 169);
+            dtpBirthdate.CalendarTrailingForeColor = Color.FromArgb(182, 113, 169);
+            dtpBirthdate.Font = new Font("Segoe UI", 18F);
+            dtpBirthdate.Format = DateTimePickerFormat.Short;
+            dtpBirthdate.Location = new Point(639, 505);
+            dtpBirthdate.Name = "dtpBirthdate";
+            dtpBirthdate.Size = new Size(474, 47);
+            dtpBirthdate.TabIndex = 47;
+            dtpBirthdate.Value = new DateTime(2024, 5, 4, 0, 0, 0, 0);
+            // 
             // SettingsUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(dtpBirthdate);
+            Controls.Add(label1);
+            Controls.Add(cbGenders);
             Controls.Add(btnSave);
             Controls.Add(btnEdit);
             Controls.Add(picProfile);
@@ -254,7 +289,6 @@
             Controls.Add(lblBsn);
             Controls.Add(tbBSN);
             Controls.Add(lblBirthdate);
-            Controls.Add(tbBirthdate);
             Controls.Add(lblEmail);
             Controls.Add(tbEmail);
             Controls.Add(tbLastName);
@@ -280,7 +314,6 @@
         private TextBox tbLastName;
         private Label lblEmail;
         private TextBox tbEmail;
-        private TextBox tbBirthdate;
         private Label lblBirthdate;
         private Label lblBsn;
         private TextBox tbBSN;
@@ -289,5 +322,8 @@
         private PictureBox picProfile;
         private Button btnEdit;
         private Button btnSave;
+        private ComboBox cbGenders;
+        private Label label1;
+        private DateTimePicker dtpBirthdate;
     }
 }

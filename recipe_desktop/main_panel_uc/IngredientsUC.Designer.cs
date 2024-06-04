@@ -89,7 +89,7 @@
             // cbTypeIngredient
             // 
             cbTypeIngredient.Font = new Font("Segoe UI", 18F);
-            cbTypeIngredient.ForeColor = Color.FromArgb(46, 79, 166);
+            cbTypeIngredient.ForeColor = Color.Black;
             cbTypeIngredient.FormattingEnabled = true;
             cbTypeIngredient.Location = new Point(541, 127);
             cbTypeIngredient.Name = "cbTypeIngredient";
@@ -122,7 +122,7 @@
             // 
             nudPrice.DecimalPlaces = 2;
             nudPrice.Font = new Font("Segoe UI", 19F);
-            nudPrice.ForeColor = Color.FromArgb(46, 79, 166);
+            nudPrice.ForeColor = Color.Black;
             nudPrice.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
             nudPrice.Location = new Point(924, 124);
             nudPrice.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
@@ -150,7 +150,7 @@
             // tbName
             // 
             tbName.Font = new Font("Segoe UI", 18F);
-            tbName.ForeColor = Color.FromArgb(46, 79, 166);
+            tbName.ForeColor = Color.Black;
             tbName.Location = new Point(65, 131);
             tbName.Name = "tbName";
             tbName.Size = new Size(411, 47);
@@ -226,7 +226,7 @@
             // tbSearch
             // 
             tbSearch.Font = new Font("Segoe UI", 18F);
-            tbSearch.ForeColor = Color.FromArgb(46, 79, 166);
+            tbSearch.ForeColor = Color.Black;
             tbSearch.Location = new Point(1273, 268);
             tbSearch.Name = "tbSearch";
             tbSearch.Size = new Size(326, 47);

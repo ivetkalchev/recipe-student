@@ -135,5 +135,37 @@ namespace db_helpers
                 throw new Exception("Unable to delete ingredient. Please try again later.");
             }
         }
+
+        public void UpdateIngredientDetails(Ingredient currentIngredient, string newName, TypeIngredient newType, decimal newPrice)
+        {
+            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+            {
+                conn.Open();
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    string updateQuery = @"
+                    UPDATE Ingredient
+                    SET name = @Name, id_type = @IdType, price = @Price
+                    WHERE id_ingredient = @Id";
+
+                    SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
+                    cmd.Parameters.AddWithValue("@Id", currentIngredient.GetIdIngredient());
+                    cmd.Parameters.AddWithValue("@Name", newName);
+                    cmd.Parameters.AddWithValue("@IdType", newType.GetId());
+                    cmd.Parameters.AddWithValue("@Price", newPrice);
+
+                    cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    Console.WriteLine("Error updating ingredient details: " + ex.Message);
+                    throw new Exception("Unable to update ingredient details. Please try again later.");
+                }
+            }
+        }
     }
 }

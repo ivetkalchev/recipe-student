@@ -85,7 +85,7 @@ namespace manager_classes
 
         private bool IsNameValid(string name, string nameType)
         {
-            //only l
+            //only letters
             if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
             {
                 throw new InvalidNameException(nameType);
@@ -156,9 +156,9 @@ namespace manager_classes
             return dbHelper.IsBSNTaken(bsn);
         }
 
-        public void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail)
+        public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN)
         {
-            dbHelper.UpdateUserDetails(user, newLastName, newEmail);
+            dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
         }
 
         public List<DesktopUser> GetAllDesktopUsers()

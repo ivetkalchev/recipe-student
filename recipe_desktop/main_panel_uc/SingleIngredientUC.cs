@@ -1,5 +1,6 @@
 ﻿using entity_classes;
 using manager_classes;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -54,6 +55,12 @@ namespace recipe_desktop
         {
             ingredientManager.DeleteIngredient(ingredient);
             IngredientDeleted?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            EditIngredientForm editIngredient = new EditIngredientForm(ingredientManager, ingredient);
+            editIngredient.Show();
         }
     }
 }

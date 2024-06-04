@@ -126,6 +126,7 @@
             btnEdit.TabIndex = 10;
             btnEdit.Text = "EDIT";
             btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // SingleIngredientUC
             // 

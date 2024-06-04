@@ -102,3 +102,4 @@ I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Sin
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EditEmployeeForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AuthenticationForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePageForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EditIngredientForm.resources

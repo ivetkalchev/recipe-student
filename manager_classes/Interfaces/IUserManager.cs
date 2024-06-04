@@ -15,6 +15,6 @@ namespace manager_classes
         DesktopUser LoginDesktopUser(string username, string password);
         void PromoteUserToAdmin(DesktopUser user);
         bool RegisterDesktopUser(DesktopUser newUser);
-        void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail);
+        void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN);
     }
 }

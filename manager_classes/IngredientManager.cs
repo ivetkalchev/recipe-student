@@ -74,5 +74,10 @@ namespace manager_classes
         {
             dbHelper.DeleteIngredient(ingredient);
         }
+
+        public void UpdateIngredientDetails(Ingredient currentIngredient, string newName, TypeIngredient newType, decimal newPrice)
+        {
+            dbHelper.UpdateIngredientDetails(currentIngredient, newName, newType, newPrice);
+        }
     }
 }

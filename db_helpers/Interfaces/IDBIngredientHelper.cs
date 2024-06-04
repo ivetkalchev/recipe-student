@@ -9,5 +9,6 @@ namespace db_helpers
         bool DoesIngredientExist(string name);
         List<Ingredient> GetAllIngredients();
         List<TypeIngredient> GetAllTypes();
+        void UpdateIngredientDetails(Ingredient currentIngredient, string newName, TypeIngredient newType, decimal newPrice);
     }
 }

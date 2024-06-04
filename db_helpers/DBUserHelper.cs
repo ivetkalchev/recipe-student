@@ -204,7 +204,7 @@ namespace db_helpers
             return null;
         }
 
-        public void UpdateUserDetails(DesktopUser user, string newLastName, string newEmail)
+        public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
             {
@@ -219,13 +219,21 @@ namespace db_helpers
                     WHERE id_user = @UserId;
 
                     UPDATE [dbo].[DesktopUser]
-                    SET last_name = @LastName
+                    SET first_name = @FirstName,
+                        last_name = @LastName,
+                        bsn = @BSN,
+                        id_gender = @GenderId,
+                        birthdate = @Birthdate
                     WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
                     cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
-                    cmd.Parameters.AddWithValue("@Email", newEmail);
+                    cmd.Parameters.AddWithValue("@FirstName", newFirstName);
                     cmd.Parameters.AddWithValue("@LastName", newLastName);
+                    cmd.Parameters.AddWithValue("@Email", newEmail);
+                    cmd.Parameters.AddWithValue("@BSN", newBSN);
+                    cmd.Parameters.AddWithValue("@GenderId", newGender.GetId());
+                    cmd.Parameters.AddWithValue("@Birthdate", newBirthdate);
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -237,6 +245,7 @@ namespace db_helpers
                 }
             }
         }
+
 
         public void DeleteUser(DesktopUser user)
         {

@@ -71,7 +71,7 @@ namespace recipe_desktop
             string plainPassword = tbPassword.Text.Trim();
             Role employeeRole = new Role(2, "Employee");
             string email = tbEmail.Text.Trim();
-            string bsnText = tbBsn.Text.Trim();
+            int.TryParse(tbBsn.Text.Trim(), out int bsn);
             string firstName = tbFirstName.Text.Trim();
             string lastName = tbLastName.Text.Trim();
             Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
@@ -83,16 +83,10 @@ namespace recipe_desktop
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(firstName) ||
                 string.IsNullOrWhiteSpace(lastName) ||
-                string.IsNullOrWhiteSpace(bsnText) ||
+                string.IsNullOrWhiteSpace(tbBsn.Text) ||
                 string.IsNullOrWhiteSpace(securityAnswer))
             {
                 MessageBox.Show("Please fill in all fields.");
-                return;
-            }
-
-            if (!int.TryParse(bsnText, out int bsn))
-            {
-                MessageBox.Show("Please enter a valid BSN.");
                 return;
             }
 

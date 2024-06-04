@@ -140,7 +140,7 @@
             // tbPassword
             // 
             tbPassword.Font = new Font("Segoe UI", 18F);
-            tbPassword.ForeColor = Color.FromArgb(46, 79, 166);
+            tbPassword.ForeColor = Color.Black;
             tbPassword.Location = new Point(75, 370);
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(474, 47);
@@ -174,7 +174,7 @@
             // tbUsername
             // 
             tbUsername.Font = new Font("Segoe UI", 18F);
-            tbUsername.ForeColor = Color.FromArgb(46, 79, 166);
+            tbUsername.ForeColor = Color.Black;
             tbUsername.Location = new Point(75, 265);
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(474, 47);

@@ -23,6 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="EditIngedientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="main_panel_uc\EmployeeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
