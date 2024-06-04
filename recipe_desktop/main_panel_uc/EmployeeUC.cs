@@ -6,6 +6,7 @@ namespace recipe_desktop
     public partial class EmployeeUC : UserControl
     {
         private IUserManager userManager;
+        
         private List<DesktopUser> users;
         private int currentPage;
         private int totalPages;
@@ -16,8 +17,11 @@ namespace recipe_desktop
         public EmployeeUC(IUserManager userManager)
         {
             InitializeComponent();
+            
             this.userManager = userManager;
+            
             currentPage = 1;
+            
             LoadEmployees();
         }
 
@@ -37,6 +41,7 @@ namespace recipe_desktop
         private void DisplayUsers(List<DesktopUser> usersToDisplay)
         {
             panelEmployee.Controls.Clear();
+
             lblNoResults.Visible = usersToDisplay.Count == 0;
 
             if (usersToDisplay.Count == 0)

@@ -10,9 +10,11 @@ namespace recipe_desktop
         public RegisterUC(IUserManager userManager)
         {
             InitializeComponent();
+
             this.userManager = userManager;
+            
             LoadGender();
-            dtpBirthdate.Value = DateTime.Now;
+            LoadToday();
         }
 
         private void picPassword_Click(object sender, EventArgs e)
@@ -25,10 +27,16 @@ namespace recipe_desktop
             ClearFields();
         }
 
+        private void LoadToday()
+        {
+            dtpBirthdate.Value = DateTime.Now;
+        }
+
         private void LoadGender()
         {
             var genders = userManager.GetAllGenders();
             cbGenders.Items.Clear();
+            
             foreach (var gender in genders)
             {
                 cbGenders.Items.Add(gender.GetName());

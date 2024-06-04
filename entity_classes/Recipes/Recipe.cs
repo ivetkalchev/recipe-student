@@ -12,9 +12,10 @@
         private TimeSpan cookingTime;
         private DietRestriction dietRestriction;
         private Difficulty difficulty;
+        private RecipePic? pic;
 
         public Recipe(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, 
-            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty)
+            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
         {
             this.idRecipe = idRecipe;
             this.title = title;
@@ -26,6 +27,7 @@
             this.cookingTime = cookingTime;
             this.dietRestriction = dietRestriction;
             this.difficulty = difficulty;
+            this.pic = pic;
         }
 
         public int GetIdRecipe()
@@ -76,6 +78,11 @@
         public Difficulty GetDifficulty()
         {
             return difficulty;
+        }
+
+        public RecipePic? GetRecipePic()
+        {
+            return pic;
         }
 
         public abstract decimal CalculateTotalTime();

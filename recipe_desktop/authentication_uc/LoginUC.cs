@@ -10,6 +10,7 @@ namespace recipe_desktop
         public LoginUC(IUserManager userManager)
         {
             InitializeComponent();
+
             this.userManager = userManager;
         }
 
@@ -57,7 +58,7 @@ namespace recipe_desktop
             Form parentForm = this.ParentForm;
             parentForm.Hide();
 
-            HomePageForm homePage = new HomePageForm(userManager, user);
+            HomePageForm homePage = new HomePageForm(user, userManager);
             homePage.Show();
         }
 

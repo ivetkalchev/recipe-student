@@ -58,9 +58,9 @@ namespace manager_classes
             {
                 throw new AlreadyExistUserException("email");
             }
-            if (IsBSNTaken(newUser.GetBsn()))
+            if (IsBsnTaken(newUser.GetBsn()))
             {
-                throw new AlreadyExistUserException("BSN");
+                throw new AlreadyExistUserException("Bsn");
             }
             return false;
         }
@@ -88,18 +88,34 @@ namespace manager_classes
             return dbHelper.IsEmailTaken(email);
         }
 
-        public bool IsBSNTaken(int bsn)
+        public bool IsBsnTaken(int bsn)
         {
             return dbHelper.IsBSNTaken(bsn);
         }
 
-        public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN)
+        public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
-            if (!IsUserTaken(user) || IsValidUser(user))
+            if (newEmail != user.GetEmail() && IsEmailTakenByOtherUser(user, newEmail))
             {
-                dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
+                throw new AlreadyExistUserException("email");
             }
+            if (newBsn != user.GetBsn() && IsBsnTakenByOtherUser(user, newBsn))
+            {
+                throw new AlreadyExistUserException("Bsn");
+            }
+            dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
         }
+
+        private bool IsEmailTakenByOtherUser(DesktopUser user, string email)
+        {
+            return dbHelper.IsEmailTakenByOtherUser(user, email);
+        }
+
+        private bool IsBsnTakenByOtherUser(DesktopUser user, int bsn)
+        {
+            return dbHelper.IsBsnTakenByOtherUser(user, bsn);
+        }
+
 
         public List<DesktopUser> GetAllDesktopUsers()
         {

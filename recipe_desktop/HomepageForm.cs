@@ -1,29 +1,31 @@
 using manager_classes;
 using db_helpers;
 using entity_classes;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace recipe_desktop
 {
     public partial class HomePageForm : Form
     {
-        private DesktopUser currentUser;
+        private DesktopUser user;
         private IUserManager userManager;
         private IIngredientManager ingredientManager;
 
         List<MenuUC> menuButtons;
 
-        public HomePageForm(IUserManager userManager, DesktopUser user)
+        public HomePageForm(DesktopUser user, IUserManager userManager)
         {
             InitializeComponent();
 
             menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };
+            
             ClickMenu(menuButtons);
 
             this.userManager = userManager;
-            this.currentUser = user;
+            this.user = user;
             this.ingredientManager = new IngredientManager(new DBIngredientHelper());
 
-            if (currentUser.GetRole().GetName() != "Admin")
+            if (user.GetRole().GetName() != "Admin")
             {
                 Employees.Enabled = false;
             }
@@ -81,6 +83,7 @@ namespace recipe_desktop
         private void LogOut()
         {
             this.Close();
+
             AuthenticationForm authForm = new AuthenticationForm();
             authForm.Show();
         }
@@ -92,14 +95,14 @@ namespace recipe_desktop
 
         public void LoadSettings()
         {
-            SettingsUC settingsUC = new SettingsUC(userManager, currentUser);
+            SettingsUC settingsUC = new SettingsUC(userManager, user);
             settingsUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(settingsUC);
         }
 
         public void LoadDashboard()
         {
-            DashBoardUC dashboardUC = new DashBoardUC(userManager, currentUser, ingredientManager);
+            DashBoardUC dashboardUC = new DashBoardUC(user, userManager, ingredientManager);
             dashboardUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(dashboardUC);
         }

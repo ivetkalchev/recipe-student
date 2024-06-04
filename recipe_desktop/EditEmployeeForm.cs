@@ -6,14 +6,15 @@ namespace recipe_desktop
 {
     public partial class EditEmployeeForm : Form
     {
-        private DesktopUser currentUser;
+        private DesktopUser user;
         private IUserManager userManager;
 
-        public EditEmployeeForm(IUserManager userManager, DesktopUser currentUser)
+        public EditEmployeeForm(DesktopUser user, IUserManager userManager)
         {
             InitializeComponent();
+
+            this.user = user;
             this.userManager = userManager;
-            this.currentUser = currentUser;
 
             LoadUserDetails();
             LockTextBoxes();
@@ -27,14 +28,14 @@ namespace recipe_desktop
 
         private void LoadUserDetails()
         {
-            tbFirstName.Text = currentUser.GetFirstName();
-            tbLastName.Text = currentUser.GetLastName();
-            tbUsername.Text = currentUser.GetUsername();
-            tbEmail.Text = currentUser.GetEmail();
-            dtpBirthdate.Value = currentUser.GetBirthdate();
-            cbGenders.SelectedItem = currentUser.GetGender().GetName();
-            tbBSN.Text = currentUser.GetBsn().ToString();
-            tbRole.Text = currentUser.GetRole().GetName();
+            tbFirstName.Text = user.GetFirstName();
+            tbLastName.Text = user.GetLastName();
+            tbUsername.Text = user.GetUsername();
+            tbEmail.Text = user.GetEmail();
+            dtpBirthdate.Value = user.GetBirthdate();
+            cbGenders.SelectedItem = user.GetGender().GetName();
+            tbBSN.Text = user.GetBsn().ToString();
+            tbRole.Text = user.GetRole().GetName();
         }
 
         private void LockTextBoxes()
@@ -78,10 +79,9 @@ namespace recipe_desktop
 
             try
             {
-                userManager.UpdateUserDetails(currentUser, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
+                userManager.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
                 MessageBox.Show("Changes saved successfully!");
 
-                btnSave.Enabled = false;
                 LockTextBoxes();
             }
             catch (InvalidUserException ex)
@@ -127,13 +127,14 @@ namespace recipe_desktop
         {
             var genders = userManager.GetAllGenders();
             cbGenders.Items.Clear();
+            
             foreach (var gender in genders)
             {
                 cbGenders.Items.Add(gender.GetName());
             }
             if (cbGenders.Items.Count > 0)
             {
-                cbGenders.SelectedIndex = cbGenders.FindStringExact(currentUser.GetGender().GetName());
+                cbGenders.SelectedIndex = cbGenders.FindStringExact(user.GetGender().GetName());
             }
         }
     }

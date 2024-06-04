@@ -4,24 +4,33 @@ using LiveChartsCore;
 using manager_classes;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace recipe_desktop
 {
     public partial class DashBoardUC : UserControl
     {
+        private DesktopUser user;
         private IUserManager userManager;
         private IIngredientManager ingredientManager;
-        public DashBoardUC(IUserManager userManager, DesktopUser user, IIngredientManager ingredientManager)
+        
+        public DashBoardUC(DesktopUser user, IUserManager userManager, IIngredientManager ingredientManager)
         {
             InitializeComponent();
+
+            this.user = user;
             this.userManager = userManager;
             this.ingredientManager = ingredientManager;
 
-            lblWelcomeUser.Text = $"Welcome, {user.GetFirstName()} {user.GetLastName()}!";
 
             SetGuideText(user.GetRole().GetName());
-
+            LoadWelcomeText(user);
             LoadPieChartUsers();
+        }
+        
+        private void LoadWelcomeText(DesktopUser user)
+        {
+            lblWelcomeUser.Text = $"Welcome, {user.GetFirstName()} {user.GetLastName()}!";
         }
 
         private void SetGuideText(string roleName)

@@ -9,6 +9,7 @@ namespace recipe_desktop
         public AuthenticationForm()
         {
             InitializeComponent();
+
             userManager = new UserManager(new DBUserHelper());
         }
 

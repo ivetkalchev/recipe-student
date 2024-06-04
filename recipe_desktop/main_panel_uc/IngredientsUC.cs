@@ -7,6 +7,7 @@ namespace recipe_desktop
     public partial class IngredientsUC : UserControl
     {
         private readonly IIngredientManager ingredientManager;
+        
         private List<Ingredient> ingredients;
         private List<Ingredient> searchResults;
         private int currentPage;
@@ -15,8 +16,11 @@ namespace recipe_desktop
         public IngredientsUC(IIngredientManager ingredientManager)
         {
             InitializeComponent();
+            
             this.ingredientManager = ingredientManager;
+            
             currentPage = 1;
+            
             LoadAllIngredients();
             LoadTypeIngredients();
         }
@@ -32,6 +36,7 @@ namespace recipe_desktop
         {
             var typeIngredients = ingredientManager.GetAllTypeIngredients();
             cbTypeIngredient.Items.Clear();
+            
             foreach (var type in typeIngredients)
             {
                 cbTypeIngredient.Items.Add(type.GetName());
@@ -40,8 +45,7 @@ namespace recipe_desktop
             {
                 cbTypeIngredient.SelectedIndex = 0;
             }
-        }
-        
+        }    
 
         private void DisplayIngredients()
         {
@@ -68,7 +72,7 @@ namespace recipe_desktop
 
                 for (int i = startIndex; i < endIndex; i++)
                 {
-                    SingleIngredientUC ingredientUC = new SingleIngredientUC(ingredientManager, ingredientsToDisplay[i]);
+                    SingleIngredientUC ingredientUC = new SingleIngredientUC(ingredientsToDisplay[i], ingredientManager);
                     ingredientUC.IngredientDeleted += IngredientUC_IngredientDeleted;
                     ingredientUC.Margin = new Padding(10);
                     flowPanel.Controls.Add(ingredientUC);

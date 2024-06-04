@@ -406,5 +406,52 @@ namespace db_helpers
 
             return null;
         }
+        public bool IsEmailTakenByOtherUser(DesktopUser user, string email)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE email = @Email AND id_user != @UserId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking email for other users: " + ex.Message);
+                return false;
+            }
+        }
+
+        public bool IsBsnTakenByOtherUser(DesktopUser user, int bsn)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = "SELECT COUNT(*) FROM [dbo].[DesktopUser] WHERE bsn = @Bsn AND id_user != @UserId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Bsn", bsn);
+                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking BSN for other users: " + ex.Message);
+                return false;
+            }
+        }
     }
 }

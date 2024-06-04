@@ -134,7 +134,7 @@ namespace db_helpers
             }
         }
 
-        public void UpdateIngredientDetails(Ingredient currentIngredient, string newName, TypeIngredient newType, decimal newPrice)
+        public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
             {
@@ -149,7 +149,7 @@ namespace db_helpers
                     WHERE id_ingredient = @Id";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@Id", currentIngredient.GetIdIngredient());
+                    cmd.Parameters.AddWithValue("@Id", ingredient.GetIdIngredient());
                     cmd.Parameters.AddWithValue("@Name", newName);
                     cmd.Parameters.AddWithValue("@IdType", newType.GetId());
                     cmd.Parameters.AddWithValue("@Price", newPrice);
@@ -163,6 +163,29 @@ namespace db_helpers
                     Console.WriteLine("Error updating ingredient details: " + ex.Message);
                     throw new Exception("Unable to update ingredient details. Please try again later.");
                 }
+            }
+        }
+
+        public bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Ingredient WHERE name = @Name AND id_ingredient != @Id";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Id", ingredient.GetIdIngredient());
+
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error checking if ingredient name is taken by another ingredient: " + ex.Message);
+                throw new Exception("Unable to verify ingredient name. Please try again later.");
             }
         }
     }

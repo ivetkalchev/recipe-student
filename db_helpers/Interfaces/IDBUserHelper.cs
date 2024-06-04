@@ -11,7 +11,9 @@ namespace db_helpers
         Gender GetGenderById(int genderId);
         void InsertDesktopUser(DesktopUser newUser);
         bool IsBSNTaken(int bsn);
+        bool IsBsnTakenByOtherUser(DesktopUser user, int bsn);
         bool IsEmailTaken(string email);
+        bool IsEmailTakenByOtherUser(DesktopUser user, string email);
         bool IsUsernameTaken(string username);
         void PromoteUserToAdmin(DesktopUser user);
         void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN);

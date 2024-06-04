@@ -6,17 +6,15 @@ namespace recipe_desktop
 {
     public partial class SettingsUC : UserControl
     {
+        private DesktopUser user;
         private IUserManager userManager;
-        private DesktopUser currentUser;
 
         public SettingsUC(IUserManager userManager, DesktopUser user)
         {
             InitializeComponent();
 
             this.userManager = userManager;
-            this.currentUser = user;
-
-            btnSave.Enabled = false;
+            this.user = user;
 
             LoadUserDetails();
             LockTextBoxes();
@@ -25,14 +23,14 @@ namespace recipe_desktop
 
         private void LoadUserDetails()
         {
-            tbFirstName.Text = currentUser.GetFirstName();
-            tbLastName.Text = currentUser.GetLastName();
-            tbUsername.Text = currentUser.GetUsername();
-            tbEmail.Text = currentUser.GetEmail();
-            dtpBirthdate.Value = currentUser.GetBirthdate();
-            cbGenders.SelectedItem = currentUser.GetGender().GetName();
-            tbBSN.Text = currentUser.GetBsn().ToString();
-            tbRole.Text = currentUser.GetRole().GetName();
+            tbFirstName.Text = user.GetFirstName();
+            tbLastName.Text = user.GetLastName();
+            tbUsername.Text = user.GetUsername();
+            tbEmail.Text = user.GetEmail();
+            dtpBirthdate.Value = user.GetBirthdate();
+            cbGenders.SelectedItem = user.GetGender().GetName();
+            tbBSN.Text = user.GetBsn().ToString();
+            tbRole.Text = user.GetRole().GetName();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -52,10 +50,9 @@ namespace recipe_desktop
 
             try
             {
-                userManager.UpdateUserDetails(currentUser, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
+                userManager.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
                 MessageBox.Show("Changes saved successfully!");
 
-                btnSave.Enabled = false;
                 LockTextBoxes();
             }
             catch (InvalidUserException ex)
@@ -74,6 +71,8 @@ namespace recipe_desktop
             cbGenders.Enabled = false;
             tbBSN.Enabled = false;
             tbRole.Enabled = false;
+
+            btnSave.Enabled = false;
         }
 
         private void UnlockTextBoxes()
@@ -129,7 +128,7 @@ namespace recipe_desktop
             }
             if (cbGenders.Items.Count > 0)
             {
-                cbGenders.SelectedIndex = cbGenders.FindStringExact(currentUser.GetGender().GetName());
+                cbGenders.SelectedIndex = cbGenders.FindStringExact(user.GetGender().GetName());
             }
         }
 

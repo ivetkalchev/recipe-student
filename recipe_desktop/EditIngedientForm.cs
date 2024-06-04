@@ -6,14 +6,15 @@ namespace recipe_desktop
 {
     public partial class EditIngredientForm : Form
     {
-        private Ingredient currentIngredient;
+        private Ingredient ingredient;
         private IIngredientManager ingredientManager;
 
-        public EditIngredientForm(IIngredientManager ingredientManager, Ingredient currentIngredient)
+        public EditIngredientForm(Ingredient ingredient, IIngredientManager ingredientManager)
         {
             InitializeComponent();
+
             this.ingredientManager = ingredientManager;
-            this.currentIngredient = currentIngredient;
+            this.ingredient = ingredient;
 
             LoadIngredientDetails();
             LoadTypeIngredients();
@@ -27,9 +28,9 @@ namespace recipe_desktop
 
         private void LoadIngredientDetails()
         {
-            tbName.Text = currentIngredient.GetName();
-            cbTypeIngredient.SelectedItem = currentIngredient.GetTypeIngredient().GetName();
-            nudPrice.Value = currentIngredient.GetPrice();
+            tbName.Text = ingredient.GetName();
+            cbTypeIngredient.SelectedItem = ingredient.GetTypeIngredient().GetName();
+            nudPrice.Value = ingredient.GetPrice();
         }
 
         private void LockTextBoxes()
@@ -62,11 +63,11 @@ namespace recipe_desktop
 
             try
             { 
-            ingredientManager.UpdateIngredientDetails(currentIngredient, newName, newType, newPrice);
-            MessageBox.Show("Changes saved successfully!");
+                ingredientManager.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
+                MessageBox.Show("Changes saved successfully!");
 
-            btnSave.Enabled = false;
-            LockTextBoxes();
+                btnSave.Enabled = false;
+                LockTextBoxes();
             }
             catch (InvalidIngredientException ex)
             {
@@ -84,13 +85,14 @@ namespace recipe_desktop
         {
             var typeIngredients = ingredientManager.GetAllTypeIngredients();
             cbTypeIngredient.Items.Clear();
+            
             foreach (var type in typeIngredients)
             {
                 cbTypeIngredient.Items.Add(type.GetName());
             }
             if (cbTypeIngredient.Items.Count > 0)
             {
-                cbTypeIngredient.SelectedIndex = 0;
+                cbTypeIngredient.SelectedIndex = cbTypeIngredient.FindStringExact(ingredient.GetTypeIngredient().GetName()); ;
             }
         }
     }

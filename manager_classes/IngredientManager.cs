@@ -60,9 +60,19 @@ namespace manager_classes
 
         public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice)
         {
-            CheckIfIngredientExists(newName);
+            if (newName != ingredient.GetName() && IsIngredientNameTakenByOtherIngredient(ingredient, newName))
+            {
+                throw new AlreadyExistIngredientException(newName);
+            }
+
+            ingredient.ValidateIngredientPrice(newPrice);
 
             dbHelper.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
+        }
+
+        private bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name)
+        {
+            return dbHelper.IsIngredientNameTakenByOtherIngredient(ingredient, name);
         }
     }
 }

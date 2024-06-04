@@ -14,8 +14,10 @@ namespace recipe_desktop
         public SingleEmployeeUC(IUserManager userManager, DesktopUser user)
         {
             InitializeComponent();
+
             this.userManager = userManager;
             this.user = user;
+            
             LoadUserDetails();
         }
 
@@ -36,10 +38,12 @@ namespace recipe_desktop
         {
             lblId.Text = id.ToString();
         }
+        
         public void SetFirstName(string firstName)
         {
             lblFirstName.Text = firstName;
         }
+        
         public void SetLastName(string lastName)
         {
             lblLastName.Text = lastName;
@@ -74,7 +78,7 @@ namespace recipe_desktop
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            EditEmployeeForm editEmployee = new EditEmployeeForm(userManager, user);
+            EditEmployeeForm editEmployee = new EditEmployeeForm(user, userManager);
             editEmployee.Show();
         }
     }

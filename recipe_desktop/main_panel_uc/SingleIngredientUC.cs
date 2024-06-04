@@ -8,13 +8,15 @@ namespace recipe_desktop
     {
         private Ingredient ingredient;
         private IIngredientManager ingredientManager;
-
+        
         public event EventHandler IngredientDeleted;
-        public SingleIngredientUC(IIngredientManager ingredientManager, Ingredient ingredient)
+        public SingleIngredientUC(Ingredient ingredient, IIngredientManager ingredientManager)
         {
             InitializeComponent();
+
             this.ingredientManager = ingredientManager;
             this.ingredient = ingredient;
+
             LoadIngredientDetails();
         }
 
@@ -55,7 +57,7 @@ namespace recipe_desktop
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            EditIngredientForm editIngredient = new EditIngredientForm(ingredientManager, ingredient);
+            EditIngredientForm editIngredient = new EditIngredientForm(ingredient, ingredientManager);
             editIngredient.Show();
         }
     }
