@@ -37,6 +37,7 @@
             btnPromote = new Button();
             btnDelete = new Button();
             lblEmail = new Label();
+            btnEdit = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -88,7 +89,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(552, 50);
+            lblUsername.Location = new Point(587, 50);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(133, 30);
             lblUsername.TabIndex = 4;
@@ -99,7 +100,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblRole.ForeColor = Color.White;
-            lblRole.Location = new Point(1114, 49);
+            lblRole.Location = new Point(1081, 50);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(73, 30);
             lblRole.TabIndex = 5;
@@ -114,7 +115,7 @@
             btnPromote.FlatStyle = FlatStyle.Flat;
             btnPromote.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnPromote.ForeColor = Color.FromArgb(46, 76, 157);
-            btnPromote.Location = new Point(1455, 39);
+            btnPromote.Location = new Point(1349, 39);
             btnPromote.Name = "btnPromote";
             btnPromote.Size = new Size(149, 49);
             btnPromote.TabIndex = 7;
@@ -133,7 +134,7 @@
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(1327, 39);
+            btnDelete.Location = new Point(1504, 39);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(122, 49);
             btnDelete.TabIndex = 8;
@@ -146,17 +147,37 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(742, 50);
+            lblEmail.Location = new Point(759, 50);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(85, 30);
             lblEmail.TabIndex = 9;
             lblEmail.Text = "{Email}";
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.FromArgb(61, 83, 143);
+            btnEdit.Cursor = Cursors.Hand;
+            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnEdit.FlatAppearance.BorderSize = 2;
+            btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
+            btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnEdit.ForeColor = Color.White;
+            btnEdit.Location = new Point(1255, 39);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(88, 49);
+            btnEdit.TabIndex = 12;
+            btnEdit.Text = "EDIT";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
             // SingleEmployeeUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(127, 149, 209);
+            Controls.Add(btnEdit);
             Controls.Add(lblEmail);
             Controls.Add(btnDelete);
             Controls.Add(btnPromote);
@@ -186,5 +207,6 @@
         private Button btnPromote;
         private Button btnDelete;
         private Label lblEmail;
+        private Button btnEdit;
     }
 }

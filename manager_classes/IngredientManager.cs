@@ -14,9 +14,22 @@ namespace manager_classes
             this.dbHelper = dbHelper;
         }
 
-        public List<Unit> GetAllUnits()
+        public List<TypeIngredient> GetAllTypeIngredients()
         {
-            return dbHelper.GetAllUnits();
+            return dbHelper.GetAllTypes();
+        }
+
+        public TypeIngredient GetTypeIngredientByName(string name)
+        {
+            var types = dbHelper.GetAllTypes();
+            foreach (var type in types)
+            {
+                if (type.GetName().Equals(name, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return type;
+                }
+            }
+            return null;
         }
 
         public void AddIngredient(Ingredient newIngredient)

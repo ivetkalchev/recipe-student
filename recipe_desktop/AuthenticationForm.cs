@@ -5,10 +5,10 @@ using System.Windows.Forms;
 
 namespace recipe_desktop
 {
-    public partial class Authentication : Form
+    public partial class AuthenticationForm : Form
     {
         private UserManager userManager;
-        public Authentication()
+        public AuthenticationForm()
         {
             InitializeComponent();
             userManager = new UserManager(new DBUserHelper());

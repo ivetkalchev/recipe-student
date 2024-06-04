@@ -20,24 +20,8 @@ namespace recipe_desktop
             InitializeComponent();
             this.ingredientManager = ingredientManager;
             currentPage = 1;
-            LoadUnits();
             LoadAllIngredients();
-        }
-
-        private void LoadUnits()
-        {
-            var units = ingredientManager.GetAllUnits();
-            cbUnits.Items.Clear();
-
-            foreach (var unit in units)
-            {
-                cbUnits.Items.Add(unit.GetName());
-            }
-
-            if (cbUnits.Items.Count > 0)
-            {
-                cbUnits.SelectedIndex = 0;
-            }
+            LoadTypeIngredients();
         }
 
         private void LoadAllIngredients()
@@ -46,6 +30,21 @@ namespace recipe_desktop
             UpdatePagination();
             DisplayIngredients();
         }
+
+        private void LoadTypeIngredients()
+        {
+            var typeIngredients = ingredientManager.GetAllTypeIngredients();
+            cbTypeIngredient.Items.Clear();
+            foreach (var type in typeIngredients)
+            {
+                cbTypeIngredient.Items.Add(type.GetName());
+            }
+            if (cbTypeIngredient.Items.Count > 0)
+            {
+                cbTypeIngredient.SelectedIndex = 0;
+            }
+        }
+        
 
         private void DisplayIngredients()
         {
@@ -92,8 +91,20 @@ namespace recipe_desktop
         {
             try
             {
-                var selectedUnit = FindSelectedUnit();
-                var newIngredient = new Ingredient(0, tbName.Text.Trim(), selectedUnit, nudPrice.Value);
+                var selectedTypeName = cbTypeIngredient.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(selectedTypeName))
+                {
+                    MessageBox.Show("Please select a type ingredient.");
+                    return;
+                }
+
+                var selectedType = ingredientManager.GetTypeIngredientByName(selectedTypeName);
+
+                var newIngredient = new Ingredient(
+                    0,
+                    tbName.Text.Trim(),
+                    selectedType,
+                    nudPrice.Value);
 
                 ingredientManager.AddIngredient(newIngredient);
                 MessageBox.Show($"{newIngredient.GetName()} was added successfully!");
@@ -104,29 +115,17 @@ namespace recipe_desktop
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private Unit FindSelectedUnit()
-        {
-            var units = ingredientManager.GetAllUnits();
-            foreach (var unit in units)
+            catch (Exception ex)
             {
-                if (unit.GetName() == cbUnits.SelectedItem.ToString())
-                {
-                    return unit;
-                }
+                MessageBox.Show("Error adding ingredient: " + ex.Message);
             }
-            return null;
         }
 
         private void ClearFields()
         {
             tbName.Clear();
             nudPrice.Value = nudPrice.Minimum;
-            if (cbUnits.Items.Count > 0)
-            {
-                cbUnits.SelectedIndex = 0;
-            }
+            cbTypeIngredient.SelectedIndex = -1;
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)

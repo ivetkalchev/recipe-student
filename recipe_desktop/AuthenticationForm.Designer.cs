@@ -1,6 +1,6 @@
 ﻿namespace recipe_desktop
 {
-    partial class Authentication
+    partial class AuthenticationForm
     {
         /// <summary>
         ///  Required designer variable.

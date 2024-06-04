@@ -7,34 +7,34 @@ namespace db_helpers
 {
     public class DBIngredientHelper : DBConnection, IDBIngredientHelper
     {
-        public List<Unit> GetAllUnits()
+        public List<TypeIngredient> GetAllTypes()
         {
-            List<Unit> units = new List<Unit>();
+            List<TypeIngredient> types = new List<TypeIngredient>();
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Unit";
+                    string query = "SELECT * FROM TypeIngredient";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            units.Add(new Unit((int)reader["id_unit"], reader["unit"].ToString()));
+                            types.Add(new TypeIngredient((int)reader["id_type"], reader["type"].ToString()));
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error fetching units: " + ex.Message);
-                throw new Exception("Unable to fetch units. Please try again later.");
+                Console.WriteLine("Error fetching types: " + ex.Message);
+                throw new Exception("Unable to fetch types. Please try again later.");
             }
 
-            return units;
+            return types;
         }
 
         public void AddIngredient(Ingredient newIngredient)
@@ -44,10 +44,10 @@ namespace db_helpers
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = "INSERT INTO Ingredient (name, id_unit, price) VALUES (@Name, @UnitId, @Price)";
+                    string query = "INSERT INTO Ingredient (name, id_type, price) VALUES (@Name, @IdType, @Price)";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", newIngredient.GetName());
-                    cmd.Parameters.AddWithValue("@UnitId", newIngredient.GetUnit().GetId());
+                    cmd.Parameters.AddWithValue("@IdType", newIngredient.GetTypeIngredient().GetId());
                     cmd.Parameters.AddWithValue("@Price", newIngredient.GetPrice());
 
                     cmd.ExecuteNonQuery();
@@ -59,6 +59,7 @@ namespace db_helpers
                 throw new Exception("Unable to add ingredient. Please try again later.");
             }
         }
+
 
         public bool DoesIngredientExist(string name)
         {
@@ -91,15 +92,15 @@ namespace db_helpers
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = "SELECT i.id_ingredient, i.name, i.price, u.id_unit, u.unit FROM Ingredient i JOIN Unit u ON i.id_unit = u.id_unit";
+                    string query = "SELECT i.id_ingredient, i.name, i.price, t.id_type, t.type FROM Ingredient i JOIN TypeIngredient t ON i.id_type = t.id_type";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Unit unit = new Unit((int)reader["id_unit"], reader["unit"].ToString());
-                            Ingredient ingredient = new Ingredient((int)reader["id_ingredient"], reader["name"].ToString(), unit, (decimal)reader["price"]);
+                            TypeIngredient typeIngredient = new TypeIngredient((int)reader["id_type"], reader["type"].ToString());
+                            Ingredient ingredient = new Ingredient((int)reader["id_ingredient"], reader["name"].ToString(), typeIngredient, (decimal)reader["price"]);
                             ingredients.Add(ingredient);
                         }
                     }

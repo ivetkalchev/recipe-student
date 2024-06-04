@@ -26,7 +26,6 @@ namespace recipe_desktop
             SetGuideText(user.GetRole().GetName());
 
             LoadPieChartUsers();
-            LoadPieChartIngredients();
         }
 
         private void SetGuideText(string roleName)
@@ -91,44 +90,6 @@ namespace recipe_desktop
                 };
 
             pieChartUsers.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
-        }
-
-        private void LoadPieChartIngredients()
-        {
-            var ingredients = ingredientManager.GetAllIngredients();
-            int litreCount = 0;
-            int kilogramCount = 0;
-
-            foreach (var ingredient in ingredients)
-            {
-                var unitName = ingredient.GetUnit().GetName();
-                if (unitName == "litre")
-                {
-                    litreCount++;
-                }
-                else if (unitName == "kilogram")
-                {
-                    kilogramCount++;
-                }
-            }
-
-            pieChartIngredients.Series = new ISeries[]
-            {
-            new PieSeries<double>
-            {
-                Values = new double[] { litreCount },
-                Name = "Litre Ingredients",
-                Fill = new SolidColorPaint(new SKColor(127, 149, 209))
-            },
-            new PieSeries<double>
-            {
-                Values = new double[] { kilogramCount },
-                Name = "Kilogram Ingredients",
-                Fill = new SolidColorPaint(new SKColor(46, 79, 166))
-            }
-                };
-
-            pieChartIngredients.LegendPosition = LiveChartsCore.Measure.LegendPosition.Right;
         }
     }
 }

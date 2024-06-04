@@ -45,7 +45,7 @@ namespace recipe_desktop
 
         private void LoadLogin()
         {
-            Authentication parentForm = this.ParentForm as Authentication;
+            AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
             parentForm.ClearPanel();
             parentForm.LoadLogin();
         }
@@ -67,16 +67,16 @@ namespace recipe_desktop
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            string username = tbUsername.Text;
-            string plainPassword = tbPassword.Text;
+            string username = tbUsername.Text.Trim();
+            string plainPassword = tbPassword.Text.Trim();
             Role employeeRole = new Role(2, "Employee");
-            string email = tbEmail.Text;
-            string bsnText = tbBsn.Text;
-            string firstName = tbFirstName.Text;
-            string lastName = tbLastName.Text;
+            string email = tbEmail.Text.Trim();
+            string bsnText = tbBsn.Text.Trim();
+            string firstName = tbFirstName.Text.Trim();
+            string lastName = tbLastName.Text.Trim();
             Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
             DateTime birthdate = dtpBirthdate.Value.Date;
-            string securityAnswer = tbSecurityAnswer.Text;
+            string securityAnswer = tbSecurityAnswer.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(plainPassword) ||

@@ -30,7 +30,7 @@
         {
             lblId = new Label();
             lblName = new Label();
-            lblUnit = new Label();
+            lblType = new Label();
             lblPrice = new Label();
             btnDelete = new Button();
             pictureBox1 = new PictureBox();
@@ -60,16 +60,16 @@
             lblName.TabIndex = 2;
             lblName.Text = "{Name}";
             // 
-            // lblUnit
+            // lblType
             // 
-            lblUnit.AutoSize = true;
-            lblUnit.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblUnit.ForeColor = Color.White;
-            lblUnit.Location = new Point(621, 48);
-            lblUnit.Name = "lblUnit";
-            lblUnit.Size = new Size(73, 30);
-            lblUnit.TabIndex = 3;
-            lblUnit.Text = "{Unit}";
+            lblType.AutoSize = true;
+            lblType.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblType.ForeColor = Color.White;
+            lblType.Location = new Point(621, 48);
+            lblType.Name = "lblType";
+            lblType.Size = new Size(79, 30);
+            lblType.TabIndex = 3;
+            lblType.Text = "{Type}";
             // 
             // lblPrice
             // 
@@ -136,7 +136,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(btnDelete);
             Controls.Add(lblPrice);
-            Controls.Add(lblUnit);
+            Controls.Add(lblType);
             Controls.Add(lblName);
             Controls.Add(lblId);
             Margin = new Padding(5);
@@ -151,7 +151,7 @@
         #endregion
         private Label lblId;
         private Label lblName;
-        private Label lblUnit;
+        private Label lblType;
         private Label lblPrice;
         private Button btnDelete;
         private PictureBox pictureBox1;

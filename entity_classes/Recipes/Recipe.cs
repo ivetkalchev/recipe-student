@@ -16,13 +16,13 @@ namespace entity_classes
         private string instructions;
         private DesktopUser user;
         private DateTime publishDate;
+        private TimeSpan preparationTime;
         private TimeSpan cookingTime;
-        private List<RecipeIngredient> ingredients;
         private DietRestriction dietRestriction;
         private Difficulty difficulty;
 
         public Recipe(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan cookingTime,
-            List<RecipeIngredient> ingredients, DietRestriction dietRestriction, Difficulty difficulty)
+            DietRestriction dietRestriction, Difficulty difficulty)
         {
             this.idRecipe = idRecipe;
             this.title = title;
@@ -31,7 +31,6 @@ namespace entity_classes
             this.user = user;
             this.publishDate = publishDate;
             this.cookingTime = cookingTime;
-            this.ingredients = ingredients;
             this.dietRestriction = dietRestriction;
             this.difficulty = difficulty;
         }
@@ -56,7 +55,7 @@ namespace entity_classes
             return instructions;
         }
 
-        public DesktopUser GetUser()
+        public User GetUser()
         {
             return user;
         }
@@ -69,11 +68,6 @@ namespace entity_classes
         public TimeSpan GetCookingTime()
         {
             return cookingTime;
-        }
-
-        public List<RecipeIngredient> GetIngredients()
-        {
-            return ingredients;
         }
 
         public DietRestriction GetDietRestriction()

@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class Ingredient
     {
         private int idIngredient;
         private string name;
-        private Unit unit;
+        private TypeIngredient type;
         private decimal price;
 
-        public Ingredient(int idIngredient, string name, Unit unit, decimal price)
+        public Ingredient(int idIngredient, string name, TypeIngredient type, decimal price)
         {
             this.idIngredient = idIngredient;
             this.name = name;
-            this.unit = unit;
+            this.type = type;
             this.price = price;
         }
 
@@ -31,9 +25,9 @@ namespace entity_classes
             return name;
         }
 
-        public Unit GetUnit()
+        public TypeIngredient GetTypeIngredient()
         {
-            return unit;
+            return type;
         }
 
         public decimal GetPrice()

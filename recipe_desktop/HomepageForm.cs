@@ -7,7 +7,7 @@ using entity_classes;
 
 namespace recipe_desktop
 {
-    public partial class HomePage : Form
+    public partial class HomePageForm : Form
     {
         private DesktopUser currentUser;
         private IUserManager userManager;
@@ -15,7 +15,7 @@ namespace recipe_desktop
 
         List<MenuUC> menuButtons;
 
-        public HomePage(IUserManager userManager, DesktopUser user)
+        public HomePageForm(IUserManager userManager, DesktopUser user)
         {
             InitializeComponent();
 
@@ -83,12 +83,12 @@ namespace recipe_desktop
 
         private void LogOut()
         {
-            Authentication authForm = new Authentication();
-            authForm.Show();
             this.Close();
+            AuthenticationForm authForm = new AuthenticationForm();
+            authForm.Show();
         }
 
-        private void HomePage_Load(object sender, EventArgs e)
+        private void HomePageForm_Load(object sender, EventArgs e)
         {
             LoadDashboard();
         }
@@ -120,6 +120,7 @@ namespace recipe_desktop
             employeesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(employeesUC);
         }
+
 
         public void LoadIngredients()
         {

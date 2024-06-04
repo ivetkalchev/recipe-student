@@ -95,9 +95,10 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\osx\nativ
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Authentication.resources
-I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePage.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.IngredientsUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EmployeeUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleEmployeeUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleIngredientUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EditEmployeeForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AuthenticationForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePageForm.resources

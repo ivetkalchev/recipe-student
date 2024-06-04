@@ -57,13 +57,17 @@ namespace recipe_desktop
 
         private void OpenHomePage(DesktopUser user)
         {
-            HomePage homePage = new HomePage(userManager, user);
+            Form parentForm = this.ParentForm;
+            parentForm.Hide();
+
+            HomePageForm homePage = new HomePageForm(userManager, user);
             homePage.Show();
         }
 
+
         private void lblRegister_Click(object sender, EventArgs e)
         {
-            Authentication parentForm = this.ParentForm as Authentication;
+            AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;
             parentForm.ClearPanel();
             parentForm.LoadRegister();
         }

@@ -7,6 +7,7 @@ namespace manager_classes
         void AddIngredient(Ingredient newIngredient);
         void DeleteIngredient(Ingredient ingredient);
         List<Ingredient> GetAllIngredients();
-        List<Unit> GetAllUnits();
+        List<TypeIngredient> GetAllTypeIngredients();
+        TypeIngredient GetTypeIngredientByName(string name);
     }
 }

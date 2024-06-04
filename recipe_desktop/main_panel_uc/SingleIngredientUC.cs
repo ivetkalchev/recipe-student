@@ -1,6 +1,7 @@
 ﻿using entity_classes;
 using manager_classes;
 using System;
+using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -24,7 +25,7 @@ namespace recipe_desktop
         {
             SetId(ingredient.GetIdIngredient());
             SetName(ingredient.GetName());
-            SetUnit(ingredient.GetUnit().GetName());
+            SetType(ingredient.GetTypeIngredient().GetName());
             SetPrice(ingredient.GetPrice());
         }
 
@@ -38,9 +39,9 @@ namespace recipe_desktop
             lblName.Text = name;
         }
 
-        public void SetUnit(string unit)
+        public void SetType(string type)
         {
-            lblUnit.Text = unit;
+            lblType.Text = type;
         }
 
         public void SetPrice(decimal price)

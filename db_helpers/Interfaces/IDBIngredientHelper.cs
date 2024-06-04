@@ -6,8 +6,8 @@ namespace db_helpers
     {
         void AddIngredient(Ingredient newIngredient);
         void DeleteIngredient(Ingredient ingredient);
-        List<Ingredient> GetAllIngredients();
-        List<Unit> GetAllUnits();
         bool DoesIngredientExist(string name);
+        List<Ingredient> GetAllIngredients();
+        List<TypeIngredient> GetAllTypes();
     }
 }

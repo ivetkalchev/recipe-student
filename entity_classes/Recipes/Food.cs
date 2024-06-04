@@ -8,20 +8,14 @@ namespace entity_classes
 {
     public class Food : Recipe
     {
-        private int servings;
         private bool isSpicy;
-
+        private int servings;
         public Food(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan cookingTime,
-            List<RecipeIngredient> ingredients, DietRestriction dietRestriction, Difficulty difficulty, int servings, bool isSpicy)
-            : base(idRecipe, title, description, instructions, user, publishDate, cookingTime, ingredients, dietRestriction, difficulty)
+            List<IngredientRecipe> ingredients, DietRestriction dietRestriction, Difficulty difficulty, bool isSpicy, int servings)
+            : base(idRecipe, title, description, instructions, user, publishDate, cookingTime, dietRestriction, difficulty)
         {
-            this.servings = servings;
             this.isSpicy = isSpicy;
-        }
-
-        public int GetServings()
-        {
-            return servings;
+            this.servings = servings;
         }
 
         public bool GetIsSpicy()
@@ -29,14 +23,15 @@ namespace entity_classes
             return isSpicy;
         }
 
+        public int GetServings()
+        {
+            return servings;
+        }
+
+        //fix
         public override decimal CalculatePrice()
         {
-            decimal total = 0;
-            foreach (var ingredient in GetIngredients())
-            {
-                total += ingredient.GetIngredient().GetPrice() * ingredient.GetQuantity();
-            }
-            return total * servings;
+            return 0;
         }
     }
 }

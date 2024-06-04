@@ -30,23 +30,23 @@
         {
             lblAddIngredient = new Label();
             panel1 = new Panel();
+            cbTypeIngredient = new ComboBox();
+            lblType = new Label();
             lblEuro = new Label();
-            cbUnits = new ComboBox();
             nudPrice = new NumericUpDown();
             btnUpload = new Button();
             tbName = new TextBox();
             lblUsername = new Label();
             lblFirstName = new Label();
-            lblLastName = new Label();
             panelIngredients = new Panel();
             btnPrevious = new Button();
             btnNext = new Button();
             tbSearch = new TextBox();
             picSearch = new PictureBox();
             panel2 = new Panel();
+            label1 = new Label();
             lblPfp = new Label();
             lblPrice = new Label();
-            lblUnit = new Label();
             lblName = new Label();
             lblId = new Label();
             lblNoResults = new Label();
@@ -72,51 +72,62 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(61, 83, 143);
+            panel1.Controls.Add(cbTypeIngredient);
+            panel1.Controls.Add(lblType);
             panel1.Controls.Add(lblAddIngredient);
             panel1.Controls.Add(lblEuro);
-            panel1.Controls.Add(cbUnits);
             panel1.Controls.Add(nudPrice);
             panel1.Controls.Add(btnUpload);
             panel1.Controls.Add(tbName);
             panel1.Controls.Add(lblUsername);
             panel1.Controls.Add(lblFirstName);
-            panel1.Controls.Add(lblLastName);
             panel1.Location = new Point(29, 29);
             panel1.Name = "panel1";
             panel1.Size = new Size(1628, 215);
             panel1.TabIndex = 9;
+            // 
+            // cbTypeIngredient
+            // 
+            cbTypeIngredient.Font = new Font("Segoe UI", 18F);
+            cbTypeIngredient.ForeColor = Color.FromArgb(46, 79, 166);
+            cbTypeIngredient.FormattingEnabled = true;
+            cbTypeIngredient.Location = new Point(541, 127);
+            cbTypeIngredient.Name = "cbTypeIngredient";
+            cbTypeIngredient.Size = new Size(278, 49);
+            cbTypeIngredient.TabIndex = 28;
+            // 
+            // lblType
+            // 
+            lblType.AutoSize = true;
+            lblType.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblType.ForeColor = Color.White;
+            lblType.Location = new Point(532, 87);
+            lblType.Name = "lblType";
+            lblType.Size = new Size(77, 38);
+            lblType.TabIndex = 27;
+            lblType.Text = "Type";
             // 
             // lblEuro
             // 
             lblEuro.AutoSize = true;
             lblEuro.Font = new Font("Segoe UI", 23F, FontStyle.Bold);
             lblEuro.ForeColor = Color.White;
-            lblEuro.Location = new Point(907, 126);
+            lblEuro.Location = new Point(874, 122);
             lblEuro.Name = "lblEuro";
             lblEuro.Size = new Size(44, 52);
             lblEuro.TabIndex = 26;
             lblEuro.Text = "€";
             // 
-            // cbUnits
-            // 
-            cbUnits.Font = new Font("Segoe UI", 18F);
-            cbUnits.ForeColor = Color.FromArgb(46, 79, 166);
-            cbUnits.FormattingEnabled = true;
-            cbUnits.Location = new Point(594, 127);
-            cbUnits.Name = "cbUnits";
-            cbUnits.Size = new Size(231, 49);
-            cbUnits.TabIndex = 25;
-            // 
             // nudPrice
             // 
             nudPrice.DecimalPlaces = 2;
-            nudPrice.Font = new Font("Segoe UI", 18F);
+            nudPrice.Font = new Font("Segoe UI", 19F);
             nudPrice.ForeColor = Color.FromArgb(46, 79, 166);
             nudPrice.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
-            nudPrice.Location = new Point(957, 129);
+            nudPrice.Location = new Point(924, 124);
             nudPrice.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudPrice.Name = "nudPrice";
-            nudPrice.Size = new Size(192, 47);
+            nudPrice.Size = new Size(192, 50);
             nudPrice.TabIndex = 16;
             // 
             // btnUpload
@@ -150,7 +161,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(949, 89);
+            lblUsername.Location = new Point(918, 87);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(78, 38);
             lblUsername.TabIndex = 13;
@@ -166,17 +177,6 @@
             lblFirstName.Size = new Size(93, 38);
             lblFirstName.TabIndex = 11;
             lblFirstName.Text = "Name";
-            // 
-            // lblLastName
-            // 
-            lblLastName.AutoSize = true;
-            lblLastName.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
-            lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(586, 87);
-            lblLastName.Name = "lblLastName";
-            lblLastName.Size = new Size(70, 38);
-            lblLastName.TabIndex = 12;
-            lblLastName.Text = "Unit";
             // 
             // panelIngredients
             // 
@@ -246,15 +246,26 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(46, 79, 166);
+            panel2.Controls.Add(label1);
             panel2.Controls.Add(lblPfp);
             panel2.Controls.Add(lblPrice);
-            panel2.Controls.Add(lblUnit);
             panel2.Controls.Add(lblName);
             panel2.Controls.Add(lblId);
             panel2.Location = new Point(22, 323);
             panel2.Name = "panel2";
             panel2.Size = new Size(1635, 51);
             panel2.TabIndex = 17;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(607, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 38);
+            label1.TabIndex = 17;
+            label1.Text = "Type";
             // 
             // lblPfp
             // 
@@ -272,22 +283,11 @@
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrice.ForeColor = Color.White;
-            lblPrice.Location = new Point(853, 6);
+            lblPrice.Location = new Point(856, 6);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(81, 38);
             lblPrice.TabIndex = 14;
             lblPrice.Text = "Price";
-            // 
-            // lblUnit
-            // 
-            lblUnit.AutoSize = true;
-            lblUnit.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUnit.ForeColor = Color.White;
-            lblUnit.Location = new Point(608, 6);
-            lblUnit.Name = "lblUnit";
-            lblUnit.Size = new Size(73, 38);
-            lblUnit.TabIndex = 13;
-            lblUnit.Text = "Unit";
             // 
             // lblName
             // 
@@ -351,12 +351,10 @@
         private Panel panel1;
         private Label lblUsername;
         private Label lblFirstName;
-        private Label lblLastName;
         private TextBox tbName;
         private Button btnUpload;
         private NumericUpDown nudPrice;
         private Label lblEuro;
-        private ComboBox cbUnits;
         private Panel panelIngredients;
         private Button btnPrevious;
         private Button btnNext;
@@ -365,10 +363,12 @@
         private Panel panel2;
         private Label lblPfp;
         private Label lblPrice;
-        private Label lblUnit;
         private Label label2;
         private Label lblName;
         private Label lblId;
         private Label lblNoResults;
+        private ComboBox cbTypeIngredient;
+        private Label lblType;
+        private Label label1;
     }
 }

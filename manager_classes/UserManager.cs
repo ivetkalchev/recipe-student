@@ -75,6 +75,7 @@ namespace manager_classes
             {
                 throw new InvalidBsnLengthException();
             }
+            //only numbers
             if (!Regex.IsMatch(bsnString, @"^\d+$"))
             {
                 throw new InvalidBsnFormatException();
@@ -84,6 +85,7 @@ namespace manager_classes
 
         private bool IsNameValid(string name, string nameType)
         {
+            //only l
             if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
             {
                 throw new InvalidNameException(nameType);
@@ -108,7 +110,7 @@ namespace manager_classes
             {
                 throw new InvalidPasswordLengthException();
             }
-
+            //one lowercase and uppercase letter, number and special symbol
             if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
             {
                 throw new InvalidPasswordFormatException();

@@ -1,6 +1,6 @@
 ﻿namespace recipe_desktop
 {
-    partial class HomePage : Form
+    partial class HomePageForm : Form
     {
         /// <summary>
         ///  Required designer variable.
@@ -191,7 +191,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             WindowState = FormWindowState.Maximized;
-            Load += HomePage_Load;
+            Load += HomePageForm_Load;
             pamelHeader.ResumeLayout(false);
             sideBarPanel1.ResumeLayout(false);
             panelBar.ResumeLayout(false);

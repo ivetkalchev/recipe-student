@@ -38,6 +38,7 @@ namespace recipe_desktop
             SetRole(user.GetRole().GetName());
 
             btnPromote.Enabled = user.GetRole().GetName() != "Admin";
+            btnEdit.Enabled = user.GetRole().GetName() != "Admin";
         }
 
         public void SetId(int id)
@@ -78,6 +79,12 @@ namespace recipe_desktop
         {
             userManager.PromoteUserToAdmin(user);
             UserPromoted?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            EditEmployeeForm editEmployee = new EditEmployeeForm(userManager, user);
+            editEmployee.Show();
         }
     }
 }

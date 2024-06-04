@@ -4,7 +4,10 @@
     <Compile Update="AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="HomepageForm.cs">
+    <Compile Update="EditEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="HomePageForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="main_panel_uc\DashboardUC.cs">
