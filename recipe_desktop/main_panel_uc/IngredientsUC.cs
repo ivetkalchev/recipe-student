@@ -89,23 +89,19 @@ namespace recipe_desktop
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            string name = tbName.Text.Trim();
+            TypeIngredient type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
+            decimal price = nudPrice.Value;
+
+            Ingredient newIngredient = new Ingredient(
+                0,
+                name,
+                type,
+                price
+            );
+
             try
             {
-                var selectedTypeName = cbTypeIngredient.SelectedItem?.ToString();
-                if (string.IsNullOrEmpty(selectedTypeName))
-                {
-                    MessageBox.Show("Please select a type ingredient.");
-                    return;
-                }
-
-                var selectedType = ingredientManager.GetTypeIngredientByName(selectedTypeName);
-
-                var newIngredient = new Ingredient(
-                    0,
-                    tbName.Text.Trim(),
-                    selectedType,
-                    nudPrice.Value);
-
                 ingredientManager.AddIngredient(newIngredient);
                 MessageBox.Show($"{newIngredient.GetName()} was added successfully!");
                 ClearFields();
@@ -114,10 +110,6 @@ namespace recipe_desktop
             catch (InvalidIngredientException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding ingredient: " + ex.Message);
             }
         }
 

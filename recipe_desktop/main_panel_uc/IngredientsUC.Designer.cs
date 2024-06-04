@@ -127,7 +127,7 @@
             nudPrice.Location = new Point(924, 124);
             nudPrice.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudPrice.Name = "nudPrice";
-            nudPrice.Size = new Size(192, 50);
+            nudPrice.Size = new Size(226, 50);
             nudPrice.TabIndex = 16;
             // 
             // btnUpload
@@ -137,9 +137,9 @@
             btnUpload.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
             btnUpload.FlatAppearance.BorderSize = 2;
             btnUpload.FlatStyle = FlatStyle.Flat;
-            btnUpload.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnUpload.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             btnUpload.ForeColor = Color.FromArgb(46, 76, 157);
-            btnUpload.Location = new Point(1244, 128);
+            btnUpload.Location = new Point(1259, 125);
             btnUpload.Name = "btnUpload";
             btnUpload.Size = new Size(255, 49);
             btnUpload.TabIndex = 15;
@@ -161,11 +161,11 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(918, 87);
+            lblUsername.Location = new Point(916, 83);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(78, 38);
+            lblUsername.Size = new Size(225, 38);
             lblUsername.TabIndex = 13;
-            lblUsername.Text = "Price";
+            lblUsername.Text = "Price (per 1Kg/L)";
             // 
             // lblFirstName
             // 
