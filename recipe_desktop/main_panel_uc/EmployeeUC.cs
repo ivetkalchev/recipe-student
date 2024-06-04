@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using entity_classes;
+﻿using entity_classes;
 using manager_classes;
-using recipe_desktop;
 
 namespace recipe_desktop
 {

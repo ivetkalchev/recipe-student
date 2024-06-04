@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public abstract class Recipe
     {
@@ -21,8 +13,8 @@ namespace entity_classes
         private DietRestriction dietRestriction;
         private Difficulty difficulty;
 
-        public Recipe(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan cookingTime,
-            DietRestriction dietRestriction, Difficulty difficulty)
+        public Recipe(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, 
+            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty)
         {
             this.idRecipe = idRecipe;
             this.title = title;
@@ -30,6 +22,7 @@ namespace entity_classes
             this.instructions = instructions;
             this.user = user;
             this.publishDate = publishDate;
+            this.preparationTime = preparationTime;
             this.cookingTime = cookingTime;
             this.dietRestriction = dietRestriction;
             this.difficulty = difficulty;
@@ -64,6 +57,11 @@ namespace entity_classes
         {
             return publishDate;
         }
+        
+        public TimeSpan GetPreparationTime()
+        {
+            return preparationTime;
+        }
 
         public TimeSpan GetCookingTime()
         {
@@ -80,6 +78,6 @@ namespace entity_classes
             return difficulty;
         }
 
-        public abstract decimal CalculatePrice();
+        public abstract decimal CalculateTotalTime();
     }
 }

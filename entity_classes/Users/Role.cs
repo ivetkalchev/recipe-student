@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class Role
     {

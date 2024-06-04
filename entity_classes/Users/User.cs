@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using exceptions;
+using System.Text.RegularExpressions;
 
 namespace entity_classes
 {
@@ -35,6 +31,30 @@ namespace entity_classes
         public string GetPassword()
         {
             return password;
+        }
+        
+        public bool IsEmailValid(string email)
+        {
+            if (!email.Contains("@"))
+            {
+                throw new InvalidEmailException();
+            }
+            return true;
+        }
+
+        public bool IsPasswordValid(string password)
+        {
+            if (password.Length < 8)
+            {
+                throw new InvalidPasswordLengthException();
+            }
+            //one lowercase and uppercase letter, number and special symbol
+            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
+            {
+                throw new InvalidPasswordFormatException();
+            }
+
+            return true;
         }
     }
 }

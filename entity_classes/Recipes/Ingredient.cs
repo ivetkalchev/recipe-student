@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public class Ingredient
     {
@@ -33,6 +35,22 @@
         public decimal GetPrice()
         {
             return price;
+        }
+
+        public void ValidateIngredientName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) || !System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
+            {
+                throw new InvalidIngredientNameException();
+            }
+        }
+
+        public void ValidateIngredientPrice(decimal price)
+        {
+            if (price <= 0)
+            {
+                throw new InvalidPriceException();
+            }
         }
     }
 }

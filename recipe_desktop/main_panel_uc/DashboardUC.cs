@@ -2,10 +2,6 @@
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore;
 using manager_classes;
-using System;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using LiveChartsCore.SkiaSharpView.WinForms;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 

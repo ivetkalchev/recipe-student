@@ -1,10 +1,6 @@
 ﻿using entity_classes;
 using manager_classes;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Drawing.Drawing2D;
 using System.Globalization;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {

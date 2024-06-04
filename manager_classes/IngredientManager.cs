@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using entity_classes;
+﻿using entity_classes;
 using exceptions;
 using db_helpers;
 
@@ -34,27 +33,11 @@ namespace manager_classes
 
         public void AddIngredient(Ingredient newIngredient)
         {
-            ValidateIngredientName(newIngredient.GetName());
-            ValidateIngredientPrice(newIngredient.GetPrice());
+            newIngredient.ValidateIngredientName(newIngredient.GetName());
+            newIngredient.ValidateIngredientPrice(newIngredient.GetPrice());
             CheckIfIngredientExists(newIngredient.GetName());
 
             dbHelper.AddIngredient(newIngredient);
-        }
-
-        private void ValidateIngredientName(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name) || !System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
-            {
-                throw new InvalidIngredientNameException();
-            }
-        }
-
-        private void ValidateIngredientPrice(decimal price)
-        {
-            if (price <= 0)
-            {
-                throw new InvalidPriceException();
-            }
         }
 
         private void CheckIfIngredientExists(string name)
@@ -75,9 +58,11 @@ namespace manager_classes
             dbHelper.DeleteIngredient(ingredient);
         }
 
-        public void UpdateIngredientDetails(Ingredient currentIngredient, string newName, TypeIngredient newType, decimal newPrice)
+        public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice)
         {
-            dbHelper.UpdateIngredientDetails(currentIngredient, newName, newType, newPrice);
+            CheckIfIngredientExists(newName);
+
+            dbHelper.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
         }
     }
 }

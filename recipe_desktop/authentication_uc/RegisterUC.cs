@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using entity_classes;
-using manager_classes;
+﻿using entity_classes;
 using exceptions;
+using manager_classes;
 
 namespace recipe_desktop
 {

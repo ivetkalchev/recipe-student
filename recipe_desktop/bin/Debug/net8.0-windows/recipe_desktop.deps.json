@@ -415,7 +415,8 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
           "Microsoft.Extensions.Configuration.FileExtensions": "8.0.0",
-          "Microsoft.Extensions.Configuration.Json": "8.0.0"
+          "Microsoft.Extensions.Configuration.Json": "8.0.0",
+          "exceptions": "1.0.0"
         },
         "runtime": {
           "entity_classes.dll": {}

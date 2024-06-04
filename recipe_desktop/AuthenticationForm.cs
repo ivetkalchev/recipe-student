@@ -1,7 +1,5 @@
 using db_helpers;
 using manager_classes;
-using System;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {

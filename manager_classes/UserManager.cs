@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using exceptions;
+﻿using exceptions;
 using db_helpers;
 using entity_classes;
 
@@ -43,12 +40,12 @@ namespace manager_classes
 
         private bool IsValidUser(DesktopUser newUser)
         {
-            return IsPasswordValid(newUser.GetPassword()) &&
-                   IsEmailValid(newUser.GetEmail()) &&
-                   IsBsnValid(newUser.GetBsn()) &&
-                   IsNameValid(newUser.GetFirstName(), "first name") &&
-                   IsNameValid(newUser.GetLastName(), "last name") &&
-                   IsBirthdateValid(newUser.GetBirthdate());
+            return newUser.IsPasswordValid(newUser.GetPassword()) &&
+                   newUser.IsEmailValid(newUser.GetEmail()) &&
+                   newUser.IsBsnValid(newUser.GetBsn()) &&
+                   newUser.IsNameValid(newUser.GetFirstName(), "first name") &&
+                   newUser.IsNameValid(newUser.GetLastName(), "last name") &&
+                   newUser.IsBirthdateValid(newUser.GetBirthdate());
         }
 
         private bool IsUserTaken(DesktopUser newUser)
@@ -66,66 +63,6 @@ namespace manager_classes
                 throw new AlreadyExistUserException("BSN");
             }
             return false;
-        }
-
-        private bool IsBsnValid(int bsn)
-        {
-            string bsnString = bsn.ToString();
-            if (bsnString.Length < 8 || bsnString.Length > 9)
-            {
-                throw new InvalidBsnLengthException();
-            }
-            //only numbers
-            if (!Regex.IsMatch(bsnString, @"^\d+$"))
-            {
-                throw new InvalidBsnFormatException();
-            }
-            return true;
-        }
-
-        private bool IsNameValid(string name, string nameType)
-        {
-            //only letters
-            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
-            {
-                throw new InvalidNameException(nameType);
-            }
-            return true;
-        }
-
-        private bool IsBirthdateValid(DateTime birthdate)
-        {
-            int age = DateTime.Now.Year - birthdate.Year;
-            if (birthdate > DateTime.Now.AddYears(-age)) age--;
-            if (age < 14)
-            {
-                throw new InvalidBirthdateException();
-            }
-            return true;
-        }
-
-        public bool IsPasswordValid(string password)
-        {
-            if (password.Length < 8)
-            {
-                throw new InvalidPasswordLengthException();
-            }
-            //one lowercase and uppercase letter, number and special symbol
-            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
-            {
-                throw new InvalidPasswordFormatException();
-            }
-
-            return true;
-        }
-
-        private bool IsEmailValid(string email)
-        {
-            if (!email.Contains("@"))
-            {
-                throw new InvalidEmailException();
-            }
-            return true;
         }
 
         private string CapitalizeFirstLetter(string text)
@@ -158,7 +95,10 @@ namespace manager_classes
 
         public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN)
         {
-            dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
+            if (!IsUserTaken(user) || IsValidUser(user))
+            {
+                dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
+            }
         }
 
         public List<DesktopUser> GetAllDesktopUsers()

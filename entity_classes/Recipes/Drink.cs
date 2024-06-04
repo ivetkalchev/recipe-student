@@ -1,43 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace entity_classes
+﻿namespace entity_classes.Recipes
 {
     public class Drink : Recipe
     {
-        private bool isAlcholic;
-        private bool hasCaffeineContent;
+        private bool isAlcoholic;
+        private bool containsCaffeine;
+        private bool servedHot;
         private int pours;
-        public Drink(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan cookingTime,
-            List<IngredientRecipe> ingredients, DietRestriction dietRestriction, Difficulty difficulty, bool isAlcholic, bool hasCaffeineContent, int pours)
-            : base(idRecipe, title, description, instructions, user, publishDate, cookingTime, dietRestriction, difficulty)
+        public Drink(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan preparationTime, TimeSpan cookingTime,
+            DietRestriction dietRestriction, Difficulty difficulty, bool isAlcoholic, bool containsCaffeine, bool servedHot, int pours)
+            : base(idRecipe, title, description, instructions, user, publishDate, preparationTime, cookingTime, dietRestriction, difficulty)
         {
-            this.isAlcholic = isAlcholic;
-            this.hasCaffeineContent = hasCaffeineContent;
+            this.isAlcoholic = isAlcoholic;
+            this.containsCaffeine = containsCaffeine;
+            this.servedHot = servedHot;
             this.pours = pours;
         }
 
-        public bool GetIsAlcholic()
+        public bool GetIsAlcoholic()
         {
-            return isAlcholic;
+            return isAlcoholic;
         }
 
-        public bool GetHasCaffeineContent()
+        public bool GetContainsCaffeine()
         {
-            return hasCaffeineContent; 
+            return containsCaffeine;
         }
 
-        public int GetPours()
+        public bool GetServedHot()
+        {
+            return servedHot;
+        }
+
+        public int Getours()
         {
             return pours;
         }
-        //fix
-        public override decimal CalculatePrice()
+
+        public override decimal CalculateTotalTime()
         {
-            return 0;
+            decimal totalTime = (decimal)GetPreparationTime().TotalMinutes;
+            if (servedHot)
+            {
+                totalTime += 5; //for heating purposes
+            }
+            return totalTime;
         }
     }
 }

@@ -10,7 +10,6 @@ namespace manager_classes
         Gender GetGenderByName(string genderName);
         bool IsBSNTaken(int bsn);
         bool IsEmailTaken(string email);
-        bool IsPasswordValid(string password);
         bool IsUsernameTaken(string username);
         DesktopUser LoginDesktopUser(string username, string password);
         void PromoteUserToAdmin(DesktopUser user);

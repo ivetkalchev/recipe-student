@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using manager_classes;
 using db_helpers;
 using entity_classes;

@@ -111,7 +111,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "I:\\individual-project\\exceptions\\exceptions.csproj": {
+                "projectPath": "I:\\individual-project\\exceptions\\exceptions.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

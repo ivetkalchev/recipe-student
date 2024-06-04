@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Reflection;
-using System.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using exceptions;
+using System.Text.RegularExpressions;
 
 namespace entity_classes
 {
@@ -67,6 +60,42 @@ namespace entity_classes
         public string GetSecurityAnswer()
         {
             return securityAnswer;
+        }
+
+        public bool IsNameValid(string name, string nameType)
+        {
+            //only letters
+            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+            {
+                throw new InvalidNameException(nameType);
+            }
+            return true;
+        }
+
+        public bool IsBsnValid(int bsn)
+        {
+            string bsnString = bsn.ToString();
+            if (bsnString.Length < 8 || bsnString.Length > 9)
+            {
+                throw new InvalidBsnLengthException();
+            }
+            //only numbers
+            if (!Regex.IsMatch(bsnString, @"^\d+$"))
+            {
+                throw new InvalidBsnFormatException();
+            }
+            return true;
+        }
+
+        public bool IsBirthdateValid(DateTime birthdate)
+        {
+            int age = DateTime.Now.Year - birthdate.Year;
+            if (birthdate > DateTime.Now.AddYears(-age)) age--;
+            if (age < 14)
+            {
+                throw new InvalidBirthdateException();
+            }
+            return true;
         }
     }
 }
