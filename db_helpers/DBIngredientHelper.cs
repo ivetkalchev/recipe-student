@@ -89,7 +89,9 @@ namespace db_helpers
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = "SELECT i.id_ingredient, i.name, i.price, t.id_type, t.type FROM Ingredient i JOIN TypeIngredient t ON i.id_type = t.id_type";
+                    string query = @"SELECT i.id_ingredient, i.name, i.price, t.id_type, t.type 
+                                     FROM Ingredient i 
+                                     JOIN TypeIngredient t ON i.id_type = t.id_type";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -186,6 +188,36 @@ namespace db_helpers
                 Console.WriteLine("Error checking if ingredient name is taken by another ingredient: " + ex.Message);
                 throw new Exception("Unable to verify ingredient name. Please try again later.");
             }
+        }
+
+        public List<Unit> GetAllUnits()
+        {
+            List<Unit> units = new List<Unit>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM Unit";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            units.Add(new Unit((int)reader["id_unit"], reader["unit"].ToString()));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching units: " + ex.Message);
+                throw new Exception("Unable to fetch units. Please try again later.");
+            }
+
+            return units;
         }
     }
 }

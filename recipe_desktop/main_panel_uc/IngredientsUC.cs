@@ -7,7 +7,6 @@ namespace recipe_desktop
     public partial class IngredientsUC : UserControl
     {
         private readonly IIngredientManager ingredientManager;
-        
         private List<Ingredient> ingredients;
         private List<Ingredient> searchResults;
         private int currentPage;
@@ -16,11 +15,8 @@ namespace recipe_desktop
         public IngredientsUC(IIngredientManager ingredientManager)
         {
             InitializeComponent();
-            
             this.ingredientManager = ingredientManager;
-            
             currentPage = 1;
-            
             LoadAllIngredients();
             LoadTypeIngredients();
         }
@@ -36,7 +32,7 @@ namespace recipe_desktop
         {
             var typeIngredients = ingredientManager.GetAllTypeIngredients();
             cbTypeIngredient.Items.Clear();
-            
+
             foreach (var type in typeIngredients)
             {
                 cbTypeIngredient.Items.Add(type.GetName());
@@ -45,7 +41,7 @@ namespace recipe_desktop
             {
                 cbTypeIngredient.SelectedIndex = 0;
             }
-        }    
+        }
 
         private void DisplayIngredients()
         {
@@ -60,9 +56,9 @@ namespace recipe_desktop
             };
 
             List<Ingredient> ingredientsToDisplay = searchResults ?? ingredients;
+            
             if (ingredientsToDisplay.Count == 0)
             {
-                lblNoResults.Text = "No results found";
                 lblNoResults.Visible = true;
             }
             else
@@ -94,12 +90,7 @@ namespace recipe_desktop
             TypeIngredient type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
             decimal price = nudPrice.Value;
 
-            Ingredient newIngredient = new Ingredient(
-                0,
-                name,
-                type,
-                price
-            );
+            Ingredient newIngredient = new Ingredient(0, name, type, price);
 
             try
             {

@@ -1,21 +1,37 @@
 ﻿using entity_classes;
-using exceptions;
 using manager_classes;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Interop;
 using System.Windows.Forms;
 
 namespace recipe_desktop
 {
     public partial class AddRecipeForm : Form
     {
+        private DesktopUser user;
+        private IRecipeManager recipeManager;
+        private IIngredientManager ingredientManager;
+
         List<MenuUC> menuButtons;
 
-        public AddRecipeForm()
+        public AddRecipeForm(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
         {
             InitializeComponent();
 
-            menuButtons = new List<MenuUC>() { AddDessert, AddMainCourse, AddDrink };
+            menuButtons = new List<MenuUC>() { MainCourse, Dessert, Drink };
             ClickMenu(menuButtons);
+
+            this.user = user;
+            this.recipeManager = recipeManager;
+            this.ingredientManager = ingredientManager;
+
+            LoadMainCourse(user, recipeManager, ingredientManager);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void ClickMenu(List<MenuUC> menus)
@@ -29,54 +45,49 @@ namespace recipe_desktop
         private void Menu_menuClick(object sender, EventArgs e)
         {
             MenuUC menuButton = (MenuUC)sender;
+            ClearPanel();
 
             switch (menuButton.Name)
             {
-                case "AddDessert": 
-                    LoadAddDessert();
+                case "MainCourse":
+                    lblHeaderText.Text = "Add A Main Course Recipe";
+                    LoadMainCourse(user, recipeManager, ingredientManager);
                     break;
-
-                case "AddMainCourse":
-                    LoadAddMainCourse();
+                case "Dessert":
+                    lblHeaderText.Text = "Add A Dessert Recipe";
+                    LoadDessert(user, recipeManager, ingredientManager);
                     break;
-
-                case "AddDrink":
-                    LoadAddDrink();
-                    break;
-
-                default:
-                    MessageBox.Show("Unknown menu button clicked");
+                case "Drink":
+                    lblHeaderText.Text = "Add A Drink Recipe";
+                    LoadDrink(user, recipeManager, ingredientManager);
                     break;
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        public void LoadMainCourse(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
         {
-            this.Close();
+            AddMainCourseUC mainCourseUC = new AddMainCourseUC(user, recipeManager, ingredientManager);
+            mainCourseUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(mainCourseUC);
         }
 
-        private void LoadAddDrink()
+        public void LoadDessert(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
         {
-            this.Close();
-
-            AddDrinkForm addDrink = new AddDrinkForm();
-            addDrink.Show();
+            AddDessertUC dessertUC = new AddDessertUC(user, recipeManager, ingredientManager);
+            dessertUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(dessertUC);
         }
 
-        private void LoadAddDessert()
+        public void LoadDrink(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
         {
-            this.Close();
-
-            AddDessertForm addDessert = new AddDessertForm();
-            addDessert.Show();
+            AddDrinkUC drinkUC = new AddDrinkUC(user, recipeManager, ingredientManager);
+            drinkUC.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(drinkUC);
         }
 
-        private void LoadAddMainCourse()
+        public void ClearPanel()
         {
-            this.Close();
-
-            AddMainCourseForm addMainCourse = new AddMainCourseForm();
-            addMainCourse.Show();
+            mainPanel.Controls.Clear();
         }
     }
 }

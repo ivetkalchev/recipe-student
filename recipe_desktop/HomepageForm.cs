@@ -9,19 +9,21 @@ namespace recipe_desktop
         private DesktopUser user;
         private IUserManager userManager;
         private IIngredientManager ingredientManager;
-
+        private IRecipeManager recipeManager;
+        
         List<MenuUC> menuButtons;
 
         public HomePageForm(DesktopUser user, IUserManager userManager)
         {
             InitializeComponent();
-
-            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };          
+            
+            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };
             ClickMenu(menuButtons);
 
             this.userManager = userManager;
             this.user = user;
             this.ingredientManager = new IngredientManager(new DBIngredientHelper());
+            this.recipeManager = new RecipeManager(new DBRecipeHelper());
 
             if (user.GetRole().GetName() != "Admin")
             {
@@ -48,17 +50,14 @@ namespace recipe_desktop
                     lblHeaderText.Text = "Dashboard";
                     LoadDashboard();
                     break;
-
                 case "Recipes":
                     lblHeaderText.Text = "Recipes";
                     LoadRecipes();
                     break;
-
                 case "Ingredients":
                     lblHeaderText.Text = "Ingredients";
                     LoadIngredients();
                     break;
-
                 case "Employees":
                     if (Employees.Enabled)
                     {
@@ -66,12 +65,10 @@ namespace recipe_desktop
                         LoadEmployees();
                     }
                     break;
-
                 case "Settings":
                     lblHeaderText.Text = "Settings";
                     LoadSettings();
                     break;
-
                 case "Log_Out":
                     LogOut();
                     break;
@@ -81,7 +78,6 @@ namespace recipe_desktop
         private void LogOut()
         {
             this.Close();
-
             AuthenticationForm authForm = new AuthenticationForm();
             authForm.Show();
         }
@@ -93,21 +89,21 @@ namespace recipe_desktop
 
         public void LoadSettings()
         {
-            SettingsUC settingsUC = new SettingsUC(userManager, user);
+            SettingsUC settingsUC = new SettingsUC(user, userManager);
             settingsUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(settingsUC);
         }
 
         public void LoadDashboard()
         {
-            DashBoardUC dashboardUC = new DashBoardUC(user, userManager, ingredientManager);
+            DashBoardUC dashboardUC = new DashBoardUC(user, userManager);
             dashboardUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(dashboardUC);
         }
 
         public void LoadRecipes()
         {
-            RecipesUC recipesUC = new RecipesUC();
+            RecipesUC recipesUC = new RecipesUC(user, recipeManager, ingredientManager);
             recipesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(recipesUC);
         }
@@ -118,7 +114,6 @@ namespace recipe_desktop
             employeesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(employeesUC);
         }
-
 
         public void LoadIngredients()
         {

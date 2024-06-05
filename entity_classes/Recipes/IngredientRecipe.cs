@@ -18,14 +18,19 @@
             return ingredient;
         }
 
-        public decimal GetQuantity() 
-        { 
-            return quantity; 
+        public decimal GetQuantity()
+        {
+            return quantity;
         }
 
         public Unit GetUnit()
         {
             return unit;
+        }
+
+        public override string ToString()
+        {
+            return $"{ingredient.GetName()} - {quantity} {unit.GetName()}";
         }
     }
 }

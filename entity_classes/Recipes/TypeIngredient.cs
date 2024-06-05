@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using System.Runtime.CompilerServices;
+
+namespace entity_classes
 {
     public class TypeIngredient
     {
@@ -15,6 +17,7 @@
         {
             return id;
         }
+
         public string GetName()
         {
             return name;

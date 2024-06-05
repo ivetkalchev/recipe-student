@@ -22,22 +22,22 @@ namespace entity_classes
             this.contentType = contentType;
         }
 
-        public int getIdRecipePic()
+        public int GetIdRecipePic()
         {
             return idRecipePic;
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public string getData()
+        public string GetData()
         {
             return data;
         }
 
-        public string getContentType()
+        public string GetContentType()
         {
             return contentType;
         }

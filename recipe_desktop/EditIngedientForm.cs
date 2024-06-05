@@ -12,10 +12,8 @@ namespace recipe_desktop
         public EditIngredientForm(Ingredient ingredient, IIngredientManager ingredientManager)
         {
             InitializeComponent();
-
             this.ingredientManager = ingredientManager;
             this.ingredient = ingredient;
-
             LoadIngredientDetails();
             LoadTypeIngredients();
             LockTextBoxes();
@@ -38,7 +36,6 @@ namespace recipe_desktop
             tbName.Enabled = false;
             cbTypeIngredient.Enabled = false;
             nudPrice.Enabled = false;
-
             btnSave.Enabled = false;
         }
 
@@ -62,10 +59,9 @@ namespace recipe_desktop
             }
 
             try
-            { 
+            {
                 ingredientManager.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
                 MessageBox.Show("Changes saved successfully!");
-
                 btnSave.Enabled = false;
                 LockTextBoxes();
             }
@@ -76,7 +72,7 @@ namespace recipe_desktop
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
-        { 
+        {
             btnSave.Enabled = true;
             UnlockTextBoxes();
         }
@@ -85,14 +81,14 @@ namespace recipe_desktop
         {
             var typeIngredients = ingredientManager.GetAllTypeIngredients();
             cbTypeIngredient.Items.Clear();
-            
+
             foreach (var type in typeIngredients)
             {
                 cbTypeIngredient.Items.Add(type.GetName());
             }
             if (cbTypeIngredient.Items.Count > 0)
             {
-                cbTypeIngredient.SelectedIndex = cbTypeIngredient.FindStringExact(ingredient.GetTypeIngredient().GetName()); ;
+                cbTypeIngredient.SelectedIndex = cbTypeIngredient.FindStringExact(ingredient.GetTypeIngredient().GetName());
             }
         }
     }

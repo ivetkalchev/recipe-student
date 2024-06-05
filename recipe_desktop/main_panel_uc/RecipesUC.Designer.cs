@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnAddRecipe = new Button();
+            btnAddRecipes = new Button();
             SuspendLayout();
             // 
-            // btnAddRecipe
+            // btnAddRecipes
             // 
-            btnAddRecipe.BackColor = Color.FromArgb(61, 83, 143);
-            btnAddRecipe.Cursor = Cursors.Hand;
-            btnAddRecipe.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
-            btnAddRecipe.FlatAppearance.BorderSize = 2;
-            btnAddRecipe.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
-            btnAddRecipe.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
-            btnAddRecipe.FlatStyle = FlatStyle.Flat;
-            btnAddRecipe.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            btnAddRecipe.ForeColor = Color.White;
-            btnAddRecipe.Location = new Point(544, 781);
-            btnAddRecipe.Name = "btnAddRecipe";
-            btnAddRecipe.Size = new Size(592, 49);
-            btnAddRecipe.TabIndex = 12;
-            btnAddRecipe.Text = "ADD A RECIPE";
-            btnAddRecipe.UseVisualStyleBackColor = false;
-            btnAddRecipe.Click += btnAddRecipe_Click;
+            btnAddRecipes.BackColor = Color.FromArgb(61, 83, 143);
+            btnAddRecipes.Cursor = Cursors.Hand;
+            btnAddRecipes.FlatAppearance.BorderColor = Color.FromArgb(46, 76, 157);
+            btnAddRecipes.FlatAppearance.BorderSize = 2;
+            btnAddRecipes.FlatAppearance.MouseDownBackColor = Color.FromArgb(46, 76, 157);
+            btnAddRecipes.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 76, 157);
+            btnAddRecipes.FlatStyle = FlatStyle.Flat;
+            btnAddRecipes.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnAddRecipes.ForeColor = Color.White;
+            btnAddRecipes.Location = new Point(633, 818);
+            btnAddRecipes.Name = "btnAddRecipes";
+            btnAddRecipes.Size = new Size(474, 49);
+            btnAddRecipes.TabIndex = 6;
+            btnAddRecipes.Text = "ADD RECIPES";
+            btnAddRecipes.UseVisualStyleBackColor = false;
+            btnAddRecipes.Click += btnAddRecipes_Click;
             // 
             // RecipesUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnAddRecipe);
+            Controls.Add(btnAddRecipes);
             Name = "RecipesUC";
             Size = new Size(1677, 870);
             ResumeLayout(false);
@@ -62,6 +62,6 @@
 
         #endregion
 
-        private Button btnAddRecipe;
+        private Button btnAddRecipes;
     }
 }

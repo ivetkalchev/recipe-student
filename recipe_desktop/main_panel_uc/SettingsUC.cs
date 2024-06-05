@@ -9,12 +9,12 @@ namespace recipe_desktop
         private DesktopUser user;
         private IUserManager userManager;
 
-        public SettingsUC(IUserManager userManager, DesktopUser user)
+        public SettingsUC(DesktopUser user, IUserManager userManager)
         {
             InitializeComponent();
 
-            this.userManager = userManager;
             this.user = user;
+            this.userManager = userManager;
 
             LoadUserDetails();
             LockTextBoxes();

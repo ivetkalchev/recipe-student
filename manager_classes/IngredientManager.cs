@@ -18,6 +18,11 @@ namespace manager_classes
             return dbHelper.GetAllTypes();
         }
 
+        public List<Unit> GetAllUnits()
+        {
+            return dbHelper.GetAllUnits();
+        }
+
         public TypeIngredient GetTypeIngredientByName(string name)
         {
             var types = dbHelper.GetAllTypes();

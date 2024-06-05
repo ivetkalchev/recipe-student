@@ -6,6 +6,7 @@
         private bool containsCaffeine;
         private bool servedHot;
         private int pours;
+
         public Drink(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate,
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isAlcoholic, bool containsCaffeine, bool servedHot, int pours)
             : base(idRecipe, title, description, instructions, ingredients, user, publishDate, preparationTime, cookingTime, dietRestriction, difficulty, pic)
@@ -31,7 +32,7 @@
             return servedHot;
         }
 
-        public int Getours()
+        public int GetPours()
         {
             return pours;
         }
@@ -41,7 +42,7 @@
             decimal totalTime = (decimal)GetPreparationTime().TotalMinutes;
             if (servedHot)
             {
-                totalTime += 5; //for heating purposes
+                totalTime += 5; // for heating purposes
             }
             return totalTime;
         }

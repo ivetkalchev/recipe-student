@@ -30,17 +30,19 @@
         {
             lblName = new Label();
             cbUnit = new ComboBox();
-            tbServings = new TextBox();
+            btnAdd = new Button();
+            nudQuantity = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
             SuspendLayout();
             // 
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblName.ForeColor = Color.White;
-            lblName.Location = new Point(34, 33);
+            lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblName.ForeColor = Color.FromArgb(98, 14, 80);
+            lblName.Location = new Point(29, 32);
             lblName.Name = "lblName";
-            lblName.Size = new Size(90, 30);
+            lblName.Size = new Size(99, 32);
             lblName.TabIndex = 5;
             lblName.Text = "{Name}";
             // 
@@ -49,31 +51,54 @@
             cbUnit.Font = new Font("Segoe UI", 13F);
             cbUnit.ForeColor = Color.Black;
             cbUnit.FormattingEnabled = true;
-            cbUnit.Location = new Point(336, 30);
+            cbUnit.Location = new Point(377, 30);
             cbUnit.Name = "cbUnit";
             cbUnit.Size = new Size(97, 38);
             cbUnit.TabIndex = 61;
             // 
-            // tbServings
+            // btnAdd
             // 
-            tbServings.Font = new Font("Segoe UI", 13F);
-            tbServings.ForeColor = Color.Black;
-            tbServings.Location = new Point(252, 30);
-            tbServings.MaxLength = 100;
-            tbServings.Name = "tbServings";
-            tbServings.Size = new Size(78, 36);
-            tbServings.TabIndex = 70;
+            btnAdd.BackColor = Color.FromArgb(98, 14, 80);
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.FlatAppearance.BorderColor = Color.FromArgb(63, 8, 51);
+            btnAdd.FlatAppearance.BorderSize = 2;
+            btnAdd.FlatAppearance.MouseDownBackColor = Color.FromArgb(63, 8, 51);
+            btnAdd.FlatAppearance.MouseOverBackColor = Color.FromArgb(63, 8, 51);
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(514, 30);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(79, 41);
+            btnAdd.TabIndex = 73;
+            btnAdd.Text = "ADD";
+            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // nudQuantity
+            // 
+            nudQuantity.DecimalPlaces = 3;
+            nudQuantity.Font = new Font("Segoe UI", 13F);
+            nudQuantity.ForeColor = Color.Black;
+            nudQuantity.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
+            nudQuantity.Location = new Point(249, 32);
+            nudQuantity.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            nudQuantity.Name = "nudQuantity";
+            nudQuantity.Size = new Size(107, 36);
+            nudQuantity.TabIndex = 74;
             // 
             // SingleIngredientRecipeUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 192, 192);
-            Controls.Add(tbServings);
+            BackColor = Color.FromArgb(232, 170, 219);
+            Controls.Add(nudQuantity);
+            Controls.Add(btnAdd);
             Controls.Add(cbUnit);
             Controls.Add(lblName);
             Name = "SingleIngredientRecipeUC";
             Size = new Size(622, 94);
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -82,6 +107,7 @@
 
         private Label lblName;
         private ComboBox cbUnit;
-        private TextBox tbServings;
+        private Button btnAdd;
+        private NumericUpDown nudQuantity;
     }
 }

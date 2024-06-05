@@ -44,12 +44,6 @@ namespace recipe_desktop
 
             lblNoResults.Visible = usersToDisplay.Count == 0;
 
-            if (usersToDisplay.Count == 0)
-            {
-                lblNoResults.Text = "No results found";
-                return;
-            }
-
             FlowLayoutPanel flowPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,

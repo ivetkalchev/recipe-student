@@ -12,16 +12,13 @@ namespace recipe_desktop
     {
         private DesktopUser user;
         private IUserManager userManager;
-        private IIngredientManager ingredientManager;
         
-        public DashBoardUC(DesktopUser user, IUserManager userManager, IIngredientManager ingredientManager)
+        public DashBoardUC(DesktopUser user, IUserManager userManager)
         {
             InitializeComponent();
 
             this.user = user;
             this.userManager = userManager;
-            this.ingredientManager = ingredientManager;
-
 
             SetGuideText(user.GetRole().GetName());
             LoadWelcomeText(user);

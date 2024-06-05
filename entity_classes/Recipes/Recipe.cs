@@ -17,7 +17,7 @@ namespace entity_classes
         private Difficulty difficulty;
         private RecipePic? pic;
 
-        public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate, 
+        public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate,
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
         {
             this.idRecipe = idRecipe;
@@ -68,7 +68,7 @@ namespace entity_classes
         {
             return publishDate;
         }
-        
+
         public TimeSpan GetPreparationTime()
         {
             return preparationTime;
