@@ -42,12 +42,13 @@
             btnAddRecipe.FlatStyle = FlatStyle.Flat;
             btnAddRecipe.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnAddRecipe.ForeColor = Color.White;
-            btnAddRecipe.Location = new Point(988, 799);
+            btnAddRecipe.Location = new Point(544, 781);
             btnAddRecipe.Name = "btnAddRecipe";
-            btnAddRecipe.Size = new Size(474, 49);
-            btnAddRecipe.TabIndex = 7;
+            btnAddRecipe.Size = new Size(592, 49);
+            btnAddRecipe.TabIndex = 12;
             btnAddRecipe.Text = "ADD A RECIPE";
             btnAddRecipe.UseVisualStyleBackColor = false;
+            btnAddRecipe.Click += btnAddRecipe_Click;
             // 
             // RecipesUC
             // 
@@ -60,6 +61,7 @@
         }
 
         #endregion
+
         private Button btnAddRecipe;
     }
 }

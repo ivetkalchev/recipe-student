@@ -96,6 +96,7 @@
             tbSecurityAnswer.Font = new Font("Segoe UI", 13F);
             tbSecurityAnswer.ForeColor = Color.Black;
             tbSecurityAnswer.Location = new Point(37, 457);
+            tbSecurityAnswer.MaxLength = 100;
             tbSecurityAnswer.Name = "tbSecurityAnswer";
             tbSecurityAnswer.Size = new Size(567, 36);
             tbSecurityAnswer.TabIndex = 28;
@@ -178,6 +179,7 @@
             tbLastName.Font = new Font("Segoe UI", 13F);
             tbLastName.ForeColor = Color.Black;
             tbLastName.Location = new Point(328, 301);
+            tbLastName.MaxLength = 100;
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(276, 36);
             tbLastName.TabIndex = 21;
@@ -200,6 +202,7 @@
             tbFirstName.Font = new Font("Segoe UI", 13F);
             tbFirstName.ForeColor = Color.Black;
             tbFirstName.Location = new Point(37, 301);
+            tbFirstName.MaxLength = 100;
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(276, 36);
             tbFirstName.TabIndex = 19;
@@ -222,6 +225,7 @@
             tbBsn.Font = new Font("Segoe UI", 13F);
             tbBsn.ForeColor = Color.Black;
             tbBsn.Location = new Point(328, 227);
+            tbBsn.MaxLength = 10;
             tbBsn.Name = "tbBsn";
             tbBsn.Size = new Size(276, 36);
             tbBsn.TabIndex = 17;
@@ -244,6 +248,7 @@
             tbEmail.Font = new Font("Segoe UI", 13F);
             tbEmail.ForeColor = Color.Black;
             tbEmail.Location = new Point(37, 227);
+            tbEmail.MaxLength = 100;
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(276, 36);
             tbEmail.TabIndex = 15;
@@ -277,6 +282,7 @@
             tbPassword.Font = new Font("Segoe UI", 13F);
             tbPassword.ForeColor = Color.Black;
             tbPassword.Location = new Point(328, 150);
+            tbPassword.MaxLength = 50;
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(276, 36);
             tbPassword.TabIndex = 12;
@@ -375,6 +381,7 @@
             tbUsername.Font = new Font("Segoe UI", 13F);
             tbUsername.ForeColor = Color.Black;
             tbUsername.Location = new Point(37, 150);
+            tbUsername.MaxLength = 100;
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(276, 36);
             tbUsername.TabIndex = 1;

@@ -58,6 +58,7 @@
             lblType.Size = new Size(79, 30);
             lblType.TabIndex = 3;
             lblType.Text = "{Type}";
+            lblType.Click += lblType_Click;
             // 
             // lblPrice
             // 

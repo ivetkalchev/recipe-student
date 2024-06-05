@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePageForm));
             pamelHeader = new Panel();
             lblHeaderText = new Label();
             sideBarPanel1 = new SideBarPanel();
@@ -175,7 +176,7 @@
             panelBar.Size = new Size(1902, 56);
             panelBar.TabIndex = 0;
             // 
-            // HomePage
+            // HomePageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -186,10 +187,11 @@
             Controls.Add(pamelHeader);
             Controls.Add(panelBar);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "HomePage";
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "HomePageForm";
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "HomePage";
             WindowState = FormWindowState.Maximized;
             Load += HomePageForm_Load;
             pamelHeader.ResumeLayout(false);

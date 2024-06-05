@@ -25,6 +25,9 @@
     <Compile Update="menu_uc\SideBarPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="SingleIngredientRecipeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AuthenticationForm.resx">

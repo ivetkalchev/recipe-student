@@ -23,6 +23,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AddDessertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddDrinkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddMainCourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddRecipeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="EditIngedientForm.cs">
       <SubType>Form</SubType>
     </Compile>

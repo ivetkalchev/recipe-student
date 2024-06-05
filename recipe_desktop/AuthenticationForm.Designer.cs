@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthenticationForm));
             panelBar = new Panel();
             baruc1 = new BarUC();
             panelInput = new Panel();
@@ -60,7 +61,7 @@
             panelInput.Size = new Size(654, 721);
             panelInput.TabIndex = 1;
             // 
-            // Authentication
+            // AuthenticationForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -69,10 +70,11 @@
             Controls.Add(panelInput);
             Controls.Add(panelBar);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Authentication";
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "AuthenticationForm";
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = " Authentication";
             WindowState = FormWindowState.Maximized;
             Load += AuthenticationForm_Load;
             panelBar.ResumeLayout(false);

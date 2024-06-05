@@ -105,7 +105,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(46, 79, 166);
+            panel1.BackColor = Color.FromArgb(61, 83, 143);
             panel1.Controls.Add(lblEmail);
             panel1.Controls.Add(lblRole);
             panel1.Controls.Add(lblUsername);

@@ -8,7 +8,7 @@ namespace recipe_desktop
     {
         private Ingredient ingredient;
         private IIngredientManager ingredientManager;
-        
+
         public event EventHandler IngredientDeleted;
         public SingleIngredientUC(Ingredient ingredient, IIngredientManager ingredientManager)
         {
@@ -53,6 +53,11 @@ namespace recipe_desktop
         {
             EditIngredientForm editIngredient = new EditIngredientForm(ingredient, ingredientManager);
             editIngredient.Show();
+        }
+
+        private void lblType_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

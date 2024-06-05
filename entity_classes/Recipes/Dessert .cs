@@ -4,15 +4,12 @@
     {
         private bool isSugarFree;
         private bool requiresFreezing;
-        private int sweetnessLevel;
-
         public Dessert(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate,
-            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isSugarFree, bool requiresFreezing, int sweetnessLevel)
+            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isSugarFree, bool requiresFreezing)
             : base(idRecipe, title, description, instructions, ingredients, user, publishDate, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
             this.isSugarFree = isSugarFree;
             this.requiresFreezing = requiresFreezing;
-            this.sweetnessLevel = sweetnessLevel;
         }
 
         public bool GetIsSugarFree()
@@ -23,11 +20,6 @@
         public bool GetRequiresFreezing()
         {
             return requiresFreezing;
-        }
-
-        public int GetSweetnessLevel()
-        {
-            return sweetnessLevel;
         }
 
         public override decimal CalculateTotalTime()

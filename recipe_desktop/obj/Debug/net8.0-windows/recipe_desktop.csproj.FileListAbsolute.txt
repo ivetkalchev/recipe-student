@@ -103,3 +103,8 @@ I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Edi
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AuthenticationForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.HomePageForm.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.EditIngredientForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddRecipeForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddDrinkForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddDessertForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddMainCourseForm.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleIngredientRecupeUC.resources

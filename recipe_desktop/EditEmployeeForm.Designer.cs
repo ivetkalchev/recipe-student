@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditEmployeeForm));
             panel1 = new Panel();
             dtpBirthdate = new DateTimePicker();
             cbGenders = new ComboBox();
@@ -73,9 +74,9 @@
             panel1.Controls.Add(tbFirstName);
             panel1.Controls.Add(lblUsername);
             panel1.Controls.Add(tbUsername);
-            panel1.Location = new Point(5, 56);
+            panel1.Location = new Point(8, 52);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1127, 332);
+            panel1.Size = new Size(944, 487);
             panel1.TabIndex = 0;
             // 
             // dtpBirthdate
@@ -87,9 +88,9 @@
             dtpBirthdate.CalendarTrailingForeColor = Color.FromArgb(182, 113, 169);
             dtpBirthdate.Font = new Font("Segoe UI", 18F);
             dtpBirthdate.Format = DateTimePickerFormat.Short;
-            dtpBirthdate.Location = new Point(221, 142);
+            dtpBirthdate.Location = new Point(36, 248);
             dtpBirthdate.Name = "dtpBirthdate";
-            dtpBirthdate.Size = new Size(281, 47);
+            dtpBirthdate.Size = new Size(416, 47);
             dtpBirthdate.TabIndex = 45;
             dtpBirthdate.Value = new DateTime(2024, 5, 4, 0, 0, 0, 0);
             // 
@@ -98,9 +99,9 @@
             cbGenders.Font = new Font("Segoe UI", 18F);
             cbGenders.ForeColor = Color.Black;
             cbGenders.FormattingEnabled = true;
-            cbGenders.Location = new Point(221, 195);
+            cbGenders.Location = new Point(36, 341);
             cbGenders.Name = "cbGenders";
-            cbGenders.Size = new Size(281, 49);
+            cbGenders.Size = new Size(416, 49);
             cbGenders.TabIndex = 44;
             // 
             // btnEdit
@@ -112,9 +113,9 @@
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnEdit.ForeColor = Color.FromArgb(98, 14, 80);
-            btnEdit.Location = new Point(322, 266);
+            btnEdit.Location = new Point(36, 414);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(234, 49);
+            btnEdit.Size = new Size(416, 49);
             btnEdit.TabIndex = 43;
             btnEdit.Text = "EDIT";
             btnEdit.UseVisualStyleBackColor = false;
@@ -131,9 +132,9 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(562, 266);
+            btnSave.Location = new Point(492, 414);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(234, 49);
+            btnSave.Size = new Size(416, 49);
             btnSave.TabIndex = 40;
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = false;
@@ -144,7 +145,7 @@
             lblGender.AutoSize = true;
             lblGender.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblGender.ForeColor = Color.FromArgb(98, 14, 80);
-            lblGender.Location = new Point(35, 200);
+            lblGender.Location = new Point(36, 298);
             lblGender.Name = "lblGender";
             lblGender.Size = new Size(118, 40);
             lblGender.TabIndex = 38;
@@ -155,9 +156,9 @@
             // 
             tbRole.Font = new Font("Segoe UI", 18F);
             tbRole.ForeColor = Color.Black;
-            tbRole.Location = new Point(707, 193);
+            tbRole.Location = new Point(492, 343);
             tbRole.Name = "tbRole";
-            tbRole.Size = new Size(364, 47);
+            tbRole.Size = new Size(415, 47);
             tbRole.TabIndex = 35;
             // 
             // lblRole
@@ -165,7 +166,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblRole.ForeColor = Color.FromArgb(98, 14, 80);
-            lblRole.Location = new Point(530, 198);
+            lblRole.Location = new Point(490, 298);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(77, 40);
             lblRole.TabIndex = 34;
@@ -177,7 +178,7 @@
             lblBsn.AutoSize = true;
             lblBsn.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblBsn.ForeColor = Color.FromArgb(98, 14, 80);
-            lblBsn.Location = new Point(530, 145);
+            lblBsn.Location = new Point(492, 205);
             lblBsn.Name = "lblBsn";
             lblBsn.Size = new Size(75, 40);
             lblBsn.TabIndex = 33;
@@ -188,9 +189,10 @@
             // 
             tbBSN.Font = new Font("Segoe UI", 18F);
             tbBSN.ForeColor = Color.Black;
-            tbBSN.Location = new Point(707, 140);
+            tbBSN.Location = new Point(492, 248);
+            tbBSN.MaxLength = 10;
             tbBSN.Name = "tbBSN";
-            tbBSN.Size = new Size(364, 47);
+            tbBSN.Size = new Size(415, 47);
             tbBSN.TabIndex = 32;
             tbBSN.KeyPress += tbBSN_KeyPress;
             // 
@@ -199,7 +201,7 @@
             lblBirthdate.AutoSize = true;
             lblBirthdate.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblBirthdate.ForeColor = Color.FromArgb(98, 14, 80);
-            lblBirthdate.Location = new Point(35, 149);
+            lblBirthdate.Location = new Point(36, 205);
             lblBirthdate.Name = "lblBirthdate";
             lblBirthdate.Size = new Size(146, 40);
             lblBirthdate.TabIndex = 31;
@@ -211,7 +213,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(98, 14, 80);
-            lblEmail.Location = new Point(530, 91);
+            lblEmail.Location = new Point(492, 112);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(91, 40);
             lblEmail.TabIndex = 29;
@@ -222,18 +224,20 @@
             // 
             tbEmail.Font = new Font("Segoe UI", 18F);
             tbEmail.ForeColor = Color.Black;
-            tbEmail.Location = new Point(707, 86);
+            tbEmail.Location = new Point(492, 155);
+            tbEmail.MaxLength = 100;
             tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(364, 47);
+            tbEmail.Size = new Size(415, 47);
             tbEmail.TabIndex = 28;
             // 
             // tbLastName
             // 
             tbLastName.Font = new Font("Segoe UI", 18F);
             tbLastName.ForeColor = Color.Black;
-            tbLastName.Location = new Point(221, 90);
+            tbLastName.Location = new Point(36, 155);
+            tbLastName.MaxLength = 100;
             tbLastName.Name = "tbLastName";
-            tbLastName.Size = new Size(281, 47);
+            tbLastName.Size = new Size(416, 47);
             tbLastName.TabIndex = 27;
             tbLastName.KeyPress += tbLastName_KeyPress;
             // 
@@ -242,7 +246,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblLastName.ForeColor = Color.FromArgb(98, 14, 80);
-            lblLastName.Location = new Point(35, 95);
+            lblLastName.Location = new Point(36, 112);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(162, 40);
             lblLastName.TabIndex = 26;
@@ -254,7 +258,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblFirstName.ForeColor = Color.FromArgb(98, 14, 80);
-            lblFirstName.Location = new Point(35, 40);
+            lblFirstName.Location = new Point(36, 19);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(166, 40);
             lblFirstName.TabIndex = 25;
@@ -265,9 +269,10 @@
             // 
             tbFirstName.Font = new Font("Segoe UI", 18F);
             tbFirstName.ForeColor = Color.Black;
-            tbFirstName.Location = new Point(221, 35);
+            tbFirstName.Location = new Point(36, 62);
+            tbFirstName.MaxLength = 100;
             tbFirstName.Name = "tbFirstName";
-            tbFirstName.Size = new Size(281, 47);
+            tbFirstName.Size = new Size(416, 47);
             tbFirstName.TabIndex = 24;
             tbFirstName.KeyPress += tbFirstName_KeyPress;
             // 
@@ -276,7 +281,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             lblUsername.ForeColor = Color.FromArgb(98, 14, 80);
-            lblUsername.Location = new Point(530, 36);
+            lblUsername.Location = new Point(483, 19);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(156, 40);
             lblUsername.TabIndex = 23;
@@ -287,9 +292,10 @@
             // 
             tbUsername.Font = new Font("Segoe UI", 18F);
             tbUsername.ForeColor = Color.Black;
-            tbUsername.Location = new Point(707, 31);
+            tbUsername.Location = new Point(492, 62);
+            tbUsername.MaxLength = 100;
             tbUsername.Name = "tbUsername";
-            tbUsername.Size = new Size(364, 47);
+            tbUsername.Size = new Size(415, 47);
             tbUsername.TabIndex = 22;
             // 
             // btnClose
@@ -301,7 +307,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnClose.ForeColor = Color.FromArgb(98, 14, 80);
-            btnClose.Location = new Point(1090, 6);
+            btnClose.Location = new Point(910, 4);
             btnClose.Margin = new Padding(0);
             btnClose.Name = "btnClose";
             btnClose.Padding = new Padding(0, 0, 0, 2);
@@ -317,7 +323,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(5, 9);
+            label1.Location = new Point(335, 5);
             label1.Name = "label1";
             label1.Size = new Size(282, 40);
             label1.TabIndex = 40;
@@ -329,14 +335,15 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(98, 14, 80);
-            ClientSize = new Size(1137, 394);
+            ClientSize = new Size(960, 549);
             Controls.Add(label1);
             Controls.Add(btnClose);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EditEmployeeForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "EditEmployeeUC";
+            Text = "Edit Employee";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

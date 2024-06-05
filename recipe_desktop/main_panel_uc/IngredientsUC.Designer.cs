@@ -150,6 +150,7 @@
             tbName.Font = new Font("Segoe UI", 18F);
             tbName.ForeColor = Color.Black;
             tbName.Location = new Point(65, 131);
+            tbName.MaxLength = 100;
             tbName.Name = "tbName";
             tbName.Size = new Size(411, 47);
             tbName.TabIndex = 14;
@@ -243,7 +244,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(46, 79, 166);
+            panel2.BackColor = Color.FromArgb(61, 83, 143);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(lblPrice);
             panel2.Controls.Add(lblName);

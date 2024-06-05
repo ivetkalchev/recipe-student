@@ -103,9 +103,39 @@ namespace recipe_desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap banana_split_512_1 {
+            get {
+                object obj = ResourceManager.GetObject("banana-split-512 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bunch_ingredients_64_1 {
             get {
                 object obj = ResourceManager.GetObject("bunch-ingredients-64 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cocktail_512_1 {
+            get {
+                object obj = ResourceManager.GetObject("cocktail-512 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cocktail_64 {
+            get {
+                object obj = ResourceManager.GetObject("cocktail-64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,6 +173,26 @@ namespace recipe_desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap paper_clip_48 {
+            get {
+                object obj = ResourceManager.GetObject("paper-clip-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap picture_attachment_512 {
+            get {
+                object obj = ResourceManager.GetObject("picture-attachment-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pizza_xxl_2 {
             get {
                 object obj = ResourceManager.GetObject("pizza-xxl 2", resourceCulture);
@@ -156,6 +206,16 @@ namespace recipe_desktop.Properties {
         internal static System.Drawing.Bitmap Profile_PNG_Clipart {
             get {
                 object obj = ResourceManager.GetObject("Profile-PNG-Clipart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap restaurant_512_1 {
+            get {
+                object obj = ResourceManager.GetObject("restaurant-512 1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

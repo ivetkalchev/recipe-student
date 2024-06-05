@@ -1,7 +1,6 @@
 using manager_classes;
 using db_helpers;
 using entity_classes;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace recipe_desktop
 {
@@ -17,8 +16,7 @@ namespace recipe_desktop
         {
             InitializeComponent();
 
-            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };
-            
+            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };          
             ClickMenu(menuButtons);
 
             this.userManager = userManager;

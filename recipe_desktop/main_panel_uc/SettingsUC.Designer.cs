@@ -67,6 +67,7 @@
             tbUsername.Font = new Font("Segoe UI", 18F);
             tbUsername.ForeColor = Color.Black;
             tbUsername.Location = new Point(639, 399);
+            tbUsername.MaxLength = 100;
             tbUsername.Name = "tbUsername";
             tbUsername.Size = new Size(474, 47);
             tbUsername.TabIndex = 3;
@@ -88,6 +89,7 @@
             tbFirstName.Font = new Font("Segoe UI", 18F);
             tbFirstName.ForeColor = Color.Black;
             tbFirstName.Location = new Point(639, 293);
+            tbFirstName.MaxLength = 100;
             tbFirstName.Name = "tbFirstName";
             tbFirstName.Size = new Size(474, 47);
             tbFirstName.TabIndex = 5;
@@ -110,6 +112,7 @@
             tbLastName.Font = new Font("Segoe UI", 18F);
             tbLastName.ForeColor = Color.Black;
             tbLastName.Location = new Point(639, 346);
+            tbLastName.MaxLength = 100;
             tbLastName.Name = "tbLastName";
             tbLastName.Size = new Size(474, 47);
             tbLastName.TabIndex = 8;
@@ -132,6 +135,7 @@
             tbEmail.Font = new Font("Segoe UI", 18F);
             tbEmail.ForeColor = Color.Black;
             tbEmail.Location = new Point(639, 452);
+            tbEmail.MaxLength = 100;
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(474, 47);
             tbEmail.TabIndex = 11;
@@ -165,6 +169,7 @@
             tbBSN.Font = new Font("Segoe UI", 18F);
             tbBSN.ForeColor = Color.Black;
             tbBSN.Location = new Point(639, 558);
+            tbBSN.MaxLength = 10;
             tbBSN.Name = "tbBSN";
             tbBSN.Size = new Size(474, 47);
             tbBSN.TabIndex = 15;
