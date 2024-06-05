@@ -10,7 +10,7 @@ namespace entity_classes
         private string email;
         private string password;
         public User(int idUser, string username, string email, string password)
-        {
+        {            
             this.idUser = idUser;
             this.username = username;
             this.email = email;

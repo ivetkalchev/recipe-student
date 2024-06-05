@@ -33,13 +33,11 @@
             btnNext = new Button();
             btnPrevious = new Button();
             panel1 = new Panel();
-            lblPfp = new Label();
             lblEmail = new Label();
             lblRole = new Label();
             lblUsername = new Label();
             lblLastName = new Label();
             lblFirstName = new Label();
-            lblId = new Label();
             btnAdmins = new Button();
             btnEmployees = new Button();
             btnAll = new Button();
@@ -108,28 +106,15 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(46, 79, 166);
-            panel1.Controls.Add(lblPfp);
             panel1.Controls.Add(lblEmail);
             panel1.Controls.Add(lblRole);
             panel1.Controls.Add(lblUsername);
             panel1.Controls.Add(lblLastName);
             panel1.Controls.Add(lblFirstName);
-            panel1.Controls.Add(lblId);
             panel1.Location = new Point(15, 80);
             panel1.Name = "panel1";
             panel1.Size = new Size(1645, 51);
             panel1.TabIndex = 9;
-            // 
-            // lblPfp
-            // 
-            lblPfp.AutoSize = true;
-            lblPfp.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPfp.ForeColor = Color.White;
-            lblPfp.Location = new Point(15, 6);
-            lblPfp.Name = "lblPfp";
-            lblPfp.Size = new Size(66, 38);
-            lblPfp.TabIndex = 16;
-            lblPfp.Text = "PFP";
             // 
             // lblEmail
             // 
@@ -180,22 +165,11 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(181, 6);
+            lblFirstName.Location = new Point(135, 6);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(160, 38);
             lblFirstName.TabIndex = 11;
             lblFirstName.Text = "First Name";
-            // 
-            // lblId
-            // 
-            lblId.AutoSize = true;
-            lblId.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblId.ForeColor = Color.White;
-            lblId.Location = new Point(111, 6);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(47, 38);
-            lblId.TabIndex = 10;
-            lblId.Text = "ID";
             // 
             // btnAdmins
             // 
@@ -304,11 +278,9 @@
         private Label lblUsername;
         private Label lblLastName;
         private Label lblFirstName;
-        private Label lblId;
         private Button btnAdmins;
         private Button btnEmployees;
         private Button btnAll;
-        private Label lblPfp;
         private PictureBox picSearch;
         private TextBox tbSearch;
         private Label lblNoResults;

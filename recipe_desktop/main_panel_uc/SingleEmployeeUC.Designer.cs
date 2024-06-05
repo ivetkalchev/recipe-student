@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            lblId = new Label();
             lblFirstName = new Label();
             lblLastName = new Label();
             lblUsername = new Label();
@@ -51,23 +50,12 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // lblId
-            // 
-            lblId.AutoSize = true;
-            lblId.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblId.ForeColor = Color.White;
-            lblId.Location = new Point(117, 50);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(52, 30);
-            lblId.TabIndex = 1;
-            lblId.Text = "{ID}";
-            // 
             // lblFirstName
             // 
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(195, 50);
+            lblFirstName.Location = new Point(134, 50);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(141, 30);
             lblFirstName.TabIndex = 2;
@@ -185,7 +173,6 @@
             Controls.Add(lblUsername);
             Controls.Add(lblLastName);
             Controls.Add(lblFirstName);
-            Controls.Add(lblId);
             Controls.Add(pictureBox1);
             Margin = new Padding(5);
             Name = "SingleEmployeeUC";
@@ -199,7 +186,6 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private Label lblId;
         private Label lblFirstName;
         private Label lblLastName;
         private Label lblUsername;

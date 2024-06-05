@@ -1,4 +1,5 @@
-﻿using exceptions;
+﻿using System;
+using exceptions;
 
 namespace entity_classes
 {
@@ -37,7 +38,7 @@ namespace entity_classes
             return price;
         }
 
-        public void ValidateIngredientName(string name)
+        public void IsIngredientNameValid(string name)
         {
             if (string.IsNullOrWhiteSpace(name) || !System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
             {
@@ -45,7 +46,7 @@ namespace entity_classes
             }
         }
 
-        public void ValidateIngredientPrice(decimal price)
+        public void IsIngredientPriceValid(decimal price)
         {
             if (price <= 0)
             {

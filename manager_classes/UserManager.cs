@@ -38,14 +38,14 @@ namespace manager_classes
             return true;
         }
 
-        private bool IsValidUser(DesktopUser newUser)
+        private bool IsValidUser(DesktopUser user)
         {
-            return newUser.IsPasswordValid(newUser.GetPassword()) &&
-                   newUser.IsEmailValid(newUser.GetEmail()) &&
-                   newUser.IsBsnValid(newUser.GetBsn()) &&
-                   newUser.IsNameValid(newUser.GetFirstName(), "first name") &&
-                   newUser.IsNameValid(newUser.GetLastName(), "last name") &&
-                   newUser.IsBirthdateValid(newUser.GetBirthdate());
+            return user.IsPasswordValid(user.GetPassword()) &&
+                   user.IsEmailValid(user.GetEmail()) &&
+                   user.IsBsnValid(user.GetBsn()) &&
+                   user.IsNameValid(user.GetFirstName(), "first name") &&
+                   user.IsNameValid(user.GetLastName(), "last name") &&
+                   user.IsBirthdateValid(user.GetBirthdate());
         }
 
         private bool IsUserTaken(DesktopUser newUser)
@@ -95,15 +95,31 @@ namespace manager_classes
 
         public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
+            if (!IsValidUpdate(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn))
+            {
+                throw new InvalidUserException("Invalid user details");
+            }
+
             if (newEmail != user.GetEmail() && IsEmailTakenByOtherUser(user, newEmail))
             {
                 throw new AlreadyExistUserException("email");
             }
+
             if (newBsn != user.GetBsn() && IsBsnTakenByOtherUser(user, newBsn))
             {
                 throw new AlreadyExistUserException("Bsn");
             }
+
             dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
+        }
+
+        private bool IsValidUpdate(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
+        {
+            return user.IsEmailValid(newEmail) &&
+                   user.IsBsnValid(newBsn) &&
+                   user.IsNameValid(newFirstName, "first name") &&
+                   user.IsNameValid(newLastName, "last name") &&
+                   user.IsBirthdateValid(newBirthdate);
         }
 
         private bool IsEmailTakenByOtherUser(DesktopUser user, string email)
@@ -115,7 +131,6 @@ namespace manager_classes
         {
             return dbHelper.IsBsnTakenByOtherUser(user, bsn);
         }
-
 
         public List<DesktopUser> GetAllDesktopUsers()
         {

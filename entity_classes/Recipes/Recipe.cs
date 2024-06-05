@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace entity_classes
 {
     public abstract class Recipe
     {
@@ -6,6 +8,7 @@
         private string title;
         private string description;
         private string instructions;
+        private List<IngredientRecipe> ingredients;
         private DesktopUser user;
         private DateTime publishDate;
         private TimeSpan preparationTime;
@@ -14,13 +17,14 @@
         private Difficulty difficulty;
         private RecipePic? pic;
 
-        public Recipe(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, 
+        public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate, 
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
         {
             this.idRecipe = idRecipe;
             this.title = title;
             this.description = description;
             this.instructions = instructions;
+            this.ingredients = ingredients;
             this.user = user;
             this.publishDate = publishDate;
             this.preparationTime = preparationTime;
@@ -48,6 +52,11 @@
         public string GetInstructions()
         {
             return instructions;
+        }
+
+        public List<IngredientRecipe> GetIngredientRecipes()
+        {
+            return ingredients;
         }
 
         public User GetUser()
@@ -86,5 +95,15 @@
         }
 
         public abstract decimal CalculateTotalTime();
+
+        public void AddIngredient(IngredientRecipe ingredient)
+        {
+            ingredients.Add(ingredient);
+        }
+
+        public void RemoveIngredient(IngredientRecipe ingredient)
+        {
+            ingredients.Remove(ingredient);
+        }
     }
 }

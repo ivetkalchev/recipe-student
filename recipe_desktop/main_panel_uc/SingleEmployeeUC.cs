@@ -23,7 +23,6 @@ namespace recipe_desktop
 
         private void LoadUserDetails()
         {
-            SetId(user.GetIdUser());
             SetFirstName(user.GetFirstName());
             SetLastName(user.GetLastName());
             SetUsername(user.GetUsername());
@@ -32,11 +31,6 @@ namespace recipe_desktop
 
             btnPromote.Enabled = user.GetRole().GetName() != "Admin";
             btnEdit.Enabled = user.GetRole().GetName() != "Admin";
-        }
-
-        public void SetId(int id)
-        {
-            lblId.Text = id.ToString();
         }
         
         public void SetFirstName(string firstName)

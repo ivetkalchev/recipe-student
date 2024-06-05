@@ -31,7 +31,6 @@
             lblWelcomeUser = new Label();
             lblGuide = new Label();
             pieChartUsers = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
-            pieChartIngredients = new LiveChartsCore.SkiaSharpView.WinForms.PieChart();
             SuspendLayout();
             // 
             // lblWelcomeUser
@@ -72,26 +71,11 @@
             pieChartUsers.TabIndex = 0;
             pieChartUsers.Total = null;
             // 
-            // pieChartIngredients
-            // 
-            pieChartIngredients.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            pieChartIngredients.InitialRotation = 0D;
-            pieChartIngredients.IsClockwise = true;
-            pieChartIngredients.Location = new Point(597, 497);
-            pieChartIngredients.MaxAngle = 360D;
-            pieChartIngredients.MaxValue = null;
-            pieChartIngredients.MinValue = 0D;
-            pieChartIngredients.Name = "pieChartIngredients";
-            pieChartIngredients.Size = new Size(572, 398);
-            pieChartIngredients.TabIndex = 4;
-            pieChartIngredients.Total = null;
-            // 
             // DashBoardUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(pieChartIngredients);
             Controls.Add(pieChartUsers);
             Controls.Add(lblGuide);
             Controls.Add(lblWelcomeUser);
@@ -105,6 +89,5 @@
         private Label lblWelcomeUser;
         private Label lblGuide;
         private LiveChartsCore.SkiaSharpView.WinForms.PieChart pieChartUsers;
-        private LiveChartsCore.SkiaSharpView.WinForms.PieChart pieChartIngredients;
     }
 }

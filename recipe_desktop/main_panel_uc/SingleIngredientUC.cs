@@ -22,15 +22,9 @@ namespace recipe_desktop
 
         private void LoadIngredientDetails()
         {
-            SetId(ingredient.GetIdIngredient());
             SetName(ingredient.GetName());
             SetType(ingredient.GetTypeIngredient().GetName());
             SetPrice(ingredient.GetPrice());
-        }
-
-        public void SetId(int id)
-        {
-            lblId.Text = id.ToString();
         }
 
         public void SetName(string name)

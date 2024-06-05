@@ -5,10 +5,10 @@
         private bool isSugarFree;
         private bool requiresFreezing;
         private int sweetnessLevel;
-        
-        public Dessert(int idRecipe, string title, string description, string instructions, DesktopUser user, DateTime publishDate, TimeSpan preparationTime, TimeSpan cookingTime,
-            DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isSugarFree, bool requiresFreezing, int sweetnessLevel)
-            : base(idRecipe, title, description, instructions, user, publishDate, preparationTime, cookingTime, dietRestriction, difficulty, pic)
+
+        public Dessert(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate,
+            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isSugarFree, bool requiresFreezing, int sweetnessLevel)
+            : base(idRecipe, title, description, instructions, ingredients, user, publishDate, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
             this.isSugarFree = isSugarFree;
             this.requiresFreezing = requiresFreezing;

@@ -33,8 +33,8 @@ namespace manager_classes
 
         public void AddIngredient(Ingredient newIngredient)
         {
-            newIngredient.ValidateIngredientName(newIngredient.GetName());
-            newIngredient.ValidateIngredientPrice(newIngredient.GetPrice());
+            newIngredient.IsIngredientNameValid(newIngredient.GetName());
+            newIngredient.IsIngredientPriceValid(newIngredient.GetPrice());
             CheckIfIngredientExists(newIngredient.GetName());
 
             dbHelper.AddIngredient(newIngredient);
@@ -65,7 +65,7 @@ namespace manager_classes
                 throw new AlreadyExistIngredientException(newName);
             }
 
-            ingredient.ValidateIngredientPrice(newPrice);
+            ingredient.IsIngredientPriceValid(newPrice);
 
             dbHelper.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
         }

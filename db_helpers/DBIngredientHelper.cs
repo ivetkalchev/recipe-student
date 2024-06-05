@@ -58,7 +58,6 @@ namespace db_helpers
             }
         }
 
-
         public bool DoesIngredientExist(string name)
         {
             try

@@ -45,10 +45,8 @@
             picSearch = new PictureBox();
             panel2 = new Panel();
             label1 = new Label();
-            lblPfp = new Label();
             lblPrice = new Label();
             lblName = new Label();
-            lblId = new Label();
             lblNoResults = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPrice).BeginInit();
@@ -247,10 +245,8 @@
             // 
             panel2.BackColor = Color.FromArgb(46, 79, 166);
             panel2.Controls.Add(label1);
-            panel2.Controls.Add(lblPfp);
             panel2.Controls.Add(lblPrice);
             panel2.Controls.Add(lblName);
-            panel2.Controls.Add(lblId);
             panel2.Location = new Point(22, 323);
             panel2.Name = "panel2";
             panel2.Size = new Size(1635, 51);
@@ -261,29 +257,18 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(607, 6);
+            label1.Location = new Point(464, 6);
             label1.Name = "label1";
             label1.Size = new Size(79, 38);
             label1.TabIndex = 17;
             label1.Text = "Type";
-            // 
-            // lblPfp
-            // 
-            lblPfp.AutoSize = true;
-            lblPfp.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPfp.ForeColor = Color.White;
-            lblPfp.Location = new Point(72, 6);
-            lblPfp.Name = "lblPfp";
-            lblPfp.Size = new Size(66, 38);
-            lblPfp.TabIndex = 16;
-            lblPfp.Text = "PFP";
             // 
             // lblPrice
             // 
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPrice.ForeColor = Color.White;
-            lblPrice.Location = new Point(856, 6);
+            lblPrice.Location = new Point(713, 6);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(81, 38);
             lblPrice.TabIndex = 14;
@@ -294,22 +279,11 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(365, 6);
+            lblName.Location = new Point(222, 6);
             lblName.Name = "lblName";
             lblName.Size = new Size(95, 38);
             lblName.TabIndex = 11;
             lblName.Text = "Name";
-            // 
-            // lblId
-            // 
-            lblId.AutoSize = true;
-            lblId.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblId.ForeColor = Color.White;
-            lblId.Location = new Point(207, 6);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(47, 38);
-            lblId.TabIndex = 10;
-            lblId.Text = "ID";
             // 
             // lblNoResults
             // 
@@ -361,11 +335,8 @@
         private TextBox tbSearch;
         private PictureBox picSearch;
         private Panel panel2;
-        private Label lblPfp;
         private Label lblPrice;
-        private Label label2;
         private Label lblName;
-        private Label lblId;
         private Label lblNoResults;
         private ComboBox cbTypeIngredient;
         private Label lblType;

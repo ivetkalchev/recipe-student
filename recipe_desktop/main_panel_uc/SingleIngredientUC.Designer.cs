@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblId = new Label();
             lblName = new Label();
             lblType = new Label();
             lblPrice = new Label();
@@ -38,23 +37,12 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // lblId
-            // 
-            lblId.AutoSize = true;
-            lblId.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblId.ForeColor = Color.White;
-            lblId.Location = new Point(216, 48);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(52, 30);
-            lblId.TabIndex = 1;
-            lblId.Text = "{ID}";
-            // 
             // lblName
             // 
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(378, 48);
+            lblName.Location = new Point(209, 48);
             lblName.Name = "lblName";
             lblName.Size = new Size(90, 30);
             lblName.TabIndex = 2;
@@ -65,7 +53,7 @@
             lblType.AutoSize = true;
             lblType.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblType.ForeColor = Color.White;
-            lblType.Location = new Point(621, 48);
+            lblType.Location = new Point(452, 48);
             lblType.Name = "lblType";
             lblType.Size = new Size(79, 30);
             lblType.TabIndex = 3;
@@ -76,7 +64,7 @@
             lblPrice.AutoSize = true;
             lblPrice.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblPrice.ForeColor = Color.White;
-            lblPrice.Location = new Point(863, 48);
+            lblPrice.Location = new Point(694, 48);
             lblPrice.Name = "lblPrice";
             lblPrice.Size = new Size(100, 30);
             lblPrice.TabIndex = 4;
@@ -139,7 +127,6 @@
             Controls.Add(lblPrice);
             Controls.Add(lblType);
             Controls.Add(lblName);
-            Controls.Add(lblId);
             Margin = new Padding(5);
             Name = "SingleIngredientUC";
             Padding = new Padding(1);
@@ -150,7 +137,6 @@
         }
 
         #endregion
-        private Label lblId;
         private Label lblName;
         private Label lblType;
         private Label lblPrice;
