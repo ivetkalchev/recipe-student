@@ -1,5 +1,4 @@
-﻿using System;
-using exceptions;
+﻿using exceptions;
 
 namespace entity_classes
 {

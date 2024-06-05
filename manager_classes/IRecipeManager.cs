@@ -8,6 +8,8 @@ namespace manager_classes
         List<Difficulty> GetAllDifficulties();
         DietRestriction GetDietByName(string name);
         Difficulty GetDifficultyByName(string name);
-        void SaveRecipe(MainCourse mainCourse);
+        void UploadDessert(Dessert recipe);
+        void UploadDrink(Drink recipe);
+        void UploadMainCourse(MainCourse recipe);
     }
 }

@@ -8,6 +8,8 @@ namespace db_helpers
         List<Difficulty> GetAllDifficulties();
         DietRestriction GetDietByName(string name);
         Difficulty GetDifficultyByName(string name);
-        void SaveMainCourse(MainCourse mainCourse);
+        void InsertMainCourse(MainCourse recipe);
+        void InsertDrink(Drink recipe);
+        void InsertDessert(Dessert recipe);
     }
 }

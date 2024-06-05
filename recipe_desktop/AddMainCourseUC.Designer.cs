@@ -171,7 +171,7 @@
             // pbSearch
             // 
             pbSearch.Image = (Image)resources.GetObject("pbSearch.Image");
-            pbSearch.Location = new Point(628, 468);
+            pbSearch.Location = new Point(462, 468);
             pbSearch.Name = "pbSearch";
             pbSearch.Size = new Size(37, 36);
             pbSearch.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -186,7 +186,7 @@
             tbSearchIng.Location = new Point(161, 468);
             tbSearchIng.MaxLength = 100;
             tbSearchIng.Name = "tbSearchIng";
-            tbSearchIng.Size = new Size(459, 36);
+            tbSearchIng.Size = new Size(300, 36);
             tbSearchIng.TabIndex = 112;
             // 
             // label12
@@ -290,24 +290,26 @@
             lblMaxInstr.AutoSize = true;
             lblMaxInstr.Font = new Font("Segoe UI", 12F);
             lblMaxInstr.ForeColor = Color.White;
-            lblMaxInstr.Location = new Point(717, 246);
+            lblMaxInstr.ImageAlign = ContentAlignment.MiddleRight;
+            lblMaxInstr.Location = new Point(691, 249);
             lblMaxInstr.Name = "lblMaxInstr";
-            lblMaxInstr.Size = new Size(190, 28);
+            lblMaxInstr.Size = new Size(218, 28);
             lblMaxInstr.TabIndex = 97;
-            lblMaxInstr.Text = "max 4000 characters";
-            lblMaxInstr.TextAlign = ContentAlignment.MiddleCenter;
+            lblMaxInstr.Text = "Instructions: 4000/4000";
+            lblMaxInstr.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblMaxDescr
             // 
             lblMaxDescr.AutoSize = true;
             lblMaxDescr.Font = new Font("Segoe UI", 12F);
             lblMaxDescr.ForeColor = Color.White;
-            lblMaxDescr.Location = new Point(294, 89);
+            lblMaxDescr.ImageAlign = ContentAlignment.MiddleRight;
+            lblMaxDescr.Location = new Point(278, 89);
             lblMaxDescr.Name = "lblMaxDescr";
-            lblMaxDescr.Size = new Size(179, 28);
+            lblMaxDescr.Size = new Size(195, 28);
             lblMaxDescr.TabIndex = 96;
-            lblMaxDescr.Text = "max 400 characters";
-            lblMaxDescr.TextAlign = ContentAlignment.MiddleCenter;
+            lblMaxDescr.Text = "Description: 400/400";
+            lblMaxDescr.TextAlign = ContentAlignment.MiddleRight;
             // 
             // rtbInstructions
             // 
@@ -436,11 +438,11 @@
             // lblNoResults
             // 
             lblNoResults.AutoSize = true;
-            lblNoResults.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNoResults.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNoResults.ForeColor = Color.White;
-            lblNoResults.Location = new Point(416, 433);
+            lblNoResults.Location = new Point(505, 479);
             lblNoResults.Name = "lblNoResults";
-            lblNoResults.Size = new Size(204, 32);
+            lblNoResults.Size = new Size(162, 25);
             lblNoResults.TabIndex = 122;
             lblNoResults.Text = "No Results Found";
             // 

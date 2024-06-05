@@ -62,6 +62,7 @@
             cbAlcohol = new CheckBox();
             cbCaffeine = new CheckBox();
             cbServedHot = new CheckBox();
+            lblNoResults = new Label();
             ((System.ComponentModel.ISupportInitialize)pbSearch).BeginInit();
             SuspendLayout();
             // 
@@ -114,6 +115,7 @@
             btnUploadPic.Size = new Size(42, 36);
             btnUploadPic.TabIndex = 116;
             btnUploadPic.UseVisualStyleBackColor = false;
+            btnUploadPic.Click += btnUploadPic_Click;
             // 
             // label14
             // 
@@ -130,12 +132,13 @@
             // pbSearch
             // 
             pbSearch.Image = (Image)resources.GetObject("pbSearch.Image");
-            pbSearch.Location = new Point(627, 468);
+            pbSearch.Location = new Point(464, 468);
             pbSearch.Name = "pbSearch";
             pbSearch.Size = new Size(37, 36);
             pbSearch.SizeMode = PictureBoxSizeMode.StretchImage;
             pbSearch.TabIndex = 112;
             pbSearch.TabStop = false;
+            pbSearch.Click += pbSearch_Click;
             // 
             // tbSearchIng
             // 
@@ -144,7 +147,7 @@
             tbSearchIng.Location = new Point(160, 468);
             tbSearchIng.MaxLength = 100;
             tbSearchIng.Name = "tbSearchIng";
-            tbSearchIng.Size = new Size(461, 36);
+            tbSearchIng.Size = new Size(298, 36);
             tbSearchIng.TabIndex = 114;
             // 
             // label6
@@ -184,6 +187,7 @@
             btnUpload.TabIndex = 108;
             btnUpload.Text = "UPLOAD";
             btnUpload.UseVisualStyleBackColor = false;
+            btnUpload.Click += btnUpload_Click;
             // 
             // tbPours
             // 
@@ -453,11 +457,23 @@
             cbServedHot.Text = "Must be served hot";
             cbServedHot.UseVisualStyleBackColor = true;
             // 
+            // lblNoResults
+            // 
+            lblNoResults.AutoSize = true;
+            lblNoResults.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNoResults.ForeColor = Color.White;
+            lblNoResults.Location = new Point(504, 479);
+            lblNoResults.Name = "lblNoResults";
+            lblNoResults.Size = new Size(162, 25);
+            lblNoResults.TabIndex = 123;
+            lblNoResults.Text = "No Results Found";
+            // 
             // AddDrinkUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(182, 113, 169);
+            Controls.Add(lblNoResults);
             Controls.Add(cbServedHot);
             Controls.Add(cbCaffeine);
             Controls.Add(cbAlcohol);
@@ -533,5 +549,6 @@
         private CheckBox cbAlcohol;
         private CheckBox cbCaffeine;
         private CheckBox cbServedHot;
+        private Label lblNoResults;
     }
 }

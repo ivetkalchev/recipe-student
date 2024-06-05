@@ -1,4 +1,4 @@
-﻿namespace entity_classes.Recipes
+﻿namespace entity_classes
 {
     public class Drink : Recipe
     {

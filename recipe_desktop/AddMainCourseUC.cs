@@ -1,9 +1,5 @@
 ﻿using entity_classes;
 using manager_classes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -25,6 +21,12 @@ namespace recipe_desktop
             LoadDifficulty();
             LoadDietRestrictions();
             LoadIngredients();
+
+            UpdateDescriptionCharacterCount();
+            UpdateInstructionsCharacterCount();
+
+            rtbDescription.TextChanged += rtbDescription_TextChanged;
+            rtbInstructions.TextChanged += rtbInstructions_TextChanged;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -161,7 +163,7 @@ namespace recipe_desktop
             MainCourse mainCourse = new MainCourse(0, title, description, instructions, ingredients, user, DateTime.Now,
                 TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, uploadedPic, isSpicy, servings);
 
-            recipeManager.SaveRecipe(mainCourse);
+            recipeManager.UploadMainCourse(mainCourse);
             MessageBox.Show("Recipe uploaded successfully!");
         }
 
@@ -195,6 +197,28 @@ namespace recipe_desktop
                 default:
                     throw new NotSupportedException("File type not supported.");
             }
+        }
+
+        private void rtbDescription_TextChanged(object sender, EventArgs e)
+        {
+            UpdateDescriptionCharacterCount();
+        }
+
+        private void rtbInstructions_TextChanged(object sender, EventArgs e)
+        {
+            UpdateInstructionsCharacterCount();
+        }
+
+        private void UpdateDescriptionCharacterCount()
+        {
+            int currentLength = rtbDescription.Text.Length;
+            lblMaxDescr.Text = $"Description: {currentLength}/400";
+        }
+
+        private void UpdateInstructionsCharacterCount()
+        {
+            int currentLength = rtbInstructions.Text.Length;
+            lblMaxInstr.Text = $"Instructions: {currentLength}/4000";
         }
     }
 }

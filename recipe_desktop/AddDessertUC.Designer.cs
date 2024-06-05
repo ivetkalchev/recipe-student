@@ -59,6 +59,7 @@
             label2 = new Label();
             cbSugarFree = new CheckBox();
             cbFreezing = new CheckBox();
+            lblNoResults = new Label();
             ((System.ComponentModel.ISupportInitialize)pbSearch).BeginInit();
             SuspendLayout();
             // 
@@ -119,6 +120,7 @@
             btnUpload.TabIndex = 104;
             btnUpload.Text = "UPLOAD";
             btnUpload.UseVisualStyleBackColor = false;
+            btnUpload.Click += btnUpload_Click;
             // 
             // btnUploadPic
             // 
@@ -137,6 +139,7 @@
             btnUploadPic.Size = new Size(42, 36);
             btnUploadPic.TabIndex = 103;
             btnUploadPic.UseVisualStyleBackColor = false;
+            btnUploadPic.Click += btnUploadPic_Click;
             // 
             // label14
             // 
@@ -153,12 +156,13 @@
             // pbSearch
             // 
             pbSearch.Image = (Image)resources.GetObject("pbSearch.Image");
-            pbSearch.Location = new Point(627, 468);
+            pbSearch.Location = new Point(467, 468);
             pbSearch.Name = "pbSearch";
             pbSearch.Size = new Size(37, 36);
             pbSearch.SizeMode = PictureBoxSizeMode.StretchImage;
             pbSearch.TabIndex = 80;
             pbSearch.TabStop = false;
+            pbSearch.Click += pbSearch_Click;
             // 
             // label12
             // 
@@ -203,7 +207,7 @@
             tbSearchIng.Location = new Point(160, 468);
             tbSearchIng.MaxLength = 100;
             tbSearchIng.Name = "tbSearchIng";
-            tbSearchIng.Size = new Size(461, 36);
+            tbSearchIng.Size = new Size(306, 36);
             tbSearchIng.TabIndex = 97;
             // 
             // cbDifficulty
@@ -417,11 +421,23 @@
             cbFreezing.Text = "Requires Freezing";
             cbFreezing.UseVisualStyleBackColor = true;
             // 
+            // lblNoResults
+            // 
+            lblNoResults.AutoSize = true;
+            lblNoResults.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNoResults.ForeColor = Color.White;
+            lblNoResults.Location = new Point(504, 479);
+            lblNoResults.Name = "lblNoResults";
+            lblNoResults.Size = new Size(162, 25);
+            lblNoResults.TabIndex = 123;
+            lblNoResults.Text = "No Results Found";
+            // 
             // AddDessertUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(182, 113, 169);
+            Controls.Add(lblNoResults);
             Controls.Add(cbFreezing);
             Controls.Add(cbSugarFree);
             Controls.Add(lbAddedIngredients);
@@ -491,5 +507,6 @@
         private Label label2;
         private CheckBox cbSugarFree;
         private CheckBox cbFreezing;
+        private Label lblNoResults;
     }
 }

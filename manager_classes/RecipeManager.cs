@@ -33,9 +33,19 @@ namespace manager_classes
             return dbHelper.GetDifficultyByName(name);
         }
 
-        public void SaveRecipe(MainCourse mainCourse)
+        public void UploadMainCourse(MainCourse recipe)
         {
-            dbHelper.SaveMainCourse(mainCourse);
+            dbHelper.InsertMainCourse(recipe);
+        }
+
+        public void UploadDrink(Drink recipe)
+        {
+            dbHelper.InsertDrink(recipe);
+        }
+
+        public void UploadDessert(Dessert recipe)
+        {
+            dbHelper.InsertDessert(recipe);
         }
     }
 }

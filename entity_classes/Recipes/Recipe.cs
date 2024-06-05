@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public abstract class Recipe
     {
@@ -96,14 +94,5 @@ namespace entity_classes
 
         public abstract decimal CalculateTotalTime();
 
-        public void AddIngredient(IngredientRecipe ingredient)
-        {
-            ingredients.Add(ingredient);
-        }
-
-        public void RemoveIngredient(IngredientRecipe ingredient)
-        {
-            ingredients.Remove(ingredient);
-        }
     }
 }
