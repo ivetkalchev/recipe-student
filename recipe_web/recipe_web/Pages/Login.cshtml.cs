@@ -3,11 +3,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using recipe_web.DTOs;
-using entity_classes;
 using manager_classes;
-using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace recipe_web.Pages
 {
@@ -16,11 +13,13 @@ namespace recipe_web.Pages
         [BindProperty]
         public LoginDTO LoginDTO { get; set; }
 
-        private IUserManager userManager;
+        private readonly IUserManager userManager;
+        private readonly ILogger<LoginModel> logger;
 
-        public LoginModel(IUserManager userManager)
+        public LoginModel(IUserManager userManager, ILogger<LoginModel> logger)
         {
             this.userManager = userManager;
+            this.logger = logger;
         }
 
         public void OnGet()
@@ -34,11 +33,17 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            var webUser = userManager.LoginWebUser(LoginDTO.Username, LoginDTO.Password);
+            logger.LogInformation("Attempting login for user: {Username}", LoginDTO.Username);
+
+            string hashedPassword = Hasher.HashText(LoginDTO.Password);
+            logger.LogInformation("Hashed password: {HashedPassword}", hashedPassword);
+
+            var webUser = userManager.LoginWebUser(LoginDTO.Username, hashedPassword);
 
             if (webUser == null)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                logger.LogWarning("Login attempt failed for user: {Username}", LoginDTO.Username);
                 return Page();
             }
 
@@ -52,9 +57,12 @@ namespace recipe_web.Pages
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
+                // Add additional properties if needed
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+            logger.LogInformation("User {Username} successfully logged in", LoginDTO.Username);
 
             return RedirectToPage("/Index");
         }

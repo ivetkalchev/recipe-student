@@ -11,7 +11,7 @@ namespace recipe_web.Pages
         [BindProperty]
         public RegisterDTO RegisterDTO { get; set; }
 
-        private IUserManager userManager;
+        private readonly IUserManager userManager;
 
         public RegisterModel(IUserManager userManager)
         {
@@ -46,12 +46,12 @@ namespace recipe_web.Pages
                 username: RegisterDTO.Username,
                 email: RegisterDTO.Email,
                 password: Hasher.HashText(RegisterDTO.Password),
-                caption: $"Hello, I am {RegisterDTO.Username}!"
+                caption: $"Hello, I am {RegisterDTO.Username}"
             );
 
             if (!userManager.RegisterWebUser(newWebUser))
             {
-                ModelState.AddModelError("", "Registration failed. Please try again.");
+                ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
                 return Page();
             }
 

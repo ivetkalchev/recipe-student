@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.addEventListener("DOMContentLoaded", function () {
+    const cookiePopup = document.getElementById("cookie-popup");
+    const acceptBtn = document.getElementById("accept-btn");
+    const declineBtn = document.getElementById("decline-btn");
 
-// Write your JavaScript code.
+    if (document.cookie.includes("cookieAccepted=true")) {
+        cookiePopup.style.display = "none";
+    } else {
+        cookiePopup.style.display = "block";
+    }
+
+    acceptBtn.addEventListener("click", function () {
+        document.cookie = "cookieAccepted=true; max-age=" + (365 * 24 * 60 * 60) + "; path=/";
+        cookiePopup.style.display = "none";
+    });
+
+    declineBtn.addEventListener("click", function () {
+        cookiePopup.style.display = "none";
+    });
+});

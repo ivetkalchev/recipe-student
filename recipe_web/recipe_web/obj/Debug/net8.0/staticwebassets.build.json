@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IKoofUOF2xXpxUeoyGoWKLq1WmOhHeWk8vrbyreT6zk=",
+  "Hash": "sp3ew4Uzg8a9YAJvYuN5H5ckb5AuBiESz/QgGSJiq+Y=",
   "Source": "recipe_web",
   "BasePath": "_content/recipe_web",
   "Mode": "Default",
@@ -16,25 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\authenticationLayout.css",
-      "SourceId": "recipe_web",
-      "SourceType": "Discovered",
-      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
-      "BasePath": "_content/recipe_web",
-      "RelativePath": "css/authenticationLayout.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\authenticationLayout.css"
-    },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\cookies.css",
       "SourceId": "recipe_web",
@@ -55,12 +36,12 @@
       "OriginalItemSpec": "wwwroot\\css\\cookies.css"
     },
     {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\editProfile.css",
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\layout.css",
       "SourceId": "recipe_web",
       "SourceType": "Discovered",
       "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
       "BasePath": "_content/recipe_web",
-      "RelativePath": "css/editProfile.css",
+      "RelativePath": "css/layout.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -71,15 +52,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\editProfile.css"
+      "OriginalItemSpec": "wwwroot\\css\\layout.css"
     },
     {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\primaryLayout.css",
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\login.css",
       "SourceId": "recipe_web",
       "SourceType": "Discovered",
       "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
       "BasePath": "_content/recipe_web",
-      "RelativePath": "css/primaryLayout.css",
+      "RelativePath": "css/login.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -90,26 +71,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\primaryLayout.css"
-    },
-    {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\profile.css",
-      "SourceId": "recipe_web",
-      "SourceType": "Discovered",
-      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
-      "BasePath": "_content/recipe_web",
-      "RelativePath": "css/profile.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\profile.css"
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\email.png",

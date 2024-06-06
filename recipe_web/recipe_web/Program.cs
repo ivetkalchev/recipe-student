@@ -7,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IDBUserHelper, DBUserHelper>();
-builder.Services.AddScoped<UserManager>();
+builder.Services.AddScoped<IUserManager, UserManager>();
+
+builder.Services.AddScoped<IRecipeManager, RecipeManager>();
+builder.Services.AddScoped<IDBRecipeHelper, DBRecipeHelper>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

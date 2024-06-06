@@ -1,6 +1,5 @@
 ﻿using db_helpers;
 using entity_classes;
-using System.Collections.Generic;
 
 namespace manager_classes
 {
@@ -46,6 +45,16 @@ namespace manager_classes
         public void UploadDessert(Dessert recipe)
         {
             dbHelper.InsertDessert(recipe);
+        }
+
+        public List<Recipe> GetAllRecipes()
+        {
+            return dbHelper.GetAllRecipes();
+        }
+
+        public Recipe GetRecipeById(int id)
+        {
+            return dbHelper.GetRecipeById(id);
         }
     }
 }

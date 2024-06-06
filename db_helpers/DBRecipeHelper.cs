@@ -7,6 +7,13 @@ namespace db_helpers
 {
     public class DBRecipeHelper : DBConnection, IDBRecipeHelper
     {
+        private IDBUserHelper userHelper;
+
+        public DBRecipeHelper(IDBUserHelper userHelper)
+        {
+            this.userHelper = userHelper;
+        }
+
         public List<DietRestriction> GetAllDietRestrictions()
         {
             List<DietRestriction> dietRestrictions = new List<DietRestriction>();
@@ -420,6 +427,240 @@ namespace db_helpers
                 Console.WriteLine("Error saving dessert: " + ex.Message);
                 throw new Exception("Unable to save dessert. Please try again later.", ex);
             }
+        }
+        public List<Recipe> GetAllRecipes()
+        {
+            List<Recipe> recipes = new List<Recipe>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                           m.is_spicy, m.servings,
+                           d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                           ds.is_sugar_free, ds.requires_freezing,
+                           rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
+                    FROM Recipe r
+                    LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                    LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                    LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                    LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int idRecipe = (int)reader["id_recipe"];
+                            string title = reader["title"].ToString();
+                            string description = reader["description"].ToString();
+                            string instructions = reader["instructions"].ToString();
+                            int userId = (int)reader["id_desktop_user"];
+                            TimeSpan preparationTime = (TimeSpan)reader["preparation_time"];
+                            TimeSpan cookingTime = (TimeSpan)reader["cooking_time"];
+                            int dietId = (int)reader["id_diet_restriction"];
+                            int difficultyId = (int)reader["id_difficulty"];
+                            RecipePic? pic = null;
+
+                            if (reader["id_recipe_pic"] != DBNull.Value)
+                            {
+                                int picId = (int)reader["id_recipe_pic"];
+                                string picName = reader["pic_name"].ToString();
+                                string picData = reader["pic_data"].ToString();
+                                string picContentType = reader["pic_content_type"].ToString();
+
+                                pic = new RecipePic(picId, picName, picData, picContentType);
+                            }
+
+                            DesktopUser user = userHelper.GetUserById(userId);
+                            DietRestriction dietRestriction = GetDietRestrictionById(dietId);
+                            Difficulty difficulty = GetDifficultyById(difficultyId);
+
+                            if (reader["is_spicy"] != DBNull.Value)
+                            {
+                                bool isSpicy = (bool)reader["is_spicy"];
+                                int servings = (int)reader["servings"];
+                                recipes.Add(new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSpicy, servings));
+                            }
+                            else if (reader["is_alcoholic"] != DBNull.Value)
+                            {
+                                bool isAlcoholic = (bool)reader["is_alcoholic"];
+                                bool containsCaffeine = (bool)reader["contains_caffeine"];
+                                bool servedHot = (bool)reader["served_hot"];
+                                int pours = (int)reader["pours"];
+                                recipes.Add(new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, dietRestriction, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours));
+                            }
+                            else if (reader["is_sugar_free"] != DBNull.Value)
+                            {
+                                bool isSugarFree = (bool)reader["is_sugar_free"];
+                                bool requiresFreezing = (bool)reader["requires_freezing"];
+                                recipes.Add(new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSugarFree, requiresFreezing));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching recipes: " + ex.Message);
+                throw new Exception("Unable to fetch recipes. Please try again later.", ex);
+            }
+
+            return recipes;
+        }
+
+
+
+        private DietRestriction GetDietRestrictionById(int dietId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM DietRestriction WHERE id_diet_restriction = @dietId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@dietId", dietId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new DietRestriction((int)reader["id_diet_restriction"], reader["diet"].ToString());
+                        }
+                        else
+                        {
+                            throw new Exception("Diet restriction not found.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching diet restriction by ID: " + ex.Message);
+                throw new Exception("Unable to fetch diet restriction by ID. Please try again later.", ex);
+            }
+        }
+
+
+        private Difficulty GetDifficultyById(int difficultyId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM Difficulty WHERE id_difficulty = @difficultyId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@difficultyId", difficultyId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Difficulty((int)reader["id_difficulty"], reader["difficulty"].ToString());
+                        }
+                        else
+                        {
+                            throw new Exception("Difficulty not found.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching difficulty by ID: " + ex.Message);
+                throw new Exception("Unable to fetch difficulty by ID. Please try again later.", ex);
+            }
+        }
+        public Recipe GetRecipeById(int id)
+        {
+            Recipe recipe = null;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                           m.is_spicy, m.servings,
+                           d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                           ds.is_sugar_free, ds.requires_freezing,
+                           rp.name AS pic_name, rp.data AS pic_data, rp.content_type AS pic_content_type
+                    FROM Recipe r
+                    LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                    LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                    LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                    LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
+                    WHERE r.id_recipe = @id";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int idRecipe = (int)reader["id_recipe"];
+                            string title = reader["title"].ToString();
+                            string description = reader["description"].ToString();
+                            string instructions = reader["instructions"].ToString();
+                            int userId = (int)reader["id_desktop_user"];
+                            TimeSpan preparationTime = (TimeSpan)reader["preparation_time"];
+                            TimeSpan cookingTime = (TimeSpan)reader["cooking_time"];
+                            int dietId = (int)reader["id_diet_restriction"];
+                            int difficultyId = (int)reader["id_difficulty"];
+                            RecipePic? pic = null;
+
+                            if (reader["id_recipe_pic"] != DBNull.Value)
+                            {
+                                int picId = (int)reader["id_recipe_pic"];
+                                string picName = reader["pic_name"].ToString();
+                                string picData = reader["pic_data"].ToString();
+                                string picContentType = reader["pic_content_type"].ToString();
+                                pic = new RecipePic(picId, picName, picData, picContentType);
+                            }
+
+                            DesktopUser user = userHelper.GetUserById(userId);
+                            DietRestriction diet = GetDietRestrictionById(dietId);
+                            Difficulty difficulty = GetDifficultyById(difficultyId);
+
+                            if (reader["is_spicy"] != DBNull.Value)
+                            {
+                                bool isSpicy = (bool)reader["is_spicy"];
+                                int servings = (int)reader["servings"];
+                                recipe = new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, diet, difficulty, pic, isSpicy, servings);
+                            }
+                            else if (reader["is_alcoholic"] != DBNull.Value)
+                            {
+                                bool isAlcoholic = (bool)reader["is_alcoholic"];
+                                bool containsCaffeine = (bool)reader["contains_caffeine"];
+                                bool servedHot = (bool)reader["served_hot"];
+                                int pours = (int)reader["pours"];
+                                recipe = new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, diet, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours);
+                            }
+                            else if (reader["is_sugar_free"] != DBNull.Value)
+                            {
+                                bool isSugarFree = (bool)reader["is_sugar_free"];
+                                bool requiresFreezing = (bool)reader["requires_freezing"];
+                                recipe = new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, diet, difficulty, pic, isSugarFree, requiresFreezing);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching recipe by ID: " + ex.Message);
+                throw new Exception("Unable to fetch recipe by ID. Please try again later.", ex);
+            }
+
+            return recipe;
         }
     }
 }

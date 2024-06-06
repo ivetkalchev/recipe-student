@@ -1,12 +1,109 @@
 ﻿@page
 @model recipe_web.Pages.RecipesModel
 @{
-	ViewData["Title"] = "Recipes";
-	Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Recipes";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="message_container">
     <h2>Recipes</h2>
 </div>
 
-<h3>under maintenance</h3>
+@if (Model.Recipes != null && Model.Recipes.Count > 0)
+{
+    <div class="recipe-list">
+        @foreach (var recipe in Model.Recipes)
+        {
+            <div class="recipe-item">
+                <p id="title">@recipe.GetTitle()</p>
+                @if (recipe.GetRecipePic() != null)
+                {
+                    <img src="data:@recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@recipe.GetRecipePic().GetData()))" alt="@recipe.GetTitle() Picture" class="recipe-pic" />
+                }
+                <p>@recipe.GetDescription()</p>
+                <a href="@Url.Page("/RecipeDetails", new { id = recipe.GetIdRecipe() })" class="button">View Recipe</a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No recipes available.</p>
+}
+
+@section Styles {
+    <style>
+        #title {
+            font-size: 25px;
+            color: #2C3B70;
+            font-weight: bold;
+            padding: 10px 0;
+        }
+
+        .message_container {
+            background-color: #3D538F;
+            color: white;
+            text-align: center;
+            margin-top: -10px;
+            font-size: 20px;
+            padding: 20px;
+        }
+
+        .recipe-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .recipe-item {
+            background-color: #F1F1F1;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .recipe-item h3 {
+                margin-bottom: 10px;
+                color: #333;
+            }
+
+        .recipe-pic {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .recipe-item p {
+            color: #666;
+            margin-bottom: 20px;
+            padding: 0 10px;
+            flex-grow: 1;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #3D538F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+            .button:hover {
+                background-color: #2C3B70;
+            }
+    </style>
+}

@@ -139,7 +139,7 @@ namespace manager_classes
             return dbHelper.IsBSNTaken(bsn);
         }
 
-        public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
+        public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
             if (!IsValidUpdate(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn))
             {
@@ -156,18 +156,19 @@ namespace manager_classes
                 throw new AlreadyExistUserException("Bsn");
             }
 
-            dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
+            dbHelper.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
+        }
+
+        public WebUser GetWebUserByUsername(string username)
+        {
+            return dbHelper.GetWebUserByUsername(username);
         }
 
         public void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail)
         {
-            if (!IsValidWebUpdate(user, newCaption, newEmail))
-            {
-                throw new InvalidUserException("Invalid user details");
-            }
-
             dbHelper.UpdateWebUserDetails(user, newCaption, newEmail);
         }
+
 
         private bool IsValidUpdate(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {

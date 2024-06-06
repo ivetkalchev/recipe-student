@@ -11,7 +11,9 @@ namespace db_helpers
         List<WebUser> GetAllWebUsers();
         DesktopUser GetDesktopUser(string username, string hashedPassword);
         Gender GetGenderById(int genderId);
+        DesktopUser GetUserById(int userId);
         WebUser GetWebUser(string username, string hashedPassword);
+        WebUser GetWebUserByUsername(string username);
         void InsertDesktopUser(DesktopUser newUser);
         void InsertWebUser(WebUser newUser);
         bool IsBSNTaken(int bsn);
@@ -22,7 +24,7 @@ namespace db_helpers
         bool IsWebEmailTaken(string email);
         bool IsWebUsernameTaken(string username);
         void PromoteUserToAdmin(DesktopUser user);
-        void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN);
+        void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN);
         void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail);
     }
 }

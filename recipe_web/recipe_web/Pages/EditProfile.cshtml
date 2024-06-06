@@ -5,35 +5,83 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/editProfile.css" asp-append-version="true" />
-</head>
+<div class="message_container">
+    <p><b>Edit @Model.UserDTO.Username's Profile</b></p>
+</div>
 
-<body>
-    <div class="message_container">
-        <p><b>@* @Model.UserDto.Username *@'s Profile Settings (under maintenance)</b></p>
+<form method="post">
+    <div class="form_input">
+        <label asp-for="UserDTO.Username"></label>
+        <input asp-for="UserDTO.Username" class="form-control" readonly />
     </div>
+    <div class="form_input">
+        <label asp-for="UserDTO.Email"></label>
+        <input asp-for="UserDTO.Email" class="form-control" />
+    </div>
+    <div class="form_input">
+        <label asp-for="UserDTO.Caption"></label>
+        <input asp-for="UserDTO.Caption" class="form-control" />
+    </div>
+    <button type="submit" class="button">Save</button>
+</form>
 
-    <form method="post" enctype="multipart/form-data" class="form_input">
-@*         <img src="@(Model.ProfilePic?.ImagePath ?? "/images/profile_picture.jpg")" alt="Profile Picture" class="profile_picture">
- *@        <div class="input_group">
-            <p>Username:</p>
-@*             <input type="text" asp-for="UserDto.Username" />
- *@        </div>
-        <div class="input_group">
-            <p>Email:</p>
-@*             <input type="email" asp-for="UserDto.Email" />
- *@        </div>
-        <div class="input_group">
-            <p>Caption:</p>
-@*             <input type="text" asp-for="UserDto.Caption" />
- *@        </div>
-        <div class="input_group">
-            <p>Profile Picture:</p>
-            <input type="file" id="fileUpload" name="fileUpload" />
-        </div>
-        <div class="buttons_profile">
-            <button type="submit" class="button">Confirm</button>
-        </div>
-    </form>
-</body>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .message_container {
+        background-color: #3D538F;
+        color: white;
+        text-align: center;
+        margin-top: -10px;
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    form {
+        background-color: #F1F1F1;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form_input {
+        margin-bottom: 20px;
+    }
+
+        .form_input label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .button {
+        display: inline-block;
+        background-color: #3D538F;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 16px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+        .button:hover {
+            background-color: #2C3B70;
+        }
+</style>

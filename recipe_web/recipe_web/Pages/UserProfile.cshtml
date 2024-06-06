@@ -5,22 +5,75 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
-</head>
+<div class="message_container">
+    <p><b>@Model.UserDTO.Username's Profile</b></p>
+</div>
 
-<body>
-    <div class="message_container">
-@*         <p><b>@Model.UserDto.Username's Profile</b></p>
- *@    </div>
-
-    <div class="profile_container">
-@*         <img src="@(Model.ProfilePic?.ImagePath ?? "/images/profile_picture.jpg")" alt="Profile Picture" class="profile_picture">
-        <div class="username"><b>@Model.UserDto.Username</b></div>
-        <div class="description">@Model.UserDto.Caption</div> *@
-        <div class="buttons_profile">
-            <a class="button" href="/EditProfile">Edit</a>
-            <a class="button" href="/ChangePassword">Change Password</a>
-        </div>
+<div class="profile_container">
+    <div class="username"><b>@Model.UserDTO.Username</b></div>
+    <div class="description">@Model.UserDTO.Caption</div>
+    <div class="buttons_profile">
+        <a class="button" asp-page="/EditProfile">Edit</a>
+        <a class="button" asp-page="/ChangePassword">Change Password</a>
     </div>
-</body>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    .message_container {
+        background-color: #3D538F;
+        color: white;
+        text-align: center;
+        margin-top: -10px;
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    .profile_container {
+        background-color: #F1F1F1;
+        color: #333;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 800px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .profile_container .username {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .profile_container .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+    .buttons_profile {
+        display: flex;
+        justify-content: center;
+    }
+
+        .buttons_profile .button {
+            background-color: #3D538F;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+            .buttons_profile .button:hover {
+                background-color: #2C3B70;
+            }
+</style>

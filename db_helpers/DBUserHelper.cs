@@ -202,7 +202,7 @@ namespace db_helpers
             return null;
         }
 
-        public void UpdateUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN)
+        public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
             {
@@ -501,14 +501,16 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                    SELECT u.id_user, u.username, u.email, u.password, w.caption
-                    FROM [dbo].[User] u
-                    INNER JOIN [dbo].[WebUser] w ON u.id_user = w.id_user
-                    WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
+                SELECT u.id_user, u.username, u.email, u.password, w.caption
+                FROM [dbo].[User] u
+                INNER JOIN [dbo].[WebUser] w ON u.id_user = w.id_user
+                WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Username", username);
                     cmd.Parameters.AddWithValue("@Password", hashedPassword);
+
+                    Console.WriteLine($"Executing query: {query} with Username: {username}, Password: {hashedPassword}");
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -532,6 +534,8 @@ namespace db_helpers
 
             return null;
         }
+
+
 
         public bool IsWebUsernameTaken(string username)
         {
@@ -589,13 +593,13 @@ namespace db_helpers
                 try
                 {
                     string updateQuery = @"
-                    UPDATE [dbo].[User]
-                    SET email = @Email
-                    WHERE id_user = @UserId;
+                UPDATE [dbo].[User]
+                SET email = @Email
+                WHERE id_user = @UserId;
 
-                    UPDATE [dbo].[WebUser]
-                    SET caption = @Caption
-                    WHERE id_user = @UserId;";
+                UPDATE [dbo].[WebUser]
+                SET caption = @Caption
+                WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
                     cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
@@ -681,5 +685,93 @@ namespace db_helpers
 
             return users;
         }
+
+        public WebUser GetWebUserByUsername(string username)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT u.id_user, u.username, u.email, u.password, w.caption
+                FROM [dbo].[User] u
+                INNER JOIN [dbo].[WebUser] w ON u.id_user = w.id_user
+                WHERE u.username COLLATE Latin1_General_BIN = @Username";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new WebUser(
+                                (int)reader["id_user"],
+                                reader["username"].ToString(),
+                                reader["email"].ToString(),
+                                reader["password"].ToString(),
+                                reader["caption"].ToString()
+                            );
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error retrieving WebUser: " + ex.Message);
+            }
+
+            return null;
+        }
+
+        public DesktopUser GetUserById(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                    FROM [User] u
+                    INNER JOIN [DesktopUser] d ON u.id_user = d.id_user
+                    WHERE u.id_user = @userId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new DesktopUser(
+                                (int)reader["id_user"],
+                                reader["username"].ToString(),
+                                reader["email"].ToString(),
+                                reader["password"].ToString(),
+                                GetRoleById((int)reader["id_role"]),
+                                reader["first_name"].ToString(),
+                                reader["last_name"].ToString(),
+                                (int)reader["bsn"],
+                                GetGenderById((int)reader["id_gender"]),
+                                (DateTime)reader["birthdate"],
+                                reader["security_answer"].ToString()
+                            );
+                        }
+                        else
+                        {
+                            throw new Exception("User not found.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching user by ID: " + ex.Message);
+                throw new Exception("Unable to fetch user by ID. Please try again later.", ex);
+            }
+        }
     }
 }
+

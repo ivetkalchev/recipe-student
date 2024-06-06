@@ -8,34 +8,25 @@
 <div class="container">
     <div class="panel">
         <h1>Login</h1>
-
-        @if (TempData["SuccessMessage"] != null)
-        {
-            <div class="success_alert">
-                @TempData["SuccessMessage"]
-            </div>
-        }
-
         <form method="post">
             <div class="form_input">
-                <label asp-for="LoginDTO.Username">Username</label>
-                <input asp-for="LoginDTO.Username" required />
+                <label asp-for="LoginDTO.Username"></label>
+                <input asp-for="LoginDTO.Username" class="form-control" />
                 <span asp-validation-for="LoginDTO.Username" class="text-danger"></span>
             </div>
             <div class="form_input">
-                <label asp-for="LoginDTO.Password">Password</label>
-                <input asp-for="LoginDTO.Password" type="password" required />
+                <label asp-for="LoginDTO.Password"></label>
+                <input asp-for="LoginDTO.Password" type="password" class="form-control" />
                 <span asp-validation-for="LoginDTO.Password" class="text-danger"></span>
-            </div>
-
-            <div class="forgot_password">
-                <p><a asp-page="/ChangePassword">Forgotten password?</a></p>
             </div>
             <button type="submit" class="button">Login</button>
         </form>
-
         <div class="login_footer">
             <p>Don't have an account? <br> <a asp-page="/Register">Register</a></p>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

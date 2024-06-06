@@ -79,7 +79,7 @@ namespace recipe_desktop
 
             try
             {
-                userManager.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
+                userManager.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
                 MessageBox.Show("Changes saved successfully!");
 
                 LockTextBoxes();

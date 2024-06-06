@@ -1,16 +1,19 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="~/css/authenticationLayout.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/cookies.css" asp-append-version="true" />
-    <link rel="icon" type="image/png" href="~/images/logo.png" />
-    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/login.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="stylesheet" href="~/css/cookies.css"/>
+    <link rel="icon" type="image/png" href="~/images/logo.png"/>
 </head>
 <body>
     <div>
         @RenderBody()
     </div>
+    
     @if (!Context.Request.Cookies.ContainsKey("cookie-card") && !Context.Request.HasFormContentType)
     {
         <div id="cookie-popup" class="cookie-card">
@@ -24,27 +27,9 @@
             </div>
         </div>
     }
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const cookiePopup = document.getElementById("cookie-popup");
-            const acceptBtn = document.getElementById("accept-btn");
-            const declineBtn = document.getElementById("decline-btn");
 
-            if (document.cookie.includes("cookieAccepted=true")) {
-                cookiePopup.style.display = "none"; 
-            } else {
-                cookiePopup.style.display = "block"; 
-            }
-
-            acceptBtn.addEventListener("click", function () {
-                document.cookie = "cookieAccepted=true; max-age=" + (365 * 24 * 60 * 60) + "; path=/";
-                cookiePopup.style.display = "none"; 
-            });
-
-            declineBtn.addEventListener("click", function () {
-                cookiePopup.style.display = "none"; 
-            });
-        });
-    </script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>
+
+@RenderSection("Scripts", required: false)
