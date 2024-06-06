@@ -1,6 +1,9 @@
 ﻿using entity_classes;
 using exceptions;
 using manager_classes;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -12,7 +15,7 @@ namespace recipe_desktop
             InitializeComponent();
 
             this.userManager = userManager;
-            
+
             LoadGender();
             LoadToday();
         }
@@ -36,7 +39,7 @@ namespace recipe_desktop
         {
             var genders = userManager.GetAllGenders();
             cbGenders.Items.Clear();
-            
+
             foreach (var gender in genders)
             {
                 cbGenders.Items.Add(gender.GetName());
@@ -70,56 +73,57 @@ namespace recipe_desktop
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            string username = tbUsername.Text.Trim();
-            string plainPassword = tbPassword.Text.Trim();
-            Role employeeRole = new Role(2, "Employee");
-            string email = tbEmail.Text.Trim();
-            int.TryParse(tbBsn.Text.Trim(), out int bsn);
-            string firstName = tbFirstName.Text.Trim();
-            string lastName = tbLastName.Text.Trim();
-            Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
-            DateTime birthdate = dtpBirthdate.Value.Date;
-            string securityAnswer = tbSecurityAnswer.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(username) ||
-                string.IsNullOrWhiteSpace(plainPassword) ||
-                string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(firstName) ||
-                string.IsNullOrWhiteSpace(lastName) ||
-                string.IsNullOrWhiteSpace(tbBsn.Text) ||
-                string.IsNullOrWhiteSpace(securityAnswer))
-            {
-                MessageBox.Show("Please fill in all fields.");
-                return;
-            }
-
-            DesktopUser newUser = new DesktopUser(
-                0,
-                username,
-                email,
-                plainPassword,
-                employeeRole,
-                firstName,
-                lastName,
-                bsn,
-                gender,
-                birthdate,
-                securityAnswer
-            );
-
+        { 
             try
             {
+                string username = tbUsername.Text.Trim();
+                string plainPassword = tbPassword.Text.Trim();
+                Role employeeRole = new Role(2, "Employee");
+                string email = tbEmail.Text.Trim();
+                int.TryParse(tbBsn.Text.Trim(), out int bsn);
+                string firstName = tbFirstName.Text.Trim();
+                string lastName = tbLastName.Text.Trim();
+                Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
+                DateTime birthdate = dtpBirthdate.Value.Date;
+                string securityAnswer = tbSecurityAnswer.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(username) ||
+                    string.IsNullOrWhiteSpace(plainPassword) ||
+                    string.IsNullOrWhiteSpace(email) ||
+                    string.IsNullOrWhiteSpace(firstName) ||
+                    string.IsNullOrWhiteSpace(lastName) ||
+                    string.IsNullOrWhiteSpace(tbBsn.Text) ||
+                    string.IsNullOrWhiteSpace(securityAnswer))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                DesktopUser newUser = new DesktopUser(
+                    0,
+                    username,
+                    email,
+                    plainPassword,
+                    employeeRole,
+                    firstName,
+                    lastName,
+                    bsn,
+                    gender,
+                    birthdate,
+                    securityAnswer
+                );
+
                 userManager.RegisterDesktopUser(newUser);
                 MessageBox.Show($"{username} is registered successfully!");
                 ClearFields();
-                LoadLogin();        
+                LoadLogin();
             }
             catch (InvalidUserException ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void ClearFields()
         {
             tbUsername.Clear();

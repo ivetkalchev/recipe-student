@@ -5,8 +5,12 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
+<div class="message_container">
+    <h2>@Model.Recipe.GetTitle()</h2>
+</div>
+
+
 <div class="recipe-details-container">
-    <h4>@Model.Recipe.GetTitle()</h4>
     @if (Model.Recipe.GetRecipePic() != null)
     {
         <img src="data:@Model.Recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@Model.Recipe.GetRecipePic().GetData()))" alt="@Model.Recipe.GetTitle() Picture" class="recipe-pic" />
@@ -38,23 +42,20 @@
 
             .recipe-details-container h2 {
                 color: #333;
-                margin-bottom: 20px;
             }
 
         .recipe-pic {
-            max-width: 100%;
+            max-width: 50%;
             border-radius: 10px;
             margin-bottom: 20px;
         }
 
         .recipe-details-container p {
             color: #666;
-            margin-bottom: 20px;
         }
 
         .recipe-details-container h3 {
             color: #333;
-            margin-top: 20px;
         }
 
         .recipe-details-container ul {
@@ -64,7 +65,6 @@
 
         .recipe-details-container li {
             color: #666;
-            margin-bottom: 10px;
         }
     </style>
 }

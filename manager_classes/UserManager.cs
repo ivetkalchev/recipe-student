@@ -1,8 +1,6 @@
-﻿using exceptions;
-using db_helpers;
+﻿using db_helpers;
 using entity_classes;
-using System;
-using System.Collections.Generic;
+using exceptions;
 
 namespace manager_classes
 {
@@ -17,7 +15,7 @@ namespace manager_classes
 
         public bool RegisterDesktopUser(DesktopUser newUser)
         {
-            if (IsUserTaken(newUser) || !IsValidUser(newUser))
+            if (IsDesktopUserTaken(newUser) || !newUser.IsDesktopUserValid())
             {
                 return false;
             }
@@ -42,7 +40,7 @@ namespace manager_classes
 
         public bool RegisterWebUser(WebUser newUser)
         {
-            if (IsWebUserTaken(newUser) || !IsValidWebUser(newUser))
+            if (IsWebUserTaken(newUser) || !newUser.IsUserValid() || string.IsNullOrEmpty(newUser.GetCaption()))
             {
                 return false;
             }
@@ -59,24 +57,7 @@ namespace manager_classes
             return true;
         }
 
-        private bool IsValidUser(DesktopUser user)
-        {
-            return user.IsPasswordValid(user.GetPassword()) &&
-                   user.IsEmailValid(user.GetEmail()) &&
-                   user.IsBsnValid(user.GetBsn()) &&
-                   user.IsNameValid(user.GetFirstName(), "first name") &&
-                   user.IsNameValid(user.GetLastName(), "last name") &&
-                   user.IsBirthdateValid(user.GetBirthdate());
-        }
-
-        private bool IsValidWebUser(WebUser user)
-        {
-            return user.IsPasswordValid(user.GetPassword()) &&
-                   user.IsEmailValid(user.GetEmail()) &&
-                   !string.IsNullOrEmpty(user.GetCaption());
-        }
-
-        private bool IsUserTaken(DesktopUser newUser)
+        private bool IsDesktopUserTaken(DesktopUser newUser)
         {
             if (IsUsernameTaken(newUser.GetUsername()))
             {
@@ -141,7 +122,7 @@ namespace manager_classes
 
         public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
-            if (!IsValidUpdate(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn))
+            if (!user.IsDesktopUserValid())
             {
                 throw new InvalidUserException("Invalid user details");
             }
@@ -167,22 +148,6 @@ namespace manager_classes
         public void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail)
         {
             dbHelper.UpdateWebUserDetails(user, newCaption, newEmail);
-        }
-
-
-        private bool IsValidUpdate(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
-        {
-            return user.IsEmailValid(newEmail) &&
-                   user.IsBsnValid(newBsn) &&
-                   user.IsNameValid(newFirstName, "first name") &&
-                   user.IsNameValid(newLastName, "last name") &&
-                   user.IsBirthdateValid(newBirthdate);
-        }
-
-        private bool IsValidWebUpdate(WebUser user, string newCaption, string newEmail)
-        {
-            return user.IsEmailValid(newEmail) &&
-                   !string.IsNullOrEmpty(newCaption);
         }
 
         private bool IsEmailTakenByOtherUser(DesktopUser user, string email)

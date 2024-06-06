@@ -19,11 +19,11 @@ namespace entity_classes
             : base(idUser, username, email, password)
         {
             this.role = role;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.bsn = bsn;
+            SetFirstName(firstName);
+            SetLastName(lastName);
+            SetBsn(bsn);
             this.gender = gender;
-            this.birthdate = birthdate;
+            SetBirthdate(birthdate);
             this.securityAnswer = securityAnswer;
         }
 
@@ -62,40 +62,71 @@ namespace entity_classes
             return securityAnswer;
         }
 
-        public bool IsNameValid(string name, string nameType)
+        private void SetFirstName(string firstName)
         {
-            //only letters
-            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+            if (!IsNameValid(firstName))
             {
-                throw new InvalidNameException(nameType);
+                throw new InvalidNameException("first name");
             }
-            return true;
+            this.firstName = firstName;
         }
 
-        public bool IsBsnValid(int bsn)
+        private void SetLastName(string lastName)
+        {
+            if (!IsNameValid(lastName))
+            {
+                throw new InvalidNameException("last name");
+            }
+            this.lastName = lastName;
+        }
+
+        private void SetBsn(int bsn)
+        {
+            if (!IsBsnValid(bsn))
+            {
+                throw new InvalidBsnFormatException();
+            }
+            this.bsn = bsn;
+        }
+
+        private void SetBirthdate(DateTime birthdate)
+        {
+            if (!IsBirthdateValid(birthdate))
+            {
+                throw new InvalidBirthdateException();
+            }
+            this.birthdate = birthdate;
+        }
+
+        private bool IsNameValid(string name)
+        {
+            return Regex.IsMatch(name, @"^[a-zA-Z]+$");
+        }
+
+        private bool IsBsnValid(int bsn)
         {
             string bsnString = bsn.ToString();
             if (bsnString.Length < 8 || bsnString.Length > 9)
             {
-                throw new InvalidBsnLengthException();
+                return false;
             }
-            //only numbers
-            if (!Regex.IsMatch(bsnString, @"^\d+$"))
-            {
-                throw new InvalidBsnFormatException();
-            }
-            return true;
+            return Regex.IsMatch(bsnString, @"^\d+$");
         }
 
-        public bool IsBirthdateValid(DateTime birthdate)
+        private bool IsBirthdateValid(DateTime birthdate)
         {
             int age = DateTime.Now.Year - birthdate.Year;
             if (birthdate > DateTime.Now.AddYears(-age)) age--;
-            if (age < 14)
-            {
-                throw new InvalidBirthdateException();
-            }
-            return true;
+            return age >= 14;
+        }
+
+        public bool IsDesktopUserValid()
+        {
+            return IsUserValid() &&
+                   IsBsnValid(bsn) &&
+                   IsNameValid(firstName) &&
+                   IsNameValid(lastName) &&
+                   IsBirthdateValid(birthdate);
         }
     }
 }

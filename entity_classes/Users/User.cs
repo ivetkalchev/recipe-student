@@ -9,40 +9,63 @@ namespace entity_classes
         private string username;
         private string email;
         private string password;
+
         public User(int idUser, string username, string email, string password)
-        {            
+        {
             this.idUser = idUser;
             this.username = username;
-            this.email = email;
-            this.password = password;
+            SetEmail(email);
+            SetPassword(password);
         }
+
         public int GetIdUser()
         {
             return idUser;
         }
+
         public string GetUsername()
         {
             return username;
         }
+
         public string GetEmail()
         {
             return email;
         }
+
         public string GetPassword()
         {
             return password;
         }
-        
-        public bool IsEmailValid(string email)
+
+        private void SetEmail(string email)
+        {
+            if (!IsEmailValid(email))
+            {
+                throw new InvalidEmailException();
+            }
+            this.email = email;
+        }
+
+        private void SetPassword(string password)
+        {
+            if (!IsPasswordValid(password))
+            {
+                throw new InvalidPasswordFormatException();
+            }
+            this.password = password;
+        }
+
+        private bool IsEmailValid(string email)
         {
             if (!email.Contains("@"))
             {
-                throw new InvalidEmailException();
+                return false;
             }
             return true;
         }
 
-        public bool IsPasswordValid(string password)
+        private bool IsPasswordValid(string password)
         {
             if (password.Length < 8)
             {
@@ -51,10 +74,15 @@ namespace entity_classes
             //one lowercase and uppercase letter, number and special symbol
             if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
             {
-                throw new InvalidPasswordFormatException();
+                return false;
             }
 
             return true;
+        }
+
+        public bool IsUserValid()
+        {
+            return IsEmailValid(email) && IsPasswordValid(password);
         }
     }
 }

@@ -4,8 +4,6 @@ namespace recipe_web.DTOs
 {
     public class UserDTO
     {
-        [Required(ErrorMessage = "Username is required.")]
-        [StringLength(100, ErrorMessage = "Username cannot be longer than 100 characters.")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]

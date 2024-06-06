@@ -5,7 +5,6 @@ namespace recipe_web.DTOs
     public class RegisterDTO
     {
         [Required(ErrorMessage = "Username is required.")]
-        [StringLength(100, ErrorMessage = "Username cannot be longer than 100 characters.")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
@@ -13,8 +12,9 @@ namespace recipe_web.DTOs
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is required.")]
-        [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 8 characters long.")]
-        [DataType(DataType.Password)]
+        [MinLength(8, ErrorMessage = "Password must be at least 8 characters long.")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$",
+            ErrorMessage = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.")]
         public string Password { get; set; }
     }
 }

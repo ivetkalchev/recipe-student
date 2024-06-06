@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using manager_classes;
 using recipe_web.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace recipe_web.Pages
 {
+    [Authorize] // with role
     public class EditProfileModel : PageModel
     {
         private IUserManager userManager;

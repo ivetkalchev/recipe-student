@@ -86,14 +86,14 @@ namespace recipe_desktop
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            string name = tbName.Text.Trim();
-            TypeIngredient type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
-            decimal price = nudPrice.Value;
-
-            Ingredient newIngredient = new Ingredient(0, name, type, price);
-
             try
             {
+                string name = tbName.Text.Trim();
+                TypeIngredient type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
+                decimal price = nudPrice.Value;
+
+                Ingredient newIngredient = new Ingredient(0, name, type, price);
+
                 ingredientManager.AddIngredient(newIngredient);
                 MessageBox.Show($"{newIngredient.GetName()} was added successfully!");
                 ClearFields();

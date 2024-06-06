@@ -23,7 +23,9 @@
                 <p id="title">@recipe.GetTitle()</p>
                 @if (recipe.GetRecipePic() != null)
                 {
-                    <img src="data:@recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@recipe.GetRecipePic().GetData()))" alt="@recipe.GetTitle() Picture" class="recipe-pic" />
+                    <div class="recipe-pic-container">
+                        <img src="data:@recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@recipe.GetRecipePic().GetData()))" alt="@recipe.GetTitle() Picture" class="recipe-pic" />
+                    </div>
                 }
                 <p>@recipe.GetDescription()</p>
                 <a href="@Url.Page("/RecipeDetails", new { id = recipe.GetIdRecipe() })" class="button">View Recipe</a>
@@ -42,16 +44,21 @@ else
             font-size: 25px;
             color: #2C3B70;
             font-weight: bold;
-            padding: 10px 0;
+            padding: 2px 0;
         }
-
-        .message_container {
+        
+        .nav_container {
             background-color: #3D538F;
             color: white;
-            text-align: center;
-            margin-top: -10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            height: 70px; 
             font-size: 20px;
-            padding: 20px;
+            z-index: 1000;
         }
 
         .search-form {
@@ -107,11 +114,22 @@ else
                 color: #333;
             }
 
-        .recipe-pic {
-            max-width: 100%;
-            height: auto;
+        .recipe-pic-container {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            overflow: hidden;
             border-radius: 10px;
             margin-bottom: 10px;
+        }
+
+        .recipe-pic {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .recipe-item p {

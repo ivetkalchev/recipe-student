@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using recipe_web.DTOs;
 using entity_classes;
 using manager_classes;
+using exceptions;
 
 namespace recipe_web.Pages
 {
@@ -31,13 +32,13 @@ namespace recipe_web.Pages
 
             if (userManager.IsUsernameTaken(RegisterDTO.Username))
             {
-                ModelState.AddModelError("Username", "Username is already taken.");
+                ModelState.AddModelError("RegisterDTO.Username", "Username is already taken.");
                 return Page();
             }
 
             if (userManager.IsEmailTaken(RegisterDTO.Email))
             {
-                ModelState.AddModelError("Email", "Email is already taken.");
+                ModelState.AddModelError("RegisterDTO.Email", "Email is already taken.");
                 return Page();
             }
 
@@ -49,9 +50,17 @@ namespace recipe_web.Pages
                 caption: $"Hello, I am {RegisterDTO.Username}"
             );
 
-            if (!userManager.RegisterWebUser(newWebUser))
+            try
             {
-                ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+                if (!userManager.RegisterWebUser(newWebUser))
+                {
+                    ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
+                    return Page();
+                }
+            }
+            catch (InvalidUserException ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
                 return Page();
             }
 
