@@ -1,5 +1,5 @@
 ﻿@page
-@model RegisterModel
+@model recipe_web.Pages.RegisterModel
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Pages/Shared/_LayoutLogin.cshtml";
@@ -10,19 +10,19 @@
         <h1>Register</h1>
         <form method="post">
             <div class="form_input">
-                <label asp-for="Username">Username</label>
-                <input asp-for="Username" required />
-                <span asp-validation-for="Username"></span>
+                <label asp-for="RegisterDTO.Username">Username</label>
+                <input asp-for="RegisterDTO.Username" required />
+                <span asp-validation-for="RegisterDTO.Username" class="text-danger"></span>
             </div>
             <div class="form_input">
-                <label asp-for="Password">Password</label>
-                <input asp-for="Password" type="password" required />
-                <span asp-validation-for="Password"></span>
+                <label asp-for="RegisterDTO.Password">Password</label>
+                <input asp-for="RegisterDTO.Password" type="password" required />
+                <span asp-validation-for="RegisterDTO.Password" class="text-danger"></span>
             </div>
             <div class="form_input">
-                <label asp-for="Email">Email</label>
-                <input asp-for="Email" required />
-                <span asp-validation-for="Email"></span>
+                <label asp-for="RegisterDTO.Email">Email</label>
+                <input asp-for="RegisterDTO.Email" required />
+                <span asp-validation-for="RegisterDTO.Email" class="text-danger"></span>
             </div>
             <button type="submit" class="button">Register</button>
         </form>

@@ -1,33 +1,27 @@
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using recipe_web.DTOs;
+using entity_classes;
 using manager_classes;
-using Microsoft.AspNetCore.Identity;
 
 namespace recipe_web.Pages
 {
     public class RegisterModel : PageModel
     {
-        private readonly UserManager userManager;
-        public RegisterModel(UserManager userManager)
+        [BindProperty]
+        public RegisterDTO RegisterDTO { get; set; }
+
+        private IUserManager userManager;
+
+        public RegisterModel(IUserManager userManager)
         {
             this.userManager = userManager;
         }
 
-        //using dtos instead of binding models
-        [BindProperty]
-        public string Username { get; set; } = "";
+        public void OnGet()
+        {
+        }
 
-        [BindProperty]
-        public string Email { get; set; } = "";
-
-        [BindProperty]
-        [DataType(DataType.Password)]
-        public string Password { get; set; } = "";
-
-        //validirane
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
@@ -35,18 +29,33 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            if (userManager.IsUsernameTaken(Username))
+            if (userManager.IsUsernameTaken(RegisterDTO.Username))
             {
                 ModelState.AddModelError("Username", "Username is already taken.");
                 return Page();
             }
 
-            if (userManager.IsEmailTaken(Email))
+            if (userManager.IsEmailTaken(RegisterDTO.Email))
             {
-                ModelState.AddModelError("Email", "Email is already in use.");
+                ModelState.AddModelError("Email", "Email is already taken.");
                 return Page();
             }
 
+            var newWebUser = new WebUser(
+                idUser: 0,
+                username: RegisterDTO.Username,
+                email: RegisterDTO.Email,
+                password: Hasher.HashText(RegisterDTO.Password),
+                caption: $"Hello, I am {RegisterDTO.Username}!"
+            );
+
+            if (!userManager.RegisterWebUser(newWebUser))
+            {
+                ModelState.AddModelError("", "Registration failed. Please try again.");
+                return Page();
+            }
+
+            TempData["SuccessMessage"] = "Registration successful. You can now log in.";
             return RedirectToPage("/Login");
         }
     }

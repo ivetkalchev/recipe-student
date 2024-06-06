@@ -1,6 +1,8 @@
 ﻿using exceptions;
 using db_helpers;
 using entity_classes;
+using System;
+using System.Collections.Generic;
 
 namespace manager_classes
 {
@@ -38,6 +40,25 @@ namespace manager_classes
             return true;
         }
 
+        public bool RegisterWebUser(WebUser newUser)
+        {
+            if (IsWebUserTaken(newUser) || !IsValidWebUser(newUser))
+            {
+                return false;
+            }
+
+            newUser = new WebUser(
+                newUser.GetIdUser(),
+                newUser.GetUsername(),
+                newUser.GetEmail(),
+                Hasher.HashText(newUser.GetPassword()),
+                newUser.GetCaption()
+            );
+
+            dbHelper.InsertWebUser(newUser);
+            return true;
+        }
+
         private bool IsValidUser(DesktopUser user)
         {
             return user.IsPasswordValid(user.GetPassword()) &&
@@ -46,6 +67,13 @@ namespace manager_classes
                    user.IsNameValid(user.GetFirstName(), "first name") &&
                    user.IsNameValid(user.GetLastName(), "last name") &&
                    user.IsBirthdateValid(user.GetBirthdate());
+        }
+
+        private bool IsValidWebUser(WebUser user)
+        {
+            return user.IsPasswordValid(user.GetPassword()) &&
+                   user.IsEmailValid(user.GetEmail()) &&
+                   !string.IsNullOrEmpty(user.GetCaption());
         }
 
         private bool IsUserTaken(DesktopUser newUser)
@@ -65,6 +93,19 @@ namespace manager_classes
             return false;
         }
 
+        private bool IsWebUserTaken(WebUser newUser)
+        {
+            if (IsUsernameTaken(newUser.GetUsername()))
+            {
+                throw new AlreadyExistUserException("username");
+            }
+            if (IsEmailTaken(newUser.GetEmail()))
+            {
+                throw new AlreadyExistUserException("email");
+            }
+            return false;
+        }
+
         private string CapitalizeFirstLetter(string text)
         {
             if (string.IsNullOrEmpty(text))
@@ -76,6 +117,11 @@ namespace manager_classes
         public DesktopUser LoginDesktopUser(string username, string password)
         {
             return dbHelper.GetDesktopUser(username, Hasher.HashText(password));
+        }
+
+        public WebUser LoginWebUser(string username, string password)
+        {
+            return dbHelper.GetWebUser(username, Hasher.HashText(password));
         }
 
         public bool IsUsernameTaken(string username)
@@ -113,6 +159,16 @@ namespace manager_classes
             dbHelper.UpdateUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
         }
 
+        public void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail)
+        {
+            if (!IsValidWebUpdate(user, newCaption, newEmail))
+            {
+                throw new InvalidUserException("Invalid user details");
+            }
+
+            dbHelper.UpdateWebUserDetails(user, newCaption, newEmail);
+        }
+
         private bool IsValidUpdate(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
             return user.IsEmailValid(newEmail) &&
@@ -120,6 +176,12 @@ namespace manager_classes
                    user.IsNameValid(newFirstName, "first name") &&
                    user.IsNameValid(newLastName, "last name") &&
                    user.IsBirthdateValid(newBirthdate);
+        }
+
+        private bool IsValidWebUpdate(WebUser user, string newCaption, string newEmail)
+        {
+            return user.IsEmailValid(newEmail) &&
+                   !string.IsNullOrEmpty(newCaption);
         }
 
         private bool IsEmailTakenByOtherUser(DesktopUser user, string email)
@@ -137,9 +199,19 @@ namespace manager_classes
             return dbHelper.GetAllDesktopUsers();
         }
 
+        public List<WebUser> GetAllWebUsers()
+        {
+            return dbHelper.GetAllWebUsers();
+        }
+
         public void DeleteUser(DesktopUser user)
         {
             dbHelper.DeleteUser(user);
+        }
+
+        public void DeleteWebUser(WebUser user)
+        {
+            dbHelper.DeleteWebUser(user);
         }
 
         public void PromoteUserToAdmin(DesktopUser user)

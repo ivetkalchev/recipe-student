@@ -1,40 +1,30 @@
-using entity_classes;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using manager_classes;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using recipe_web.DTOs;
+using entity_classes;
+using manager_classes;
+using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace recipe_web.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly UserManager userManager;
+        [BindProperty]
+        public LoginDTO LoginDTO { get; set; }
 
-        public LoginModel(UserManager userManager)
+        private IUserManager userManager;
+
+        public LoginModel(IUserManager userManager)
         {
             this.userManager = userManager;
         }
 
-        [BindProperty]
-        [Required(ErrorMessage = "Username is required.")]
-        public string Username { get; set; }
-
-        [BindProperty]
-        [Required(ErrorMessage = "Password is required.")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        public string Message { get; set; }
-
         public void OnGet()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                Response.Redirect("/Index");
-            }
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -44,20 +34,29 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            
+            var webUser = userManager.LoginWebUser(LoginDTO.Username, LoginDTO.Password);
+
+            if (webUser == null)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return Page();
+            }
 
             var claims = new List<Claim>
-{
-    new Claim(ClaimTypes.Name, Username),
-};
+            {
+                new Claim(ClaimTypes.NameIdentifier, webUser.GetIdUser().ToString()),
+                new Claim(ClaimTypes.Name, webUser.GetUsername()),
+                new Claim(ClaimTypes.Email, webUser.GetEmail()),
+            };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+            var authProperties = new AuthenticationProperties
+            {
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
             return RedirectToPage("/Index");
-
         }
-
     }
 }
