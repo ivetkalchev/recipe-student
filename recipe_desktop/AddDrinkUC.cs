@@ -216,7 +216,7 @@ namespace recipe_desktop
                 ingredients.Add(item);
             }
 
-            Drink drink = new Drink(0, title, description, instructions, ingredients, user, DateTime.Now,
+            Drink drink = new Drink(0, title, description, instructions, ingredients, user,
                 TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, uploadedPic, isAlcoholic, containsCaffeine, servedHot, pours);
 
             recipeManager.UploadDrink(drink);

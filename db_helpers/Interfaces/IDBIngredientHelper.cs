@@ -11,6 +11,6 @@ namespace db_helpers
         List<TypeIngredient> GetAllTypes();
         List<Unit> GetAllUnits();
         bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name);
-        void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice);
+        void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType);
     }
 }

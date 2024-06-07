@@ -1,0 +1,26 @@
+﻿@page
+@model recipe_web.Pages.ErrorPageModel
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="message_container">
+    <h2>Error</h2>
+</div>
+
+
+<div class="error-container">
+    <h2>@Model.ErrorMessage</h2>
+</div>
+
+@section Styles {
+    <style>
+            .error-container h2 {
+                margin-top: 10vh;
+                margin-bottom: 10vh;
+                color: white;
+                text-align: center;
+            }
+    </style>
+}

@@ -90,9 +90,8 @@ namespace recipe_desktop
             {
                 string name = tbName.Text.Trim();
                 TypeIngredient type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
-                decimal price = nudPrice.Value;
 
-                Ingredient newIngredient = new Ingredient(0, name, type, price);
+                Ingredient newIngredient = new Ingredient(0, name, type);
 
                 ingredientManager.AddIngredient(newIngredient);
                 MessageBox.Show($"{newIngredient.GetName()} was added successfully!");
@@ -108,8 +107,7 @@ namespace recipe_desktop
         private void ClearFields()
         {
             tbName.Clear();
-            nudPrice.Value = nudPrice.Minimum;
-            cbTypeIngredient.SelectedIndex = -1;
+            cbTypeIngredient.SelectedIndex = 0;
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)

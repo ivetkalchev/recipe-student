@@ -41,7 +41,7 @@ namespace recipe_desktop
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string selectedUnitName = cbUnit.SelectedItem?.ToString();
-            decimal quantity = nudQuantity.Value;
+            decimal quantity = nudPrice.Value;
 
             if (!string.IsNullOrEmpty(selectedUnitName) && quantity > 0)
             {
@@ -60,7 +60,7 @@ namespace recipe_desktop
                     var ingredientRecipe = new IngredientRecipe(ingredient, quantity, selectedUnit);
                     OnIngredientAdded(ingredientRecipe);
 
-                    nudQuantity.Value = 0;
+                    nudPrice.Value = 0;
                     cbUnit.SelectedIndex = 0;
 
                     MessageBox.Show("Ingredient added successfully!");

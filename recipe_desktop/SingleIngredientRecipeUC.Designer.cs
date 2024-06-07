@@ -31,8 +31,8 @@
             lblName = new Label();
             cbUnit = new ComboBox();
             btnAdd = new Button();
-            nudQuantity = new NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
+            nudPrice = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)nudPrice).BeginInit();
             SuspendLayout();
             // 
             // lblName
@@ -75,30 +75,29 @@
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
-            // nudQuantity
+            // nudPrice
             // 
-            nudQuantity.DecimalPlaces = 3;
-            nudQuantity.Font = new Font("Segoe UI", 13F);
-            nudQuantity.ForeColor = Color.Black;
-            nudQuantity.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
-            nudQuantity.Location = new Point(249, 32);
-            nudQuantity.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
-            nudQuantity.Name = "nudQuantity";
-            nudQuantity.Size = new Size(107, 36);
-            nudQuantity.TabIndex = 74;
+            nudPrice.DecimalPlaces = 3;
+            nudPrice.Font = new Font("Segoe UI", 12F);
+            nudPrice.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
+            nudPrice.Location = new Point(225, 32);
+            nudPrice.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
+            nudPrice.Name = "nudPrice";
+            nudPrice.Size = new Size(119, 34);
+            nudPrice.TabIndex = 74;
             // 
             // SingleIngredientRecipeUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(232, 170, 219);
-            Controls.Add(nudQuantity);
+            Controls.Add(nudPrice);
             Controls.Add(btnAdd);
             Controls.Add(cbUnit);
             Controls.Add(lblName);
             Name = "SingleIngredientRecipeUC";
             Size = new Size(622, 94);
-            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudPrice).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -108,6 +107,6 @@
         private Label lblName;
         private ComboBox cbUnit;
         private Button btnAdd;
-        private NumericUpDown nudQuantity;
+        private NumericUpDown nudPrice;
     }
 }

@@ -223,7 +223,7 @@ namespace recipe_desktop
                 ingredients.Add(item);
             }
 
-            Dessert dessert = new Dessert(0, title, description, instructions, ingredients, user, DateTime.Now,
+            Dessert dessert = new Dessert(0, title, description, instructions, ingredients, user,
                 TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, uploadedPic, isSugarFree, requiresFreezing);
 
             recipeManager.UploadDessert(dessert);

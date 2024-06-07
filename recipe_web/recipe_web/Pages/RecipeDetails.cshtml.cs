@@ -10,6 +10,8 @@ namespace recipe_web.Pages
         private IRecipeManager recipeManager;
 
         public Recipe Recipe { get; set; }
+        public DietRestriction DietRestriction { get; set; }
+        public Difficulty Difficulty { get; set; }
 
         public RecipeDetailsModel(IRecipeManager recipeManager)
         {
@@ -21,8 +23,12 @@ namespace recipe_web.Pages
             Recipe = recipeManager.GetRecipeById(id);
             if (Recipe == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Recipe not found.";
+                return RedirectToPage("/ErrorPage");
             }
+
+            DietRestriction = Recipe.GetDietRestriction();
+            Difficulty = Recipe.GetDifficulty();
             return Page();
         }
     }

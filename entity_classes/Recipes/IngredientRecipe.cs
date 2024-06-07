@@ -28,6 +28,11 @@
             return unit;
         }
 
+        public string GetFormattedQuantity()
+        {
+            return quantity.ToString("G29");
+        }
+
         public override string ToString()
         {
             return $"{ingredient.GetName()} - {quantity} {unit.GetName()}";

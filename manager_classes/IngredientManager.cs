@@ -39,7 +39,6 @@ namespace manager_classes
         public void AddIngredient(Ingredient newIngredient)
         {
             newIngredient.IsIngredientNameValid(newIngredient.GetName());
-            newIngredient.IsIngredientPriceValid(newIngredient.GetPrice());
             CheckIfIngredientExists(newIngredient.GetName());
 
             dbHelper.AddIngredient(newIngredient);
@@ -63,16 +62,14 @@ namespace manager_classes
             dbHelper.DeleteIngredient(ingredient);
         }
 
-        public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice)
+        public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType)
         {
             if (newName != ingredient.GetName() && IsIngredientNameTakenByOtherIngredient(ingredient, newName))
             {
                 throw new AlreadyExistIngredientException(newName);
             }
 
-            ingredient.IsIngredientPriceValid(newPrice);
-
-            dbHelper.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
+            dbHelper.UpdateIngredientDetails(ingredient, newName, newType);
         }
 
         private bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name)

@@ -24,7 +24,6 @@ namespace recipe_desktop
         {
             SetName(ingredient.GetName());
             SetType(ingredient.GetTypeIngredient().GetName());
-            SetPrice(ingredient.GetPrice());
         }
 
         public void SetName(string name)
@@ -37,12 +36,6 @@ namespace recipe_desktop
             lblType.Text = type;
         }
 
-        public void SetPrice(decimal price)
-        {
-            CultureInfo euroCulture = new CultureInfo("nl-NL");
-            lblPrice.Text = price.ToString("C", euroCulture);
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             ingredientManager.DeleteIngredient(ingredient);
@@ -53,11 +46,6 @@ namespace recipe_desktop
         {
             EditIngredientForm editIngredient = new EditIngredientForm(ingredient, ingredientManager);
             editIngredient.Show();
-        }
-
-        private void lblType_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

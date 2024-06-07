@@ -42,11 +42,10 @@ namespace db_helpers
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = "INSERT INTO Ingredient (name, id_type, price) VALUES (@Name, @IdType, @Price)";
+                    string query = "INSERT INTO Ingredient (name, id_type) VALUES (@Name, @IdType)";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", newIngredient.GetName());
                     cmd.Parameters.AddWithValue("@IdType", newIngredient.GetTypeIngredient().GetId());
-                    cmd.Parameters.AddWithValue("@Price", newIngredient.GetPrice());
 
                     cmd.ExecuteNonQuery();
                 }
@@ -89,7 +88,7 @@ namespace db_helpers
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = @"SELECT i.id_ingredient, i.name, i.price, t.id_type, t.type 
+                    string query = @"SELECT i.id_ingredient, i.name, t.id_type, t.type 
                                      FROM Ingredient i 
                                      JOIN TypeIngredient t ON i.id_type = t.id_type";
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -99,7 +98,7 @@ namespace db_helpers
                         while (reader.Read())
                         {
                             TypeIngredient typeIngredient = new TypeIngredient((int)reader["id_type"], reader["type"].ToString());
-                            Ingredient ingredient = new Ingredient((int)reader["id_ingredient"], reader["name"].ToString(), typeIngredient, (decimal)reader["price"]);
+                            Ingredient ingredient = new Ingredient((int)reader["id_ingredient"], reader["name"].ToString(), typeIngredient);
                             ingredients.Add(ingredient);
                         }
                     }
@@ -135,7 +134,7 @@ namespace db_helpers
             }
         }
 
-        public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice)
+        public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
             {
@@ -146,14 +145,13 @@ namespace db_helpers
                 {
                     string updateQuery = @"
                     UPDATE Ingredient
-                    SET name = @Name, id_type = @IdType, price = @Price
+                    SET name = @Name, id_type = @IdType
                     WHERE id_ingredient = @Id";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
                     cmd.Parameters.AddWithValue("@Id", ingredient.GetIdIngredient());
                     cmd.Parameters.AddWithValue("@Name", newName);
                     cmd.Parameters.AddWithValue("@IdType", newType.GetId());
-                    cmd.Parameters.AddWithValue("@Price", newPrice);
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();

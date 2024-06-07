@@ -1241,6 +1241,7 @@
       "Microsoft.jQuery.Unobtrusive.Ajax >= 3.2.6",
       "Microsoft.jQuery.Unobtrusive.Validation >= 4.0.0",
       "System.Data.SqlClient >= 4.8.6",
+      "entity_classes >= 1.0.0",
       "manager_classes >= 1.0.0"
     ]
   },
@@ -1272,6 +1273,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
+              "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj"
+            },
             "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
               "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
             }

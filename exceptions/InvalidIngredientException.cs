@@ -14,9 +14,4 @@
     {
         public InvalidIngredientNameException() : base("The ingredient name is invalid. The name must contain only letters and spaces.") { }
     }
-
-    public class InvalidPriceException : InvalidIngredientException
-    {
-        public InvalidPriceException() : base("The price you provided is not valid. The price must be a positive number.") { }
-    }
 }

@@ -10,6 +10,6 @@ namespace manager_classes
         List<TypeIngredient> GetAllTypeIngredients();
         List<Unit> GetAllUnits();
         TypeIngredient GetTypeIngredientByName(string name);
-        void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType, decimal newPrice);
+        void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType);
     }
 }

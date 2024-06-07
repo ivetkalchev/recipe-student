@@ -7,9 +7,10 @@
         private bool servedHot;
         private int pours;
 
-        public Drink(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate,
-            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isAlcoholic, bool containsCaffeine, bool servedHot, int pours)
-            : base(idRecipe, title, description, instructions, ingredients, user, publishDate, preparationTime, cookingTime, dietRestriction, difficulty, pic)
+        public Drink(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user,
+            TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isAlcoholic, 
+            bool containsCaffeine, bool servedHot, int pours)
+            : base(idRecipe, title, description, instructions, ingredients, user, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
             this.isAlcoholic = isAlcoholic;
             this.containsCaffeine = containsCaffeine;

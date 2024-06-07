@@ -36,13 +36,9 @@
             btnSave = new Button();
             btnEdit = new Button();
             panel1 = new Panel();
-            nudPrice = new NumericUpDown();
-            label2 = new Label();
             cbTypeIngredient = new ComboBox();
-            lblPrice = new Label();
             lblType = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudPrice).BeginInit();
             SuspendLayout();
             // 
             // btnClose
@@ -70,7 +66,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(149, 8);
+            label1.Location = new Point(145, 8);
             label1.Name = "label1";
             label1.Size = new Size(310, 40);
             label1.TabIndex = 40;
@@ -110,7 +106,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(313, 316);
+            btnSave.Location = new Point(313, 220);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(220, 49);
             btnSave.TabIndex = 40;
@@ -127,7 +123,7 @@
             btnEdit.FlatStyle = FlatStyle.Flat;
             btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnEdit.ForeColor = Color.FromArgb(98, 14, 80);
-            btnEdit.Location = new Point(77, 316);
+            btnEdit.Location = new Point(77, 220);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(220, 49);
             btnEdit.TabIndex = 43;
@@ -138,10 +134,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(182, 113, 169);
-            panel1.Controls.Add(nudPrice);
-            panel1.Controls.Add(label2);
             panel1.Controls.Add(cbTypeIngredient);
-            panel1.Controls.Add(lblPrice);
             panel1.Controls.Add(lblType);
             panel1.Controls.Add(btnEdit);
             panel1.Controls.Add(btnSave);
@@ -149,32 +142,8 @@
             panel1.Controls.Add(tbName);
             panel1.Location = new Point(5, 56);
             panel1.Name = "panel1";
-            panel1.Size = new Size(618, 386);
+            panel1.Size = new Size(618, 283);
             panel1.TabIndex = 0;
-            // 
-            // nudPrice
-            // 
-            nudPrice.DecimalPlaces = 2;
-            nudPrice.Font = new Font("Segoe UI", 19F);
-            nudPrice.ForeColor = Color.Black;
-            nudPrice.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
-            nudPrice.Location = new Point(77, 241);
-            nudPrice.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            nudPrice.Name = "nudPrice";
-            nudPrice.Size = new Size(261, 50);
-            nudPrice.TabIndex = 41;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label2.ForeColor = Color.FromArgb(98, 14, 80);
-            label2.Location = new Point(344, 245);
-            label2.Name = "label2";
-            label2.Size = new Size(202, 46);
-            label2.TabIndex = 49;
-            label2.Text = "€ (per kg/l)";
-            label2.TextAlign = ContentAlignment.TopCenter;
             // 
             // cbTypeIngredient
             // 
@@ -185,18 +154,6 @@
             cbTypeIngredient.Name = "cbTypeIngredient";
             cbTypeIngredient.Size = new Size(456, 49);
             cbTypeIngredient.TabIndex = 48;
-            // 
-            // lblPrice
-            // 
-            lblPrice.AutoSize = true;
-            lblPrice.Font = new Font("Segoe UI", 17F, FontStyle.Bold);
-            lblPrice.ForeColor = Color.FromArgb(98, 14, 80);
-            lblPrice.Location = new Point(71, 198);
-            lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(85, 40);
-            lblPrice.TabIndex = 45;
-            lblPrice.Text = "Price";
-            lblPrice.TextAlign = ContentAlignment.TopCenter;
             // 
             // lblType
             // 
@@ -215,7 +172,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(98, 14, 80);
-            ClientSize = new Size(628, 448);
+            ClientSize = new Size(628, 345);
             Controls.Add(label1);
             Controls.Add(btnClose);
             Controls.Add(panel1);
@@ -226,7 +183,6 @@
             Text = "Edit Ingredient";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudPrice).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -239,10 +195,7 @@
         private Button btnSave;
         private Button btnEdit;
         private Panel panel1;
-        private Label lblPrice;
         private Label lblType;
         private ComboBox cbTypeIngredient;
-        private Label label2;
-        private NumericUpDown nudPrice;
     }
 }

@@ -14,6 +14,7 @@
           "Microsoft.jQuery.Unobtrusive.Ajax": "3.2.6",
           "Microsoft.jQuery.Unobtrusive.Validation": "4.0.0",
           "System.Data.SqlClient": "4.8.6",
+          "entity_classes": "1.0.0",
           "manager_classes": "1.0.0"
         },
         "runtime": {

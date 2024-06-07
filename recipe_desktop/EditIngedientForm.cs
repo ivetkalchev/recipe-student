@@ -28,14 +28,12 @@ namespace recipe_desktop
         {
             tbName.Text = ingredient.GetName();
             cbTypeIngredient.SelectedItem = ingredient.GetTypeIngredient().GetName();
-            nudPrice.Value = ingredient.GetPrice();
         }
 
         private void LockTextBoxes()
         {
             tbName.Enabled = false;
             cbTypeIngredient.Enabled = false;
-            nudPrice.Enabled = false;
             btnSave.Enabled = false;
         }
 
@@ -43,14 +41,12 @@ namespace recipe_desktop
         {
             tbName.Enabled = true;
             cbTypeIngredient.Enabled = true;
-            nudPrice.Enabled = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string newName = tbName.Text.Trim();
             TypeIngredient newType = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
-            decimal newPrice = nudPrice.Value;
 
             if (string.IsNullOrWhiteSpace(newName))
             {
@@ -60,7 +56,7 @@ namespace recipe_desktop
 
             try
             {
-                ingredientManager.UpdateIngredientDetails(ingredient, newName, newType, newPrice);
+                ingredientManager.UpdateIngredientDetails(ingredient, newName, newType);
                 MessageBox.Show("Changes saved successfully!");
                 btnSave.Enabled = false;
                 LockTextBoxes();

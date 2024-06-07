@@ -30,7 +30,6 @@
         {
             lblName = new Label();
             lblType = new Label();
-            lblPrice = new Label();
             btnDelete = new Button();
             pictureBox1 = new PictureBox();
             btnEdit = new Button();
@@ -53,23 +52,11 @@
             lblType.AutoSize = true;
             lblType.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblType.ForeColor = Color.White;
-            lblType.Location = new Point(452, 48);
+            lblType.Location = new Point(619, 48);
             lblType.Name = "lblType";
             lblType.Size = new Size(79, 30);
             lblType.TabIndex = 3;
             lblType.Text = "{Type}";
-            lblType.Click += lblType_Click;
-            // 
-            // lblPrice
-            // 
-            lblPrice.AutoSize = true;
-            lblPrice.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
-            lblPrice.ForeColor = Color.White;
-            lblPrice.Location = new Point(694, 48);
-            lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(100, 30);
-            lblPrice.TabIndex = 4;
-            lblPrice.Text = "{€ Price}";
             // 
             // btnDelete
             // 
@@ -125,7 +112,6 @@
             Controls.Add(btnEdit);
             Controls.Add(pictureBox1);
             Controls.Add(btnDelete);
-            Controls.Add(lblPrice);
             Controls.Add(lblType);
             Controls.Add(lblName);
             Margin = new Padding(5);
@@ -140,7 +126,6 @@
         #endregion
         private Label lblName;
         private Label lblType;
-        private Label lblPrice;
         private Button btnDelete;
         private PictureBox pictureBox1;
         private Button btnEdit;

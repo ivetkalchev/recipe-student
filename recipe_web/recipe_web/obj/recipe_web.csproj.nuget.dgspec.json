@@ -341,6 +341,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "I:\\individual-project\\entity_classes\\entity_classes.csproj": {
+                "projectPath": "I:\\individual-project\\entity_classes\\entity_classes.csproj"
+              },
               "I:\\individual-project\\manager_classes\\manager_classes.csproj": {
                 "projectPath": "I:\\individual-project\\manager_classes\\manager_classes.csproj"
               }

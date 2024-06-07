@@ -160,7 +160,7 @@ namespace recipe_desktop
                 ingredients.Add(item);
             }
 
-            MainCourse mainCourse = new MainCourse(0, title, description, instructions, ingredients, user, DateTime.Now,
+            MainCourse mainCourse = new MainCourse(0, title, description, instructions, ingredients, user,
                 TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, uploadedPic, isSpicy, servings);
 
             recipeManager.UploadMainCourse(mainCourse);

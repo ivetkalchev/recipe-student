@@ -8,14 +8,13 @@
         private string instructions;
         private List<IngredientRecipe> ingredients;
         private DesktopUser user;
-        private DateTime publishDate;
         private TimeSpan preparationTime;
         private TimeSpan cookingTime;
         private DietRestriction dietRestriction;
         private Difficulty difficulty;
         private RecipePic? pic;
 
-        public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user, DateTime publishDate,
+        public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user,
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
         {
             this.idRecipe = idRecipe;
@@ -24,7 +23,6 @@
             this.instructions = instructions;
             this.ingredients = ingredients;
             this.user = user;
-            this.publishDate = publishDate;
             this.preparationTime = preparationTime;
             this.cookingTime = cookingTime;
             this.dietRestriction = dietRestriction;
@@ -60,11 +58,6 @@
         public User GetUser()
         {
             return user;
-        }
-
-        public DateTime GetPublishDate()
-        {
-            return publishDate;
         }
 
         public TimeSpan GetPreparationTime()

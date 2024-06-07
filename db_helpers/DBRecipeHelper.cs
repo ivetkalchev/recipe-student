@@ -484,7 +484,7 @@ namespace db_helpers
                             {
                                 bool isSpicy = (bool)reader["is_spicy"];
                                 int servings = (int)reader["servings"];
-                                recipes.Add(new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSpicy, servings));
+                                recipes.Add(new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSpicy, servings));
                             }
                             else if (reader["is_alcoholic"] != DBNull.Value)
                             {
@@ -492,13 +492,13 @@ namespace db_helpers
                                 bool containsCaffeine = (bool)reader["contains_caffeine"];
                                 bool servedHot = (bool)reader["served_hot"];
                                 int pours = (int)reader["pours"];
-                                recipes.Add(new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, dietRestriction, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours));
+                                recipes.Add(new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, dietRestriction, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours));
                             }
                             else if (reader["is_sugar_free"] != DBNull.Value)
                             {
                                 bool isSugarFree = (bool)reader["is_sugar_free"];
                                 bool requiresFreezing = (bool)reader["requires_freezing"];
-                                recipes.Add(new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSugarFree, requiresFreezing));
+                                recipes.Add(new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSugarFree, requiresFreezing));
                             }
                         }
                     }
@@ -587,72 +587,102 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                    SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
-                           m.is_spicy, m.servings,
-                           d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
-                           ds.is_sugar_free, ds.requires_freezing,
-                           rp.name AS pic_name, rp.data AS pic_data, rp.content_type AS pic_content_type
-                    FROM Recipe r
-                    LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
-                    LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
-                    LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
-                    LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
-                    WHERE r.id_recipe = @id";
+                SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                       m.is_spicy, m.servings,
+                       d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                       ds.is_sugar_free, ds.requires_freezing,
+                       rp.name AS pic_name, rp.data AS pic_data, rp.content_type AS pic_content_type,
+                       ir.id_ingredient, ir.quantity, ir.id_unit,
+                       i.name AS ingredient_name,
+                       u.unit AS unit_name
+                FROM Recipe r
+                LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
+                LEFT JOIN IngredientRecipe ir ON r.id_recipe = ir.id_recipe
+                LEFT JOIN Ingredient i ON ir.id_ingredient = i.id_ingredient
+                LEFT JOIN Unit u ON ir.id_unit = u.id_unit
+                WHERE r.id_recipe = @id";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@id", id);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read())
+                        var ingredients = new List<IngredientRecipe>();
+
+                        while (reader.Read())
                         {
-                            int idRecipe = (int)reader["id_recipe"];
-                            string title = reader["title"].ToString();
-                            string description = reader["description"].ToString();
-                            string instructions = reader["instructions"].ToString();
-                            int userId = (int)reader["id_desktop_user"];
-                            TimeSpan preparationTime = (TimeSpan)reader["preparation_time"];
-                            TimeSpan cookingTime = (TimeSpan)reader["cooking_time"];
-                            int dietId = (int)reader["id_diet_restriction"];
-                            int difficultyId = (int)reader["id_difficulty"];
-                            RecipePic? pic = null;
-
-                            if (reader["id_recipe_pic"] != DBNull.Value)
+                            if (recipe == null)
                             {
-                                int picId = (int)reader["id_recipe_pic"];
-                                string picName = reader["pic_name"].ToString();
-                                string picData = reader["pic_data"].ToString();
-                                string picContentType = reader["pic_content_type"].ToString();
-                                pic = new RecipePic(picId, picName, picData, picContentType);
+                                int idRecipe = (int)reader["id_recipe"];
+                                string title = reader["title"].ToString();
+                                string description = reader["description"].ToString();
+                                string instructions = reader["instructions"].ToString();
+                                int userId = (int)reader["id_desktop_user"];
+                                TimeSpan preparationTime = (TimeSpan)reader["preparation_time"];
+                                TimeSpan cookingTime = (TimeSpan)reader["cooking_time"];
+                                int dietId = (int)reader["id_diet_restriction"];
+                                int difficultyId = (int)reader["id_difficulty"];
+                                RecipePic? pic = null;
+
+                                if (reader["id_recipe_pic"] != DBNull.Value)
+                                {
+                                    int picId = (int)reader["id_recipe_pic"];
+                                    string picName = reader["pic_name"].ToString();
+                                    string picData = reader["pic_data"].ToString();
+                                    string picContentType = reader["pic_content_type"].ToString();
+                                    pic = new RecipePic(picId, picName, picData, picContentType);
+                                }
+
+                                DesktopUser user = userHelper.GetUserById(userId);
+                                DietRestriction diet = GetDietRestrictionById(dietId);
+                                Difficulty difficulty = GetDifficultyById(difficultyId);
+
+                                if (reader["is_spicy"] != DBNull.Value)
+                                {
+                                    bool isSpicy = (bool)reader["is_spicy"];
+                                    int servings = (int)reader["servings"];
+                                    recipe = new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, diet, difficulty, pic, isSpicy, servings);
+                                }
+                                else if (reader["is_alcoholic"] != DBNull.Value)
+                                {
+                                    bool isAlcoholic = (bool)reader["is_alcoholic"];
+                                    bool containsCaffeine = (bool)reader["contains_caffeine"];
+                                    bool servedHot = (bool)reader["served_hot"];
+                                    int pours = (int)reader["pours"];
+                                    recipe = new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, diet, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours);
+                                }
+                                else if (reader["is_sugar_free"] != DBNull.Value)
+                                {
+                                    bool isSugarFree = (bool)reader["is_sugar_free"];
+                                    bool requiresFreezing = (bool)reader["requires_freezing"];
+                                    recipe = new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, diet, difficulty, pic, isSugarFree, requiresFreezing);
+                                }
                             }
 
-                            DesktopUser user = userHelper.GetUserById(userId);
-                            DietRestriction diet = GetDietRestrictionById(dietId);
-                            Difficulty difficulty = GetDifficultyById(difficultyId);
+                            if (reader["id_ingredient"] != DBNull.Value)
+                            {
+                                int ingredientId = (int)reader["id_ingredient"];
+                                string ingredientName = reader["ingredient_name"].ToString();
+                                decimal quantity = (decimal)reader["quantity"];
+                                int unitId = (int)reader["id_unit"];
+                                string unitName = reader["unit_name"].ToString();
 
-                            if (reader["is_spicy"] != DBNull.Value)
-                            {
-                                bool isSpicy = (bool)reader["is_spicy"];
-                                int servings = (int)reader["servings"];
-                                recipe = new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, diet, difficulty, pic, isSpicy, servings);
-                            }
-                            else if (reader["is_alcoholic"] != DBNull.Value)
-                            {
-                                bool isAlcoholic = (bool)reader["is_alcoholic"];
-                                bool containsCaffeine = (bool)reader["contains_caffeine"];
-                                bool servedHot = (bool)reader["served_hot"];
-                                int pours = (int)reader["pours"];
-                                recipe = new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, diet, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours);
-                            }
-                            else if (reader["is_sugar_free"] != DBNull.Value)
-                            {
-                                bool isSugarFree = (bool)reader["is_sugar_free"];
-                                bool requiresFreezing = (bool)reader["requires_freezing"];
-                                recipe = new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, DateTime.Now, preparationTime, cookingTime, diet, difficulty, pic, isSugarFree, requiresFreezing);
+                                var ingredient = new Ingredient(ingredientId, ingredientName, null);
+                                var unit = new Unit(unitId, unitName);
+                                var ingredientRecipe = new IngredientRecipe(ingredient, quantity, unit);
+                                recipe.GetIngredientRecipes().Add(ingredientRecipe);
                             }
                         }
                     }
                 }
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                Console.WriteLine("Column not found: " + ex.Message);
+                throw new Exception("Column not found: " + ex.Message, ex);
             }
             catch (Exception ex)
             {
