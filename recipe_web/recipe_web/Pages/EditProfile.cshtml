@@ -22,7 +22,9 @@
         <label asp-for="UserDTO.Caption"></label>
         <input asp-for="UserDTO.Caption" class="form-control" />
     </div>
-    <button type="submit" class="button">Save</button>
+    <div class="button-container">
+        <button type="submit" class="button">Save</button>
+    </div>
 </form>
 
 @section Scripts {
@@ -56,6 +58,11 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
     }
 
     .button {
