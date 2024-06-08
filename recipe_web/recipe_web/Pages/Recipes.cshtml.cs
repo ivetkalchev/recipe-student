@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
-using db_helpers;
 using manager_classes;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
+using System;
 
 namespace recipe_web.Pages
 {
@@ -27,18 +26,12 @@ namespace recipe_web.Pages
 
         public void OnGet()
         {
-            var allRecipes = recipeManager.GetAllRecipes();
+            int totalRecipes = recipeManager.GetTotalRecipesCount(SearchQuery);
+            TotalPages = (int)Math.Ceiling(totalRecipes / (double)PageSize);
+            Recipes = recipeManager.GetPagedRecipes(PageNumber, PageSize, SearchQuery);
 
-            if (!string.IsNullOrEmpty(SearchQuery))
-            {
-                allRecipes = allRecipes.Where(r =>
-                    r.GetTitle().IndexOf(SearchQuery, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                    r.GetDescription().IndexOf(SearchQuery, StringComparison.OrdinalIgnoreCase) >= 0
-                ).ToList();
-            }
-
-            TotalPages = (int)Math.Ceiling(allRecipes.Count / (double)PageSize);
-            Recipes = allRecipes.Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
+            // Add debugging information
+            Console.WriteLine($"Total recipes: {totalRecipes}, Displaying page {PageNumber} of {TotalPages}");
         }
     }
 }

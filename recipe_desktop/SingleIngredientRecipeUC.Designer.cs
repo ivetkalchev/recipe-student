@@ -40,7 +40,7 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblName.ForeColor = Color.FromArgb(98, 14, 80);
-            lblName.Location = new Point(29, 32);
+            lblName.Location = new Point(19, 32);
             lblName.Name = "lblName";
             lblName.Size = new Size(99, 32);
             lblName.TabIndex = 5;
@@ -51,9 +51,9 @@
             cbUnit.Font = new Font("Segoe UI", 13F);
             cbUnit.ForeColor = Color.Black;
             cbUnit.FormattingEnabled = true;
-            cbUnit.Location = new Point(377, 30);
+            cbUnit.Location = new Point(428, 30);
             cbUnit.Name = "cbUnit";
-            cbUnit.Size = new Size(97, 38);
+            cbUnit.Size = new Size(80, 38);
             cbUnit.TabIndex = 61;
             // 
             // btnAdd
@@ -67,7 +67,7 @@
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(514, 30);
+            btnAdd.Location = new Point(524, 28);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(79, 41);
             btnAdd.TabIndex = 73;
@@ -80,7 +80,7 @@
             nudPrice.DecimalPlaces = 3;
             nudPrice.Font = new Font("Segoe UI", 12F);
             nudPrice.Increment = new decimal(new int[] { 25, 0, 0, 131072 });
-            nudPrice.Location = new Point(225, 32);
+            nudPrice.Location = new Point(303, 32);
             nudPrice.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
             nudPrice.Name = "nudPrice";
             nudPrice.Size = new Size(119, 34);

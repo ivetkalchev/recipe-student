@@ -57,11 +57,11 @@
             <form method="post" asp-page-handler="AddToDoList" asp-route-id="@Model.Recipe.GetIdRecipe()">
                 @if (!Model.IsInToDoList)
                 {
-                    <button type="submit" class="btn btn-primary">Add to To-Do List</button>
+                    <button type="submit" class="btn btn-primary add-to-do-button">Add to To-Do List</button>
                 }
                 else
                 {
-                    <span>This recipe is already in your to-do list.</span>
+                    <span class="to-do-message">This recipe is already in your To-Do list.</span>
                 }
             </form>
         </div>
@@ -133,6 +133,35 @@
                 color: #666;
                 font-size: 17px;
             }
+
+        .add-to-do-button {
+            display: inline-block;
+            background-color: #3D538F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+            .add-to-do-button:hover {
+                background-color: #2C3B70;
+            }
+
+        .to-do-message {
+            display: inline-block;
+            background-color: #BEC9E8;
+            color: #3D538F;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
 }
 

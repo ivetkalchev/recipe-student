@@ -66,5 +66,15 @@ namespace manager_classes
         {
             return dbHelper.IsRecipeInToDoList(userId, recipeId);
         }
+
+        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery)
+        {
+            return dbHelper.GetPagedRecipes(pageNumber, pageSize, searchQuery);
+        }
+
+        public int GetTotalRecipesCount(string searchQuery)
+        {
+            return dbHelper.GetTotalRecipesCount(searchQuery);
+        }
     }
 }

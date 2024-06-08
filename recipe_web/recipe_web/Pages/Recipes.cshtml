@@ -157,23 +157,27 @@ else
         .pagination {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin-top: 20px;
         }
 
         .pagination-button {
-            background-color: #3D538F;
-            color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             margin: 0 5px;
-            border: none;
+            border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: #fff;
+            color: #333;
             text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
         }
+
+            .pagination-button.active {
+                background-color: #3D538F;
+                color: white;
+            }
 
             .pagination-button:hover {
                 background-color: #2C3B70;
+                color: white;
             }
     </style>
 }
