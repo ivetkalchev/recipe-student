@@ -13,5 +13,7 @@ namespace db_helpers
         void InsertDessert(Dessert recipe);
         void InsertDrink(Drink recipe);
         void InsertMainCourse(MainCourse recipe);
+        void AddToDoList(int userId, int recipeId);
+        bool IsRecipeInToDoList(int userId, int recipeId);
     }
 }

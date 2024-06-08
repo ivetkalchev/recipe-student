@@ -10,7 +10,7 @@
 </div>
 
 <form method="get" class="search-form">
-    <input type="text" name="searchQuery" value="@Model.SearchQuery" placeholder="Search recipes..." class="search-input" />
+    <input type="text" name="SearchQuery" value="@Model.SearchQuery" placeholder="Search recipes..." class="search-input" />
     <button type="submit" class="search-button">Search</button>
 </form>
 
@@ -30,6 +30,17 @@
                 <p>@recipe.GetDescription()</p>
                 <a href="@Url.Page("/RecipeDetails", new { id = recipe.GetIdRecipe() })" class="button">View Recipe</a>
             </div>
+        }
+    </div>
+
+    <div class="pagination">
+        @if (Model.PageNumber > 1)
+        {
+            <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Previous</a>
+        }
+        @if (Model.PageNumber < Model.TotalPages)
+        {
+            <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber + 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Next</a>
         }
     </div>
 }
@@ -140,6 +151,28 @@ else
         }
 
             .button:hover {
+                background-color: #2C3B70;
+            }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .pagination-button {
+            background-color: #3D538F;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .pagination-button:hover {
                 background-color: #2C3B70;
             }
     </style>

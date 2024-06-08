@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace entity_classes.Recipes
+namespace entity_classes
 {
     public class Review
     {

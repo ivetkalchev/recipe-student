@@ -4,6 +4,7 @@ using db_helpers;
 using manager_classes;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace recipe_web.Pages
 {
@@ -14,6 +15,10 @@ namespace recipe_web.Pages
         public List<Recipe> Recipes { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchQuery { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int PageNumber { get; set; } = 1;
+        public int TotalPages { get; set; }
+        private const int PageSize = 8;
 
         public RecipesModel(IRecipeManager recipeManager)
         {
@@ -23,23 +28,17 @@ namespace recipe_web.Pages
         public void OnGet()
         {
             var allRecipes = recipeManager.GetAllRecipes();
-            Recipes = new List<Recipe>();
 
             if (!string.IsNullOrEmpty(SearchQuery))
             {
-                foreach (var recipe in allRecipes)
-                {
-                    if (recipe.GetTitle().IndexOf(SearchQuery, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        recipe.GetDescription().IndexOf(SearchQuery, StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        Recipes.Add(recipe);
-                    }
-                }
+                allRecipes = allRecipes.Where(r =>
+                    r.GetTitle().IndexOf(SearchQuery, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    r.GetDescription().IndexOf(SearchQuery, StringComparison.OrdinalIgnoreCase) >= 0
+                ).ToList();
             }
-            else
-            {
-                Recipes = allRecipes;
-            }
+
+            TotalPages = (int)Math.Ceiling(allRecipes.Count / (double)PageSize);
+            Recipes = allRecipes.Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
         }
     }
 }

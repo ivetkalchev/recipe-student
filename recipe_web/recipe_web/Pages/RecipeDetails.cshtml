@@ -53,6 +53,17 @@
             }
 
             <p><strong>Uploaded By:</strong> @Model.Recipe.GetUser().GetUsername()</p>
+
+            <form method="post" asp-page-handler="AddToDoList" asp-route-id="@Model.Recipe.GetIdRecipe()">
+                @if (!Model.IsInToDoList)
+                {
+                    <button type="submit" class="btn btn-primary">Add to To-Do List</button>
+                }
+                else
+                {
+                    <span>This recipe is already in your to-do list.</span>
+                }
+            </form>
         </div>
     </div>
     @if (Model.Recipe.GetRecipePic() != null)

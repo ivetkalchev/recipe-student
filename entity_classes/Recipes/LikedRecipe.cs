@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace entity_classes.Recipes
+﻿namespace entity_classes
 {
-    public class LikedRecipe
+    public class ToDoList
     {
         private WebUser user;
         private Recipe recipe;
-        
-        public LikedRecipe(WebUser user, Recipe recipe)
+
+        public ToDoList(WebUser user, Recipe recipe)
         {
             this.user = user;
             this.recipe = recipe;
@@ -21,11 +15,10 @@ namespace entity_classes.Recipes
         {
             return user;
         }
-        
+
         public Recipe GetRecipe()
         {
             return recipe;
         }
-
     }
 }

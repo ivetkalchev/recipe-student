@@ -56,5 +56,15 @@ namespace manager_classes
         {
             return dbHelper.GetRecipeById(id);
         }
+
+        public void AddToDoList(int userId, int recipeId)
+        {
+            dbHelper.AddToDoList(userId, recipeId);
+        }
+
+        public bool IsRecipeInToDoList(int userId, int recipeId)
+        {
+            return dbHelper.IsRecipeInToDoList(userId, recipeId);
+        }
     }
 }

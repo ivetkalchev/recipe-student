@@ -13,5 +13,7 @@ namespace manager_classes
         void UploadDessert(Dessert recipe);
         void UploadDrink(Drink recipe);
         void UploadMainCourse(MainCourse recipe);
+        void AddToDoList(int userId, int recipeId);
+        bool IsRecipeInToDoList(int userId, int recipeId);
     }
 }
