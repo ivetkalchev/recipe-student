@@ -4,6 +4,7 @@ namespace manager_classes
 {
     public interface IRecipeManager
     {
+        void AddReview(Review review, int userId);
         void AddToDoList(int userId, int recipeId);
         List<DietRestriction> GetAllDietRestrictions();
         List<Difficulty> GetAllDifficulties();
@@ -12,6 +13,7 @@ namespace manager_classes
         Difficulty GetDifficultyByName(string name);
         List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery);
         Recipe GetRecipeById(int id);
+        List<Review> GetReviewsByRecipeId(int recipeId);
         int GetTotalRecipesCount(string searchQuery);
         bool IsRecipeInToDoList(int userId, int recipeId);
         void UploadDessert(Dessert recipe);

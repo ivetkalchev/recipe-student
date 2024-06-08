@@ -76,5 +76,21 @@ namespace manager_classes
         {
             return dbHelper.GetTotalRecipesCount(searchQuery);
         }
+
+        public void AddReview(Review review, int userId)
+        {
+            dbHelper.InsertReview(review, userId);
+        }
+
+        public List<Review> GetReviewsByRecipeId(int recipeId)
+        {
+            var reviews = dbHelper.GetReviewsByRecipeId(recipeId);
+            var recipe = GetRecipeById(recipeId);
+            foreach (var review in reviews)
+            {
+                review.SetRecipe(recipe);
+            }
+            return reviews;
+        }
     }
 }

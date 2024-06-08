@@ -1,12 +1,14 @@
 ﻿using entity_classes;
 using manager_classes;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace recipe_desktop
 {
     public partial class EmployeeUC : UserControl
     {
         private IUserManager userManager;
-        
+
         private List<DesktopUser> users;
         private int currentPage;
         private int totalPages;
@@ -17,11 +19,11 @@ namespace recipe_desktop
         public EmployeeUC(IUserManager userManager)
         {
             InitializeComponent();
-            
+
             this.userManager = userManager;
-            
+
             currentPage = 1;
-            
+
             LoadEmployees();
         }
 
@@ -168,13 +170,22 @@ namespace recipe_desktop
             if (!string.IsNullOrEmpty(query))
             {
                 searchResults = SearchUsers(query);
-                currentPage = 1;
-                ApplyFilterAndPagination();
             }
             else
             {
                 searchResults = null;
-                ApplyFilterAndPagination();
+            }
+            currentPage = 1;
+            ApplyFilterAndPagination();
+        }
+
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                picSearch_Click(sender, e);
+                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }

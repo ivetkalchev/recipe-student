@@ -1,65 +1,90 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using db_helpers;
 using entity_classes;
 using manager_classes;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using recipe_web.DTOs;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
 namespace recipe_web.Pages
 {
-    [Authorize]
     public class RecipeDetailsModel : PageModel
     {
-        private IRecipeManager recipeManager;
+        private readonly IRecipeManager recipeManager;
 
         public Recipe Recipe { get; set; }
-        public DietRestriction DietRestriction { get; set; }
-        public Difficulty Difficulty { get; set; }
+        public List<Review> Reviews { get; set; } = new List<Review>(); // Ensure Reviews is initialized
         public bool IsInToDoList { get; set; }
+
+        [BindProperty]
+        public ReviewDTO Review { get; set; }
 
         public RecipeDetailsModel(IRecipeManager recipeManager)
         {
             this.recipeManager = recipeManager;
         }
 
-        public IActionResult OnGet(int id)
+        public void OnGet(int id)
         {
             Recipe = recipeManager.GetRecipeById(id);
-            if (Recipe == null)
+            Reviews = recipeManager.GetReviewsByRecipeId(id);
+            IsInToDoList = recipeManager.IsRecipeInToDoList(GetUserId(), id);
+        }
+
+        public IActionResult OnPostAddReview(int id)
+        {
+            if (!ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = "Recipe not found.";
-                return RedirectToPage("/ErrorPage");
+                TempData["ErrorMessage"] = "Please correct the form errors.";
+                return Page();
             }
 
-            DietRestriction = Recipe.GetDietRestriction();
-            Difficulty = Recipe.GetDifficulty();
-
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
+            try
             {
-                TempData["ErrorMessage"] = "User ID claim not found.";
-                return RedirectToPage("/ErrorPage");
+                var user = new WebUser(GetUserId(), GetUsername(), GetUserEmail(), "", ""); // Fill in appropriate values
+                var recipe = recipeManager.GetRecipeById(id);
+                var newReview = new Review(0, recipe, Review.RatingValue, Review.ReviewText);
+                newReview.SetUser(user);
+                recipeManager.AddReview(newReview, user.GetIdUser());
+                return RedirectToPage(new { id });
             }
-
-            int userId = int.Parse(userIdClaim.Value);
-            IsInToDoList = recipeManager.IsRecipeInToDoList(userId, id);
-
-            return Page();
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return Page();
+            }
         }
 
         public IActionResult OnPostAddToDoList(int id)
         {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-            if (userIdClaim == null)
+            try
             {
-                TempData["ErrorMessage"] = "User ID claim not found.";
-                return RedirectToPage("/ErrorPage");
+                recipeManager.AddToDoList(GetUserId(), id);
+                return RedirectToPage(new { id });
             }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return Page();
+            }
+        }
 
-            int userId = int.Parse(userIdClaim.Value);
-            recipeManager.AddToDoList(userId, id);
-            return RedirectToPage(new { id = id });
+        private int GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return userIdClaim != null ? int.Parse(userIdClaim) : 0;
+        }
+
+        private string GetUsername()
+        {
+            return User.FindFirst(ClaimTypes.Name)?.Value ?? string.Empty;
+        }
+
+        private string GetUserEmail()
+        {
+            return User.FindFirst(ClaimTypes.Email)?.Value ?? string.Empty;
         }
     }
 }
