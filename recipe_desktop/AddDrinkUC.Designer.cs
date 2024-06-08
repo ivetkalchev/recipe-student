@@ -60,7 +60,7 @@
             label3 = new Label();
             label2 = new Label();
             cbAlcohol = new CheckBox();
-            cbCaffeine = new CheckBox();
+            cbContainsCaffeine = new CheckBox();
             cbServedHot = new CheckBox();
             lblNoResults = new Label();
             ((System.ComponentModel.ISupportInitialize)pbSearch).BeginInit();
@@ -435,16 +435,16 @@
             cbAlcohol.Text = "Alcoholic";
             cbAlcohol.UseVisualStyleBackColor = true;
             // 
-            // cbCaffeine
+            // cbContainsCaffeine
             // 
-            cbCaffeine.AutoSize = true;
-            cbCaffeine.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
-            cbCaffeine.Location = new Point(280, 420);
-            cbCaffeine.Name = "cbCaffeine";
-            cbCaffeine.Size = new Size(129, 29);
-            cbCaffeine.TabIndex = 120;
-            cbCaffeine.Text = "Caffeinated";
-            cbCaffeine.UseVisualStyleBackColor = true;
+            cbContainsCaffeine.AutoSize = true;
+            cbContainsCaffeine.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            cbContainsCaffeine.Location = new Point(280, 420);
+            cbContainsCaffeine.Name = "cbContainsCaffeine";
+            cbContainsCaffeine.Size = new Size(129, 29);
+            cbContainsCaffeine.TabIndex = 120;
+            cbContainsCaffeine.Text = "Caffeinated";
+            cbContainsCaffeine.UseVisualStyleBackColor = true;
             // 
             // cbServedHot
             // 
@@ -475,7 +475,7 @@
             BackColor = Color.FromArgb(182, 113, 169);
             Controls.Add(lblNoResults);
             Controls.Add(cbServedHot);
-            Controls.Add(cbCaffeine);
+            Controls.Add(cbContainsCaffeine);
             Controls.Add(cbAlcohol);
             Controls.Add(lbAddedIngredients);
             Controls.Add(btnDelete);
@@ -547,7 +547,7 @@
         private Label label3;
         private Label label2;
         private CheckBox cbAlcohol;
-        private CheckBox cbCaffeine;
+        private CheckBox cbContainsCaffeine;
         private CheckBox cbServedHot;
         private Label lblNoResults;
     }

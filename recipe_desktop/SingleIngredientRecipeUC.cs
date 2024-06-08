@@ -7,8 +7,8 @@ namespace recipe_desktop
 {
     public partial class SingleIngredientRecipeUC : UserControl
     {
-        private Ingredient ingredient;
-        private IIngredientManager ingredientManager;
+        private readonly Ingredient ingredient;
+        private readonly IIngredientManager ingredientManager;
 
         public event EventHandler<IngredientRecipe> IngredientAdded;
 
@@ -19,8 +19,13 @@ namespace recipe_desktop
             this.ingredient = ingredient;
             this.ingredientManager = ingredientManager;
 
-            lblName.Text = ingredient.GetName();
             LoadUnits();
+            LoadIngredientName();
+        }
+
+        private void LoadIngredientName()
+        {
+            lblName.Text = ingredient.GetName();
         }
 
         private void LoadUnits()
@@ -32,6 +37,7 @@ namespace recipe_desktop
             {
                 cbUnit.Items.Add(unit.GetName());
             }
+
             if (cbUnit.Items.Count > 0)
             {
                 cbUnit.SelectedIndex = 0;
@@ -40,37 +46,45 @@ namespace recipe_desktop
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string selectedUnitName = cbUnit.SelectedItem?.ToString();
-            decimal quantity = nudPrice.Value;
+            var selectedUnitName = cbUnit.SelectedItem?.ToString();
+            var quantity = nudPrice.Value;
 
             if (!string.IsNullOrEmpty(selectedUnitName) && quantity > 0)
             {
-                Unit selectedUnit = null;
-                foreach (var unit in ingredientManager.GetAllUnits())
-                {
-                    if (unit.GetName() == selectedUnitName)
-                    {
-                        selectedUnit = unit;
-                        break;
-                    }
-                }
+                var selectedUnit = GetSelectedUnit(selectedUnitName);
 
                 if (selectedUnit != null)
                 {
                     var ingredientRecipe = new IngredientRecipe(ingredient, quantity, selectedUnit);
                     OnIngredientAdded(ingredientRecipe);
 
-                    nudPrice.Value = 0;
-                    cbUnit.SelectedIndex = 0;
+                    ResetFormFields();
 
                     MessageBox.Show("Ingredient added successfully!");
-
                 }
             }
             else
             {
                 MessageBox.Show("Please select a unit and enter a quantity.");
             }
+        }
+
+        private Unit GetSelectedUnit(string unitName)
+        {
+            foreach (var unit in ingredientManager.GetAllUnits())
+            {
+                if (unit.GetName() == unitName)
+                {
+                    return unit;
+                }
+            }
+            return null;
+        }
+
+        private void ResetFormFields()
+        {
+            nudPrice.Value = 0;
+            cbUnit.SelectedIndex = 0;
         }
 
         protected virtual void OnIngredientAdded(IngredientRecipe e)

@@ -1,3 +1,5 @@
+using System;
+using System.Windows.Forms;
 using db_helpers;
 using manager_classes;
 
@@ -5,12 +7,12 @@ namespace recipe_desktop
 {
     public partial class AuthenticationForm : Form
     {
-        private UserManager userManager;
+        private IUserManager userManager;
+
         public AuthenticationForm()
         {
             InitializeComponent();
-
-            userManager = new UserManager(new DBUserHelper());
+            this.userManager = new UserManager(new DBUserHelper());
         }
 
         private void AuthenticationForm_Load(object sender, EventArgs e)
@@ -25,16 +27,18 @@ namespace recipe_desktop
 
         public void LoadLogin()
         {
-            LoginUC loginUC = new LoginUC(userManager);
-            loginUC.Dock = DockStyle.Fill;
-            panelInput.Controls.Add(loginUC);
+            LoadUserControl(new LoginUC(userManager));
         }
 
         public void LoadRegister()
         {
-            RegisterUC registerUC = new RegisterUC(userManager);
-            registerUC.Dock = DockStyle.Fill;
-            panelInput.Controls.Add(registerUC);
+            LoadUserControl(new RegisterUC(userManager));
+        }
+
+        private void LoadUserControl(UserControl userControl)
+        {
+            userControl.Dock = DockStyle.Fill;
+            panelInput.Controls.Add(userControl);
         }
     }
 }

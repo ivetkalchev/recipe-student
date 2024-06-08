@@ -1,6 +1,4 @@
 ﻿using entity_classes;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace db_helpers
@@ -221,7 +219,6 @@ namespace db_helpers
             return recipes;
         }
 
-
         private DietRestriction GetDietRestrictionById(int dietId)
         {
             try
@@ -317,7 +314,7 @@ namespace db_helpers
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        var ingredients = new List<IngredientRecipe>();
+                        Dictionary<int, IngredientRecipe> ingredientRecipes = new Dictionary<int, IngredientRecipe>();
 
                         while (reader.Read())
                         {
@@ -377,19 +374,18 @@ namespace db_helpers
                                 int unitId = (int)reader["id_unit"];
                                 string unitName = reader["unit_name"].ToString();
 
-                                var ingredient = new Ingredient(ingredientId, ingredientName, null);
-                                var unit = new Unit(unitId, unitName);
-                                var ingredientRecipe = new IngredientRecipe(ingredient, quantity, unit);
-                                recipe.GetIngredientRecipes().Add(ingredientRecipe);
+                                if (!ingredientRecipes.ContainsKey(ingredientId))
+                                {
+                                    var ingredient = new Ingredient(ingredientId, ingredientName, null);
+                                    var unit = new Unit(unitId, unitName);
+                                    var ingredientRecipe = new IngredientRecipe(ingredient, quantity, unit);
+                                    recipe.GetIngredientRecipes().Add(ingredientRecipe);
+                                    ingredientRecipes.Add(ingredientId, ingredientRecipe);
+                                }
                             }
                         }
                     }
                 }
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                Console.WriteLine("Column not found: " + ex.Message);
-                throw new Exception("Column not found: " + ex.Message, ex);
             }
             catch (Exception ex)
             {
@@ -399,6 +395,7 @@ namespace db_helpers
 
             return recipe;
         }
+
 
 
         public void AddToDoList(int userId, int recipeId)

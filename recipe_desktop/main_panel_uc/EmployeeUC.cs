@@ -9,11 +9,14 @@ namespace recipe_desktop
     {
         private IUserManager userManager;
 
-        private List<DesktopUser> users;
         private int currentPage;
         private int totalPages;
+        
         private const int UsersPerPage = 5;
+        
         private string currentFilter = "All";
+        
+        private List<DesktopUser> users;
         private List<DesktopUser> searchResults;
 
         public EmployeeUC(IUserManager userManager)

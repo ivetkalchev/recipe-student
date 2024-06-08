@@ -46,6 +46,9 @@
     <Compile Update="authentication_uc\RegisterUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="main_panel_uc\SingleRecipeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="main_panel_uc\SingleIngredientUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

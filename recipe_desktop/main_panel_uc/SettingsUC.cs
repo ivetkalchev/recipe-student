@@ -131,6 +131,5 @@ namespace recipe_desktop
                 cbGenders.SelectedIndex = cbGenders.FindStringExact(user.GetGender().GetName());
             }
         }
-
     }
 }

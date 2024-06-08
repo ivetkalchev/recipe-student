@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using manager_classes;
 using db_helpers;
 using entity_classes;
@@ -6,44 +9,48 @@ namespace recipe_desktop
 {
     public partial class HomePageForm : Form
     {
-        private DesktopUser user;
-        private IUserManager userManager;
-        private IIngredientManager ingredientManager;
-        private IRecipeManager recipeManager;
-        
-        List<MenuUC> menuButtons;
+        private readonly DesktopUser user;
+        private readonly IUserManager userManager;
+        private readonly IIngredientManager ingredientManager;
+        private readonly IRecipeManager recipeManager;
+
+        private readonly List<MenuUC> menuButtons;
 
         public HomePageForm(DesktopUser user, IUserManager userManager)
         {
             InitializeComponent();
-            
-            menuButtons = new List<MenuUC>() { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };
-            ClickMenu(menuButtons);
 
-            this.userManager = userManager;
             this.user = user;
-            this.ingredientManager = new IngredientManager(new DBIngredientHelper());
+            this.userManager = userManager;
             
-            IDBUserHelper dbUserHelper = new DBUserHelper();
-            this.recipeManager = new RecipeManager(new DBRecipeHelper(dbUserHelper));
+            this.ingredientManager = new IngredientManager(new DBIngredientHelper());
+            this.recipeManager = new RecipeManager(new DBRecipeHelper(new DBUserHelper()));
 
+            this.menuButtons = new List<MenuUC> { Dashboard, Recipes, Ingredients, Employees, Settings, Log_Out };
+            AttachMenuClickEvents(menuButtons);
+
+            DenyEmployeeAccess();
+        }
+
+        private void DenyEmployeeAccess()
+        {
             if (user.GetRole().GetName() != "Admin")
             {
                 Employees.Enabled = false;
             }
         }
 
-        private void ClickMenu(List<MenuUC> menus)
+        private void AttachMenuClickEvents(List<MenuUC> menus)
         {
             foreach (var menu in menus)
             {
-                menu.MenuClick += Menu_menuClick;
+                menu.MenuClick += MenuClickHandler;
             }
         }
 
-        private void Menu_menuClick(object sender, EventArgs e)
+        private void MenuClickHandler(object sender, EventArgs e)
         {
-            MenuUC menuButton = (MenuUC)sender;
+            var menuButton = sender as MenuUC;
             ClearPanel();
 
             switch (menuButton.Name)
@@ -80,7 +87,7 @@ namespace recipe_desktop
         private void LogOut()
         {
             this.Close();
-            AuthenticationForm authForm = new AuthenticationForm();
+            var authForm = new AuthenticationForm();
             authForm.Show();
         }
 
@@ -89,42 +96,42 @@ namespace recipe_desktop
             LoadDashboard();
         }
 
-        public void LoadSettings()
+        private void LoadSettings()
         {
-            SettingsUC settingsUC = new SettingsUC(user, userManager);
+            var settingsUC = new SettingsUC(user, userManager);
             settingsUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(settingsUC);
         }
 
-        public void LoadDashboard()
+        private void LoadDashboard()
         {
-            DashBoardUC dashboardUC = new DashBoardUC(user, userManager);
+            var dashboardUC = new DashBoardUC(user, userManager);
             dashboardUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(dashboardUC);
         }
 
-        public void LoadRecipes()
+        private void LoadRecipes()
         {
-            RecipesUC recipesUC = new RecipesUC(user, recipeManager, ingredientManager);
+            var recipesUC = new RecipesUC(user, recipeManager, ingredientManager);
             recipesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(recipesUC);
         }
 
-        public void LoadEmployees()
+        private void LoadEmployees()
         {
-            EmployeeUC employeesUC = new EmployeeUC(userManager);
+            var employeesUC = new EmployeeUC(userManager);
             employeesUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(employeesUC);
         }
 
-        public void LoadIngredients()
+        private void LoadIngredients()
         {
-            IngredientsUC ingredientsUC = new IngredientsUC(ingredientManager);
+            var ingredientsUC = new IngredientsUC(ingredientManager);
             ingredientsUC.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(ingredientsUC);
         }
 
-        public void ClearPanel()
+        private void ClearPanel()
         {
             mainPanel.Controls.Clear();
         }

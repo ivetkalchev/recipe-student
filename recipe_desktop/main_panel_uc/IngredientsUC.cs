@@ -1,4 +1,8 @@
-﻿using entity_classes;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using entity_classes;
 using exceptions;
 using manager_classes;
 
@@ -7,16 +11,22 @@ namespace recipe_desktop
     public partial class IngredientsUC : UserControl
     {
         private readonly IIngredientManager ingredientManager;
+        
         private List<Ingredient> ingredients;
         private List<Ingredient> searchResults;
+        
         private int currentPage;
+        
         private const int IngredientsPerPage = 3;
 
         public IngredientsUC(IIngredientManager ingredientManager)
         {
             InitializeComponent();
+
             this.ingredientManager = ingredientManager;
+            
             currentPage = 1;
+            
             LoadAllIngredients();
             LoadTypeIngredients();
         }
@@ -48,7 +58,7 @@ namespace recipe_desktop
             panelIngredients.Controls.Clear();
             lblNoResults.Visible = false;
 
-            FlowLayoutPanel flowPanel = new FlowLayoutPanel
+            var flowPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 WrapContents = false,
@@ -56,7 +66,7 @@ namespace recipe_desktop
             };
 
             List<Ingredient> ingredientsToDisplay = searchResults ?? ingredients;
-            
+
             if (ingredientsToDisplay.Count == 0)
             {
                 lblNoResults.Visible = true;
@@ -68,7 +78,7 @@ namespace recipe_desktop
 
                 for (int i = startIndex; i < endIndex; i++)
                 {
-                    SingleIngredientUC ingredientUC = new SingleIngredientUC(ingredientsToDisplay[i], ingredientManager);
+                    var ingredientUC = new SingleIngredientUC(ingredientsToDisplay[i], ingredientManager);
                     ingredientUC.IngredientDeleted += IngredientUC_IngredientDeleted;
                     ingredientUC.Margin = new Padding(10);
                     flowPanel.Controls.Add(ingredientUC);
@@ -76,6 +86,7 @@ namespace recipe_desktop
 
                 panelIngredients.Controls.Add(flowPanel);
             }
+
             UpdatePaginationButtons();
         }
 
@@ -89,12 +100,14 @@ namespace recipe_desktop
             try
             {
                 string name = tbName.Text.Trim();
-                TypeIngredient type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
+                var type = ingredientManager.GetTypeIngredientByName(cbTypeIngredient.SelectedItem.ToString());
 
-                Ingredient newIngredient = new Ingredient(0, name, type);
+                var newIngredient = new Ingredient(0, name, type);
 
                 ingredientManager.AddIngredient(newIngredient);
+                
                 MessageBox.Show($"{newIngredient.GetName()} was added successfully!");
+                
                 ClearFields();
                 LoadAllIngredients();
             }
@@ -118,7 +131,6 @@ namespace recipe_desktop
                 DisplayIngredients();
             }
         }
-
         private void btnNext_Click(object sender, EventArgs e)
         {
             if (currentPage < (searchResults?.Count ?? ingredients.Count + IngredientsPerPage - 1) / IngredientsPerPage)
@@ -130,7 +142,9 @@ namespace recipe_desktop
 
         private void picSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbSearch.Text.Trim()))
+            string searchQuery = tbSearch.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(searchQuery))
             {
                 searchResults = null;
             }
@@ -139,12 +153,13 @@ namespace recipe_desktop
                 searchResults = new List<Ingredient>();
                 foreach (var ingredient in ingredients)
                 {
-                    if (ingredient.GetName().ToLower().Contains(tbSearch.Text.Trim().ToLower()))
+                    if (ingredient.GetName().ToLower().Contains(searchQuery))
                     {
                         searchResults.Add(ingredient);
                     }
                 }
             }
+
             currentPage = 1;
             DisplayIngredients();
         }

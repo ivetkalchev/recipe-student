@@ -12,8 +12,10 @@ namespace recipe_desktop
         public EditIngredientForm(Ingredient ingredient, IIngredientManager ingredientManager)
         {
             InitializeComponent();
+            
             this.ingredientManager = ingredientManager;
             this.ingredient = ingredient;
+            
             LoadIngredientDetails();
             LoadTypeIngredients();
             LockTextBoxes();

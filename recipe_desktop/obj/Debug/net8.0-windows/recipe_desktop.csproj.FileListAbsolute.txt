@@ -108,3 +108,4 @@ I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Sin
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddDessertUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddDrinkUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddMainCourseUC.resources
+I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleRecipeUC.resources

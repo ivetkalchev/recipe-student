@@ -62,7 +62,6 @@ namespace recipe_desktop
             homePage.Show();
         }
 
-
         private void lblRegister_Click(object sender, EventArgs e)
         {
             AuthenticationForm parentForm = this.ParentForm as AuthenticationForm;

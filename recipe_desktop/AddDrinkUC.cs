@@ -1,13 +1,19 @@
 ﻿using entity_classes;
+using exceptions;
 using manager_classes;
+using Microsoft.VisualBasic.ApplicationServices;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
 namespace recipe_desktop
 {
     public partial class AddDrinkUC : UserControl
     {
-        private DesktopUser user;
-        private IRecipeManager recipeManager;
-        private IIngredientManager ingredientManager;
+        private readonly DesktopUser user;
+        private readonly IRecipeManager recipeManager;
+        private readonly IIngredientManager ingredientManager;
         private RecipePic uploadedPic;
 
         public AddDrinkUC(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
@@ -25,8 +31,8 @@ namespace recipe_desktop
             UpdateDescriptionCharacterCount();
             UpdateInstructionsCharacterCount();
 
-            rtbDescription.TextChanged += rtbDescription_TextChanged;
-            rtbInstructions.TextChanged += rtbInstructions_TextChanged;
+            rtbDescription.TextChanged += new EventHandler(rtbDescription_TextChanged);
+            rtbInstructions.TextChanged += new EventHandler(rtbInstructions_TextChanged);
         }
 
         private void LoadDifficulty()
@@ -77,7 +83,7 @@ namespace recipe_desktop
             foreach (var ingredient in ingredients)
             {
                 var ingredientUC = new SingleIngredientRecipeUC(ingredient, ingredientManager);
-                ingredientUC.IngredientAdded += IngredientUC_IngredientAdded;
+                ingredientUC.IngredientAdded += new EventHandler<IngredientRecipe>(IngredientUC_IngredientAdded);
                 ingredientUC.Margin = new Padding(0, 0, 0, 10);
                 flowPanel.Controls.Add(ingredientUC);
             }
@@ -118,27 +124,20 @@ namespace recipe_desktop
 
             List<Ingredient> ingredients = ingredientManager.GetAllIngredients();
             bool found = false;
+
             foreach (var ingredient in ingredients)
             {
                 if (ingredient.GetName().ToLower().Contains(searchTerm))
                 {
                     var ingredientUC = new SingleIngredientRecipeUC(ingredient, ingredientManager);
-                    ingredientUC.IngredientAdded += IngredientUC_IngredientAdded;
+                    ingredientUC.IngredientAdded += new EventHandler<IngredientRecipe>(IngredientUC_IngredientAdded);
                     ingredientUC.Margin = new Padding(0, 0, 0, 10);
                     flowPanel.Controls.Add(ingredientUC);
                     found = true;
                 }
             }
 
-            if (!found)
-            {
-                lblNoResults.Visible = true;
-            }
-            else
-            {
-                lblNoResults.Visible = false;
-            }
-
+            lblNoResults.Visible = !found;
             panelLoadIngredients.Controls.Add(flowPanel);
         }
 
@@ -198,29 +197,37 @@ namespace recipe_desktop
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            string title = tbTitle.Text.Trim();
-            string description = rtbDescription.Text.Trim();
-            string instructions = rtbInstructions.Text.Trim();
-            DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
-            Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
-            decimal prepTime = Convert.ToDecimal(tbPrepTime.Text.Trim());
-            decimal cookingTime = Convert.ToDecimal(tbCookingTime.Text.Trim());
-            bool isAlcoholic = cbAlcohol.Checked;
-            bool containsCaffeine = cbAlcohol.Checked;
-            bool servedHot = cbServedHot.Checked;
-            int pours = Convert.ToInt32(tbPours.Text.Trim());
-
-            List<IngredientRecipe> ingredients = new List<IngredientRecipe>();
-            foreach (IngredientRecipe item in lbAddedIngredients.Items)
+            try
             {
-                ingredients.Add(item);
+                string title = tbTitle.Text.Trim();
+                string description = rtbDescription.Text.Trim();
+                string instructions = rtbInstructions.Text.Trim();
+                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
+                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
+                decimal prepTime = Convert.ToDecimal(tbPrepTime.Text.Trim());
+                decimal cookingTime = Convert.ToDecimal(tbCookingTime.Text.Trim());
+                bool isAlcoholic = cbAlcohol.Checked;
+                bool containsCaffeine = cbContainsCaffeine.Checked;
+                bool servedHot = cbServedHot.Checked;
+                int pours = Convert.ToInt32(tbPours.Text.Trim());
+
+                List<IngredientRecipe> ingredients = new List<IngredientRecipe>();
+                foreach (IngredientRecipe item in lbAddedIngredients.Items)
+                {
+                    ingredients.Add(item);
+                }
+
+                Drink drink = new Drink(0, title, description, instructions, ingredients, user,
+                    TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, 
+                    uploadedPic, isAlcoholic, containsCaffeine, servedHot, pours);
+
+                recipeManager.UploadDrink(drink);
+                MessageBox.Show("Recipe uploaded successfully!");
             }
-
-            Drink drink = new Drink(0, title, description, instructions, ingredients, user,
-                TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, uploadedPic, isAlcoholic, containsCaffeine, servedHot, pours);
-
-            recipeManager.UploadDrink(drink);
-            MessageBox.Show("Recipe uploaded successfully!");
+            catch (InvalidRecipeException ex)
+            {
+                MessageBox.Show($"Error uploading recipe: {ex.Message}");
+            }
         }
     }
 }
