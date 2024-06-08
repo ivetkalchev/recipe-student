@@ -38,12 +38,12 @@
             return pours;
         }
 
-        public override decimal CalculateTotalTime()
+        public override TimeSpan CalculateTotalTime()
         {
-            decimal totalTime = (decimal)GetPreparationTime().TotalMinutes;
+            var totalTime = GetPreparationTime() + GetCookingTime();
             if (servedHot)
             {
-                totalTime += 5; // for heating purposes
+                totalTime += TimeSpan.FromMinutes(5); // time for heating
             }
             return totalTime;
         }

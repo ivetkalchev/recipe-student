@@ -11,14 +11,9 @@
 </div>
 
 <div class="recipe-details-container">
-    @if (Model.Recipe.GetRecipePic() != null)
-    {
-        <div class="recipe-pic-container">
-            <img src="data:@Model.Recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@Model.Recipe.GetRecipePic().GetData()))" alt="@Model.Recipe.GetTitle() Picture" class="recipe-pic" />
-        </div>
-    }
     <div class="recipe-content">
         <div class="recipe-description">
+            <h3>Description</h3>
             <p>@Model.Recipe.GetDescription()</p>
 
             <h3>Ingredients</h3>
@@ -37,6 +32,7 @@
             <p><strong>Difficulty:</strong> @Model.Recipe.GetDifficulty().GetName()</p>
             <p><strong>Preparation Time:</strong> @Model.Recipe.GetPreparationTime().ToString(@"hh\:mm")</p>
             <p><strong>Cooking Time:</strong> @Model.Recipe.GetCookingTime().ToString(@"hh\:mm")</p>
+            <p><strong>Total Time:</strong> @Model.Recipe.CalculateTotalTime().ToString(@"hh\:mm")</p>
 
             @if (Model.Recipe is MainCourse mainCourse)
             {
@@ -59,6 +55,12 @@
             <p><strong>Uploaded By:</strong> @Model.Recipe.GetUser().GetUsername()</p>
         </div>
     </div>
+    @if (Model.Recipe.GetRecipePic() != null)
+    {
+        <div class="recipe-pic-container">
+            <img src="data:@Model.Recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@Model.Recipe.GetRecipePic().GetData()))" alt="@Model.Recipe.GetTitle() Picture" class="recipe-pic" />
+        </div>
+    }
 </div>
 
 @section Styles {
@@ -67,15 +69,11 @@
             background-color: #F1F1F1;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 25px;
             width: 80%;
             max-width: 800px;
             margin: 20px auto;
         }
-
-            .recipe-details-container h2 {
-                color: #333;
-            }
 
         .recipe-content {
             display: flex;
@@ -86,12 +84,16 @@
         .recipe-pic-container {
             width: 100%;
             text-align: center;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            padding: 15px;
         }
 
         .recipe-pic {
-            max-width: 100%;
+            width: 100%;
             height: auto;
+            max-height: calc(100vw * 2 / 3);
+            object-fit: cover;
+            aspect-ratio: 3 / 2;
             border-radius: 10px;
         }
 
@@ -106,8 +108,9 @@
             }
 
             .recipe-description h3 {
-                color: #333;
+                color: #2C3B70;
                 font-size: 25px;
+                padding: 10px;
             }
 
             .recipe-description ul {
@@ -121,6 +124,7 @@
             }
     </style>
 }
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         var errorMessage = '@TempData["ErrorMessage"]';

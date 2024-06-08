@@ -22,9 +22,9 @@
             return servings;
         }
 
-        public override decimal CalculateTotalTime()
+        public override TimeSpan CalculateTotalTime()
         {
-            return (decimal)(GetPreparationTime() + GetCookingTime()).TotalMinutes;
+            return GetPreparationTime() + GetCookingTime();
         }
     }
 }

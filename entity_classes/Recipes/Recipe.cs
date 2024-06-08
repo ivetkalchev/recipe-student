@@ -85,7 +85,7 @@
             return pic;
         }
 
-        public abstract decimal CalculateTotalTime();
+        public abstract TimeSpan CalculateTotalTime();
 
     }
 }

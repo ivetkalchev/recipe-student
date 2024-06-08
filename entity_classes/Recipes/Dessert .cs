@@ -22,12 +22,12 @@
             return requiresFreezing;
         }
 
-        public override decimal CalculateTotalTime()
+        public override TimeSpan CalculateTotalTime()
         {
-            decimal totalTime = (decimal)(GetPreparationTime() + GetCookingTime()).TotalMinutes;
+            var totalTime = GetPreparationTime() + GetCookingTime();
             if (requiresFreezing)
             {
-                totalTime += 60; //freezing time
+                totalTime += TimeSpan.FromMinutes(60); // freezing time
             }
             return totalTime;
         }
