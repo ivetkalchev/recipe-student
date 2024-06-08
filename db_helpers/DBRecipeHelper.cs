@@ -735,15 +735,11 @@ namespace db_helpers
                             DietRestriction dietRestriction = GetDietRestrictionById(dietId);
                             Difficulty difficulty = GetDifficultyById(difficultyId);
 
-                            // Add debugging information
-                            Console.WriteLine($"Processing recipe ID: {idRecipe}, Title: {title}");
-
                             if (reader["is_spicy"] != DBNull.Value)
                             {
                                 bool isSpicy = (bool)reader["is_spicy"];
                                 int servings = (int)reader["servings"];
                                 recipes.Add(new MainCourse(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSpicy, servings));
-                                Console.WriteLine($"Added MainCourse: {title}");
                             }
                             else if (reader["is_alcoholic"] != DBNull.Value)
                             {
@@ -752,18 +748,12 @@ namespace db_helpers
                                 bool servedHot = (bool)reader["served_hot"];
                                 int pours = (int)reader["pours"];
                                 recipes.Add(new Drink(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, dietRestriction, difficulty, pic, isAlcoholic, containsCaffeine, servedHot, pours));
-                                Console.WriteLine($"Added Drink: {title}");
                             }
                             else if (reader["is_sugar_free"] != DBNull.Value)
                             {
                                 bool isSugarFree = (bool)reader["is_sugar_free"];
                                 bool requiresFreezing = (bool)reader["requires_freezing"];
                                 recipes.Add(new Dessert(idRecipe, title, description, instructions, new List<IngredientRecipe>(), user, preparationTime, cookingTime, dietRestriction, difficulty, pic, isSugarFree, requiresFreezing));
-                                Console.WriteLine($"Added Dessert: {title}");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Unknown recipe type for ID: {idRecipe}, Title: {title}");
                             }
                         }
                     }
