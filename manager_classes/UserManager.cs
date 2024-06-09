@@ -6,11 +6,11 @@ namespace manager_classes
 {
     public class UserManager : IUserManager
     {
-        private IDBUserHelper dbHelper;
+        private IDBUserHelper userHelper;
 
-        public UserManager(IDBUserHelper dbHelper)
+        public UserManager(IDBUserHelper userHelper)
         {
-            this.dbHelper = dbHelper;
+            this.userHelper = userHelper;
         }
 
         public bool RegisterDesktopUser(DesktopUser newUser)
@@ -34,7 +34,7 @@ namespace manager_classes
                 CapitalizeFirstLetter(Hasher.HashText(newUser.GetSecurityAnswer()))
             );
 
-            dbHelper.InsertDesktopUser(newUser);
+            userHelper.InsertDesktopUser(newUser);
             return true;
         }
 
@@ -53,7 +53,7 @@ namespace manager_classes
                 newUser.GetCaption()
             );
 
-            dbHelper.InsertWebUser(newUser);
+            userHelper.InsertWebUser(newUser);
             return true;
         }
 
@@ -97,27 +97,27 @@ namespace manager_classes
 
         public DesktopUser LoginDesktopUser(string username, string password)
         {
-            return dbHelper.GetDesktopUser(username, Hasher.HashText(password));
+            return userHelper.GetDesktopUser(username, Hasher.HashText(password));
         }
 
         public WebUser LoginWebUser(string username, string password)
         {
-            return dbHelper.GetWebUser(username, Hasher.HashText(password));
+            return userHelper.GetWebUser(username, Hasher.HashText(password));
         }
 
         public bool IsUsernameTaken(string username)
         {
-            return dbHelper.IsUsernameTaken(username);
+            return userHelper.IsUsernameTaken(username);
         }
 
         public bool IsEmailTaken(string email)
         {
-            return dbHelper.IsEmailTaken(email);
+            return userHelper.IsEmailTaken(email);
         }
 
         public bool IsBsnTaken(int bsn)
         {
-            return dbHelper.IsBSNTaken(bsn);
+            return userHelper.IsBSNTaken(bsn);
         }
 
         public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
@@ -137,62 +137,62 @@ namespace manager_classes
                 throw new AlreadyExistUserException("Bsn");
             }
 
-            dbHelper.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
+            userHelper.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
         }
 
         public WebUser GetWebUserByUsername(string username)
         {
-            return dbHelper.GetWebUserByUsername(username);
+            return userHelper.GetWebUserByUsername(username);
         }
 
         public void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail)
         {
-            dbHelper.UpdateWebUserDetails(user, newCaption, newEmail);
+            userHelper.UpdateWebUserDetails(user, newCaption, newEmail);
         }
 
         private bool IsEmailTakenByOtherUser(DesktopUser user, string email)
         {
-            return dbHelper.IsEmailTakenByOtherUser(user, email);
+            return userHelper.IsEmailTakenByOtherUser(user, email);
         }
 
         private bool IsBsnTakenByOtherUser(DesktopUser user, int bsn)
         {
-            return dbHelper.IsBsnTakenByOtherUser(user, bsn);
+            return userHelper.IsBsnTakenByOtherUser(user, bsn);
         }
 
         public List<DesktopUser> GetAllDesktopUsers()
         {
-            return dbHelper.GetAllDesktopUsers();
+            return userHelper.GetAllDesktopUsers();
         }
 
         public List<WebUser> GetAllWebUsers()
         {
-            return dbHelper.GetAllWebUsers();
+            return userHelper.GetAllWebUsers();
         }
 
         public void DeleteUser(DesktopUser user)
         {
-            dbHelper.DeleteUser(user);
+            userHelper.DeleteUser(user);
         }
 
         public void DeleteWebUser(WebUser user)
         {
-            dbHelper.DeleteWebUser(user);
+            userHelper.DeleteWebUser(user);
         }
 
         public void PromoteUserToAdmin(DesktopUser user)
         {
-            dbHelper.PromoteUserToAdmin(user);
+            userHelper.PromoteUserToAdmin(user);
         }
 
         public List<Gender> GetAllGenders()
         {
-            return dbHelper.GetAllGenders();
+            return userHelper.GetAllGenders();
         }
 
         public Gender GetGenderByName(string genderName)
         {
-            var genders = dbHelper.GetAllGenders();
+            var genders = userHelper.GetAllGenders();
             foreach (var gender in genders)
             {
                 if (gender.GetName().Equals(genderName, StringComparison.OrdinalIgnoreCase))

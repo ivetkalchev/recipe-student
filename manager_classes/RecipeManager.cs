@@ -5,92 +5,61 @@ namespace manager_classes
 {
     public class RecipeManager : IRecipeManager
     {
-        private IDBRecipeHelper dbHelper;
+        private IDBRecipeHelper recipeHelper;
 
-        public RecipeManager(IDBRecipeHelper dbHelper)
+        public RecipeManager(IDBRecipeHelper recipeHelper)
         {
-            this.dbHelper = dbHelper;
+            this.recipeHelper = recipeHelper;
         }
 
         public List<DietRestriction> GetAllDietRestrictions()
         {
-            return dbHelper.GetAllDietRestrictions();
+            return recipeHelper.GetAllDietRestrictions();
         }
 
         public List<Difficulty> GetAllDifficulties()
         {
-            return dbHelper.GetAllDifficulties();
+            return recipeHelper.GetAllDifficulties();
         }
 
         public DietRestriction GetDietByName(string name)
         {
-            return dbHelper.GetDietByName(name);
+            return recipeHelper.GetDietByName(name);
         }
 
         public Difficulty GetDifficultyByName(string name)
         {
-            return dbHelper.GetDifficultyByName(name);
+            return recipeHelper.GetDifficultyByName(name);
         }
 
         public void UploadMainCourse(MainCourse recipe)
         {
-            dbHelper.InsertMainCourse(recipe);
+            recipeHelper.InsertMainCourse(recipe);
         }
 
         public void UploadDrink(Drink recipe)
         {
-            dbHelper.InsertDrink(recipe);
+            recipeHelper.InsertDrink(recipe);
         }
 
         public void UploadDessert(Dessert recipe)
         {
-            dbHelper.InsertDessert(recipe);
+            recipeHelper.InsertDessert(recipe);
         }
 
         public List<Recipe> GetAllRecipes()
         {
-            return dbHelper.GetAllRecipes();
+            return recipeHelper.GetAllRecipes();
         }
 
         public Recipe GetRecipeById(int id)
         {
-            return dbHelper.GetRecipeById(id);
-        }
-
-        public void AddToDoList(int userId, int recipeId)
-        {
-            dbHelper.AddToDoList(userId, recipeId);
-        }
-
-        public bool IsRecipeInToDoList(int userId, int recipeId)
-        {
-            return dbHelper.IsRecipeInToDoList(userId, recipeId);
+            return recipeHelper.GetRecipeById(id);
         }
 
         public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery)
         {
-            return dbHelper.GetPagedRecipes(pageNumber, pageSize, searchQuery);
-        }
-
-        public int GetTotalRecipesCount(string searchQuery)
-        {
-            return dbHelper.GetTotalRecipesCount(searchQuery);
-        }
-
-        public void AddReview(Review review, int userId)
-        {
-            dbHelper.InsertReview(review, userId);
-        }
-
-        public List<Review> GetReviewsByRecipeId(int recipeId)
-        {
-            var reviews = dbHelper.GetReviewsByRecipeId(recipeId);
-            var recipe = GetRecipeById(recipeId);
-            foreach (var review in reviews)
-            {
-                review.SetRecipe(recipe);
-            }
-            return reviews;
+            return recipeHelper.GetPagedRecipes(pageNumber, pageSize, searchQuery);
         }
     }
 }

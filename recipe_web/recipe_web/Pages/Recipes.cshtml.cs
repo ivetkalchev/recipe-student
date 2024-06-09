@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using manager_classes;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace recipe_web.Pages
 {
@@ -29,9 +27,6 @@ namespace recipe_web.Pages
             int totalRecipes = recipeManager.GetTotalRecipesCount(SearchQuery);
             TotalPages = (int)Math.Ceiling(totalRecipes / (double)PageSize);
             Recipes = recipeManager.GetPagedRecipes(PageNumber, PageSize, SearchQuery);
-
-            // Add debugging information
-            Console.WriteLine($"Total recipes: {totalRecipes}, Displaying page {PageNumber} of {TotalPages}");
         }
     }
 }
