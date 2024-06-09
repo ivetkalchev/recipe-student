@@ -227,7 +227,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(707, 6);
+            label1.Location = new Point(608, 6);
             label1.Name = "label1";
             label1.Size = new Size(79, 38);
             label1.TabIndex = 17;
@@ -238,7 +238,7 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(222, 6);
+            lblName.Location = new Point(204, 6);
             lblName.Name = "lblName";
             lblName.Size = new Size(95, 38);
             lblName.TabIndex = 11;

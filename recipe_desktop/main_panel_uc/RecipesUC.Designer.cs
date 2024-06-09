@@ -54,9 +54,9 @@
             btnAddRecipes.FlatStyle = FlatStyle.Flat;
             btnAddRecipes.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             btnAddRecipes.ForeColor = Color.White;
-            btnAddRecipes.Location = new Point(14, 9);
+            btnAddRecipes.Location = new Point(29, 9);
             btnAddRecipes.Name = "btnAddRecipes";
-            btnAddRecipes.Size = new Size(474, 46);
+            btnAddRecipes.Size = new Size(459, 46);
             btnAddRecipes.TabIndex = 6;
             btnAddRecipes.Text = "ADD RECIPES";
             btnAddRecipes.UseVisualStyleBackColor = false;
@@ -99,9 +99,9 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblRole);
             panel1.Controls.Add(lblFirstName);
-            panel1.Location = new Point(14, 71);
+            panel1.Location = new Point(29, 71);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1645, 51);
+            panel1.Size = new Size(1630, 51);
             panel1.TabIndex = 19;
             // 
             // label1
@@ -109,7 +109,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(40, 6);
+            label1.Location = new Point(33, 6);
             label1.Name = "label1";
             label1.Size = new Size(55, 38);
             label1.TabIndex = 15;
@@ -120,7 +120,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRole.ForeColor = Color.White;
-            lblRole.Location = new Point(1087, 6);
+            lblRole.Location = new Point(965, 6);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(75, 38);
             lblRole.TabIndex = 14;
@@ -131,7 +131,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(152, 6);
+            lblFirstName.Location = new Point(121, 6);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(75, 38);
             lblFirstName.TabIndex = 11;

@@ -109,3 +109,9 @@ I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.Add
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddDrinkUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.AddMainCourseUC.resources
 I:\individual-project\recipe_desktop\obj\Debug\net8.0-windows\recipe_desktop.SingleRecipeUC.resources
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Aspose.PDF.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\DinkToPdf.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyModel.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

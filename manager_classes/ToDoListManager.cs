@@ -1,9 +1,5 @@
 ﻿using db_helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using entity_classes;
 
 namespace manager_classes
 {
@@ -15,6 +11,7 @@ namespace manager_classes
         {
             this.toDoHelper = toDoHelper;
         }
+
         public void AddToDoList(int userId, int recipeId)
         {
             toDoHelper.AddToDoList(userId, recipeId);
@@ -23,6 +20,16 @@ namespace manager_classes
         public bool IsRecipeInToDoList(int userId, int recipeId)
         {
             return toDoHelper.IsRecipeInToDoList(userId, recipeId);
+        }
+
+        public List<Recipe> GetUserToDoList(int userId)
+        {
+            return toDoHelper.GetUserToDoList(userId);
+        }
+
+        public void RemoveFromToDoList(int userId, int recipeId)
+        {
+            toDoHelper.RemoveFromToDoList(userId, recipeId);
         }
     }
 }

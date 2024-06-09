@@ -144,16 +144,16 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
-                       m.is_spicy, m.servings,
-                       d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
-                       ds.is_sugar_free, ds.requires_freezing,
-                       rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
-                FROM Recipe r
-                LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
-                LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
-                LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
-                LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic";
+                    SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                           m.is_spicy, m.servings,
+                           d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                           ds.is_sugar_free, ds.requires_freezing,
+                           rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
+                    FROM Recipe r
+                    LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                    LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                    LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                    LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -219,7 +219,7 @@ namespace db_helpers
             return recipes;
         }
 
-        private DietRestriction GetDietRestrictionById(int dietId)
+        public DietRestriction GetDietRestrictionById(int dietId)
         {
             try
             {
@@ -250,7 +250,7 @@ namespace db_helpers
             }
         }
 
-        private Difficulty GetDifficultyById(int difficultyId)
+        public Difficulty GetDifficultyById(int difficultyId)
         {
             try
             {
@@ -722,6 +722,35 @@ namespace db_helpers
             }
 
             return recipes;
+        }
+
+        public int GetTotalRecipesCount(string searchQuery)
+        {
+            int totalRecipes = 0;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = @"
+                    SELECT COUNT(*)
+                    FROM Recipe r
+                    WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@searchQuery", string.IsNullOrEmpty(searchQuery) ? (object)DBNull.Value : searchQuery);
+
+                    totalRecipes = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching total recipes count: " + ex.Message);
+                throw new Exception("Unable to fetch total recipes count. Please try again later.", ex);
+            }
+
+            return totalRecipes;
         }
     }
 }

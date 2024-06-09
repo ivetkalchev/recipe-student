@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <Compile Remove="Index.cshtml.cs" />
     <Compile Remove="SetCookiePage.cs" />
   </ItemGroup>

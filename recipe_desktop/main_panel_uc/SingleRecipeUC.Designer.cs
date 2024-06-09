@@ -62,7 +62,7 @@
             lblUser.AutoSize = true;
             lblUser.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblUser.ForeColor = Color.White;
-            lblUser.Location = new Point(1162, 50);
+            lblUser.Location = new Point(968, 50);
             lblUser.Name = "lblUser";
             lblUser.Size = new Size(76, 30);
             lblUser.TabIndex = 4;

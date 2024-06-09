@@ -11,6 +11,7 @@ namespace manager_classes
         Difficulty GetDifficultyByName(string name);
         List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery);
         Recipe GetRecipeById(int id);
+        int GetTotalRecipesCount(string searchQuery);
         void UploadDessert(Dessert recipe);
         void UploadDrink(Drink recipe);
         void UploadMainCourse(MainCourse recipe);

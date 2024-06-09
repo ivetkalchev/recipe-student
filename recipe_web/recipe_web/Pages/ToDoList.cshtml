@@ -1,12 +1,97 @@
 ﻿@page
 @model recipe_web.Pages.ToDoListModel
 @{
-	ViewData["Title"] = "To Do List";
-	Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "To-Do List";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="message_container">
-	<h2>Recipes</h2>
+    <h2>Your To-Do List</h2>
 </div>
 
-<h3>under maintenance</h3>
+@if (Model.ToDoList != null && Model.ToDoList.Count > 0)
+{
+    <ul class="todo-list">
+        @foreach (var recipe in Model.ToDoList)
+        {
+            <li class="todo-item">
+                <span>
+                    <a asp-page="/RecipeDetails" asp-route-id="@recipe.GetIdRecipe()">@recipe.GetTitle()</a>
+                </span>
+                <span>
+                    <form method="post" asp-page-handler="Remove" asp-route-id="@recipe.GetIdRecipe()">
+                        <button type="submit" class="remove">Remove</button>
+                    </form>
+                </span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="empty-list-message">Your To-Do list is empty.</p>
+}
+
+<style>
+    .todo-list {
+        list-style-type: none;
+        padding: 10;
+        margin: 30px;
+    }
+
+    .todo-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #e9ecef;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: background-color 0.3s;
+    }
+
+        .todo-item:hover {
+            background-color: #f1f3f5;
+        }
+
+        .todo-item a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+            .todo-item a:hover {
+                text-decoration: underline;
+            }
+
+        .todo-item form {
+            margin: 0;
+            display: inline;
+        }
+
+        .todo-item button {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+            .todo-item button.remove:hover {
+                background-color: #c82333;
+            }
+
+    .empty-list-message {
+        color: white;
+        text-align: center;
+        font-size: 30px;
+        margin: 40px;
+    }
+</style>

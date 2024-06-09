@@ -132,7 +132,7 @@
             lblRole.AutoSize = true;
             lblRole.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRole.ForeColor = Color.White;
-            lblRole.Location = new Point(1071, 6);
+            lblRole.Location = new Point(1070, 6);
             lblRole.Name = "lblRole";
             lblRole.Size = new Size(74, 38);
             lblRole.TabIndex = 14;
@@ -143,7 +143,7 @@
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(574, 6);
+            lblUsername.Location = new Point(571, 6);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(148, 38);
             lblUsername.TabIndex = 13;
@@ -154,7 +154,7 @@
             lblLastName.AutoSize = true;
             lblLastName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLastName.ForeColor = Color.White;
-            lblLastName.Location = new Point(367, 6);
+            lblLastName.Location = new Point(357, 6);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(155, 38);
             lblLastName.TabIndex = 12;
@@ -165,7 +165,7 @@
             lblFirstName.AutoSize = true;
             lblFirstName.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblFirstName.ForeColor = Color.White;
-            lblFirstName.Location = new Point(135, 6);
+            lblFirstName.Location = new Point(120, 6);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(160, 38);
             lblFirstName.TabIndex = 11;
