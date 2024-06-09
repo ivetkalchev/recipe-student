@@ -1,32 +1,32 @@
 ﻿using entity_classes;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace db_helpers
 {
     public class DBReviewHelper : DBConnection, IDBReviewHelper
     {
-        public void InsertReview(Review review, int userId)
+        private IDBRecipeHelper recipeHelper;
+        public DBReviewHelper(IDBRecipeHelper recipeHelper)
+        {
+            this.recipeHelper = recipeHelper;
+        }
+
+        public void InsertReview(Review review)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-
                     string query = @"
                         INSERT INTO Review (id_recipe, id_web_user, rating_value, review_text)
-                        VALUES (@recipeId, @userId, @ratingValue, @reviewText)";
+                        VALUES (@idRecipe, @idWebUser, @ratingValue, @reviewText)";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@recipeId", review.GetRecipe().GetIdRecipe());
-                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@idRecipe", review.GetRecipe().GetIdRecipe());
+                    cmd.Parameters.AddWithValue("@idWebUser", review.GetUser().GetIdUser());
                     cmd.Parameters.AddWithValue("@ratingValue", review.GetRatingValue());
-                    cmd.Parameters.AddWithValue("@reviewText", (object)review.GetReviewText() ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@reviewText", review.GetReviewText());
 
                     cmd.ExecuteNonQuery();
                 }
@@ -40,16 +40,15 @@ namespace db_helpers
 
         public List<Review> GetReviewsByRecipeId(int recipeId)
         {
-            var reviews = new List<Review>();
+            List<Review> reviews = new List<Review>();
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-
                     string query = @"
-                SELECT r.id_review, r.rating_value, r.review_text, u.id_user, u.username, u.email, u.password, wu.caption
+                SELECT r.id_review, r.rating_value, r.review_text, wu.id_user, u.username, u.email, u.password, wu.caption
                 FROM Review r
                 INNER JOIN WebUser wu ON r.id_web_user = wu.id_user
                 INNER JOIN [User] u ON wu.id_user = u.id_user
@@ -62,7 +61,11 @@ namespace db_helpers
                     {
                         while (reader.Read())
                         {
-                            var user = new WebUser(
+                            int idReview = (int)reader["id_review"];
+                            decimal ratingValue = (decimal)reader["rating_value"];
+                            string reviewText = reader["review_text"].ToString();
+
+                            WebUser user = new WebUser(
                                 (int)reader["id_user"],
                                 reader["username"].ToString(),
                                 reader["email"].ToString(),
@@ -70,13 +73,12 @@ namespace db_helpers
                                 reader["caption"].ToString()
                             );
 
-                            var review = new Review(
-                                (int)reader["id_review"],
-                                null, // Recipe object should be set appropriately
-                                (decimal)reader["rating_value"],
-                                reader["review_text"] != DBNull.Value ? reader["review_text"].ToString() : null
-                            );
+                            // Assuming you have a method to get the recipe by its ID
+                            Recipe recipe = recipeHelper.GetRecipeById(recipeId);
+
+                            Review review = new Review(idReview, recipe, ratingValue, reviewText);
                             review.SetUser(user);
+
                             reviews.Add(review);
                         }
                     }

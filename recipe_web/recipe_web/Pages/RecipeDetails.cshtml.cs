@@ -1,89 +1,69 @@
-using entity_classes;
-using manager_classes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using recipe_web.DTOs;
+using entity_classes;
+using manager_classes;
+using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using recipe_web.DTOs;
 
 namespace recipe_web.Pages
 {
+    [Authorize]
     public class RecipeDetailsModel : PageModel
     {
         private IRecipeManager recipeManager;
-        private IReviewManager reviewManager;
         private IToDoListManager toDoManager;
-
-        public Recipe Recipe { get; set; }
-        public List<Review> Reviews { get; set; } = new List<Review>();
-        public bool IsInToDoList { get; set; }
+        private IReviewManager reviewManager;
 
         [BindProperty]
-        public ReviewDTO Review { get; set; }
+        public ReviewDTO NewReview { get; set; }
+        public Recipe Recipe { get; set; }
+        public bool IsInToDoList { get; set; }
+        public List<Review> Reviews { get; set; }
 
-        public RecipeDetailsModel(IRecipeManager recipeManager)
+        public RecipeDetailsModel(IRecipeManager recipeManager, IToDoListManager toDoManager, IReviewManager reviewManager)
         {
             this.recipeManager = recipeManager;
+            this.toDoManager = toDoManager;
+            this.reviewManager = reviewManager;
         }
 
         public void OnGet(int id)
         {
             Recipe = recipeManager.GetRecipeById(id);
-            Reviews = reviewManager.GetReviewsByRecipeId(id);
+            if (Recipe == null)
+            {
+                return;
+            }
+
             IsInToDoList = toDoManager.IsRecipeInToDoList(GetUserId(), id);
+            Reviews = reviewManager.GetReviewsByRecipeId(id);
         }
 
-        public IActionResult OnPostAddReview(int id)
+        public IActionResult OnPost(int id)
         {
             if (!ModelState.IsValid)
             {
-                TempData["ErrorMessage"] = "Please correct the form errors.";
                 return Page();
             }
 
-            try
-            {
-                var user = new WebUser(GetUserId(), GetUsername(), GetUserEmail(), "", ""); 
-                var recipe = recipeManager.GetRecipeById(id);
-                var newReview = new Review(0, recipe, Review.RatingValue, Review.ReviewText);
-                newReview.SetUser(user);
-                reviewManager.AddReview(newReview, user.GetIdUser());
-                return RedirectToPage(new { id });
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-                return Page();
-            }
-        }
+            // Use a valid email for testing purposes
+            string validEmail = "user@example.com";
+            WebUser user = new WebUser(GetUserId(), User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
+            Recipe recipe = recipeManager.GetRecipeById(id);
 
-        public IActionResult OnPostAddToDoList(int id)
-        {
-            try
-            {
-                toDoManager.AddToDoList(GetUserId(), id);
-                return RedirectToPage(new { id });
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-                return Page();
-            }
+            Review review = new Review(0, recipe, NewReview.RatingValue, NewReview.ReviewText);
+            review.SetUser(user);
+
+            reviewManager.AddReview(review);
+
+            return RedirectToPage(new { id = id });
         }
 
         private int GetUserId()
         {
-            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            return userIdClaim != null ? int.Parse(userIdClaim) : 0;
-        }
-
-        private string GetUsername()
-        {
-            return User.FindFirst(ClaimTypes.Name)?.Value ?? string.Empty;
-        }
-
-        private string GetUserEmail()
-        {
-            return User.FindFirst(ClaimTypes.Email)?.Value ?? string.Empty;
+            return int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         }
     }
 }

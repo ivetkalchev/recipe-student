@@ -8,6 +8,7 @@ namespace recipe_web.DTOs
         public decimal RatingValue { get; set; }
 
         [StringLength(200)]
-        public string? ReviewText { get; set; }
+        [Required]
+        public string ReviewText { get; set; }
     }
 }

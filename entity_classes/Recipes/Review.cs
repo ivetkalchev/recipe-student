@@ -5,10 +5,10 @@
         private int idReview;
         private Recipe recipe;
         private decimal ratingValue;
-        private string? reviewText;
+        private string reviewText;
         private WebUser user;
 
-        public Review(int idReview, Recipe recipe, decimal ratingValue, string? reviewText)
+        public Review(int idReview, Recipe recipe, decimal ratingValue, string reviewText)
         {
             this.idReview = idReview;
             this.recipe = recipe;
@@ -26,17 +26,12 @@
             return recipe;
         }
 
-        public void SetRecipe(Recipe recipe)
-        {
-            this.recipe = recipe;
-        }
-
         public decimal GetRatingValue()
         {
             return ratingValue;
         }
 
-        public string? GetReviewText()
+        public string GetReviewText()
         {
             return reviewText;
         }

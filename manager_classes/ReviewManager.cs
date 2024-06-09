@@ -13,20 +13,15 @@ namespace manager_classes
             this.reviewHelper = reviewHelper;
             this.recipeHelper = recipeHelper;
         }
-        public void AddReview(Review review, int userId)
+
+        public void AddReview(Review review)
         {
-            reviewHelper.InsertReview(review, userId);
+            reviewHelper.InsertReview(review);
         }
 
         public List<Review> GetReviewsByRecipeId(int recipeId)
         {
-            var reviews = reviewHelper.GetReviewsByRecipeId(recipeId);
-            var recipe = recipeHelper.GetRecipeById(recipeId);
-            foreach (var review in reviews)
-            {
-                review.SetRecipe(recipe);
-            }
-            return reviews;
+            return reviewHelper.GetReviewsByRecipeId(recipeId);
         }
     }
 }

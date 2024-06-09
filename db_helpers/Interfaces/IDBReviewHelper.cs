@@ -5,6 +5,6 @@ namespace db_helpers
     public interface IDBReviewHelper
     {
         List<Review> GetReviewsByRecipeId(int recipeId);
-        void InsertReview(Review review, int userId);
+        void InsertReview(Review review);
     }
 }
