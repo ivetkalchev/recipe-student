@@ -23,5 +23,16 @@ namespace manager_classes
         {
             return reviewHelper.GetReviewsByRecipeId(recipeId);
         }
+
+        public Review GetReviewById(int reviewId)
+        {
+            return reviewHelper.GetReviewById(reviewId);
+        }
+
+        public void DeleteReview(int reviewId)
+        {
+            reviewHelper.DeleteReview(reviewId);
+        }
     }
+
 }

@@ -82,6 +82,15 @@
             {
                 <li>
                     <p><strong>@review.GetUser().GetUsername()</strong> (@review.GetRatingValue()): @review.GetReviewText()</p>
+                    @if (review.GetUser().GetIdUser() == Model.GetUserId())
+                    {
+                        <form method="post" asp-page-handler="EditReview" asp-route-reviewId="@review.GetIdReview()" asp-route-id="@Model.Recipe?.GetIdRecipe()">
+                            <button type="submit" class="btn btn-secondary">Edit</button>
+                        </form>
+                        <form method="post" asp-page-handler="DeleteReview" asp-route-reviewId="@review.GetIdReview()" asp-route-id="@Model.Recipe?.GetIdRecipe()">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    }
                 </li>
             }
         </ul>
@@ -247,6 +256,7 @@
                 text-decoration: none;
                 font-size: 16px;
                 text-align: center;
+                margin: 5px;
             }
 
                 .reviews-section button:hover {

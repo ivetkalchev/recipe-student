@@ -1,10 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using manager_classes;
 using System.Collections.Generic;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 using recipe_web.DTOs;
 
 namespace recipe_web.Pages
@@ -48,7 +48,6 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            // Use a valid email for testing purposes
             string validEmail = "user@example.com";
             WebUser user = new WebUser(GetUserId(), User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
             Recipe recipe = recipeManager.GetRecipeById(id);
@@ -61,7 +60,32 @@ namespace recipe_web.Pages
             return RedirectToPage(new { id = id });
         }
 
-        private int GetUserId()
+        public IActionResult OnPostEditReview(int reviewId, int id)
+        {
+            Review review = reviewManager.GetReviewById(reviewId);
+            if (review.GetUser().GetIdUser() == GetUserId())
+            {
+                NewReview = new ReviewDTO
+                {
+                    RatingValue = review.GetRatingValue(),
+                    ReviewText = review.GetReviewText()
+                };
+                reviewManager.DeleteReview(reviewId); // Delete the old review to replace it
+            }
+            return RedirectToPage(new { id = id });
+        }
+
+        public IActionResult OnPostDeleteReview(int reviewId, int id)
+        {
+            Review review = reviewManager.GetReviewById(reviewId);
+            if (review.GetUser().GetIdUser() == GetUserId())
+            {
+                reviewManager.DeleteReview(reviewId);
+            }
+            return RedirectToPage(new { id = id });
+        }
+
+        public int GetUserId()
         {
             return int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
         }
