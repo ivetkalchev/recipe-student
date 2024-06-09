@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using manager_classes;
-using System.Collections.Generic;
 using System.Security.Claims;
 using recipe_web.DTOs;
 
@@ -38,7 +37,22 @@ namespace recipe_web.Pages
             }
 
             IsInToDoList = toDoManager.IsRecipeInToDoList(GetUserId(), id);
-            Reviews = reviewManager.GetReviewsByRecipeId(id);
+            Reviews = reviewManager.GetReviewsByRecipeId(id) ?? new List<Review>();
+        }
+
+        public IActionResult OnPostAddToDoList(int id)
+        {
+            try
+            {
+                toDoManager.AddToDoList(GetUserId(), id);
+                return RedirectToPage(new { id = id });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Unable to add recipe to To-Do List. Please try again later.");
+                // Optionally log the error message
+                return Page();
+            }
         }
 
         public IActionResult OnPost(int id)
@@ -63,14 +77,14 @@ namespace recipe_web.Pages
         public IActionResult OnPostEditReview(int reviewId, int id)
         {
             Review review = reviewManager.GetReviewById(reviewId);
-            if (review.GetUser().GetIdUser() == GetUserId())
+            if (review?.GetUser()?.GetIdUser() == GetUserId())
             {
                 NewReview = new ReviewDTO
                 {
                     RatingValue = review.GetRatingValue(),
                     ReviewText = review.GetReviewText()
                 };
-                reviewManager.DeleteReview(reviewId); // Delete the old review to replace it
+                reviewManager.DeleteReview(reviewId);
             }
             return RedirectToPage(new { id = id });
         }
@@ -78,7 +92,7 @@ namespace recipe_web.Pages
         public IActionResult OnPostDeleteReview(int reviewId, int id)
         {
             Review review = reviewManager.GetReviewById(reviewId);
-            if (review.GetUser().GetIdUser() == GetUserId())
+            if (review?.GetUser()?.GetIdUser() == GetUserId())
             {
                 reviewManager.DeleteReview(reviewId);
             }

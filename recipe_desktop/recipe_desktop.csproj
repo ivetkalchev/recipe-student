@@ -26,9 +26,7 @@
     <Compile Update="AddRecipeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EditIngedientForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="EditIngedientForm.cs" />
     <Compile Update="main_panel_uc\EmployeeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -39,9 +37,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="main_panel_uc\DashboardUC.cs" />
-    <Compile Update="main_panel_uc\SettingsUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="main_panel_uc\SettingsUC.cs" />
     <Compile Update="HomePageForm.cs" />
     <Compile Update="authentication_uc\RegisterUC.cs">
       <SubType>UserControl</SubType>
@@ -49,12 +45,8 @@
     <Compile Update="main_panel_uc\SingleRecipeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="main_panel_uc\SingleIngredientUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="main_panel_uc\SingleEmployeeUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="main_panel_uc\SingleIngredientUC.cs" />
+    <Compile Update="main_panel_uc\SingleEmployeeUC.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

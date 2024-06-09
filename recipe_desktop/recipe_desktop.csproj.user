@@ -13,7 +13,13 @@
     <Compile Update="AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="authentication_uc\LoginUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="EditEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditIngedientForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="HomePageForm.cs">
@@ -22,10 +28,16 @@
     <Compile Update="main_panel_uc\DashboardUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="menu_uc\BarUC.cs">
+    <Compile Update="main_panel_uc\SettingsUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="authentication_uc\LoginUC.cs">
+    <Compile Update="main_panel_uc\SingleEmployeeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="main_panel_uc\SingleIngredientUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="menu_uc\BarUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="menu_uc\MenuUC.cs">

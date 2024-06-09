@@ -22,7 +22,7 @@
                 {
                     foreach (var ingredient in Model.Recipe.GetIngredientRecipes())
                     {
-                        <li>@ingredient.GetFormattedQuantity() @ingredient.GetUnit().GetName() @ingredient.GetIngredient().GetName()</li>
+                        <li>@ingredient?.GetFormattedQuantity() @ingredient?.GetUnit()?.GetName() @ingredient?.GetIngredient()?.GetName()</li>
                     }
                 }
             </ul>
@@ -31,8 +31,8 @@
             <p>@Model.Recipe?.GetInstructions()</p>
 
             <h3>Additional Information</h3>
-            <p><strong>Diet Restriction:</strong> @Model.Recipe?.GetDietRestriction().GetName()</p>
-            <p><strong>Difficulty:</strong> @Model.Recipe?.GetDifficulty().GetName()</p>
+            <p><strong>Diet Restriction:</strong> @Model.Recipe?.GetDietRestriction()?.GetName()</p>
+            <p><strong>Difficulty:</strong> @Model.Recipe?.GetDifficulty()?.GetName()</p>
             <p><strong>Preparation Time:</strong> @Model.Recipe?.GetPreparationTime().ToString(@"hh\:mm")</p>
             <p><strong>Cooking Time:</strong> @Model.Recipe?.GetCookingTime().ToString(@"hh\:mm")</p>
             <p><strong>Total Time:</strong> @Model.Recipe?.CalculateTotalTime().ToString(@"hh\:mm")</p>
@@ -55,7 +55,10 @@
                 <p><strong>Requires Freezing:</strong> @(dessert.GetRequiresFreezing() ? "Yes" : "No")</p>
             }
 
-            <p><strong>Uploaded By:</strong> @Model.Recipe?.GetUser().GetUsername()</p>
+            @if (Model.Recipe?.GetUser() != null)
+            {
+                <p><strong>Uploaded By:</strong> @Model.Recipe.GetUser()?.GetUsername()</p>
+            }
 
             <form method="post" asp-page-handler="AddToDoList" asp-route-id="@Model.Recipe?.GetIdRecipe()">
                 @if (!Model.IsInToDoList)
@@ -67,6 +70,7 @@
                     <span class="to-do-message">This recipe is already in your To-Do list!</span>
                 }
             </form>
+
         </div>
     </div>
     @if (Model.Recipe?.GetRecipePic() != null)
@@ -77,23 +81,29 @@
     }
     <div class="reviews-section">
         <h3>Reviews</h3>
-        <ul>
-            @foreach (var review in Model.Reviews)
-            {
-                <li>
-                    <p><strong>@review.GetUser().GetUsername()</strong> (@review.GetRatingValue()): @review.GetReviewText()</p>
-                    @if (review.GetUser().GetIdUser() == Model.GetUserId())
-                    {
-                        <form method="post" asp-page-handler="EditReview" asp-route-reviewId="@review.GetIdReview()" asp-route-id="@Model.Recipe?.GetIdRecipe()">
-                            <button type="submit" class="btn btn-secondary">Edit</button>
-                        </form>
-                        <form method="post" asp-page-handler="DeleteReview" asp-route-reviewId="@review.GetIdReview()" asp-route-id="@Model.Recipe?.GetIdRecipe()">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    }
-                </li>
-            }
-        </ul>
+        @if (Model.Reviews != null)
+        {
+            <ul>
+                @foreach (var review in Model.Reviews)
+                {
+                    <li>
+                        @if (review?.GetUser() != null)
+                        {
+                            <p><strong>@review.GetUser()?.GetUsername()</strong> (@review.GetRatingValue()): @review.GetReviewText()</p>
+                        }
+                        @if (review?.GetUser()?.GetIdUser() == Model.GetUserId())
+                        {
+                            <form method="post" asp-page-handler="EditReview" asp-route-reviewId="@review.GetIdReview()" asp-route-id="@Model.Recipe?.GetIdRecipe()">
+                                <button type="submit" class="btn btn-secondary">Edit</button>
+                            </form>
+                            <form method="post" asp-page-handler="DeleteReview" asp-route-reviewId="@review.GetIdReview()" asp-route-id="@Model.Recipe?.GetIdRecipe()">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        }
+                    </li>
+                }
+            </ul>
+        }
         <form method="post" asp-route-id="@Model.Recipe?.GetIdRecipe()">
             <div class="form-group">
                 <label for="RatingValue">Rating</label>

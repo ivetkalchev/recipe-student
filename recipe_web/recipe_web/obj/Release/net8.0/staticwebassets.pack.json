@@ -1,24 +1,16 @@
 {
   "Files": [
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\authenticationLayout.css",
-      "PackagePath": "staticwebassets\\css\\authenticationLayout.css"
-    },
-    {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\cookies.css",
       "PackagePath": "staticwebassets\\css\\cookies.css"
     },
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\editProfile.css",
-      "PackagePath": "staticwebassets\\css\\editProfile.css"
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
     },
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\primaryLayout.css",
-      "PackagePath": "staticwebassets\\css\\primaryLayout.css"
-    },
-    {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\profile.css",
-      "PackagePath": "staticwebassets\\css\\profile.css"
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\Login.jpg",
