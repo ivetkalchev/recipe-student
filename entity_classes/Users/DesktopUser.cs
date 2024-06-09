@@ -19,11 +19,11 @@ namespace entity_classes
             : base(idUser, username, email, password)
         {
             this.role = role;
-            SetFirstName(firstName);
-            SetLastName(lastName);
-            SetBsn(bsn);
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.bsn = bsn;
             this.gender = gender;
-            SetBirthdate(birthdate);
+            this.birthdate = birthdate;
             this.securityAnswer = securityAnswer;
         }
 

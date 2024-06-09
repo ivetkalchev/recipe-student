@@ -10,12 +10,12 @@ namespace entity_classes
         private string email;
         private string password;
 
-        public User(int idUser, string username, string email, string password)
+        protected User(int idUser, string username, string email, string password)
         {
             this.idUser = idUser;
             this.username = username;
-            SetEmail(email);
-            SetPassword(password);
+            this.email = email;
+            this.password = password;
         }
 
         public int GetIdUser()
@@ -38,7 +38,7 @@ namespace entity_classes
             return password;
         }
 
-        private void SetEmail(string email)
+        protected void SetEmail(string email)
         {
             if (!IsEmailValid(email))
             {
@@ -47,7 +47,7 @@ namespace entity_classes
             this.email = email;
         }
 
-        private void SetPassword(string password)
+        protected void SetPassword(string password)
         {
             if (!IsPasswordValid(password))
             {
@@ -58,11 +58,7 @@ namespace entity_classes
 
         private bool IsEmailValid(string email)
         {
-            if (!email.Contains("@"))
-            {
-                return false;
-            }
-            return true;
+            return email.Contains("@");
         }
 
         private bool IsPasswordValid(string password)
@@ -71,7 +67,7 @@ namespace entity_classes
             {
                 throw new InvalidPasswordLengthException();
             }
-            //one lowercase and uppercase letter, number and special symbol
+
             if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
             {
                 return false;

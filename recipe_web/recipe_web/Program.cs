@@ -1,12 +1,9 @@
 using db_helpers;
-using DinkToPdf;
-using DinkToPdf.Contracts;
 using manager_classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IDBUserHelper, DBUserHelper>();
 builder.Services.AddScoped<IUserManager, UserManager>();
@@ -19,7 +16,8 @@ builder.Services.AddScoped<IDBReviewHelper, DBReviewHelper>();
 builder.Services.AddScoped<IIngredientManager, IngredientManager>();
 builder.Services.AddScoped<IDBIngredientHelper, DBIngredientHelper>();
 
-builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+builder.Services.AddScoped<IDBRecommendationHelper, DBRecommendationHelper>();
+builder.Services.AddScoped<IRecommendationManager, RecommenderManager>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
