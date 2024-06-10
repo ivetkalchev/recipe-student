@@ -76,7 +76,6 @@ namespace db_helpers
                                 reader["caption"].ToString()
                             );
 
-                            // Assuming you have a method to get the recipe by its ID
                             Recipe recipe = recipeHelper.GetRecipeById(recipeId);
 
                             Review review = new Review(idReview, recipe, ratingValue, reviewText);

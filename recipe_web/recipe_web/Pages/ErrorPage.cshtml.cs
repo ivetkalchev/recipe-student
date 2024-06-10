@@ -6,9 +6,9 @@ namespace recipe_web.Pages
     {
         public string ErrorMessage { get; set; }
 
-        public void OnGet()
+        public void OnGet(string errorMessage)
         {
-            ErrorMessage = TempData["ErrorMessage"] as string;
+            ErrorMessage = errorMessage;
         }
     }
 }

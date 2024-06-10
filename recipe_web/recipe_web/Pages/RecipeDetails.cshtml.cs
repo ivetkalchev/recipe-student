@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using manager_classes;
+using System.Collections.Generic;
 using System.Security.Claims;
 using recipe_web.DTOs;
 
@@ -28,16 +29,18 @@ namespace recipe_web.Pages
             this.reviewManager = reviewManager;
         }
 
-        public void OnGet(int id)
+        public IActionResult OnGet(int id)
         {
             Recipe = recipeManager.GetRecipeById(id);
             if (Recipe == null)
             {
-                return;
+                return RedirectToPage("/ErrorPage", new { errorMessage = "Recipe does not exist." });
             }
 
             IsInToDoList = toDoManager.IsRecipeInToDoList(GetUserId(), id);
             Reviews = reviewManager.GetReviewsByRecipeId(id) ?? new List<Review>();
+
+            return Page();
         }
 
         public IActionResult OnPostAddToDoList(int id)
