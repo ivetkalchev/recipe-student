@@ -185,7 +185,7 @@ namespace db_helpers
             catch (InvalidEmailException ex)
             {
                 Console.WriteLine("Invalid email encountered: " + ex.Message);
-                // Handle invalid email, maybe log it or continue with a default value
+
                 user = new DesktopUser((int)reader["id_desktop_user"], "", "default@example.com", "", new Role(0, ""), "", "", 0, new Gender(0, ""), DateTime.Now, "");
             }
 

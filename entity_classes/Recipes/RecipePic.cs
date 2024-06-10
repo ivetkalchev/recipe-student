@@ -21,12 +21,6 @@ namespace entity_classes
             this.data = data;
             this.contentType = contentType;
         }
-
-        public int GetIdRecipePic()
-        {
-            return idRecipePic;
-        }
-
         public string GetName()
         {
             return name;

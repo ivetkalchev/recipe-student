@@ -15,12 +15,6 @@
             this.ratingValue = ratingValue;
             this.reviewText = reviewText;
         }
-
-        public int GetIdReview()
-        {
-            return idReview;
-        }
-
         public Recipe GetRecipe()
         {
             return recipe;

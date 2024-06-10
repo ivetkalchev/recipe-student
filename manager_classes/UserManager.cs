@@ -38,6 +38,7 @@ namespace manager_classes
             return true;
         }
 
+
         public bool RegisterWebUser(WebUser newUser)
         {
             if (IsWebUserTaken(newUser) || !newUser.IsUserValid() || string.IsNullOrEmpty(newUser.GetCaption()))

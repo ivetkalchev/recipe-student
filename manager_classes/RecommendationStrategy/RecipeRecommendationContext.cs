@@ -6,9 +6,9 @@ namespace manager_classes
     {
         private IRecipeRecommendationStrategy recommendationStrategy;
 
-        public void SetRecommendationStrategy(IRecipeRecommendationStrategy strategy)
+        public void SetRecommendationStrategy(IRecipeRecommendationStrategy recommendationStrategy)
         {
-            this.recommendationStrategy = strategy;
+            this.recommendationStrategy = recommendationStrategy;
         }
 
         public List<Recipe> GetRecommendedRecipes(int userId)
