@@ -66,11 +66,11 @@ namespace recipe_web.Pages
             }
 
             string validEmail = "user@example.com";
-            WebUser user = new WebUser(GetUserId(), User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
+            WebUser user = new WebUser(UserId, User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
             Recipe recipe = recipeManager.GetRecipeById(id);
 
             Review review = new Review(0, recipe, NewReview.RatingValue, NewReview.ReviewText);
-            review.SetUser(user);
+            //review.SetUser(user); ??
 
             reviewManager.AddReview(review);
 
@@ -80,12 +80,12 @@ namespace recipe_web.Pages
         public IActionResult OnPostEditReview(int reviewId, int id)
         {
             Review review = reviewManager.GetReviewById(reviewId);
-            if (review?.GetUser()?.GetIdUser() == GetUserId())
+            if (review?.User?.IdUser == UserId)
             {
                 NewReview = new ReviewDTO
                 {
-                    RatingValue = review.GetRatingValue(),
-                    ReviewText = review.GetReviewText()
+                    RatingValue = review.RatingValue,
+                    ReviewText = review.ReviewText
                 };
                 reviewManager.DeleteReview(reviewId);
             }
@@ -95,7 +95,7 @@ namespace recipe_web.Pages
         public IActionResult OnPostDeleteReview(int reviewId, int id)
         {
             Review review = reviewManager.GetReviewById(reviewId);
-            if (review?.GetUser()?.GetIdUser() == GetUserId())
+            //if (review?.User?.IdUser == UserId)?
             {
                 reviewManager.DeleteReview(reviewId);
             }

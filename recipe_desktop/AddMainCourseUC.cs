@@ -48,7 +48,7 @@ namespace recipe_desktop
 
             foreach (var difficulty in difficulties)
             {
-                cbDifficulty.Items.Add(difficulty.GetName());
+                cbDifficulty.Items.Add(difficulty.NameDifficulty);
             }
             if (cbDifficulty.Items.Count > 0)
             {
@@ -63,7 +63,7 @@ namespace recipe_desktop
 
             foreach (var dietRestriction in dietRestrictions)
             {
-                cbDietRestriction.Items.Add(dietRestriction.GetName());
+                cbDietRestriction.Items.Add(dietRestriction.NameDietRestriction);
             }
             if (cbDietRestriction.Items.Count > 0)
             {
@@ -120,7 +120,7 @@ namespace recipe_desktop
             bool found = false;
             foreach (var ingredient in ingredients)
             {
-                if (ingredient.GetName().ToLower().Contains(searchTerm))
+                if (ingredient.NameIngredient.ToLower().Contains(searchTerm))
                 {
                     var ingredientUC = new SingleIngredientRecipeUC(ingredient, ingredientManager);
                     ingredientUC.IngredientAdded += IngredientUC_IngredientAdded;

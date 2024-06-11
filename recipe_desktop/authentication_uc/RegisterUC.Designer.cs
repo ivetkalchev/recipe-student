@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            tbSecurityAnswer = new TextBox();
-            lblSecQuestion = new Label();
             dtpBirthdate = new DateTimePicker();
             lblBirthdate = new Label();
             cbGenders = new ComboBox();
@@ -61,8 +59,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(125, 147, 208);
-            panel1.Controls.Add(tbSecurityAnswer);
-            panel1.Controls.Add(lblSecQuestion);
             panel1.Controls.Add(dtpBirthdate);
             panel1.Controls.Add(lblBirthdate);
             panel1.Controls.Add(cbGenders);
@@ -90,28 +86,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(640, 709);
             panel1.TabIndex = 0;
-            // 
-            // tbSecurityAnswer
-            // 
-            tbSecurityAnswer.Font = new Font("Segoe UI", 13F);
-            tbSecurityAnswer.ForeColor = Color.Black;
-            tbSecurityAnswer.Location = new Point(37, 457);
-            tbSecurityAnswer.MaxLength = 100;
-            tbSecurityAnswer.Name = "tbSecurityAnswer";
-            tbSecurityAnswer.Size = new Size(567, 36);
-            tbSecurityAnswer.TabIndex = 28;
-            // 
-            // lblSecQuestion
-            // 
-            lblSecQuestion.AutoSize = true;
-            lblSecQuestion.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            lblSecQuestion.ForeColor = Color.FromArgb(61, 83, 143);
-            lblSecQuestion.Location = new Point(30, 419);
-            lblSecQuestion.Name = "lblSecQuestion";
-            lblSecQuestion.Size = new Size(343, 35);
-            lblSecQuestion.TabIndex = 27;
-            lblSecQuestion.Text = "What is your favourite film?";
-            lblSecQuestion.TextAlign = ContentAlignment.TopCenter;
             // 
             // dtpBirthdate
             // 
@@ -436,8 +410,6 @@
         private TextBox tbEmail;
         private DateTimePicker dtpBirthdate;
         private Label lblBirthdate;
-        private Label lblSecQuestion;
-        private TextBox tbSecurityAnswer;
         private Label label2;
     }
 }

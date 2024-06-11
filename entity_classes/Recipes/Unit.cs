@@ -2,23 +2,31 @@
 {
     public class Unit
     {
-        private int id;
-        private string name;
+        private int idUnit;
+        private string nameUnit;
 
-        public Unit(int id, string name)
+        public Unit(int idUnit, string nameUnit)
         {
-            this.id = id;
-            this.name = name;
+            IdUnit = idUnit;
+            NameUnit = nameUnit;
         }
 
-        public int GetId()
+        public int IdUnit
         {
-            return id;
+            get { return idUnit; }
+            private set
+            {
+                idUnit = value; 
+            }
         }
 
-        public string GetName()
+        public string NameUnit
         {
-            return name;
+            get { return  nameUnit; }
+            private set
+            {
+                nameUnit = value;
+            }
         }
     }
 }

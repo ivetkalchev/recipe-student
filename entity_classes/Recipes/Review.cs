@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public class Review
     {
@@ -10,34 +12,61 @@
 
         public Review(int idReview, Recipe recipe, decimal ratingValue, string reviewText)
         {
-            this.idReview = idReview;
-            this.recipe = recipe;
-            this.ratingValue = ratingValue;
-            this.reviewText = reviewText;
-        }
-        public Recipe GetRecipe()
-        {
-            return recipe;
+            IdReview = idReview;
+            Recipe = recipe;
+            RatingValue = ratingValue;
+            ReviewText = reviewText;
         }
 
-        public decimal GetRatingValue()
+        public int IdReview
         {
-            return ratingValue;
+            get { return idReview; }
+            private set 
+            {
+                idReview = value;
+            }
         }
 
-        public string GetReviewText()
+        public Recipe Recipe
         {
-            return reviewText;
+            get { return recipe; }
+            private set
+            {
+                recipe = value;
+            }
         }
 
-        public WebUser GetUser()
+        public decimal RatingValue
         {
-            return user;
+            get { return ratingValue; }
+            private set
+            {
+                if (ratingValue < 0 || ratingValue > 5)
+                    throw new InvalidReviewValueReview();
+
+                ratingValue = value;
+            }
         }
 
-        public void SetUser(WebUser user)
+        public string ReviewText
         {
-            this.user = user;
+            get { return reviewText; }
+            private set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new InvalidReviewTextReview();
+
+                reviewText = value;
+            }
+        }
+
+        public WebUser User
+        {
+            get { return user; }
+            private set
+            {
+                user = value;
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using exceptions;
+using System;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace entity_classes
 {
@@ -11,122 +13,102 @@ namespace entity_classes
         private int bsn;
         private Gender gender;
         private DateTime birthdate;
-        private string securityAnswer;
 
         public DesktopUser(int idUser, string username, string email, string password,
-            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate,
-            string securityAnswer)
+            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate)
             : base(idUser, username, email, password)
         {
-            this.role = role;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.bsn = bsn;
-            this.gender = gender;
-            this.birthdate = birthdate;
-            this.securityAnswer = securityAnswer;
+            Role = role;
+            FirstName = firstName;
+            LastName = lastName;
+            Bsn = bsn;
+            Gender = gender;
+            Birthdate = birthdate;
         }
 
-        public Role GetRole()
+        public Role Role
         {
-            return role;
+            get { return role; }
+            private set { role = value; }
         }
 
-        public string GetFirstName()
+        public string FirstName
         {
-            return firstName;
-        }
-
-        public string GetLastName()
-        {
-            return lastName;
-        }
-
-        public int GetBsn()
-        {
-            return bsn;
-        }
-
-        public Gender GetGender()
-        {
-            return gender;
-        }
-
-        public DateTime GetBirthdate()
-        {
-            return birthdate;
-        }
-
-        public string GetSecurityAnswer()
-        {
-            return securityAnswer;
-        }
-
-        private void SetFirstName(string firstName)
-        {
-            if (!IsNameValid(firstName))
+            get { return firstName; }
+            private set
             {
-                throw new InvalidNameException("first name");
+                if (string.IsNullOrEmpty(value))
+                    throw new NullUserException(nameof(FirstName));
+
+                if (Regex.IsMatch(firstName, @"^[a-zA-Z]+$"))
+                    throw new InvalidNameException("First Name");
+
+                FirstName = value;
             }
-            this.firstName = firstName;
         }
 
-        private void SetLastName(string lastName)
+        public string LastName
         {
-            if (!IsNameValid(lastName))
+            get { return lastName; }
+            private set
             {
-                throw new InvalidNameException("last name");
+                if (string.IsNullOrEmpty(value))
+                    throw new NullUserException(nameof(LastName));
+
+                if (Regex.IsMatch(firstName, @"^[a-zA-Z]+$"))
+                    throw new InvalidNameException("Last Name");
+
+                LastName = value;
             }
-            this.lastName = lastName;
         }
 
-        private void SetBsn(int bsn)
+        public int Bsn
         {
-            if (!IsBsnValid(bsn))
+            get { return bsn; }
+            private set
             {
-                throw new InvalidBsnFormatException();
+                if (value == 0) 
+                    throw new NullUserException(nameof(Bsn));
+
+                var bsnString = value.ToString();
+
+                if (bsnString.Length < 8 || bsnString.Length > 9)
+                    throw new InvalidBsnLengthException();
+
+                if (!Regex.IsMatch(bsnString, @"^\d+$"))
+                    throw new InvalidBsnFormatException();
+
+                bsn = value;
             }
-            this.bsn = bsn;
         }
 
-        private void SetBirthdate(DateTime birthdate)
+
+        public Gender Gender
         {
-            if (!IsBirthdateValid(birthdate))
+            get { return gender; }
+            private set
             {
-                throw new InvalidBirthdateException();
+                if (value == null)
+                    throw new NullUserException(nameof(Gender));
+
+                gender = value;
             }
-            this.birthdate = birthdate;
         }
 
-        private bool IsNameValid(string name)
+        public DateTime Birthdate
         {
-            return Regex.IsMatch(name, @"^[a-zA-Z]+$");
-        }
-
-        private bool IsBsnValid(int bsn)
-        {
-            string bsnString = bsn.ToString();
-            if (bsnString.Length < 8 || bsnString.Length > 9)
+            get { return birthdate; }
+            private set
             {
-                return false;
+                DateTime today = DateTime.Now;
+                int age = today.Year - value.Year;
+                if (value > today.AddYears(-age)) age--;
+
+                if (age < 14)
+                    throw new InvalidBirthdateException();
+
+                birthdate = value;
             }
-            return Regex.IsMatch(bsnString, @"^\d+$");
-        }
-
-        private bool IsBirthdateValid(DateTime birthdate)
-        {
-            int age = DateTime.Now.Year - birthdate.Year;
-            if (birthdate > DateTime.Now.AddYears(-age)) age--;
-            return age >= 14;
-        }
-
-        public bool IsDesktopUserValid()
-        {
-            return IsUserValid() &&
-                   IsBsnValid(bsn) &&
-                   IsNameValid(firstName) &&
-                   IsNameValid(lastName) &&
-                   IsBirthdateValid(birthdate);
         }
     }
 }

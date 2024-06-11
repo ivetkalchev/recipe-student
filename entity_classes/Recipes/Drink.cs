@@ -1,4 +1,7 @@
-﻿namespace entity_classes
+﻿using exceptions;
+using Microsoft.VisualBasic;
+
+namespace entity_classes
 {
     public class Drink : Recipe
     {
@@ -12,38 +15,48 @@
             bool containsCaffeine, bool servedHot, int pours)
             : base(idRecipe, title, description, instructions, ingredients, user, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
-            this.isAlcoholic = isAlcoholic;
-            this.containsCaffeine = containsCaffeine;
-            this.servedHot = servedHot;
-            this.pours = pours;
+            IsAlcoholic = isAlcoholic;
+            ContainsCaffeine = containsCaffeine;
+            ServedHot = servedHot;
+            Pours = pours;
         }
 
-        public bool GetIsAlcoholic()
+        public bool IsAlcoholic
         {
-            return isAlcoholic;
+            get { return isAlcoholic; }
+            set { isAlcoholic = value; }
         }
 
-        public bool GetContainsCaffeine()
+        public bool ContainsCaffeine
         {
-            return containsCaffeine;
+            get { return containsCaffeine; }
+            set { containsCaffeine = value; }
         }
 
-        public bool GetServedHot()
+        public bool ServedHot
         {
-            return servedHot;
+            get { return servedHot; }
+            set { servedHot = value; }
         }
 
-        public int GetPours()
+        public int Pours
         {
-            return pours;
+            get { return pours; }
+            set
+            {
+                if (pours <= 0)
+                    throw new NullRecipeException("Servings");
+
+                pours = value;
+            }
         }
 
         public override TimeSpan CalculateTotalTime()
         {
-            var totalTime = GetPreparationTime() + GetCookingTime();
+            var totalTime = PreparationTime + CookingTime;
             if (servedHot)
             {
-                totalTime += TimeSpan.FromMinutes(5); // time for heating
+                totalTime += TimeSpan.FromMinutes(5); // time for heating up
             }
             return totalTime;
         }

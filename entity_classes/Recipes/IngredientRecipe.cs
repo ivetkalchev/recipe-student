@@ -8,24 +8,27 @@
 
         public IngredientRecipe(Ingredient ingredient, decimal quantity, Unit unit)
         {
-            this.ingredient = ingredient;
-            this.quantity = quantity;
-            this.unit = unit;
+            Ingredient = ingredient;
+            Quantity = quantity;
+            Unit = unit;
         }
 
-        public Ingredient GetIngredient()
+        public Ingredient Ingredient
         {
-            return ingredient;
+            get { return ingredient; }
+            private set { ingredient = value; }
         }
 
-        public decimal GetQuantity()
+        public decimal Quantity
         {
-            return quantity;
+            get { return quantity; }
+            private set { quantity = value; }
         }
 
-        public Unit GetUnit()
+        public Unit Unit
         {
-            return unit;
+            get { return unit; }
+            private set { unit = value; }
         }
 
         public string GetFormattedQuantity()
@@ -35,7 +38,7 @@
 
         public override string ToString()
         {
-            return $"{ingredient.GetName()} - {quantity} {unit.GetName()}";
+            return $"{ingredient.NameIngredient} - {quantity} {unit.NameUnit}";
         }
     }
 }

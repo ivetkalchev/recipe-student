@@ -28,8 +28,8 @@ namespace recipe_desktop
 
         private void LoadIngredientDetails()
         {
-            tbName.Text = ingredient.GetName();
-            cbTypeIngredient.SelectedItem = ingredient.GetTypeIngredient().GetName();
+            tbName.Text = ingredient.NameIngredient;
+            cbTypeIngredient.SelectedItem = ingredient.TypeIngredient.NameTypeIngredient;
         }
 
         private void LockTextBoxes()
@@ -82,11 +82,11 @@ namespace recipe_desktop
 
             foreach (var type in typeIngredients)
             {
-                cbTypeIngredient.Items.Add(type.GetName());
+                cbTypeIngredient.Items.Add(type.NameTypeIngredient);
             }
             if (cbTypeIngredient.Items.Count > 0)
             {
-                cbTypeIngredient.SelectedIndex = cbTypeIngredient.FindStringExact(ingredient.GetTypeIngredient().GetName());
+                cbTypeIngredient.SelectedIndex = cbTypeIngredient.FindStringExact(ingredient.TypeIngredient.NameTypeIngredient);
             }
         }
     }

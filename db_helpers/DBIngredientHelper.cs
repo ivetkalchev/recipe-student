@@ -44,8 +44,8 @@ namespace db_helpers
                     conn.Open();
                     string query = "INSERT INTO Ingredient (name, id_type) VALUES (@Name, @IdType)";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Name", newIngredient.GetName());
-                    cmd.Parameters.AddWithValue("@IdType", newIngredient.GetTypeIngredient().GetId());
+                    cmd.Parameters.AddWithValue("@Name", newIngredient.NameIngredient);
+                    cmd.Parameters.AddWithValue("@IdType", newIngredient.TypeIngredient.IdTypeIngredient);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -122,7 +122,7 @@ namespace db_helpers
                     conn.Open();
                     string query = "DELETE FROM Ingredient WHERE id_ingredient = @Id";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Id", ingredient.GetIdIngredient());
+                    cmd.Parameters.AddWithValue("@Id", ingredient.IdIngredient);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -149,9 +149,9 @@ namespace db_helpers
                     WHERE id_ingredient = @Id";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@Id", ingredient.GetIdIngredient());
+                    cmd.Parameters.AddWithValue("@Id", ingredient.IdIngredient);
                     cmd.Parameters.AddWithValue("@Name", newName);
-                    cmd.Parameters.AddWithValue("@IdType", newType.GetId());
+                    cmd.Parameters.AddWithValue("@IdType", newType.IdTypeIngredient);
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -175,7 +175,7 @@ namespace db_helpers
                     string query = "SELECT COUNT(*) FROM Ingredient WHERE name = @Name AND id_ingredient != @Id";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", name);
-                    cmd.Parameters.AddWithValue("@Id", ingredient.GetIdIngredient());
+                    cmd.Parameters.AddWithValue("@Id", ingredient.IdIngredient);
 
                     int count = (int)cmd.ExecuteScalar();
                     return count > 0;

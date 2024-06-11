@@ -7,38 +7,28 @@ namespace exceptions
         public InvalidRecipeException(string message) : base(message) { }
     }
 
-    public class RecipeNotFoundException : InvalidRecipeException
+    public class NullRecipeException : InvalidRecipeException
     {
-        public RecipeNotFoundException() : base("The recipe is not found!") { }
+        public NullRecipeException(string recipeAttribute) : base($"The {recipeAttribute} cannot be left empty.") { }
     }
 
-    public class DuplicateRecipeException : InvalidRecipeException
+    public class LengthRecipeException : InvalidRecipeException
     {
-        public DuplicateRecipeException() : base("The recipe already exists!") { }
+        public LengthRecipeException(string recipeAttribute, int lengthCharacters) : base($"The {recipeAttribute} cannot be longer than {lengthCharacters} characters.") { }
     }
 
-    public class InvalidChoosenIngredientException : InvalidRecipeException
+    public class InvalidTimeException : InvalidRecipeException
     {
-        public InvalidChoosenIngredientException() : base("The ingredient is invalid!") { }
+        public InvalidTimeException(string typeTime) : base($"The {typeTime} is invalid!") { }
     }
 
-    public class InvalidDietRestrictionException : InvalidRecipeException
+    public class InvalidReviewValueReview : InvalidRecipeException
     {
-        public InvalidDietRestrictionException() : base("The diet restriction is invalid!") { }
+        public InvalidReviewValueReview() : base("The rating is invalid!") { }
     }
 
-    public class InvalidDifficultyException : InvalidRecipeException
+    public class InvalidReviewTextReview : InvalidRecipeException
     {
-        public InvalidDifficultyException() : base("The difficulty level is invalid!") { }
-    }
-
-    public class InvalidPreparationTimeException : InvalidRecipeException
-    {
-        public InvalidPreparationTimeException() : base("The preparation time is invalid!") { }
-    }
-
-    public class InvalidCookingTimeException : InvalidRecipeException
-    {
-        public InvalidCookingTimeException() : base("The cooking time is invalid!") { }
+        public InvalidReviewTextReview() : base("The review text cannot be empty!") { }
     }
 }

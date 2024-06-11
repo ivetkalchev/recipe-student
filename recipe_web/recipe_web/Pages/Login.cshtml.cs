@@ -49,15 +49,15 @@ namespace recipe_web.Pages
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, webUser.GetIdUser().ToString()), // Ensure this claim is set
-                new Claim(ClaimTypes.Name, webUser.GetUsername()),
-                new Claim(ClaimTypes.Email, webUser.GetEmail()),
+                new Claim(ClaimTypes.NameIdentifier, webUser.IdUser.ToString()),
+                new Claim(ClaimTypes.Name, webUser.Username),
+                new Claim(ClaimTypes.Email, webUser.Email),
             };
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
-                // Optional: You can set other properties here, like IsPersistent, ExpiresUtc, etc.
+
             };
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);

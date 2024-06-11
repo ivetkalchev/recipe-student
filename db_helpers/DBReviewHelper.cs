@@ -26,10 +26,10 @@ namespace db_helpers
                         VALUES (@idRecipe, @idWebUser, @ratingValue, @reviewText)";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@idRecipe", review.GetRecipe().GetIdRecipe());
-                    cmd.Parameters.AddWithValue("@idWebUser", review.GetUser().GetIdUser());
-                    cmd.Parameters.AddWithValue("@ratingValue", review.GetRatingValue());
-                    cmd.Parameters.AddWithValue("@reviewText", review.GetReviewText());
+                    cmd.Parameters.AddWithValue("@idRecipe", review.Recipe.IdRecipe);
+                    cmd.Parameters.AddWithValue("@idWebUser", review.User.IdUser);
+                    cmd.Parameters.AddWithValue("@ratingValue", review.RatingValue);
+                    cmd.Parameters.AddWithValue("@reviewText", review.ReviewText);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -79,7 +79,7 @@ namespace db_helpers
                             Recipe recipe = recipeHelper.GetRecipeById(recipeId);
 
                             Review review = new Review(idReview, recipe, ratingValue, reviewText);
-                            review.SetUser(user);
+                            //Review.User(user);???
 
                             reviews.Add(review);
                         }
@@ -129,11 +129,10 @@ namespace db_helpers
                                 reader["caption"].ToString()
                             );
 
-                            // Assuming you have a method to get the recipe by its ID
                             Recipe recipe = recipeHelper.GetRecipeById(recipeId);
 
                             Review review = new Review(idReview, recipe, ratingValue, reviewText);
-                            review.SetUser(user);
+                            //review.SetUser(user); ???
 
                             return review;
                         }

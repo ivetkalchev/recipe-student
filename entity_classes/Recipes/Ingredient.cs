@@ -1,41 +1,45 @@
 ﻿using exceptions;
+using System.Xml.Linq;
 
 namespace entity_classes
 {
     public class Ingredient
     {
         private int idIngredient;
-        private string name;
-        private TypeIngredient type;
+        private string nameIngredient;
+        private TypeIngredient typeIngredient;
 
-        public Ingredient(int idIngredient, string name, TypeIngredient type)
+        public Ingredient(int idIngredient, string nameIngredient, TypeIngredient typeIngredient)
         {
-            this.idIngredient = idIngredient;
-            this.name = name;
-            this.type = type;
+            IdIngredient = idIngredient;
+            NameIngredient = nameIngredient;
+            TypeIngredient = typeIngredient;
         }
 
-        public int GetIdIngredient()
+        public int IdIngredient
         {
-            return idIngredient;
+            get { return idIngredient; }
+            private set { idIngredient = value; }
         }
 
-        public string GetName()
+        public string NameIngredient
         {
-            return name;
-        }
-
-        public TypeIngredient GetTypeIngredient()
-        {
-            return type;
-        }
-
-        public void IsIngredientNameValid(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name) || !System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
+            get { return nameIngredient; }
+            private set
             {
-                throw new InvalidIngredientNameException();
+                if (string.IsNullOrWhiteSpace(nameIngredient) || !System.Text.RegularExpressions.Regex.IsMatch(nameIngredient, @"^[a-zA-Z\s]+$"))
+                {
+                    throw new InvalidIngredientNameException();
+                }
+
+                nameIngredient = value;
             }
+        }
+
+        public TypeIngredient TypeIngredient
+        {
+            get { return typeIngredient; }
+            private set { typeIngredient = value; }
         }
     }
 }

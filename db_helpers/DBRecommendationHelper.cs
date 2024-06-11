@@ -180,13 +180,13 @@ namespace db_helpers
             try
             {
                 string email = reader["email"] != DBNull.Value ? reader["email"].ToString() : "default@example.com";
-                user = new DesktopUser((int)reader["id_desktop_user"], "", email, "", new Role(0, ""), "", "", 0, new Gender(0, ""), DateTime.Now, "");
+                user = new DesktopUser((int)reader["id_desktop_user"], "", email, "", new Role(0, ""), "", "", 0, new Gender(0, ""), DateTime.Now);
             }
             catch (InvalidEmailException ex)
             {
                 Console.WriteLine("Invalid email encountered: " + ex.Message);
 
-                user = new DesktopUser((int)reader["id_desktop_user"], "", "default@example.com", "", new Role(0, ""), "", "", 0, new Gender(0, ""), DateTime.Now, "");
+                user = new DesktopUser((int)reader["id_desktop_user"], "", "default@example.com", "", new Role(0, ""), "", "", 0, new Gender(0, ""), DateTime.Now);
             }
 
             int idRecipe = (int)reader["id_recipe"];

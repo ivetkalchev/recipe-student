@@ -1,4 +1,7 @@
-﻿namespace entity_classes
+﻿using exceptions;
+using System.Runtime.CompilerServices;
+
+namespace entity_classes
 {
     public abstract class Recipe
     {
@@ -14,78 +17,156 @@
         private Difficulty difficulty;
         private RecipePic? pic;
 
+        private int maxLength; //for setters
+
         public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user,
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
         {
-            this.idRecipe = idRecipe;
-            this.title = title;
-            this.description = description;
-            this.instructions = instructions;
-            this.ingredients = ingredients;
-            this.user = user;
-            this.preparationTime = preparationTime;
-            this.cookingTime = cookingTime;
-            this.dietRestriction = dietRestriction;
-            this.difficulty = difficulty;
-            this.pic = pic;
+            IdRecipe = idRecipe;
+            Title = title;
+            Description = description;
+            Instructions = instructions;
+            IngredientRecipes = ingredients;
+            User = user;
+            PreparationTime = preparationTime;
+            CookingTime = cookingTime;
+            DietRestriction = dietRestriction;
+            Difficulty = difficulty;
+            RecipePic = pic;
         }
 
-        public int GetIdRecipe()
+        public int IdRecipe
         {
-            return idRecipe;
+            get { return idRecipe; }
+            private set { idRecipe = value; }
         }
 
-        public string GetTitle()
+        public string Title
         {
-            return title;
+            get { return title; }
+            private set
+            {
+                maxLength = 100;
+
+                if (string.IsNullOrEmpty(value))
+                    throw new NullRecipeException("Title");
+
+                if (title.Length > maxLength)
+                    throw new LengthRecipeException(new string(value), maxLength);
+
+                title = value;
+            }
         }
 
-        public string GetDescription()
+        public string Description
         {
-            return description;
+            get { return description; }
+            private set
+            {
+                maxLength = 400;
+
+                if (string.IsNullOrEmpty(value))
+                    throw new NullRecipeException("Description");
+
+                if (description.Length > maxLength)
+                    throw new LengthRecipeException(new string(value), maxLength);
+
+                description = value;
+            }
         }
 
-        public string GetInstructions()
+        public string Instructions
         {
-            return instructions;
+            get { return instructions; }
+            private set
+            {
+                maxLength = 4000;
+
+                if (string.IsNullOrEmpty(value))
+                    throw new NullRecipeException("Instructions");
+
+                if (instructions.Length > maxLength)
+                    throw new LengthRecipeException(new string(value), maxLength);
+
+                instructions = value;
+            }
         }
 
-        public List<IngredientRecipe> GetIngredientRecipes()
+        public List<IngredientRecipe> IngredientRecipes
         {
-            return ingredients;
+            get { return ingredients; }
+            private set
+            {
+                if (value == null)
+                    throw new NullRecipeException("Ingredients");
+
+                ingredients = value;
+            }
         }
 
-        public User GetUser()
+        public DesktopUser User
         {
-            return user;
+            get { return user; }
+            private set { user = value; }
         }
 
-        public TimeSpan GetPreparationTime()
+        public TimeSpan PreparationTime
         {
-            return preparationTime;
+            get { return preparationTime; }
+            private set
+            {
+                if (value < TimeSpan.Zero)
+                    throw new InvalidTimeException("Preparation Time");
+
+                preparationTime = value;
+            }
         }
 
-        public TimeSpan GetCookingTime()
+        public TimeSpan CookingTime
         {
-            return cookingTime;
+            get { return cookingTime; }
+            private set
+            {
+                if (value < TimeSpan.Zero)
+                    throw new InvalidTimeException("Cooking Time");
+
+                cookingTime = value;
+            }
+        }    
+
+        public DietRestriction DietRestriction
+        {
+            get { return dietRestriction; }
+            private set
+            {
+                if (value == null)
+                    throw new NullRecipeException("Dietary Restriction");
+
+                dietRestriction = value;
+            }
         }
 
-        public DietRestriction GetDietRestriction()
+        public Difficulty Difficulty
         {
-            return dietRestriction;
-        }
+            get { return difficulty; }
+            private set
+            {
+                if (value == null)
+                    throw new NullRecipeException("Difficulty");
 
-        public Difficulty GetDifficulty()
-        {
-            return difficulty;
-        }
+                difficulty = value;
+            }
+}
 
-        public RecipePic? GetRecipePic()
+        public RecipePic? RecipePic
         {
-            return pic;
+            get { return pic; }
+            private set
+            {
+                pic = value;
+            }
         }
 
         public abstract TimeSpan CalculateTotalTime();
-
     }
 }

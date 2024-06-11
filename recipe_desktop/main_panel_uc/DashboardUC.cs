@@ -20,14 +20,15 @@ namespace recipe_desktop
             this.user = user;
             this.userManager = userManager;
 
-            SetGuideText(user.GetRole().GetName());
+            SetGuideText(user.Role.NameRole);
+
             LoadWelcomeText(user);
             LoadPieChartUsers();
         }
         
         private void LoadWelcomeText(DesktopUser user)
         {
-            lblWelcomeUser.Text = $"Welcome, {user.GetFirstName()} {user.GetLastName()}!";
+            lblWelcomeUser.Text = $"Welcome, {user.FirstName} {user.LastName}!";
         }
 
         private void SetGuideText(string roleName)
@@ -64,7 +65,7 @@ namespace recipe_desktop
 
             foreach (var user in users)
             {
-                var roleName = user.GetRole().GetName();
+                var roleName = user.Role.NameRole;
                 if (roleName == "Employee")
                 {
                     employeeCount++;

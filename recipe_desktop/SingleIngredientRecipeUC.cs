@@ -25,7 +25,7 @@ namespace recipe_desktop
 
         private void LoadIngredientName()
         {
-            lblName.Text = ingredient.GetName();
+            lblName.Text = ingredient.NameIngredient;
         }
 
         private void LoadUnits()
@@ -35,7 +35,7 @@ namespace recipe_desktop
 
             foreach (var unit in units)
             {
-                cbUnit.Items.Add(unit.GetName());
+                cbUnit.Items.Add(unit.NameUnit);
             }
 
             if (cbUnit.Items.Count > 0)
@@ -73,7 +73,7 @@ namespace recipe_desktop
         {
             foreach (var unit in ingredientManager.GetAllUnits())
             {
-                if (unit.GetName() == unitName)
+                if (unit.NameUnit == unitName)
                 {
                     return unit;
                 }

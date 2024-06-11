@@ -20,25 +20,24 @@ namespace db_helpers
                         SELECT SCOPE_IDENTITY();";
 
                     SqlCommand insertUserCmd = new SqlCommand(insertUserQuery, conn, transaction);
-                    insertUserCmd.Parameters.AddWithValue("@Username", newUser.GetUsername());
-                    insertUserCmd.Parameters.AddWithValue("@Email", newUser.GetEmail());
-                    insertUserCmd.Parameters.AddWithValue("@Password", newUser.GetPassword());
+                    insertUserCmd.Parameters.AddWithValue("@Username", newUser.Username);
+                    insertUserCmd.Parameters.AddWithValue("@Email", newUser.Email);
+                    insertUserCmd.Parameters.AddWithValue("@Password", newUser.Password);
 
                     int userId = Convert.ToInt32(insertUserCmd.ExecuteScalar());
 
                     string insertDesktopUserQuery = @"
-                        INSERT INTO [dbo].[DesktopUser] (id_user, id_role, first_name, last_name, bsn, id_gender, birthdate, security_answer)
-                        VALUES (@IdUser, @IdRole, @FirstName, @LastName, @Bsn, @IdGender, @Birthdate, @SecurityAnswer);";
+                        INSERT INTO [dbo].[DesktopUser] (id_user, id_role, first_name, last_name, bsn, id_gender, birthdate)
+                        VALUES (@IdUser, @IdRole, @FirstName, @LastName, @Bsn, @IdGender, @Birthdate);";
 
                     SqlCommand insertDesktopUserCmd = new SqlCommand(insertDesktopUserQuery, conn, transaction);
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdUser", userId);
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", newUser.GetRole().GetId());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", newUser.GetFirstName());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@LastName", newUser.GetLastName());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", newUser.GetBsn());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@IdGender", newUser.GetGender().GetId());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@Birthdate", newUser.GetBirthdate());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@SecurityAnswer", newUser.GetSecurityAnswer());
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdRole", newUser.Role.IdRole);
+                    insertDesktopUserCmd.Parameters.AddWithValue("@FirstName", newUser.FirstName);
+                    insertDesktopUserCmd.Parameters.AddWithValue("@LastName", newUser.LastName);
+                    insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", newUser.Bsn);
+                    insertDesktopUserCmd.Parameters.AddWithValue("@IdGender", newUser.Gender.IdGender);
+                    insertDesktopUserCmd.Parameters.AddWithValue("@Birthdate", newUser.Birthdate);
 
                     insertDesktopUserCmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -60,7 +59,7 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate
                 FROM [dbo].[User] u
                 INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
                 WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
@@ -86,8 +85,7 @@ namespace db_helpers
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
                                 gender,
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
+                                (DateTime)reader["birthdate"]
                             );
                         }
                     }
@@ -225,12 +223,12 @@ namespace db_helpers
                     WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
                     cmd.Parameters.AddWithValue("@FirstName", newFirstName);
                     cmd.Parameters.AddWithValue("@LastName", newLastName);
                     cmd.Parameters.AddWithValue("@Email", newEmail);
                     cmd.Parameters.AddWithValue("@BSN", newBSN);
-                    cmd.Parameters.AddWithValue("@GenderId", newGender.GetId());
+                    cmd.Parameters.AddWithValue("@GenderId", newGender.IdGender);
                     cmd.Parameters.AddWithValue("@Birthdate", newBirthdate);
 
                     cmd.ExecuteNonQuery();
@@ -259,7 +257,7 @@ namespace db_helpers
                         DELETE FROM [dbo].[User] WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(deleteUserQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -287,7 +285,7 @@ namespace db_helpers
                         WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(promoteUserQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -311,7 +309,7 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate
                 FROM [dbo].[User] u
                 INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user";
 
@@ -334,8 +332,7 @@ namespace db_helpers
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
                                 gender,
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
+                                (DateTime)reader["birthdate"]
                             );
 
                             users.Add(user);
@@ -417,7 +414,7 @@ namespace db_helpers
                     string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE email = @Email AND id_user != @UserId";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
 
                     int count = (int)cmd.ExecuteScalar();
                     return count > 0;
@@ -441,7 +438,7 @@ namespace db_helpers
                     string query = "SELECT COUNT(*) FROM [dbo].[DesktopUser] WHERE bsn = @Bsn AND id_user != @UserId";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Bsn", bsn);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
 
                     int count = (int)cmd.ExecuteScalar();
                     return count > 0;
@@ -468,9 +465,9 @@ namespace db_helpers
                         SELECT SCOPE_IDENTITY();";
 
                     SqlCommand insertUserCmd = new SqlCommand(insertUserQuery, conn, transaction);
-                    insertUserCmd.Parameters.AddWithValue("@Username", newUser.GetUsername());
-                    insertUserCmd.Parameters.AddWithValue("@Email", newUser.GetEmail());
-                    insertUserCmd.Parameters.AddWithValue("@Password", newUser.GetPassword());
+                    insertUserCmd.Parameters.AddWithValue("@Username", newUser.Username);
+                    insertUserCmd.Parameters.AddWithValue("@Email", newUser.Email);
+                    insertUserCmd.Parameters.AddWithValue("@Password", newUser.Password);
 
                     int userId = Convert.ToInt32(insertUserCmd.ExecuteScalar());
 
@@ -480,7 +477,7 @@ namespace db_helpers
 
                     SqlCommand insertWebUserCmd = new SqlCommand(insertWebUserQuery, conn, transaction);
                     insertWebUserCmd.Parameters.AddWithValue("@IdUser", userId);
-                    insertWebUserCmd.Parameters.AddWithValue("@Caption", newUser.GetCaption());
+                    insertWebUserCmd.Parameters.AddWithValue("@Caption", newUser.Caption);
 
                     insertWebUserCmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -593,16 +590,16 @@ namespace db_helpers
                 try
                 {
                     string updateQuery = @"
-                UPDATE [dbo].[User]
-                SET email = @Email
-                WHERE id_user = @UserId;
+                        UPDATE [dbo].[User]
+                        SET email = @Email
+                        WHERE id_user = @UserId;
 
-                UPDATE [dbo].[WebUser]
-                SET caption = @Caption
-                WHERE id_user = @UserId;";
+                        UPDATE [dbo].[WebUser]
+                        SET caption = @Caption
+                        WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(updateQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
                     cmd.Parameters.AddWithValue("@Caption", newCaption);
                     cmd.Parameters.AddWithValue("@Email", newEmail);
 
@@ -631,7 +628,7 @@ namespace db_helpers
                         DELETE FROM [dbo].[User] WHERE id_user = @UserId;";
 
                     SqlCommand cmd = new SqlCommand(deleteUserQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", user.IdUser);
 
                     cmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -734,7 +731,7 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                    SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                    SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate
                     FROM [User] u
                     INNER JOIN [DesktopUser] d ON u.id_user = d.id_user
                     WHERE u.id_user = @userId";
@@ -755,8 +752,7 @@ namespace db_helpers
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
                                 GetGenderById((int)reader["id_gender"]),
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
+                                (DateTime)reader["birthdate"]
                             );
                         }
                         else

@@ -2,20 +2,25 @@
 {
     public class Role
     {
-        private int id;
-        private string name;
-        public Role(int id, string name)
+        private int idRole;
+        private string nameRole;
+
+        public Role(int idRole, string nameRole)
         {
-            this.id = id;
-            this.name = name;
+            IdRole = idRole;
+            NameRole = nameRole;
         }
-        public int GetId()
+
+        public int IdRole
         {
-            return id;
+            get {  return idRole; }
+            private set { idRole = value; }
         }
-        public string GetName()
+
+        public string NameRole
         {
-            return name;
+            get { return  nameRole; }
+            private set { nameRole = value; }
         }
     }
 }

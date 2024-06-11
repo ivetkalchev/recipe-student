@@ -23,14 +23,14 @@ namespace recipe_desktop
 
         private void LoadUserDetails()
         {
-            SetFirstName(user.GetFirstName());
-            SetLastName(user.GetLastName());
-            SetUsername(user.GetUsername());
-            SetEmail(user.GetEmail());
-            SetRole(user.GetRole().GetName());
+            SetFirstName(user.FirstName);
+            SetLastName(user.LastName);
+            SetUsername(user.Username);
+            SetEmail(user.Email);
+            SetRole(user.Role.NameRole);
 
-            btnPromote.Enabled = user.GetRole().GetName() != "Admin";
-            btnEdit.Enabled = user.GetRole().GetName() != "Admin";
+            btnPromote.Enabled = user.Role.NameRole != "Admin";
+            btnEdit.Enabled = user.Role.NameRole != "Admin";
         }
         
         public void SetFirstName(string firstName)

@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public class Dessert : Recipe
     {
@@ -8,23 +10,25 @@
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isSugarFree, bool requiresFreezing)
             : base(idRecipe, title, description, instructions, ingredients, user, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
-            this.isSugarFree = isSugarFree;
-            this.requiresFreezing = requiresFreezing;
+            IsSugarFree = isSugarFree;
+            RequiresFreezing = requiresFreezing;
         }
 
-        public bool GetIsSugarFree()
+        public bool IsSugarFree
         {
-            return isSugarFree;
+            get { return isSugarFree; }
+            set { isSugarFree = value; }
         }
 
-        public bool GetRequiresFreezing()
+        public bool RequiresFreezing
         {
-            return requiresFreezing;
+            get { return requiresFreezing; }
+            set { requiresFreezing = value; }
         }
 
         public override TimeSpan CalculateTotalTime()
         {
-            var totalTime = GetPreparationTime() + GetCookingTime();
+            var totalTime = PreparationTime + CookingTime;
             if (requiresFreezing)
             {
                 totalTime += TimeSpan.FromMinutes(60); // freezing time

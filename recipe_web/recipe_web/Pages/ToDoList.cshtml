@@ -16,10 +16,10 @@
         {
             <li class="todo-item">
                 <span>
-                    <a asp-page="/RecipeDetails" asp-route-id="@recipe.GetIdRecipe()">@recipe.GetTitle()</a>
+                    <a asp-page="/RecipeDetails" asp-route-id="@recipe.IdRecipe">@recipe.Title</a>
                 </span>
                 <span>
-                    <form method="post" asp-page-handler="Remove" asp-route-id="@recipe.GetIdRecipe()">
+                    <form method="post" asp-page-handler="Remove" asp-route-id="@recipe.IdRecipe">
                         <button type="submit" class="remove">Remove</button>
                     </form>
                 </span>

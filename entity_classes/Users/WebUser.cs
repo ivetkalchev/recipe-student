@@ -12,12 +12,18 @@ namespace entity_classes
         public WebUser(int idUser, string username, string email, string password, string caption)
             : base(idUser, username, email, password)
         {
-            this.caption = caption;
+            Caption = caption;
         }
 
-        public string GetCaption()
+        public string Caption
         {
-            return caption; 
+            get { return Caption; }
+
+            private set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new NullUserException(nameof(Caption));
+
+            Caption = value; }}
         }
     }
-}

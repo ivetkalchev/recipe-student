@@ -379,7 +379,7 @@ namespace db_helpers
                                     var ingredient = new Ingredient(ingredientId, ingredientName, null);
                                     var unit = new Unit(unitId, unitName);
                                     var ingredientRecipe = new IngredientRecipe(ingredient, quantity, unit);
-                                    recipe.GetIngredientRecipes().Add(ingredientRecipe);
+                                    recipe.IngredientRecipes.Add(ingredientRecipe);
                                     ingredientRecipes.Add(ingredientId, ingredientRecipe);
                                 }
                             }
@@ -408,16 +408,16 @@ namespace db_helpers
                     try
                     {
                         int? picId = null;
-                        if (recipe.GetRecipePic() != null)
+                        if (recipe.RecipePic != null)
                         {
                             string picQuery = @"
                                 INSERT INTO RecipePicture (name, data, content_type)
                                 OUTPUT INSERTED.id_recipe_pic
                                 VALUES (@name, @data, @contentType)";
                             SqlCommand picCmd = new SqlCommand(picQuery, conn, transaction);
-                            picCmd.Parameters.AddWithValue("@name", recipe.GetRecipePic().GetName());
-                            picCmd.Parameters.AddWithValue("@data", recipe.GetRecipePic().GetData());
-                            picCmd.Parameters.AddWithValue("@contentType", recipe.GetRecipePic().GetContentType());
+                            picCmd.Parameters.AddWithValue("@name", recipe.RecipePic.NamePic);
+                            picCmd.Parameters.AddWithValue("@data", recipe.RecipePic.DataPic);
+                            picCmd.Parameters.AddWithValue("@contentType", recipe.RecipePic.ContentTypePic);
                             picId = (int)picCmd.ExecuteScalar();
                         }
 
@@ -426,14 +426,14 @@ namespace db_helpers
                             OUTPUT INSERTED.id_recipe
                             VALUES (@title, @description, @instructions, @userId, @prepTime, @cookTime, @dietId, @difficultyId, @picId)";
                         SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                        cmd.Parameters.AddWithValue("@title", recipe.GetTitle());
-                        cmd.Parameters.AddWithValue("@description", recipe.GetDescription());
-                        cmd.Parameters.AddWithValue("@instructions", recipe.GetInstructions());
-                        cmd.Parameters.AddWithValue("@userId", recipe.GetUser().GetIdUser());
-                        cmd.Parameters.AddWithValue("@prepTime", recipe.GetPreparationTime());
-                        cmd.Parameters.AddWithValue("@cookTime", recipe.GetCookingTime());
-                        cmd.Parameters.AddWithValue("@dietId", recipe.GetDietRestriction().GetIdDietRestriction());
-                        cmd.Parameters.AddWithValue("@difficultyId", recipe.GetDifficulty().GetIdDifficulty());
+                        cmd.Parameters.AddWithValue("@title", recipe.Title);
+                        cmd.Parameters.AddWithValue("@description", recipe.Description);
+                        cmd.Parameters.AddWithValue("@instructions", recipe.Instructions);
+                        cmd.Parameters.AddWithValue("@userId", recipe.User.IdUser);
+                        cmd.Parameters.AddWithValue("@prepTime", recipe.PreparationTime);
+                        cmd.Parameters.AddWithValue("@cookTime", recipe.CookingTime);
+                        cmd.Parameters.AddWithValue("@dietId", recipe.DietRestriction.IdDietRestriction);
+                        cmd.Parameters.AddWithValue("@difficultyId", recipe.Difficulty.IdDifficulty);
                         cmd.Parameters.AddWithValue("@picId", (object)picId ?? DBNull.Value);
                         int recipeId = (int)cmd.ExecuteScalar();
 
@@ -442,20 +442,20 @@ namespace db_helpers
                             VALUES (@recipeId, @isSpicy, @servings)";
                         SqlCommand mainCourseCmd = new SqlCommand(mainCourseQuery, conn, transaction);
                         mainCourseCmd.Parameters.AddWithValue("@recipeId", recipeId);
-                        mainCourseCmd.Parameters.AddWithValue("@isSpicy", recipe.GetIsSpicy());
-                        mainCourseCmd.Parameters.AddWithValue("@servings", recipe.GetServings());
+                        mainCourseCmd.Parameters.AddWithValue("@isSpicy", recipe.IsSpicy);
+                        mainCourseCmd.Parameters.AddWithValue("@servings", recipe.Servings);
                         mainCourseCmd.ExecuteNonQuery();
 
-                        foreach (var ingredient in recipe.GetIngredientRecipes())
+                        foreach (var ingredient in recipe.IngredientRecipes)
                         {
                             string ingredientRecipeQuery = @"
                                 INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity)
                                 VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
                             SqlCommand ingredientCmd = new SqlCommand(ingredientRecipeQuery, conn, transaction);
                             ingredientCmd.Parameters.AddWithValue("@recipeId", recipeId);
-                            ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.GetIngredient().GetIdIngredient());
-                            ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.GetUnit().GetId());
-                            ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.GetQuantity());
+                            ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.Ingredient.IdIngredient);
+                            ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.Unit.IdUnit);
+                            ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.Quantity);
                             ingredientCmd.ExecuteNonQuery();
                         }
 
@@ -486,16 +486,16 @@ namespace db_helpers
                     try
                     {
                         int? picId = null;
-                        if (recipe.GetRecipePic() != null)
+                        if (recipe.RecipePic != null)
                         {
                             string picQuery = @"
                                 INSERT INTO RecipePicture (name, data, content_type)
                                 OUTPUT INSERTED.id_recipe_pic
                                 VALUES (@name, @data, @contentType)";
                             SqlCommand picCmd = new SqlCommand(picQuery, conn, transaction);
-                            picCmd.Parameters.AddWithValue("@name", recipe.GetRecipePic().GetName());
-                            picCmd.Parameters.AddWithValue("@data", recipe.GetRecipePic().GetData());
-                            picCmd.Parameters.AddWithValue("@contentType", recipe.GetRecipePic().GetContentType());
+                            picCmd.Parameters.AddWithValue("@name", recipe.RecipePic.NamePic);
+                            picCmd.Parameters.AddWithValue("@data", recipe.RecipePic.DataPic);
+                            picCmd.Parameters.AddWithValue("@contentType", recipe.RecipePic.ContentTypePic);
                             picId = (int)picCmd.ExecuteScalar();
                         }
 
@@ -504,14 +504,14 @@ namespace db_helpers
                             OUTPUT INSERTED.id_recipe
                             VALUES (@title, @description, @instructions, @userId, @prepTime, @cookTime, @dietId, @difficultyId, @picId)";
                         SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                        cmd.Parameters.AddWithValue("@title", recipe.GetTitle());
-                        cmd.Parameters.AddWithValue("@description", recipe.GetDescription());
-                        cmd.Parameters.AddWithValue("@instructions", recipe.GetInstructions());
-                        cmd.Parameters.AddWithValue("@userId", recipe.GetUser().GetIdUser());
-                        cmd.Parameters.AddWithValue("@prepTime", recipe.GetPreparationTime());
-                        cmd.Parameters.AddWithValue("@cookTime", recipe.GetCookingTime());
-                        cmd.Parameters.AddWithValue("@dietId", recipe.GetDietRestriction().GetIdDietRestriction());
-                        cmd.Parameters.AddWithValue("@difficultyId", recipe.GetDifficulty().GetIdDifficulty());
+                        cmd.Parameters.AddWithValue("@title", recipe.Title);
+                        cmd.Parameters.AddWithValue("@description", recipe.Description);
+                        cmd.Parameters.AddWithValue("@instructions", recipe.Instructions);
+                        cmd.Parameters.AddWithValue("@userId", recipe.User.IdUser);
+                        cmd.Parameters.AddWithValue("@prepTime", recipe.PreparationTime);
+                        cmd.Parameters.AddWithValue("@cookTime", recipe.CookingTime);
+                        cmd.Parameters.AddWithValue("@dietId", recipe.DietRestriction.IdDietRestriction);
+                        cmd.Parameters.AddWithValue("@difficultyId", recipe.Difficulty.IdDifficulty);
                         cmd.Parameters.AddWithValue("@picId", (object)picId ?? DBNull.Value);
                         int recipeId = (int)cmd.ExecuteScalar();
 
@@ -520,22 +520,22 @@ namespace db_helpers
                             VALUES (@recipeId, @isAlcoholic, @containsCaffeine, @servedHot, @pours)";
                         SqlCommand drinkCmd = new SqlCommand(drinkQuery, conn, transaction);
                         drinkCmd.Parameters.AddWithValue("@recipeId", recipeId);
-                        drinkCmd.Parameters.AddWithValue("@isAlcoholic", recipe.GetIsAlcoholic());
-                        drinkCmd.Parameters.AddWithValue("@containsCaffeine", recipe.GetContainsCaffeine());
-                        drinkCmd.Parameters.AddWithValue("@servedHot", recipe.GetServedHot());
-                        drinkCmd.Parameters.AddWithValue("@pours", recipe.GetPours());
+                        drinkCmd.Parameters.AddWithValue("@isAlcoholic", recipe.IsAlcoholic);
+                        drinkCmd.Parameters.AddWithValue("@containsCaffeine", recipe.ContainsCaffeine);
+                        drinkCmd.Parameters.AddWithValue("@servedHot", recipe.ServedHot);
+                        drinkCmd.Parameters.AddWithValue("@pours", recipe.Pours);
                         drinkCmd.ExecuteNonQuery();
 
-                        foreach (var ingredient in recipe.GetIngredientRecipes())
+                        foreach (var ingredient in recipe.IngredientRecipes)
                         {
                             string ingredientRecipeQuery = @"
                                 INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity)
                                 VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
                             SqlCommand ingredientCmd = new SqlCommand(ingredientRecipeQuery, conn, transaction);
                             ingredientCmd.Parameters.AddWithValue("@recipeId", recipeId);
-                            ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.GetIngredient().GetIdIngredient());
-                            ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.GetUnit().GetId());
-                            ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.GetQuantity());
+                            ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.Ingredient.IdIngredient);
+                            ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.Unit.IdUnit);
+                            ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.Quantity);
                             ingredientCmd.ExecuteNonQuery();
                         }
 
@@ -566,16 +566,16 @@ namespace db_helpers
                     try
                     {
                         int? picId = null;
-                        if (recipe.GetRecipePic() != null)
+                        if (recipe.RecipePic != null)
                         {
                             string picQuery = @"
                                 INSERT INTO RecipePicture (name, data, content_type)
                                 OUTPUT INSERTED.id_recipe_pic
                                 VALUES (@name, @data, @contentType)";
                             SqlCommand picCmd = new SqlCommand(picQuery, conn, transaction);
-                            picCmd.Parameters.AddWithValue("@name", recipe.GetRecipePic().GetName());
-                            picCmd.Parameters.AddWithValue("@data", recipe.GetRecipePic().GetData());
-                            picCmd.Parameters.AddWithValue("@contentType", recipe.GetRecipePic().GetContentType());
+                            picCmd.Parameters.AddWithValue("@name", recipe.RecipePic.NamePic);
+                            picCmd.Parameters.AddWithValue("@data", recipe.RecipePic.DataPic);
+                            picCmd.Parameters.AddWithValue("@contentType", recipe.RecipePic.ContentTypePic);
                             picId = (int)picCmd.ExecuteScalar();
                         }
 
@@ -584,14 +584,14 @@ namespace db_helpers
                             OUTPUT INSERTED.id_recipe
                             VALUES (@title, @description, @instructions, @userId, @prepTime, @cookTime, @dietId, @difficultyId, @picId)";
                         SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                        cmd.Parameters.AddWithValue("@title", recipe.GetTitle());
-                        cmd.Parameters.AddWithValue("@description", recipe.GetDescription());
-                        cmd.Parameters.AddWithValue("@instructions", recipe.GetInstructions());
-                        cmd.Parameters.AddWithValue("@userId", recipe.GetUser().GetIdUser());
-                        cmd.Parameters.AddWithValue("@prepTime", recipe.GetPreparationTime());
-                        cmd.Parameters.AddWithValue("@cookTime", recipe.GetCookingTime());
-                        cmd.Parameters.AddWithValue("@dietId", recipe.GetDietRestriction().GetIdDietRestriction());
-                        cmd.Parameters.AddWithValue("@difficultyId", recipe.GetDifficulty().GetIdDifficulty());
+                        cmd.Parameters.AddWithValue("@title", recipe.Title);
+                        cmd.Parameters.AddWithValue("@description", recipe.Description);
+                        cmd.Parameters.AddWithValue("@instructions", recipe.Instructions);
+                        cmd.Parameters.AddWithValue("@userId", recipe.User.IdUser);
+                        cmd.Parameters.AddWithValue("@prepTime", recipe.PreparationTime);
+                        cmd.Parameters.AddWithValue("@cookTime", recipe.CookingTime);
+                        cmd.Parameters.AddWithValue("@dietId", recipe.DietRestriction.IdDietRestriction);
+                        cmd.Parameters.AddWithValue("@difficultyId", recipe.Difficulty.IdDifficulty);
                         cmd.Parameters.AddWithValue("@picId", (object)picId ?? DBNull.Value);
                         int recipeId = (int)cmd.ExecuteScalar();
 
@@ -600,20 +600,20 @@ namespace db_helpers
                             VALUES (@recipeId, @isSugarFree, @requiresFreezing)";
                         SqlCommand dessertCmd = new SqlCommand(dessertQuery, conn, transaction);
                         dessertCmd.Parameters.AddWithValue("@recipeId", recipeId);
-                        dessertCmd.Parameters.AddWithValue("@isSugarFree", recipe.GetIsSugarFree());
-                        dessertCmd.Parameters.AddWithValue("@requiresFreezing", recipe.GetRequiresFreezing());
+                        dessertCmd.Parameters.AddWithValue("@isSugarFree", recipe.IsSugarFree);
+                        dessertCmd.Parameters.AddWithValue("@requiresFreezing", recipe.RequiresFreezing);
                         dessertCmd.ExecuteNonQuery();
 
-                        foreach (var ingredient in recipe.GetIngredientRecipes())
+                        foreach (var ingredient in recipe.IngredientRecipes)
                         {
                             string ingredientRecipeQuery = @"
                                 INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity)
                                 VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
                             SqlCommand ingredientCmd = new SqlCommand(ingredientRecipeQuery, conn, transaction);
                             ingredientCmd.Parameters.AddWithValue("@recipeId", recipeId);
-                            ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.GetIngredient().GetIdIngredient());
-                            ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.GetUnit().GetId());
-                            ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.GetQuantity());
+                            ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.Ingredient.IdIngredient);
+                            ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.Unit.IdUnit);
+                            ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.Quantity);
                             ingredientCmd.ExecuteNonQuery();
                         }
 

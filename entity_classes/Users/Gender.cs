@@ -2,21 +2,31 @@
 {
     public class Gender
     {
-        private int id;
-        private string name;
+        private int idGender;
+        private string nameGender;
 
-        public Gender(int id, string name)
+        public Gender(int idGender, string nameGender)
         {
-            this.id = id;
-            this.name = name;
+            IdGender = idGender;
+            NameGender = nameGender;
         }
-        public int GetId()
+
+        public int IdGender
         {
-            return id;
+            get { return  idGender; }
+            private set
+            {
+                idGender = value;
+            }
         }
-        public string GetName()
+
+        public string NameGender
         {
-            return name;
+            get { return nameGender; }
+            private set
+            {
+                nameGender = value;
+            }
         }
     }
 }

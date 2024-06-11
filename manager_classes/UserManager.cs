@@ -15,23 +15,17 @@ namespace manager_classes
 
         public bool RegisterDesktopUser(DesktopUser newUser)
         {
-            if (IsDesktopUserTaken(newUser) || !newUser.IsDesktopUserValid())
-            {
-                return false;
-            }
-
             newUser = new DesktopUser(
-                newUser.GetIdUser(),
-                newUser.GetUsername(),
-                newUser.GetEmail(),
-                Hasher.HashText(newUser.GetPassword()),
-                newUser.GetRole(),
-                CapitalizeFirstLetter(newUser.GetFirstName()),
-                CapitalizeFirstLetter(newUser.GetLastName()),
-                newUser.GetBsn(),
-                newUser.GetGender(),
-                newUser.GetBirthdate(),
-                CapitalizeFirstLetter(Hasher.HashText(newUser.GetSecurityAnswer()))
+                newUser.IdUser,
+                newUser.Username,
+                newUser.Email,
+                Hasher.HashText(newUser.Password),
+                newUser.Role,
+                CapitalizeFirstLetter(newUser.FirstName),
+                CapitalizeFirstLetter(newUser.LastName),
+                newUser.Bsn,
+                newUser.Gender,
+                newUser.Birthdate
             );
 
             userHelper.InsertDesktopUser(newUser);
@@ -41,17 +35,17 @@ namespace manager_classes
 
         public bool RegisterWebUser(WebUser newUser)
         {
-            if (IsWebUserTaken(newUser) || !newUser.IsUserValid() || string.IsNullOrEmpty(newUser.GetCaption()))
+            if (IsWebUserTaken(newUser))
             {
                 return false;
             }
 
             newUser = new WebUser(
-                newUser.GetIdUser(),
-                newUser.GetUsername(),
-                newUser.GetEmail(),
-                Hasher.HashText(newUser.GetPassword()),
-                newUser.GetCaption()
+                newUser.IdUser,
+                newUser.Username,
+                newUser.Email,
+                Hasher.HashText(newUser.Password),
+                newUser.Caption
             );
 
             userHelper.InsertWebUser(newUser);
@@ -60,15 +54,15 @@ namespace manager_classes
 
         private bool IsDesktopUserTaken(DesktopUser newUser)
         {
-            if (IsUsernameTaken(newUser.GetUsername()))
+            if (IsUsernameTaken(newUser.Username))
             {
                 throw new AlreadyExistUserException("username");
             }
-            if (IsEmailTaken(newUser.GetEmail()))
+            if (IsEmailTaken(newUser.Email))
             {
                 throw new AlreadyExistUserException("email");
             }
-            if (IsBsnTaken(newUser.GetBsn()))
+            if (IsBsnTaken(newUser.Bsn))
             {
                 throw new AlreadyExistUserException("Bsn");
             }
@@ -77,11 +71,11 @@ namespace manager_classes
 
         private bool IsWebUserTaken(WebUser newUser)
         {
-            if (IsUsernameTaken(newUser.GetUsername()))
+            if (IsUsernameTaken(newUser.Username))
             {
                 throw new AlreadyExistUserException("username");
             }
-            if (IsEmailTaken(newUser.GetEmail()))
+            if (IsEmailTaken(newUser.Email))
             {
                 throw new AlreadyExistUserException("email");
             }
@@ -123,17 +117,12 @@ namespace manager_classes
 
         public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
-            if (!user.IsDesktopUserValid())
-            {
-                throw new InvalidUserException("Invalid user details");
-            }
-
-            if (newEmail != user.GetEmail() && IsEmailTakenByOtherUser(user, newEmail))
+            if (newEmail != user.Email && IsEmailTakenByOtherUser(user, newEmail))
             {
                 throw new AlreadyExistUserException("email");
             }
 
-            if (newBsn != user.GetBsn() && IsBsnTakenByOtherUser(user, newBsn))
+            if (newBsn != user.Bsn && IsBsnTakenByOtherUser(user, newBsn))
             {
                 throw new AlreadyExistUserException("Bsn");
             }
@@ -196,7 +185,7 @@ namespace manager_classes
             var genders = userHelper.GetAllGenders();
             foreach (var gender in genders)
             {
-                if (gender.GetName().Equals(genderName, StringComparison.OrdinalIgnoreCase))
+                if (gender.NameGender.Equals(genderName, StringComparison.OrdinalIgnoreCase))
                 {
                     return gender;
                 }

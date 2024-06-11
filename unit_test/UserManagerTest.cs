@@ -26,11 +26,11 @@ namespace unit_tests
             var role = new Role(1, "User");
             var gender = new Gender(1, "Male");
             var birthdate = new DateTime(1996, 12, 30);
-            var newUser = new DesktopUser(1, "testUser", "test@example.com", "Password#2", role, "Test", "User", 12345656, gender, birthdate, "Answer");
+            var newUser = new DesktopUser(1, "testUser", "test@example.com", "Password#2", role, "Test", "User", 12345656, gender, birthdate);
 
-            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.GetUsername())).Returns(false);
-            mockDbHelper.Setup(m => m.IsEmailTaken(newUser.GetEmail())).Returns(false);
-            mockDbHelper.Setup(m => m.IsBSNTaken(newUser.GetBsn())).Returns(false);
+            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.Username)).Returns(false);
+            mockDbHelper.Setup(m => m.IsEmailTaken(newUser.Email)).Returns(false);
+            mockDbHelper.Setup(m => m.IsBSNTaken(newUser.Bsn)).Returns(false);
 
             // Act
             var result = manager.RegisterDesktopUser(newUser);
@@ -49,8 +49,8 @@ namespace unit_tests
             // Arrange
             var role = new Role(1, "User");
             var gender = new Gender(1, "Male");
-            var newUser = new DesktopUser(1, "testUser", "test@example.com", "password", role, "Test", "User", 12345, gender, DateTime.Now, "Answer");
-            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.GetUsername())).Returns(true);
+            var newUser = new DesktopUser(1, "testUser", "test@example.com", "password", role, "Test", "User", 12345, gender, DateTime.Now);
+            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.Username)).Returns(true);
 
             // Act
             manager.RegisterDesktopUser(newUser);
@@ -63,9 +63,9 @@ namespace unit_tests
             // Arrange
             var role = new Role(1, "User");
             var gender = new Gender(1, "Male");
-            var newUser = new DesktopUser(1, "testUser", "test@example.com", "password", role, "Test", "User", 12345, gender, DateTime.Now, "Answer");
-            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.GetUsername())).Returns(false);
-            mockDbHelper.Setup(m => m.IsEmailTaken(newUser.GetEmail())).Returns(true);
+            var newUser = new DesktopUser(1, "testUser", "test@example.com", "password", role, "Test", "User", 12345, gender, DateTime.Now);
+            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.Username)).Returns(false);
+            mockDbHelper.Setup(m => m.IsEmailTaken(newUser.Email)).Returns(true);
 
             // Act
             manager.RegisterDesktopUser(newUser);
@@ -78,10 +78,10 @@ namespace unit_tests
             // Arrange
             var role = new Role(1, "User");
             var gender = new Gender(1, "Male");
-            var newUser = new DesktopUser(1, "testUser", "test@example.com", "password", role, "Test", "User", 12345, gender, DateTime.Now, "Answer");
-            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.GetUsername())).Returns(false);
-            mockDbHelper.Setup(m => m.IsEmailTaken(newUser.GetEmail())).Returns(false);
-            mockDbHelper.Setup(m => m.IsBSNTaken(newUser.GetBsn())).Returns(true);
+            var newUser = new DesktopUser(1, "testUser", "test@example.com", "password", role, "Test", "User", 12345, gender, DateTime.Now);
+            mockDbHelper.Setup(m => m.IsUsernameTaken(newUser.Username)).Returns(false);
+            mockDbHelper.Setup(m => m.IsEmailTaken(newUser.Email)).Returns(false);
+            mockDbHelper.Setup(m => m.IsBSNTaken(newUser.Bsn)).Returns(true);
 
             // Act
             manager.RegisterDesktopUser(newUser);

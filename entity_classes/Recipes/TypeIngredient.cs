@@ -4,23 +4,31 @@ namespace entity_classes
 {
     public class TypeIngredient
     {
-        private int id;
-        private string name;
+        private int idTypeIngredient;
+        private string nameTypeIngredient;
 
-        public TypeIngredient(int id, string name)
+        public TypeIngredient(int idTypeIngredient, string nameTypeIngredient)
         {
-            this.id = id;
-            this.name = name;
+            IdTypeIngredient = idTypeIngredient;
+            NameTypeIngredient = nameTypeIngredient;
         }
 
-        public int GetId()
+        public int IdTypeIngredient
         {
-            return id;
+            get { return idTypeIngredient; }
+            private set
+            {
+                idTypeIngredient = value;
+            }
         }
 
-        public string GetName()
+        public string NameTypeIngredient
         {
-            return name;
+            get { return nameTypeIngredient; }
+            private set
+            {
+                nameTypeIngredient = value;
+            }
         }
     }
 }

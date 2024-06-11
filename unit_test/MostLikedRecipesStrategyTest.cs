@@ -21,7 +21,7 @@ namespace unit_tests
         public void GetRecommendedRecipes_ReturnsTopMostLikedRecipes()
         {
             // Arrange
-            var user = new DesktopUser(1, "testUser", "test@example.com", "password", new Role(1, "User"), "Test", "User", 12345, new Gender(1, "Male"), DateTime.Now, "Answer");
+            var user = new DesktopUser(1, "testUser", "test@example.com", "password", new Role(1, "User"), "Test", "User", 12345, new Gender(1, "Male"), DateTime.Now);
             var dietRestriction = new DietRestriction(1, "Vegetarian");
             var difficulty = new Difficulty(1, "Easy");
             var ingredient = new Ingredient(1, "Tomato", new TypeIngredient(1, "Vegetable"));
