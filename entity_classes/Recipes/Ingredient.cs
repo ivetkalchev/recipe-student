@@ -15,7 +15,7 @@ namespace entity_classes
             this.type = type;
         }
 
-        public int GetIdIngredient()
+        public int GetId()
         {
             return idIngredient;
         }
@@ -25,7 +25,7 @@ namespace entity_classes
             return name;
         }
 
-        public TypeIngredient GetTypeIngredient()
+        public TypeIngredient GetType()
         {
             return type;
         }

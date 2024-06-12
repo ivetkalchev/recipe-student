@@ -1,6 +1,4 @@
-﻿using exceptions;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class Review
     {
@@ -12,61 +10,40 @@ namespace entity_classes
 
         public Review(int idReview, Recipe recipe, decimal ratingValue, string reviewText)
         {
-            IdReview = idReview;
-            Recipe = recipe;
-            RatingValue = ratingValue;
-            ReviewText = reviewText;
+            this.idReview = idReview;
+            this.recipe = recipe;
+            this.ratingValue = ratingValue;
+            this.reviewText = reviewText;
         }
 
-        public int IdReview
+        public int GetIdReview()
         {
-            get { return idReview; }
-            private set 
-            {
-                idReview = value;
-            }
+            return idReview;
         }
 
-        public Recipe Recipe
+        public Recipe GetRecipe()
         {
-            get { return recipe; }
-            private set
-            {
-                recipe = value;
-            }
+            return recipe;
         }
 
-        public decimal RatingValue
+        public decimal GetRatingValue()
         {
-            get { return ratingValue; }
-            private set
-            {
-                if (ratingValue < 0 || ratingValue > 5)
-                    throw new InvalidReviewValueException();
-
-                ratingValue = value;
-            }
+            return ratingValue;
         }
 
-        public string ReviewText
+        public string GetReviewText()
         {
-            get { return reviewText; }
-            private set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new InvalidReviewTextException();
-
-                reviewText = value;
-            }
+            return reviewText;
         }
 
-        public WebUser User
+        public WebUser GetUser()
         {
-            get { return user; }
-            private set
-            {
-                user = value;
-            }
+            return user;
+        }
+
+        public void SetUser(WebUser user)
+        {
+            this.user = user;
         }
     }
 }

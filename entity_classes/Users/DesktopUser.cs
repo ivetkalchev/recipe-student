@@ -11,11 +11,9 @@ namespace entity_classes
         private int bsn;
         private Gender gender;
         private DateTime birthdate;
-        private string securityAnswer;
 
         public DesktopUser(int idUser, string username, string email, string password,
-            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate,
-            string securityAnswer)
+            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate)
             : base(idUser, username, email, password)
         {
             this.role = role;
@@ -24,7 +22,6 @@ namespace entity_classes
             this.bsn = bsn;
             this.gender = gender;
             this.birthdate = birthdate;
-            this.securityAnswer = securityAnswer;
         }
 
         public Role GetRole()
@@ -55,11 +52,6 @@ namespace entity_classes
         public DateTime GetBirthdate()
         {
             return birthdate;
-        }
-
-        public string GetSecurityAnswer()
-        {
-            return securityAnswer;
         }
 
         private void SetFirstName(string firstName)

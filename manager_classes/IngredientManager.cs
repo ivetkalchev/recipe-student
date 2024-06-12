@@ -31,7 +31,7 @@ namespace manager_classes
 
             foreach (var type in types)
             {
-                if (type.NameTypeIngredient.Equals(name, System.StringComparison.OrdinalIgnoreCase))
+                if (type.GetName().Equals(name, System.StringComparison.OrdinalIgnoreCase))
                 {
                     return type;
                 }
@@ -42,9 +42,9 @@ namespace manager_classes
 
         public void AddIngredient(Ingredient newIngredient)
         {
-            if (ingredientHelper.DoesIngredientExist(newIngredient.NameIngredient))
+            if (ingredientHelper.DoesIngredientExist(newIngredient.GetName()))
             {
-                throw new AlreadyExistIngredientException(newIngredient.NameIngredient);
+                throw new AlreadyExistIngredientException(newIngredient.GetName());
             }
 
             ingredientHelper.AddIngredient(newIngredient);
@@ -62,7 +62,7 @@ namespace manager_classes
 
         public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType)
         {
-            if (newName != ingredient.NameIngredient && IsIngredientNameTakenByOtherIngredient(ingredient, newName))
+            if (newName != ingredient.GetName() && IsIngredientNameTakenByOtherIngredient(ingredient, newName))
             {
                 throw new AlreadyExistIngredientException(newName);
             }

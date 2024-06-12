@@ -31,7 +31,21 @@ namespace recipe_desktop
 
         public void SetPicture(RecipePic recipePic)
         {
-            picRecipe.Image = ConvertBase64ToImage(recipePic.GetData());
+            if (recipePic != null && !string.IsNullOrEmpty(recipePic.GetData()))
+            {
+                picRecipe.Image = ConvertBase64ToImage(recipePic.GetData());
+            }
+            else
+            {
+                string defaultImagePath = @"Resources\image-missing-icon-2048x2048-9it6buq7.png";
+                string executablePath = AppDomain.CurrentDomain.BaseDirectory;
+                string fullPath = Path.Combine(executablePath, defaultImagePath);
+
+                if (File.Exists(fullPath))
+                {
+                    picRecipe.Image = Image.FromFile(fullPath);
+                }
+            }
         }
 
         public void SetTitle(string title)

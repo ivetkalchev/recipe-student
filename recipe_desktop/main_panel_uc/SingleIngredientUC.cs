@@ -23,7 +23,7 @@ namespace recipe_desktop
         private void LoadIngredientDetails()
         {
             SetName(ingredient.GetName());
-            SetType(ingredient.GetTypeIngredient().GetName());
+            SetType(ingredient.GetType().GetName());
         }
 
         public void SetName(string name)

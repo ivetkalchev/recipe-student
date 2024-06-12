@@ -27,8 +27,8 @@ namespace db_helpers
                     int userId = Convert.ToInt32(insertUserCmd.ExecuteScalar());
 
                     string insertDesktopUserQuery = @"
-                        INSERT INTO [dbo].[DesktopUser] (id_user, id_role, first_name, last_name, bsn, id_gender, birthdate, security_answer)
-                        VALUES (@IdUser, @IdRole, @FirstName, @LastName, @Bsn, @IdGender, @Birthdate, @SecurityAnswer);";
+                        INSERT INTO [dbo].[DesktopUser] (id_user, id_role, first_name, last_name, bsn, id_gender, birthdate)
+                        VALUES (@IdUser, @IdRole, @FirstName, @LastName, @Bsn, @IdGender, @Birthdate);";
 
                     SqlCommand insertDesktopUserCmd = new SqlCommand(insertDesktopUserQuery, conn, transaction);
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdUser", userId);
@@ -38,7 +38,6 @@ namespace db_helpers
                     insertDesktopUserCmd.Parameters.AddWithValue("@Bsn", newUser.GetBsn());
                     insertDesktopUserCmd.Parameters.AddWithValue("@IdGender", newUser.GetGender().GetId());
                     insertDesktopUserCmd.Parameters.AddWithValue("@Birthdate", newUser.GetBirthdate());
-                    insertDesktopUserCmd.Parameters.AddWithValue("@SecurityAnswer", newUser.GetSecurityAnswer());
 
                     insertDesktopUserCmd.ExecuteNonQuery();
                     transaction.Commit();
@@ -60,7 +59,7 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate
                 FROM [dbo].[User] u
                 INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user
                 WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
@@ -86,8 +85,7 @@ namespace db_helpers
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
                                 gender,
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
+                                (DateTime)reader["birthdate"]
                             );
                         }
                     }
@@ -311,7 +309,7 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
+                SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate
                 FROM [dbo].[User] u
                 INNER JOIN [dbo].[DesktopUser] d ON u.id_user = d.id_user";
 
@@ -334,8 +332,7 @@ namespace db_helpers
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
                                 gender,
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
+                                (DateTime)reader["birthdate"]
                             );
 
                             users.Add(user);
@@ -734,10 +731,11 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                    SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate, d.security_answer
-                    FROM [User] u
-                    INNER JOIN [DesktopUser] d ON u.id_user = d.id_user
-                    WHERE u.id_user = @userId";
+            SELECT u.id_user, u.username, u.email, u.password, d.id_role, d.first_name, d.last_name, d.bsn, d.id_gender, d.birthdate
+            FROM [dbo].[User] u
+            INNER JOIN [DesktopUser] d ON u.id_user = d.id_user
+            WHERE u.id_user = @userId";
+
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@userId", userId);
 
@@ -755,8 +753,7 @@ namespace db_helpers
                                 reader["last_name"].ToString(),
                                 (int)reader["bsn"],
                                 GetGenderById((int)reader["id_gender"]),
-                                (DateTime)reader["birthdate"],
-                                reader["security_answer"].ToString()
+                                (DateTime)reader["birthdate"]
                             );
                         }
                         else
@@ -774,4 +771,3 @@ namespace db_helpers
         }
     }
 }
-

@@ -10,7 +10,7 @@
             this.id = id;
             this.name = name;
         }
-        public int GetIdDifficulty()
+        public int GetId()
         {
             return id;
         }

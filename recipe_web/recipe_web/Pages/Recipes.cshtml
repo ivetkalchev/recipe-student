@@ -21,12 +21,20 @@
         {
             <div class="recipe-item">
                 <p id="title">@recipe.GetTitle()</p>
+
                 @if (recipe.GetRecipePic() != null)
                 {
                     <div class="recipe-pic-container">
                         <img src="data:@recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@recipe.GetRecipePic().GetData()))" alt="@recipe.GetTitle() Picture" class="recipe-pic" />
                     </div>
                 }
+                else
+                {
+                    <div class="recipe-pic-container">
+                        <img src="~/images/missingimage.jpg" alt="Missing Image" class="recipe-pic" />
+                    </div>
+                }
+
                 <p>@recipe.GetDescription()</p>
                 <a href="@Url.Page("/RecipeDetails", new { id = recipe.GetIdRecipe() })" class="button">View Recipe</a>
             </div>
@@ -37,6 +45,21 @@
         @if (Model.PageNumber > 1)
         {
             <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Previous</a>
+        }
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i == Model.PageNumber || (i <= 2 || i >= Model.TotalPages - 1) || (i >= Model.PageNumber - 1 && i <= Model.PageNumber + 1))
+            {
+                <a asp-page="./Recipes" asp-route-PageNumber="@i" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button @(i == Model.PageNumber ? "active" : "")">@i</a>
+            }
+            else if (i == 3 && Model.PageNumber > 4)
+            {
+                <span class="pagination-ellipsis">...</span>
+            }
+            else if (i == Model.TotalPages - 2 && Model.PageNumber < Model.TotalPages - 3)
+            {
+                <span class="pagination-ellipsis">...</span>
+            }
         }
         @if (Model.PageNumber < Model.TotalPages)
         {
@@ -158,6 +181,7 @@ else
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .pagination-button {
@@ -179,5 +203,11 @@ else
                 background-color: #2C3B70;
                 color: white;
             }
+
+        .pagination-ellipsis {
+            padding: 10px 15px;
+            margin: 0 5px;
+            color: #333;
+        }
     </style>
 }

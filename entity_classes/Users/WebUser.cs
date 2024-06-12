@@ -1,9 +1,4 @@
-﻿using exceptions;
-using System.Dynamic;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class WebUser : User
     {
@@ -12,22 +7,12 @@ namespace entity_classes
         public WebUser(int idUser, string username, string email, string password, string caption)
             : base(idUser, username, email, password)
         {
-            Caption = caption;
+            this.caption = caption;
         }
 
-        public string Caption
+        public string GetCaption()
         {
-            get { return caption; }
-            private set
-            {
-                if (string.IsNullOrEmpty(value))
-                    throw new NullUserException(nameof(Caption));
-                
-                if (value.Length > 400)
-                    throw new InvalidCaptionLengthException();
-                
-                caption = value;
-            }
+            return caption;
         }
     }
 }

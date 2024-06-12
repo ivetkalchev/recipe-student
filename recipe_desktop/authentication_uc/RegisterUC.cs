@@ -85,15 +85,13 @@ namespace recipe_desktop
                 string lastName = tbLastName.Text.Trim();
                 Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
                 DateTime birthdate = dtpBirthdate.Value.Date;
-                string securityAnswer = tbSecurityAnswer.Text.Trim();
 
                 if (string.IsNullOrWhiteSpace(username) ||
                     string.IsNullOrWhiteSpace(plainPassword) ||
                     string.IsNullOrWhiteSpace(email) ||
                     string.IsNullOrWhiteSpace(firstName) ||
                     string.IsNullOrWhiteSpace(lastName) ||
-                    string.IsNullOrWhiteSpace(tbBsn.Text) ||
-                    string.IsNullOrWhiteSpace(securityAnswer))
+                    string.IsNullOrWhiteSpace(tbBsn.Text))
                 {
                     MessageBox.Show("Please fill in all fields.");
                     return;
@@ -109,8 +107,7 @@ namespace recipe_desktop
                     lastName,
                     bsn,
                     gender,
-                    birthdate,
-                    securityAnswer
+                    birthdate
                 );
 
                 userManager.RegisterDesktopUser(newUser);
@@ -134,7 +131,6 @@ namespace recipe_desktop
             tbLastName.Clear();
             cbGenders.SelectedIndex = 0;
             dtpBirthdate.Value = DateTime.Now;
-            tbSecurityAnswer.Clear();
         }
 
         private void tbBsn_KeyPress(object sender, KeyPressEventArgs e)

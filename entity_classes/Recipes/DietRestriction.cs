@@ -10,7 +10,7 @@
             this.id = id;
             this.name = name;
         }
-        public int GetIdDietRestriction()
+        public int GetId()
         {
             return id;
         }

@@ -21,16 +21,16 @@ namespace manager_classes
             }
 
             newUser = new DesktopUser(
-                newUser.IdUser,
-                newUser.Username,
-                newUser.Email,
-                Hasher.HashText(newUser.Password),
-                newUser.Role,
-                CapitalizeFirstLetter(newUser.FirstName),
-                CapitalizeFirstLetter(newUser.LastName),
-                newUser.Bsn,
-                newUser.Gender,
-                newUser.Birthdate
+                newUser.GetIdUser(),
+                newUser.GetUsername(),
+                newUser.GetEmail(),
+                Hasher.HashText(newUser.GetPassword()),
+                newUser.GetRole(),
+                CapitalizeFirstLetter(newUser.GetFirstName()),
+                CapitalizeFirstLetter(newUser.GetLastName()),
+                newUser.GetBsn(),
+                newUser.GetGender(),
+                newUser.GetBirthdate()
             );
 
             userHelper.InsertDesktopUser(newUser);
@@ -45,11 +45,11 @@ namespace manager_classes
             }
 
             newUser = new WebUser(
-                newUser.IdUser,
-                newUser.Username,
-                newUser.Email,
-                Hasher.HashText(newUser.Password),
-                newUser.Caption
+                newUser.GetIdUser(),
+                newUser.GetUsername(),
+                newUser.GetEmail(),
+                Hasher.HashText(newUser.GetPassword()),
+                newUser.GetCaption()
             );
 
             userHelper.InsertWebUser(newUser);
@@ -58,15 +58,15 @@ namespace manager_classes
 
         private bool IsDesktopUserTaken(DesktopUser newUser)
         {
-            if (IsUsernameTaken(newUser.Username))
+            if (IsUsernameTaken(newUser.GetUsername()))
             {
                 throw new AlreadyExistUserException("Username");
             }
-            if (IsEmailTaken(newUser.Email))
+            if (IsEmailTaken(newUser.GetEmail()))
             {
                 throw new AlreadyExistUserException("Email");
             }
-            if (IsBsnTaken(newUser.Bsn))
+            if (IsBsnTaken(newUser.GetBsn()))
             {
                 throw new AlreadyExistUserException("BSN");
             }
@@ -75,11 +75,11 @@ namespace manager_classes
 
         private bool IsWebUserTaken(WebUser newUser)
         {
-            if (IsUsernameTaken(newUser.Username))
+            if (IsUsernameTaken(newUser.GetUsername()))
             {
                 throw new AlreadyExistUserException("Username");
             }
-            if (IsEmailTaken(newUser.Email))
+            if (IsEmailTaken(newUser.GetEmail()))
             {
                 throw new AlreadyExistUserException("Email");
             }
@@ -118,12 +118,12 @@ namespace manager_classes
 
         public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
-            if (newEmail != user.Email && IsEmailTakenByOtherUser(user, newEmail))
+            if (newEmail != user.GetEmail() && IsEmailTakenByOtherUser(user, newEmail))
             {
                 throw new AlreadyExistUserException("email");
             }
 
-            if (newBsn != user.Bsn && IsBsnTakenByOtherUser(user, newBsn))
+            if (newBsn != user.GetBsn() && IsBsnTakenByOtherUser(user, newBsn))
             {
                 throw new AlreadyExistUserException("BSN");
             }
@@ -188,7 +188,7 @@ namespace manager_classes
             var genders = userHelper.GetAllGenders();
             foreach (var gender in genders)
             {
-                if (gender.NameGender.Equals(genderName, StringComparison.OrdinalIgnoreCase))
+                if (gender.GetName().Equals(genderName, StringComparison.OrdinalIgnoreCase))
                 {
                     return gender;
                 }

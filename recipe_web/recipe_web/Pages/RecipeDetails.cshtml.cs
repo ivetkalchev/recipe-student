@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using manager_classes;
-using System.Collections.Generic;
 using System.Security.Claims;
 using recipe_web.DTOs;
 
@@ -34,13 +33,32 @@ namespace recipe_web.Pages
             Recipe = recipeManager.GetRecipeById(id);
             if (Recipe == null)
             {
-                return RedirectToPage("/ErrorPage", new { errorMessage = "Recipe does not exist." });
+                return RedirectToPage("/ErrorPage", new { errorMessage = "The requested recipe does not exist." });
             }
 
             IsInToDoList = toDoManager.IsRecipeInToDoList(GetUserId(), id);
-            Reviews = reviewManager.GetReviewsByRecipeId(id) ?? new List<Review>();
+            Reviews = reviewManager.GetReviewsByRecipeId(id);
 
             return Page();
+        }
+
+        public IActionResult OnPost(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            string validEmail = "user@example.com";
+            WebUser user = new WebUser(GetUserId(), User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
+            Recipe recipe = recipeManager.GetRecipeById(id);
+
+            Review review = new Review(0, recipe, NewReview.RatingValue, NewReview.ReviewText);
+            review.SetUser(user);
+
+            reviewManager.AddReview(review);
+
+            return RedirectToPage(new { id = id });
         }
 
         public IActionResult OnPostAddToDoList(int id)
@@ -57,34 +75,15 @@ namespace recipe_web.Pages
             }
         }
 
-        public IActionResult OnPost(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            string validEmail = "user@example.com";
-            WebUser user = new WebUser(User.Identity.UserId, User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
-            Recipe recipe = recipeManager.GetRecipeById(id);
-
-            Review review = new Review(0, recipe, NewReview.RatingValue, NewReview.ReviewText);
-            //review.SetUser(user); ??
-
-            reviewManager.AddReview(review);
-
-            return RedirectToPage(new { id = id });
-        }
-
         public IActionResult OnPostEditReview(int reviewId, int id)
         {
             Review review = reviewManager.GetReviewById(reviewId);
-            if (review?.User?.IdUser == UserId)
+            if (review.GetUser().GetIdUser() == GetUserId())
             {
                 NewReview = new ReviewDTO
                 {
-                    RatingValue = review.RatingValue,
-                    ReviewText = review.ReviewText
+                    RatingValue = review.GetRatingValue(),
+                    ReviewText = review.GetReviewText()
                 };
                 reviewManager.DeleteReview(reviewId);
             }
@@ -94,7 +93,7 @@ namespace recipe_web.Pages
         public IActionResult OnPostDeleteReview(int reviewId, int id)
         {
             Review review = reviewManager.GetReviewById(reviewId);
-            //if (review?.User?.IdUser == UserId)?
+            if (review.GetUser().GetIdUser() == GetUserId())
             {
                 reviewManager.DeleteReview(reviewId);
             }
