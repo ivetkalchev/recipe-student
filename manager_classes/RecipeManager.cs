@@ -1,19 +1,16 @@
-﻿using Aspose.Pdf.Facades;
-using Aspose.Pdf.Plugins;
-using db_helpers;
-using DinkToPdf;
-using DinkToPdf.Contracts;
+﻿using db_helpers;
 using entity_classes;
-using System.Text;
+using System.Collections.Generic;
 
 namespace manager_classes
 {
     public class RecipeManager : IRecipeManager
     {
-        private IDBRecipeHelper recipeHelper;
+        private readonly IDBRecipeHelper recipeHelper;
+
         public RecipeManager(IDBRecipeHelper recipeHelper)
         {
-            this.recipeHelper = recipeHelper;
+            this.recipeHelper = recipeHelper ?? throw new ArgumentNullException(nameof(recipeHelper));
         }
 
         public List<DietRestriction> GetAllDietRestrictions()
@@ -65,6 +62,7 @@ namespace manager_classes
         {
             return recipeHelper.GetPagedRecipes(pageNumber, pageSize, searchQuery);
         }
+
         public int GetTotalRecipesCount(string searchQuery)
         {
             return recipeHelper.GetTotalRecipesCount(searchQuery);

@@ -1,17 +1,19 @@
 ﻿using db_helpers;
 using entity_classes;
+using System.Collections.Generic;
 
 namespace manager_classes
 {
     public class ReviewManager : IReviewManager
     {
-        private IDBReviewHelper reviewHelper;
-        private IDBRecipeHelper recipeHelper;
+        private readonly IDBReviewHelper reviewHelper;
+        private readonly IDBRecipeHelper recipeHelper;
 
+        //add proper edit method
         public ReviewManager(IDBReviewHelper reviewHelper, IDBRecipeHelper recipeHelper)
         {
-            this.reviewHelper = reviewHelper;
-            this.recipeHelper = recipeHelper;
+            this.reviewHelper = reviewHelper ?? throw new ArgumentNullException(nameof(reviewHelper));
+            this.recipeHelper = recipeHelper ?? throw new ArgumentNullException(nameof(recipeHelper));
         }
 
         public void AddReview(Review review)
@@ -34,5 +36,4 @@ namespace manager_classes
             reviewHelper.DeleteReview(reviewId);
         }
     }
-
 }

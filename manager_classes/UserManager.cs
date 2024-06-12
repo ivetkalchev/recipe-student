@@ -6,15 +6,20 @@ namespace manager_classes
 {
     public class UserManager : IUserManager
     {
-        private IDBUserHelper userHelper;
+        private readonly IDBUserHelper userHelper;
 
         public UserManager(IDBUserHelper userHelper)
         {
-            this.userHelper = userHelper;
+            this.userHelper = userHelper ?? throw new ArgumentNullException(nameof(userHelper));
         }
 
         public bool RegisterDesktopUser(DesktopUser newUser)
         {
+            if (IsDesktopUserTaken(newUser))
+            {
+                return false;
+            }
+
             newUser = new DesktopUser(
                 newUser.IdUser,
                 newUser.Username,
@@ -31,7 +36,6 @@ namespace manager_classes
             userHelper.InsertDesktopUser(newUser);
             return true;
         }
-
 
         public bool RegisterWebUser(WebUser newUser)
         {
@@ -56,15 +60,15 @@ namespace manager_classes
         {
             if (IsUsernameTaken(newUser.Username))
             {
-                throw new AlreadyExistUserException("username");
+                throw new AlreadyExistUserException("Username");
             }
             if (IsEmailTaken(newUser.Email))
             {
-                throw new AlreadyExistUserException("email");
+                throw new AlreadyExistUserException("Email");
             }
             if (IsBsnTaken(newUser.Bsn))
             {
-                throw new AlreadyExistUserException("Bsn");
+                throw new AlreadyExistUserException("BSN");
             }
             return false;
         }
@@ -73,20 +77,17 @@ namespace manager_classes
         {
             if (IsUsernameTaken(newUser.Username))
             {
-                throw new AlreadyExistUserException("username");
+                throw new AlreadyExistUserException("Username");
             }
             if (IsEmailTaken(newUser.Email))
             {
-                throw new AlreadyExistUserException("email");
+                throw new AlreadyExistUserException("Email");
             }
             return false;
         }
 
         private string CapitalizeFirstLetter(string text)
         {
-            if (string.IsNullOrEmpty(text))
-                return text;
-
             return char.ToUpper(text[0]) + text.Substring(1).ToLower();
         }
 
@@ -124,10 +125,10 @@ namespace manager_classes
 
             if (newBsn != user.Bsn && IsBsnTakenByOtherUser(user, newBsn))
             {
-                throw new AlreadyExistUserException("Bsn");
+                throw new AlreadyExistUserException("BSN");
             }
 
-            userHelper.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
+            userHelper.UpdateDesktopUserDetails(user, CapitalizeFirstLetter(newFirstName), CapitalizeFirstLetter(newLastName), newEmail, newBirthdate, newGender, newBsn);
         }
 
         public WebUser GetWebUserByUsername(string username)
@@ -155,6 +156,7 @@ namespace manager_classes
             return userHelper.GetAllDesktopUsers();
         }
 
+        //not used currently
         public List<WebUser> GetAllWebUsers()
         {
             return userHelper.GetAllWebUsers();
@@ -165,6 +167,7 @@ namespace manager_classes
             userHelper.DeleteUser(user);
         }
 
+        //not used currently
         public void DeleteWebUser(WebUser user)
         {
             userHelper.DeleteWebUser(user);

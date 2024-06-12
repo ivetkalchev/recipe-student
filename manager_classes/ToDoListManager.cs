@@ -1,15 +1,16 @@
 ﻿using db_helpers;
 using entity_classes;
+using System.Collections.Generic;
 
 namespace manager_classes
 {
     public class ToDoListManager : IToDoListManager
     {
-        private IDBToDoListHelper toDoHelper;
+        private readonly IDBToDoListHelper toDoHelper;
 
         public ToDoListManager(IDBToDoListHelper toDoHelper)
         {
-            this.toDoHelper = toDoHelper;
+            this.toDoHelper = toDoHelper ?? throw new ArgumentNullException(nameof(toDoHelper));
         }
 
         public void AddToDoList(int userId, int recipeId)

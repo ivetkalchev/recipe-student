@@ -17,16 +17,17 @@ namespace entity_classes
 
         public string Caption
         {
-            get { return Caption; }
-
+            get { return caption; }
             private set
             {
                 if (string.IsNullOrEmpty(value))
                     throw new NullUserException(nameof(Caption));
-
-                if (caption.Length > 400)
+                
+                if (value.Length > 400)
                     throw new InvalidCaptionLengthException();
-
-            caption = value; }}
+                
+                caption = value;
+            }
         }
     }
+}

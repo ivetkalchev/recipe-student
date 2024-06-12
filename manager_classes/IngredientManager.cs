@@ -1,31 +1,34 @@
-﻿using entity_classes;
+﻿using db_helpers;
+using entity_classes;
 using exceptions;
-using db_helpers;
+using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace manager_classes
 {
     public class IngredientManager : IIngredientManager
     {
-        private IDBIngredientHelper dbHelper;
+        private readonly IDBIngredientHelper ingredientHelper;
 
-        public IngredientManager(IDBIngredientHelper dbHelper)
+        public IngredientManager(IDBIngredientHelper ingredientHelper)
         {
-            this.dbHelper = dbHelper;
+            this.ingredientHelper = ingredientHelper ?? throw new ArgumentNullException(nameof(ingredientHelper));
         }
 
         public List<TypeIngredient> GetAllTypeIngredients()
         {
-            return dbHelper.GetAllTypes();
+            return ingredientHelper.GetAllTypes();
         }
 
         public List<Unit> GetAllUnits()
         {
-            return dbHelper.GetAllUnits();
+            return ingredientHelper.GetAllUnits();
         }
 
         public TypeIngredient GetTypeIngredientByName(string name)
         {
-            var types = dbHelper.GetAllTypes();
+            var types = ingredientHelper.GetAllTypes();
+
             foreach (var type in types)
             {
                 if (type.NameTypeIngredient.Equals(name, System.StringComparison.OrdinalIgnoreCase))
@@ -33,32 +36,28 @@ namespace manager_classes
                     return type;
                 }
             }
+
             return null;
         }
 
         public void AddIngredient(Ingredient newIngredient)
         {
-            CheckIfIngredientExists(newIngredient.NameIngredient);
-
-            dbHelper.AddIngredient(newIngredient);
-        }
-
-        private void CheckIfIngredientExists(string name)
-        {
-            if (dbHelper.DoesIngredientExist(name))
+            if (ingredientHelper.DoesIngredientExist(newIngredient.NameIngredient))
             {
-                throw new AlreadyExistIngredientException(name);
+                throw new AlreadyExistIngredientException(newIngredient.NameIngredient);
             }
+
+            ingredientHelper.AddIngredient(newIngredient);
         }
 
         public List<Ingredient> GetAllIngredients()
         {
-            return dbHelper.GetAllIngredients();
+            return ingredientHelper.GetAllIngredients();
         }
 
         public void DeleteIngredient(Ingredient ingredient)
         {
-            dbHelper.DeleteIngredient(ingredient);
+            ingredientHelper.DeleteIngredient(ingredient);
         }
 
         public void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType)
@@ -68,12 +67,12 @@ namespace manager_classes
                 throw new AlreadyExistIngredientException(newName);
             }
 
-            dbHelper.UpdateIngredientDetails(ingredient, newName, newType);
+            ingredientHelper.UpdateIngredientDetails(ingredient, newName, newType);
         }
 
         private bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name)
         {
-            return dbHelper.IsIngredientNameTakenByOtherIngredient(ingredient, name);
+            return ingredientHelper.IsIngredientNameTakenByOtherIngredient(ingredient, name);
         }
     }
 }
