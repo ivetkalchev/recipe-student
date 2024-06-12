@@ -42,7 +42,7 @@ namespace entity_classes
             private set
             {
                 if (ratingValue < 0 || ratingValue > 5)
-                    throw new InvalidReviewValueReview();
+                    throw new InvalidReviewValueException();
 
                 ratingValue = value;
             }
@@ -54,7 +54,7 @@ namespace entity_classes
             private set
             {
                 if (string.IsNullOrEmpty(value))
-                    throw new InvalidReviewTextReview();
+                    throw new InvalidReviewTextException();
 
                 reviewText = value;
             }

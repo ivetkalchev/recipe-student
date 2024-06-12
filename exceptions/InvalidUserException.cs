@@ -27,7 +27,7 @@
 
     public class InvalidNameException : InvalidUserException
     {
-        public InvalidNameException(string nameType) : base($"Your {nameType} is invalid. The {nameType} must contain only letters.") { }
+        public InvalidNameException(string nameType) : base($"The {nameType} is invalid. The {nameType} must contain only letters.") { }
     }
 
     public class InvalidBirthdateException : InvalidUserException
@@ -39,6 +39,7 @@
     {
         public InvalidPasswordFormatException() : base("The password you provided is not valid. The password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.") { }
     }
+
     public class InvalidPasswordLengthException : InvalidUserException
     {
         public InvalidPasswordLengthException() : base("The password you provided is not valid. The password must be at least 8 characters long.") { }
@@ -48,5 +49,9 @@
     {
         public InvalidEmailException() : base("The email you provided is not valid.") { }
     }
-}
 
+    public class InvalidCaptionLengthException : InvalidUserException
+    {
+        public InvalidCaptionLengthException() : base("The caption you provided is too long.") { }
+    }
+}

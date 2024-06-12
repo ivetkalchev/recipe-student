@@ -24,6 +24,9 @@ namespace entity_classes
                 if (string.IsNullOrEmpty(value))
                     throw new NullUserException(nameof(Caption));
 
-            Caption = value; }}
+                if (caption.Length > 400)
+                    throw new InvalidCaptionLengthException();
+
+            caption = value; }}
         }
     }

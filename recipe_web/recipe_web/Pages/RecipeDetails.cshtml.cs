@@ -53,7 +53,6 @@ namespace recipe_web.Pages
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Unable to add recipe to To-Do List. Please try again later.");
-                // Optionally log the error message
                 return Page();
             }
         }
@@ -66,7 +65,7 @@ namespace recipe_web.Pages
             }
 
             string validEmail = "user@example.com";
-            WebUser user = new WebUser(UserId, User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
+            WebUser user = new WebUser(User.Identity.UserId, User.Identity.Name, validEmail, "ValidPassword1!", "Sample Caption");
             Recipe recipe = recipeManager.GetRecipeById(id);
 
             Review review = new Review(0, recipe, NewReview.RatingValue, NewReview.ReviewText);

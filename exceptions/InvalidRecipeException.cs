@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace exceptions
+﻿namespace exceptions
 {
     public class InvalidRecipeException : Exception
     {
@@ -22,13 +20,13 @@ namespace exceptions
         public InvalidTimeException(string typeTime) : base($"The {typeTime} is invalid!") { }
     }
 
-    public class InvalidReviewValueReview : InvalidRecipeException
+    public class InvalidReviewValueException : InvalidRecipeException
     {
-        public InvalidReviewValueReview() : base("The rating is invalid!") { }
+        public InvalidReviewValueException() : base("The rating is invalid!") { }
     }
 
-    public class InvalidReviewTextReview : InvalidRecipeException
+    public class InvalidReviewTextException : InvalidRecipeException
     {
-        public InvalidReviewTextReview() : base("The review text cannot be empty!") { }
+        public InvalidReviewTextException() : base("The review text cannot be empty!") { }
     }
 }

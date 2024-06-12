@@ -17,7 +17,9 @@ namespace entity_classes
         private Difficulty difficulty;
         private RecipePic? pic;
 
-        private int maxLength; //for setters
+        private const int maxLengthTitle = 100;
+        private const int maxLengthDescription = 400;
+        private const int maxLengthInstructions = 4000;
 
         public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user,
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
@@ -46,13 +48,11 @@ namespace entity_classes
             get { return title; }
             private set
             {
-                maxLength = 100;
-
                 if (string.IsNullOrEmpty(value))
                     throw new NullRecipeException("Title");
 
-                if (title.Length > maxLength)
-                    throw new LengthRecipeException(new string(value), maxLength);
+                if (title.Length > maxLengthTitle)
+                    throw new LengthRecipeException("Title", maxLengthTitle);
 
                 title = value;
             }
@@ -63,13 +63,11 @@ namespace entity_classes
             get { return description; }
             private set
             {
-                maxLength = 400;
-
                 if (string.IsNullOrEmpty(value))
                     throw new NullRecipeException("Description");
 
-                if (description.Length > maxLength)
-                    throw new LengthRecipeException(new string(value), maxLength);
+                if (description.Length > maxLengthDescription)
+                    throw new LengthRecipeException("Description", maxLengthDescription);
 
                 description = value;
             }
@@ -80,13 +78,11 @@ namespace entity_classes
             get { return instructions; }
             private set
             {
-                maxLength = 4000;
-
                 if (string.IsNullOrEmpty(value))
                     throw new NullRecipeException("Instructions");
 
-                if (instructions.Length > maxLength)
-                    throw new LengthRecipeException(new string(value), maxLength);
+                if (instructions.Length > maxLengthInstructions)
+                    throw new LengthRecipeException("Instructions", maxLengthInstructions);
 
                 instructions = value;
             }

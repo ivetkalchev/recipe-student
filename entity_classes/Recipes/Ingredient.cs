@@ -27,7 +27,10 @@ namespace entity_classes
             get { return nameIngredient; }
             private set
             {
-                if (string.IsNullOrWhiteSpace(nameIngredient) || !System.Text.RegularExpressions.Regex.IsMatch(nameIngredient, @"^[a-zA-Z\s]+$"))
+                if (string.IsNullOrEmpty(nameIngredient))
+                    throw new NullIngredientException("Name of Ingredient");
+
+                if (!System.Text.RegularExpressions.Regex.IsMatch(nameIngredient, @"^[a-zA-Z\s]+$"))
                 {
                     throw new InvalidIngredientNameException();
                 }
@@ -39,7 +42,12 @@ namespace entity_classes
         public TypeIngredient TypeIngredient
         {
             get { return typeIngredient; }
-            private set { typeIngredient = value; }
+            private set { 
+                if (typeIngredient == null)
+                    throw new NullIngredientException("Type Ingredient");
+
+                typeIngredient = value; 
+            }
         }
     }
 }
