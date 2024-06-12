@@ -22,7 +22,7 @@ namespace unit_tests
         {
             // Arrange
             var similarUsers = new List<int> { 2, 3, 4 };
-            var user = new DesktopUser(1, "testUser", "test@example.com", "password", new Role(1, "User"), "Test", "User", 12345, new Gender(1, "Male"), DateTime.Now);
+            var user = new DesktopUser(1, "testUser", "test@example.com", "password", new Role(1, "User"), "Test", "User", 12345, new Gender(1, "Male"), DateTime.Now, "Answer");
             var dietRestriction = new DietRestriction(1, "Vegetarian");
             var difficulty = new Difficulty(1, "Easy");
             var ingredient = new Ingredient(1, "Tomato", new TypeIngredient(1, "Vegetable"));

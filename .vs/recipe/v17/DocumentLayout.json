@@ -3,68 +3,24 @@
   "WorkspaceRootPath": "I:\\individual-project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\pages\\recipedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\pages\\recipedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}|entity_classes\\entity_classes.csproj|i:\\individual-project\\entity_classes\\users\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}|entity_classes\\entity_classes.csproj|solutionrelative:entity_classes\\users\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\pages\\recipedetails.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\pages\\recipedetails.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6C96DEF0-4858-45A0-9BED-04869E6A34CE}|recipe_desktop\\recipe_desktop.csproj|i:\\individual-project\\recipe_desktop\\authentication_uc\\loginuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C96DEF0-4858-45A0-9BED-04869E6A34CE}|recipe_desktop\\recipe_desktop.csproj|solutionrelative:recipe_desktop\\authentication_uc\\loginuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|i:\\individual-project\\db_helpers\\dbtodolisthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|solutionrelative:db_helpers\\dbtodolisthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}|entity_classes\\entity_classes.csproj|i:\\individual-project\\entity_classes\\users\\desktopuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B33EC1DD-D600-4813-ACFC-2B0AFAB6FB75}|entity_classes\\entity_classes.csproj|solutionrelative:entity_classes\\users\\desktopuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|i:\\individual-project\\manager_classes\\todolistmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|solutionrelative:manager_classes\\todolistmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|i:\\individual-project\\db_helpers\\dbuserhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|solutionrelative:db_helpers\\dbuserhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\pages\\recipes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\pages\\recipes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\recipe_web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|i:\\individual-project\\db_helpers\\dbrecommendationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|solutionrelative:db_helpers\\dbrecommendationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|i:\\individual-project\\manager_classes\\recommendationmanager..cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|solutionrelative:manager_classes\\recommendationmanager..cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|i:\\individual-project\\recipe_web\\recipe_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{959D87DD-6590-4B2C-8AB3-6E7D66730401}|recipe_web\\recipe_web\\recipe_web.csproj|solutionrelative:recipe_web\\recipe_web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|i:\\individual-project\\db_helpers\\interfaces\\idbrecommendationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|solutionrelative:db_helpers\\interfaces\\idbrecommendationhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|i:\\individual-project\\manager_classes\\interfaces\\irecommendationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|solutionrelative:manager_classes\\interfaces\\irecommendationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|i:\\individual-project\\manager_classes\\recommendationstrategy\\mostlikedrecipesstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|solutionrelative:manager_classes\\recommendationstrategy\\mostlikedrecipesstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|i:\\individual-project\\db_helpers\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD92DB70-053D-424B-B6E9-BCE8F5634B38}|db_helpers\\db_helpers.csproj|solutionrelative:db_helpers\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|i:\\individual-project\\manager_classes\\recommendationstrategy\\ireciperecommendationstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{04ACE96E-F977-4575-8E39-967C3B2249C5}|manager_classes\\manager_classes.csproj|solutionrelative:manager_classes\\recommendationstrategy\\ireciperecommendationstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EF60C26-B731-480D-AA1E-F954FB7EFA81}|exceptions\\exceptions.csproj|i:\\individual-project\\exceptions\\invaliduserexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EF60C26-B731-480D-AA1E-F954FB7EFA81}|exceptions\\exceptions.csproj|solutionrelative:exceptions\\invaliduserexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -97,204 +53,73 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RecipeDetails.cshtml.cs",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml.cs",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml.cs",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml.cs*",
-              "RelativeToolTip": "recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml.cs*",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAYAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T22:34:12.06Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RecipeDetails.cshtml",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml*",
-              "RelativeToolTip": "recipe_web\\recipe_web\\Pages\\RecipeDetails.cshtml*",
-              "ViewState": "AQIAADkAAAAAAAAAAAAswEgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-09T22:23:34.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ToDoListManager.cs",
-              "DocumentMoniker": "I:\\individual-project\\manager_classes\\ToDoListManager.cs",
-              "RelativeDocumentMoniker": "manager_classes\\ToDoListManager.cs",
-              "ToolTip": "I:\\individual-project\\manager_classes\\ToDoListManager.cs",
-              "RelativeToolTip": "manager_classes\\ToDoListManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAAAAAA",
+              "Title": "User.cs",
+              "DocumentMoniker": "I:\\individual-project\\entity_classes\\Users\\User.cs",
+              "RelativeDocumentMoniker": "entity_classes\\Users\\User.cs",
+              "ToolTip": "I:\\individual-project\\entity_classes\\Users\\User.cs",
+              "RelativeToolTip": "entity_classes\\Users\\User.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAQwEAAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T22:26:18.467Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DBToDoListHelper.cs",
-              "DocumentMoniker": "I:\\individual-project\\db_helpers\\DBToDoListHelper.cs",
-              "RelativeDocumentMoniker": "db_helpers\\DBToDoListHelper.cs",
-              "ToolTip": "I:\\individual-project\\db_helpers\\DBToDoListHelper.cs",
-              "RelativeToolTip": "db_helpers\\DBToDoListHelper.cs",
-              "ViewState": "AQIAAJIAAAAAAAAAAAAswKUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T22:26:11.796Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "recipe_web",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\recipe_web.csproj",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\recipe_web.csproj",
-              "RelativeToolTip": "recipe_web\\recipe_web\\recipe_web.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-06-09T22:03:23.469Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Recipes.cshtml",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\Recipes.cshtml",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\Pages\\Recipes.cshtml",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\Recipes.cshtml",
-              "RelativeToolTip": "recipe_web\\recipe_web\\Pages\\Recipes.cshtml",
-              "ViewState": "AQIAAJEAAAAAAAAAAAAswLcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-09T19:10:34.452Z",
+              "WhenOpened": "2024-06-12T18:37:29.373Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\Index.cshtml",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\Pages\\Index.cshtml",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\Index.cshtml",
-              "RelativeToolTip": "recipe_web\\recipe_web\\Pages\\Index.cshtml",
-              "ViewState": "AQIAACkAAAAAAAAAAAAswCwAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-09T19:09:59.4Z",
+              "Title": "InvalidUserException.cs",
+              "DocumentMoniker": "I:\\individual-project\\exceptions\\InvalidUserException.cs",
+              "RelativeDocumentMoniker": "exceptions\\InvalidUserException.cs",
+              "ToolTip": "I:\\individual-project\\exceptions\\InvalidUserException.cs",
+              "RelativeToolTip": "exceptions\\InvalidUserException.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAUwDkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T18:36:35.892Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DBRecommendationHelper.cs",
-              "DocumentMoniker": "I:\\individual-project\\db_helpers\\DBRecommendationHelper.cs",
-              "RelativeDocumentMoniker": "db_helpers\\DBRecommendationHelper.cs",
-              "ToolTip": "I:\\individual-project\\db_helpers\\DBRecommendationHelper.cs",
-              "RelativeToolTip": "db_helpers\\DBRecommendationHelper.cs",
-              "ViewState": "AQIAAGAAAAAAAAAAAAAcwHMAAAAQAAAA",
+              "DocumentIndex": 2,
+              "Title": "DesktopUser.cs",
+              "DocumentMoniker": "I:\\individual-project\\entity_classes\\Users\\DesktopUser.cs",
+              "RelativeDocumentMoniker": "entity_classes\\Users\\DesktopUser.cs",
+              "ToolTip": "I:\\individual-project\\entity_classes\\Users\\DesktopUser.cs",
+              "RelativeToolTip": "entity_classes\\Users\\DesktopUser.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAYwHEAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:51:28.511Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\Pages\\Index.cshtml.cs",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\Pages\\Index.cshtml.cs",
-              "RelativeToolTip": "recipe_web\\recipe_web\\Pages\\Index.cshtml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:54:04.618Z",
+              "WhenOpened": "2024-06-12T18:36:29.489Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IDBRecommendationHelper.cs",
-              "DocumentMoniker": "I:\\individual-project\\db_helpers\\Interfaces\\IDBRecommendationHelper.cs",
-              "RelativeDocumentMoniker": "db_helpers\\Interfaces\\IDBRecommendationHelper.cs",
-              "ToolTip": "I:\\individual-project\\db_helpers\\Interfaces\\IDBRecommendationHelper.cs",
-              "RelativeToolTip": "db_helpers\\Interfaces\\IDBRecommendationHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "DocumentIndex": 3,
+              "Title": "DBUserHelper.cs",
+              "DocumentMoniker": "I:\\individual-project\\db_helpers\\DBUserHelper.cs",
+              "RelativeDocumentMoniker": "db_helpers\\DBUserHelper.cs",
+              "ToolTip": "I:\\individual-project\\db_helpers\\DBUserHelper.cs",
+              "RelativeToolTip": "db_helpers\\DBUserHelper.cs",
+              "ViewState": "AQIAAOUCAAAAAAAAAAAYwAUDAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:53:05.234Z"
+              "WhenOpened": "2024-06-12T18:36:19.436Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RecommendationManager..cs",
-              "DocumentMoniker": "I:\\individual-project\\manager_classes\\RecommendationManager..cs",
-              "RelativeDocumentMoniker": "manager_classes\\RecommendationManager..cs",
-              "ToolTip": "I:\\individual-project\\manager_classes\\RecommendationManager..cs",
-              "RelativeToolTip": "manager_classes\\RecommendationManager..cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBsAAAAMAAAA",
+              "DocumentIndex": 1,
+              "Title": "LoginUC.cs",
+              "DocumentMoniker": "I:\\individual-project\\recipe_desktop\\authentication_uc\\LoginUC.cs",
+              "RelativeDocumentMoniker": "recipe_desktop\\authentication_uc\\LoginUC.cs",
+              "ToolTip": "I:\\individual-project\\recipe_desktop\\authentication_uc\\LoginUC.cs",
+              "RelativeToolTip": "recipe_desktop\\authentication_uc\\LoginUC.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAA1wE0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:53:22.963Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "I:\\individual-project\\recipe_web\\recipe_web\\Program.cs",
-              "RelativeDocumentMoniker": "recipe_web\\recipe_web\\Program.cs",
-              "ToolTip": "I:\\individual-project\\recipe_web\\recipe_web\\Program.cs",
-              "RelativeToolTip": "recipe_web\\recipe_web\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:59:42.722Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "IRecommendationManager.cs",
-              "DocumentMoniker": "I:\\individual-project\\manager_classes\\Interfaces\\IRecommendationManager.cs",
-              "RelativeDocumentMoniker": "manager_classes\\Interfaces\\IRecommendationManager.cs",
-              "ToolTip": "I:\\individual-project\\manager_classes\\Interfaces\\IRecommendationManager.cs",
-              "RelativeToolTip": "manager_classes\\Interfaces\\IRecommendationManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:53:29.302Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MostLikedRecipesStrategy.cs",
-              "DocumentMoniker": "I:\\individual-project\\manager_classes\\RecommendationStrategy\\MostLikedRecipesStrategy.cs",
-              "RelativeDocumentMoniker": "manager_classes\\RecommendationStrategy\\MostLikedRecipesStrategy.cs",
-              "ToolTip": "I:\\individual-project\\manager_classes\\RecommendationStrategy\\MostLikedRecipesStrategy.cs",
-              "RelativeToolTip": "manager_classes\\RecommendationStrategy\\MostLikedRecipesStrategy.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAPAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:53:38.476Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DBConnection.cs",
-              "DocumentMoniker": "I:\\individual-project\\db_helpers\\DBConnection.cs",
-              "RelativeDocumentMoniker": "db_helpers\\DBConnection.cs",
-              "ToolTip": "I:\\individual-project\\db_helpers\\DBConnection.cs",
-              "RelativeToolTip": "db_helpers\\DBConnection.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:54:35.752Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IRecipeRecommendationStrategy.cs",
-              "DocumentMoniker": "I:\\individual-project\\manager_classes\\RecommendationStrategy\\IRecipeRecommendationStrategy.cs",
-              "RelativeDocumentMoniker": "manager_classes\\RecommendationStrategy\\IRecipeRecommendationStrategy.cs",
-              "ToolTip": "I:\\individual-project\\manager_classes\\RecommendationStrategy\\IRecipeRecommendationStrategy.cs",
-              "RelativeToolTip": "manager_classes\\RecommendationStrategy\\IRecipeRecommendationStrategy.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-09T18:53:34.782Z"
+              "WhenOpened": "2024-06-12T18:36:03.969Z",
+              "EditorCaption": ""
             }
           ]
         }

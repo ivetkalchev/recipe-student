@@ -82,11 +82,11 @@ namespace recipe_desktop
 
             foreach (DesktopUser user in users)
             {
-                if (filter == "Admins" && user.Role.NameRole == "Admin")
+                if (filter == "Admins" && user.GetRole().GetName() == "Admin")
                 {
                     filteredUsers.Add(user);
                 }
-                else if (filter == "Employees" && user.Role.NameRole == "Employee")
+                else if (filter == "Employees" && user.GetRole().GetName() == "Employee")
                 {
                     filteredUsers.Add(user);
                 }
@@ -106,7 +106,7 @@ namespace recipe_desktop
 
             foreach (DesktopUser user in users)
             {
-                if (user.FirstName.ToLower().Contains(lowerQuery) || user.LastName.ToLower().Contains(lowerQuery))
+                if (user.GetFirstName().ToLower().Contains(lowerQuery) || user.GetLastName().ToLower().Contains(lowerQuery))
                 {
                     searchResults.Add(user);
                 }

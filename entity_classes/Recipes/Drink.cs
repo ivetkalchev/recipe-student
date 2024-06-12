@@ -1,7 +1,4 @@
-﻿using exceptions;
-using Microsoft.VisualBasic;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class Drink : Recipe
     {
@@ -15,48 +12,38 @@ namespace entity_classes
             bool containsCaffeine, bool servedHot, int pours)
             : base(idRecipe, title, description, instructions, ingredients, user, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
-            IsAlcoholic = isAlcoholic;
-            ContainsCaffeine = containsCaffeine;
-            ServedHot = servedHot;
-            Pours = pours;
+            this.isAlcoholic = isAlcoholic;
+            this.containsCaffeine = containsCaffeine;
+            this.servedHot = servedHot;
+            this.pours = pours;
         }
 
-        public bool IsAlcoholic
+        public bool GetIsAlcoholic()
         {
-            get { return isAlcoholic; }
-            set { isAlcoholic = value; }
+            return isAlcoholic;
         }
 
-        public bool ContainsCaffeine
+        public bool GetContainsCaffeine()
         {
-            get { return containsCaffeine; }
-            set { containsCaffeine = value; }
+            return containsCaffeine;
         }
 
-        public bool ServedHot
+        public bool GetServedHot()
         {
-            get { return servedHot; }
-            set { servedHot = value; }
+            return servedHot;
         }
 
-        public int Pours
+        public int GetPours()
         {
-            get { return pours; }
-            set
-            {
-                if (pours <= 0)
-                    throw new NullRecipeException("Servings");
-
-                pours = value;
-            }
+            return pours;
         }
 
         public override TimeSpan CalculateTotalTime()
         {
-            var totalTime = PreparationTime + CookingTime;
+            var totalTime = GetPreparationTime() + GetCookingTime();
             if (servedHot)
             {
-                totalTime += TimeSpan.FromMinutes(5); // time for heating up
+                totalTime += TimeSpan.FromMinutes(5); // time for heating
             }
             return totalTime;
         }

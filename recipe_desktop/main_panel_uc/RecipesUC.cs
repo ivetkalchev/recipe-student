@@ -124,7 +124,7 @@ namespace recipe_desktop
                 searchResults = new List<Recipe>();
                 foreach (var recipe in recipes)
                 {
-                    if (recipe.Title.ToLower().Contains(searchTerm))
+                    if (recipe.GetTitle().ToLower().Contains(searchTerm))
                     {
                         searchResults.Add(recipe);
                     }

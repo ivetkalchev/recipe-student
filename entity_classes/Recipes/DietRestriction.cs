@@ -2,23 +2,21 @@
 {
     public class DietRestriction
     {
-        private int idDietRestriction;
-        private string nameDietRestriction;
+        private int id;
+        private string name;
 
-        public DietRestriction(int idDietRestriction, string nameDietRestriction)
+        public DietRestriction(int id, string name)
         {
-            IdDietRestriction = idDietRestriction;
-            NameDietRestriction = nameDietRestriction;
+            this.id = id;
+            this.name = name;
         }
-        public int IdDietRestriction
+        public int GetIdDietRestriction()
         {
-            get { return idDietRestriction; }
-            private set { idDietRestriction = value; }
+            return id;
         }
-        public string NameDietRestriction
+        public string GetName()
         {
-            get { return nameDietRestriction; }
-            private set { nameDietRestriction = value; }
+            return name;
         }
     }
 }

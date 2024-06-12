@@ -28,14 +28,14 @@ namespace recipe_desktop
 
         private void LoadUserDetails()
         {
-            tbFirstName.Text = user.FirstName;
-            tbLastName.Text = user.LastName;
-            tbUsername.Text = user.Username;
-            tbEmail.Text = user.Email;
-            dtpBirthdate.Value = user.Birthdate;
-            cbGenders.SelectedItem = user.Gender.NameGender;
-            tbBSN.Text = user.Bsn.ToString();
-            tbRole.Text = user.Role.NameRole;
+            tbFirstName.Text = user.GetFirstName();
+            tbLastName.Text = user.GetLastName();
+            tbUsername.Text = user.GetUsername();
+            tbEmail.Text = user.GetEmail();
+            dtpBirthdate.Value = user.GetBirthdate();
+            cbGenders.SelectedItem = user.GetGender().GetName();
+            tbBSN.Text = user.GetBsn().ToString();
+            tbRole.Text = user.GetRole().GetName();
         }
 
         private void LockTextBoxes()
@@ -130,11 +130,11 @@ namespace recipe_desktop
             
             foreach (var gender in genders)
             {
-                cbGenders.Items.Add(gender.NameGender);
+                cbGenders.Items.Add(gender.GetName());
             }
             if (cbGenders.Items.Count > 0)
             {
-                cbGenders.SelectedIndex = cbGenders.FindStringExact(user.Gender.NameGender);
+                cbGenders.SelectedIndex = cbGenders.FindStringExact(user.GetGender().GetName());
             }
         }
     }

@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using manager_classes;
 using entity_classes;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace recipe_web.Pages
@@ -24,7 +26,6 @@ namespace recipe_web.Pages
             if (User.Identity.IsAuthenticated && Request.Cookies["CookiesAccepted"] == "true")
             {
                 userIdForRecommendation = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
                 if (recommendationManager.HasLikedRecipes(userIdForRecommendation))
                 {
                     recommendationContext.SetRecommendationStrategy(new SimilarUsersLikedRecipesStrategy(recommendationManager));
@@ -38,6 +39,8 @@ namespace recipe_web.Pages
             {
                 recommendationContext.SetRecommendationStrategy(new MostLikedRecipesStrategy(recommendationManager));
             }
+
+            RecommendedRecipes = recommendationContext.GetRecommendedRecipes(userIdForRecommendation);
         }
     }
 }

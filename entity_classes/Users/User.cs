@@ -12,61 +12,73 @@ namespace entity_classes
 
         protected User(int idUser, string username, string email, string password)
         {
-            IdUser = idUser;
-            Username = username;
-            Email = email;
-            Password = password;
+            this.idUser = idUser;
+            this.username = username;
+            this.email = email;
+            this.password = password;
         }
 
-        public int IdUser
+        public int GetIdUser()
         {
-            get { return idUser; }
-            private set { idUser = value; }
+            return idUser;
         }
 
-        public string Username
+        public string GetUsername()
         {
-            get { return username; }
-            private set
+            return username;
+        }
+
+        public string GetEmail()
+        {
+            return email;
+        }
+
+        public string GetPassword()
+        {
+            return password;
+        }
+
+        protected void SetEmail(string email)
+        {
+            if (!IsEmailValid(email))
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new NullUserException(nameof(Username));
-
-                username = value;
+                throw new InvalidEmailException();
             }
+            this.email = email;
         }
 
-        public string Email
+        protected void SetPassword(string password)
         {
-            get { return email; }
-            private set
+            if (!IsPasswordValid(password))
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new NullUserException(nameof(Email));
-
-                if (!value.Contains("@"))
-                    throw new InvalidEmailException();
-
-                email = value;
+                throw new InvalidPasswordFormatException();
             }
+            this.password = password;
         }
 
-        public string Password
+        private bool IsEmailValid(string email)
         {
-            get { return password; }
-            private set
+            return email.Contains("@");
+        }
+
+        private bool IsPasswordValid(string password)
+        {
+            if (password.Length < 8)
             {
-                if (string.IsNullOrEmpty(value))
-                    throw new NullUserException(nameof(Password));
-
-                if (value.Length < 8)
-                    throw new InvalidPasswordLengthException();
-
-                if (!Regex.IsMatch(value, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
-                    throw new InvalidPasswordFormatException();
-
-                password = value;
+                throw new InvalidPasswordLengthException();
             }
+
+            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool IsUserValid()
+        {
+            return IsEmailValid(email) && IsPasswordValid(password);
         }
     }
 }

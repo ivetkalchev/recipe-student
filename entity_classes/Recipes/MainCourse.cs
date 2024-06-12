@@ -1,6 +1,4 @@
-﻿using exceptions;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class MainCourse : Recipe
     {
@@ -11,31 +9,23 @@ namespace entity_classes
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic, bool isSpicy, int servings)
             : base(idRecipe, title, description, instructions, ingredients, user, preparationTime, cookingTime, dietRestriction, difficulty, pic)
         {
-            Servings = servings;
-            IsSpicy = isSpicy;
+            this.servings = servings;
+            this.isSpicy = isSpicy;
         }
 
-        public bool IsSpicy
+        public bool GetIsSpicy()
         {
-            get { return isSpicy; }
-            set { isSpicy = value; }
+            return isSpicy;
         }
 
-        public int Servings
+        public int GetServings()
         {
-            get { return servings; }
-            set
-            {
-                if (servings <= 0)
-                    throw new NullRecipeException("Servings");
-
-                servings = value;
-            }
+            return servings;
         }
 
         public override TimeSpan CalculateTotalTime()
         {
-            return PreparationTime + CookingTime;
+            return GetPreparationTime() + GetCookingTime();
         }
     }
 }

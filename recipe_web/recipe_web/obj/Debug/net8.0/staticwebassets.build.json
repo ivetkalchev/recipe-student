@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2ZdCAarKx7xVzPiMWEhZR1PjXaoCoPjEh/3jsiAEjDo=",
+  "Hash": "sp3ew4Uzg8a9YAJvYuN5H5ckb5AuBiESz/QgGSJiq+Y=",
   "Source": "recipe_web",
   "BasePath": "_content/recipe_web",
   "Mode": "Default",
@@ -148,25 +148,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
-    },
-    {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\missingimage.jpg",
-      "SourceId": "recipe_web",
-      "SourceType": "Discovered",
-      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
-      "BasePath": "_content/recipe_web",
-      "RelativePath": "images/missingimage.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\missingimage.jpg"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\profile_picture.jpg",

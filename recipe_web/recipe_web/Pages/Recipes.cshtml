@@ -20,21 +20,15 @@
         @foreach (var recipe in Model.Recipes)
         {
             <div class="recipe-item">
-                <p id="title">@recipe.Title</p>
-                @if (recipe.RecipePic != null)
+                <p id="title">@recipe.GetTitle()</p>
+                @if (recipe.GetRecipePic() != null)
                 {
                     <div class="recipe-pic-container">
-                        <img src="data:@recipe.RecipePic.ContentTypePic;base64,@Convert.ToBase64String(Convert.FromBase64String(@recipe.RecipePic.DataPic))" alt="@recipe.Title Picture" class="recipe-pic" />
+                        <img src="data:@recipe.GetRecipePic().GetContentType();base64,@Convert.ToBase64String(Convert.FromBase64String(@recipe.GetRecipePic().GetData()))" alt="@recipe.GetTitle() Picture" class="recipe-pic" />
                     </div>
                 }
-                else
-                {
-                    <div class="recipe-pic-container">
-                        <img src="~/images/missingimage.jpg" alt="Missing Image" class="recipe-pic" />
-                    </div>
-                }
-                <p>@recipe.Description</p>
-                <a href="@Url.Page("/RecipeDetails", new { id = recipe.IdRecipe })" class="button">View Recipe</a>
+                <p>@recipe.GetDescription()</p>
+                <a href="@Url.Page("/RecipeDetails", new { id = recipe.GetIdRecipe() })" class="button">View Recipe</a>
             </div>
         }
     </div>
@@ -44,35 +38,6 @@
         {
             <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Previous</a>
         }
-
-        @{
-            int startPage = Math.Max(1, Model.PageNumber - 5);
-            int endPage = Math.Min(Model.TotalPages, Model.PageNumber + 5);
-        }
-
-        @if (startPage > 1)
-        {
-            <a asp-page="./Recipes" asp-route-PageNumber="1" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">1</a>
-            @if (startPage > 2)
-            {
-                <span class="pagination-dots">...</span>
-            }
-        }
-
-        @for (int i = startPage; i <= endPage; i++)
-        {
-            <a asp-page="./Recipes" asp-route-PageNumber="@i" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button @(Model.PageNumber == i ? "active" : "")">@i</a>
-        }
-
-        @if (endPage < Model.TotalPages)
-        {
-            @if (endPage < Model.TotalPages - 1)
-            {
-                <span class="pagination-dots">...</span>
-            }
-            <a asp-page="./Recipes" asp-route-PageNumber="@Model.TotalPages" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">@Model.TotalPages</a>
-        }
-
         @if (Model.PageNumber < Model.TotalPages)
         {
             <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber + 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Next</a>
@@ -193,7 +158,6 @@ else
             display: flex;
             justify-content: center;
             margin-top: 20px;
-            margin-bottom: 20px;
         }
 
         .pagination-button {
@@ -215,12 +179,5 @@ else
                 background-color: #2C3B70;
                 color: white;
             }
-
-        .pagination-dots {
-            padding: 10px 15px;
-            margin: 0 5px;
-            color: white;
-            font-weight: bold;
-        }
     </style>
 }

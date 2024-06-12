@@ -1,7 +1,6 @@
 ﻿using entity_classes;
 using manager_classes;
 using System;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace recipe_desktop
@@ -25,28 +24,14 @@ namespace recipe_desktop
 
         private void LoadRecipeDetails()
         {
-            SetPicture(recipe.RecipePic);
-            SetTitle(recipe.Title);
-            SetUser(recipe.User.Username);
+            SetPicture(recipe.GetRecipePic());
+            SetTitle(recipe.GetTitle());
+            SetUser(recipe.GetUser().GetUsername());
         }
 
         public void SetPicture(RecipePic recipePic)
         {
-            if (recipePic != null && !string.IsNullOrEmpty(recipePic.DataPic))
-            {
-                picRecipe.Image = ConvertBase64ToImage(recipePic.DataPic);
-            }
-            else
-            {
-                string defaultImagePath = @"Resources\image-missing-icon-2048x2048-9it6buq7.png";
-                string executablePath = AppDomain.CurrentDomain.BaseDirectory;
-                string fullPath = Path.Combine(executablePath, defaultImagePath);
-
-                if (File.Exists(fullPath))
-                {
-                    picRecipe.Image = Image.FromFile(fullPath);
-                }
-            }
+            picRecipe.Image = ConvertBase64ToImage(recipePic.GetData());
         }
 
         public void SetTitle(string title)

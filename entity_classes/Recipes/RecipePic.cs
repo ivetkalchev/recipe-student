@@ -10,40 +10,30 @@ namespace entity_classes
     public class RecipePic
     {
         private int idRecipePic;
-        private string namePic;
-        private string dataPic;
-        private string contentTypePic;
+        private string name;
+        private string data;
+        private string contentType;
 
-        public RecipePic(int idRecipePic, string namePic, string dataPic, string contentTypePic)
+        public RecipePic(int idRecipePic, string name, string data, string contentType)
         {
-            IdRecipePic = idRecipePic;
-            NamePic = namePic;
-            DataPic = dataPic;
-            ContentTypePic = contentTypePic;
+            this.idRecipePic = idRecipePic;
+            this.name = name;
+            this.data = data;
+            this.contentType = contentType;
+        }
+        public string GetName()
+        {
+            return name;
         }
 
-        public int IdRecipePic
+        public string GetData()
         {
-            get { return idRecipePic; } 
-            private set { idRecipePic = value; }
+            return data;
         }
 
-        public string NamePic
+        public string GetContentType()
         {
-            get { return namePic; }
-            private set { namePic = value; }
-        }
-
-        public string DataPic
-        {
-            get { return  dataPic; }
-            private set { dataPic = value; }
-        }
-
-        public string ContentTypePic
-        {
-            get { return contentTypePic; }
-            private set { contentTypePic = value; }
+            return contentType;
         }
     }
 }

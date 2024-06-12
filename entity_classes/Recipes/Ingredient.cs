@@ -1,52 +1,40 @@
 ﻿using exceptions;
-using System.Xml.Linq;
 
 namespace entity_classes
 {
     public class Ingredient
     {
         private int idIngredient;
-        private string nameIngredient;
-        private TypeIngredient typeIngredient;
+        private string name;
+        private TypeIngredient type;
 
-        public Ingredient(int idIngredient, string nameIngredient, TypeIngredient typeIngredient)
+        public Ingredient(int idIngredient, string name, TypeIngredient type)
         {
-            IdIngredient = idIngredient;
-            NameIngredient = nameIngredient;
-            TypeIngredient = typeIngredient;
+            this.idIngredient = idIngredient;
+            this.name = name;
+            this.type = type;
         }
 
-        public int IdIngredient
+        public int GetIdIngredient()
         {
-            get { return idIngredient; }
-            private set { idIngredient = value; }
+            return idIngredient;
         }
 
-        public string NameIngredient
+        public string GetName()
         {
-            get { return nameIngredient; }
-            private set
+            return name;
+        }
+
+        public TypeIngredient GetTypeIngredient()
+        {
+            return type;
+        }
+
+        public void IsIngredientNameValid(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name) || !System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
             {
-                if (string.IsNullOrEmpty(nameIngredient))
-                    throw new NullIngredientException("Name of Ingredient");
-
-                if (!System.Text.RegularExpressions.Regex.IsMatch(nameIngredient, @"^[a-zA-Z\s]+$"))
-                {
-                    throw new InvalidIngredientNameException();
-                }
-
-                nameIngredient = value;
-            }
-        }
-
-        public TypeIngredient TypeIngredient
-        {
-            get { return typeIngredient; }
-            private set { 
-                if (typeIngredient == null)
-                    throw new NullIngredientException("Type Ingredient");
-
-                typeIngredient = value; 
+                throw new InvalidIngredientNameException();
             }
         }
     }

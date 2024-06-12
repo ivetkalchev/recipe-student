@@ -5,11 +5,6 @@
         public InvalidUserException(string message) : base(message) { }
     }
 
-    public class NullUserException : InvalidUserException
-    {
-        public NullUserException(string userAttribute) : base($"The {userAttribute} cannot be left empty.") { }
-    }
-
     public class AlreadyExistUserException : InvalidUserException
     {
         public AlreadyExistUserException(string credentialType) : base($"The {credentialType} is already taken.") { }

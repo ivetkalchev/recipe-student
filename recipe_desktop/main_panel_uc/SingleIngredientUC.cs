@@ -22,8 +22,8 @@ namespace recipe_desktop
 
         private void LoadIngredientDetails()
         {
-            SetName(ingredient.NameIngredient);
-            SetType(ingredient.TypeIngredient.NameTypeIngredient);
+            SetName(ingredient.GetName());
+            SetType(ingredient.GetTypeIngredient().GetName());
         }
 
         public void SetName(string name)

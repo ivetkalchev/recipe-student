@@ -43,7 +43,7 @@ namespace unit_tests
             // Arrange
             var type = new TypeIngredient(2, "Vegetable");
             var newIngredient = new Ingredient(1, "Tomato", type);
-            mockDbHelper.Setup(m => m.DoesIngredientExist(newIngredient.NameIngredient)).Returns(false);
+            mockDbHelper.Setup(m => m.DoesIngredientExist(newIngredient.GetName())).Returns(false);
 
             // Act
             manager.AddIngredient(newIngredient);
@@ -59,7 +59,7 @@ namespace unit_tests
             // Arrange
             var type = new TypeIngredient(2, "Vegetable");
             var newIngredient = new Ingredient(1, "Tomato", type);
-            mockDbHelper.Setup(m => m.DoesIngredientExist(newIngredient.NameIngredient)).Returns(true);
+            mockDbHelper.Setup(m => m.DoesIngredientExist(newIngredient.GetName())).Returns(true);
 
             // Act
             manager.AddIngredient(newIngredient);

@@ -2,24 +2,21 @@
 {
     public class Difficulty
     {
-        private int idDifficulty;
-        private string nameDifficulty;
+        private int id;
+        private string name;
 
-        public Difficulty(int idDifficulty, string nameDifficulty)
+        public Difficulty(int id, string name)
         {
-            IdDifficulty = idDifficulty;
-            NameDifficulty = nameDifficulty;
+            this.id = id;
+            this.name = name;
         }
-        public int IdDifficulty
+        public int GetIdDifficulty()
         {
-            get { return idDifficulty; }
-            private set { idDifficulty = value; }
+            return id;
         }
-
-        public string NameDifficulty
+        public string GetName()
         {
-            get { return nameDifficulty; }
-            private set { nameDifficulty = value; }
+            return name;
         }
     }
 }

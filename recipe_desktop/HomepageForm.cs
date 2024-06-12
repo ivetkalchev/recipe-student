@@ -34,7 +34,7 @@ namespace recipe_desktop
 
         private void DenyEmployeeAccess()
         {
-            if (user.Role.NameRole != "Admin")
+            if (user.GetRole().GetName() != "Admin")
             {
                 Employees.Enabled = false;
             }

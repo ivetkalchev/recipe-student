@@ -35,9 +35,9 @@ namespace recipe_web.Pages
 
             UserDTO = new UserDTO
             {
-                Username = webUser.Username,
-                Email = webUser.Email,
-                Caption = webUser.Caption
+                Username = webUser.GetUsername(),
+                Email = webUser.GetEmail(),
+                Caption = webUser.GetCaption()
             };
         }
     }

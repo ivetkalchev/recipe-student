@@ -45,7 +45,7 @@ namespace recipe_desktop
 
             foreach (var type in typeIngredients)
             {
-                cbTypeIngredient.Items.Add(type.NameTypeIngredient);
+                cbTypeIngredient.Items.Add(type.GetName());
             }
             if (cbTypeIngredient.Items.Count > 0)
             {
@@ -106,7 +106,7 @@ namespace recipe_desktop
 
                 ingredientManager.AddIngredient(newIngredient);
                 
-                MessageBox.Show($"{newIngredient.NameIngredient} was added successfully!");
+                MessageBox.Show($"{newIngredient.GetName()} was added successfully!");
                 
                 ClearFields();
                 LoadAllIngredients();
@@ -153,7 +153,7 @@ namespace recipe_desktop
                 searchResults = new List<Ingredient>();
                 foreach (var ingredient in ingredients)
                 {
-                    if (ingredient.NameIngredient.ToLower().Contains(searchQuery))
+                    if (ingredient.GetName().ToLower().Contains(searchQuery))
                     {
                         searchResults.Add(ingredient);
                     }
