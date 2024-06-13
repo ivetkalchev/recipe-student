@@ -119,5 +119,6 @@ namespace entity_classes
                 throw new InvalidUserException("Desktop user data is invalid");
             }
         }
+        }
     }
 }

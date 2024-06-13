@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using recipe_web.DTOs;
+using dtos;
 using entity_classes;
 using manager_classes;
 using exceptions;
@@ -10,7 +10,7 @@ namespace recipe_web.Pages
     public class RegisterModel : PageModel
     {
         [BindProperty]
-        public RegisterDTO RegisterDTO { get; set; }
+        public RegisterWebDTO RegisterWebDTO { get; set; }
 
         private readonly IUserManager userManager;
 
@@ -30,13 +30,13 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            if (userManager.IsUsernameTaken(RegisterDTO.Username))
+            if (userManager.IsUsernameTaken(RegisterWebDTO.Username))
             {
                 ModelState.AddModelError("RegisterDTO.Username", "Username is already taken.");
                 return Page();
             }
 
-            if (userManager.IsEmailTaken(RegisterDTO.Email))
+            if (userManager.IsEmailTaken(RegisterWebDTO.Email))
             {
                 ModelState.AddModelError("RegisterDTO.Email", "Email is already taken.");
                 return Page();
