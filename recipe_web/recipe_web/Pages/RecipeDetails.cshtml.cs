@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using manager_classes;
 using System.Security.Claims;
-using recipe_web.DTOs;
+using dtos;
 
 namespace recipe_web.Pages
 {

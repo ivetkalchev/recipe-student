@@ -20,6 +20,11 @@
         public InvalidTimeException(string typeTime) : base($"The {typeTime} is invalid!") { }
     }
 
+    public class InvalidRecipeQuantityException : InvalidRecipeException
+    {
+        public InvalidRecipeQuantityException(string typeQuantity, int quantity) : base($"The {typeQuantity} is invalid! There cannot be {quantity} {typeQuantity}!") { }
+    }
+
     public class InvalidReviewValueException : InvalidRecipeException
     {
         public InvalidReviewValueException() : base("The rating is invalid!") { }

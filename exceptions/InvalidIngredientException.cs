@@ -19,4 +19,9 @@
     {
         public InvalidIngredientNameException() : base("The ingredient name is invalid. The name must contain only letters and spaces.") { }
     }
+
+    public class InvalidUnitForIngredientException : InvalidIngredientException
+    {
+        public InvalidUnitForIngredientException(string unit, string ingredient) : base($"The unit {unit} is invalid for ingredient type {ingredient}.") { }
+    }
 }

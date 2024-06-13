@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using manager_classes;
-using recipe_web.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using dtos;
 
 namespace recipe_web.Pages
 {
@@ -10,7 +10,7 @@ namespace recipe_web.Pages
     {
         private IUserManager userManager;
 
-        public UserDTO UserDTO { get; set; }
+        public WebUserDTO WebUserDTO { get; set; }
 
         public UserProfileModel(IUserManager userManager)
         {
@@ -33,7 +33,7 @@ namespace recipe_web.Pages
                 NotFound("User not found.");
             }
 
-            UserDTO = new UserDTO
+            WebUserDTO = new WebUserDTO
             {
                 Username = webUser.GetUsername(),
                 Email = webUser.GetEmail(),

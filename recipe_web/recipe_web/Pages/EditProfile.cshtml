@@ -6,21 +6,21 @@
 }
 
 <div class="message_container">
-    <h2>Edit @Model.UserDTO.Username's Profile</h2>
+    <h2>Edit @Model.WebUserDTO.Username's Profile</h2>
 </div>
 
 <form method="post">
     <div class="form_input">
-        <label asp-for="UserDTO.Username"></label>
-        <input asp-for="UserDTO.Username" class="form-control" readonly />
+        <label asp-for="WebUserDTO.Username"></label>
+        <input asp-for="WebUserDTO.Username" class="form-control" readonly />
     </div>
     <div class="form_input">
-        <label asp-for="UserDTO.Email"></label>
-        <input asp-for="UserDTO.Email" class="form-control" />
+        <label asp-for="WebUserDTO.Email"></label>
+        <input asp-for="WebUserDTO.Email" class="form-control" />
     </div>
     <div class="form_input">
-        <label asp-for="UserDTO.Caption"></label>
-        <input asp-for="UserDTO.Caption" class="form-control" />
+        <label asp-for="WebUserDTO.Caption"></label>
+        <input asp-for="WebUserDTO.Caption" class="form-control" />
     </div>
     <div class="button-container">
         <button type="submit" class="button">Save</button>

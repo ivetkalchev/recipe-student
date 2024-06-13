@@ -210,7 +210,7 @@
             lblEmail.AutoSize = true;
             lblEmail.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(61, 83, 143);
-            lblEmail.Location = new Point(30, 189);
+            lblEmail.Location = new Point(321, 112);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(78, 35);
             lblEmail.TabIndex = 16;
@@ -221,7 +221,7 @@
             // 
             tbEmail.Font = new Font("Segoe UI", 13F);
             tbEmail.ForeColor = Color.Black;
-            tbEmail.Location = new Point(37, 227);
+            tbEmail.Location = new Point(328, 150);
             tbEmail.MaxLength = 100;
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(276, 36);
@@ -231,7 +231,7 @@
             // 
             picPassword.Cursor = Cursors.Hand;
             picPassword.Image = Properties.Resources.icons8_eye_30;
-            picPassword.Location = new Point(575, 122);
+            picPassword.Location = new Point(284, 199);
             picPassword.Name = "picPassword";
             picPassword.Size = new Size(29, 22);
             picPassword.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -244,7 +244,7 @@
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
             lblPassword.ForeColor = Color.FromArgb(61, 83, 143);
-            lblPassword.Location = new Point(321, 112);
+            lblPassword.Location = new Point(30, 189);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(124, 35);
             lblPassword.TabIndex = 13;
@@ -255,12 +255,13 @@
             // 
             tbPassword.Font = new Font("Segoe UI", 13F);
             tbPassword.ForeColor = Color.Black;
-            tbPassword.Location = new Point(328, 150);
+            tbPassword.Location = new Point(37, 227);
             tbPassword.MaxLength = 50;
             tbPassword.Name = "tbPassword";
             tbPassword.Size = new Size(276, 36);
             tbPassword.TabIndex = 12;
             tbPassword.UseSystemPasswordChar = true;
+            tbPassword.TextChanged += tbPassword_TextChanged;
             // 
             // btnClear
             // 

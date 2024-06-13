@@ -10,19 +10,19 @@
         <h1>Register</h1>
         <form method="post">
             <div class="form_input">
-                <label asp-for="RegisterDTO.Username"></label>
-                <input asp-for="RegisterDTO.Username" class="form-control" />
-                <span asp-validation-for="RegisterDTO.Username" class="text-danger"></span>
+                <label asp-for="RegisterWebDTO.Username"></label>
+                <input asp-for="RegisterWebDTO.Username" class="form-control" />
+                <span asp-validation-for="RegisterWebDTO.Username" class="text-danger"></span>
             </div>
             <div class="form_input">
-                <label asp-for="RegisterDTO.Email"></label>
-                <input asp-for="RegisterDTO.Email" class="form-control" />
-                <span asp-validation-for="RegisterDTO.Email" class="text-danger"></span>
+                <label asp-for="RegisterWebDTO.Email"></label>
+                <input asp-for="RegisterWebDTO.Email" class="form-control" />
+                <span asp-validation-for="RegisterWebDTO.Email" class="text-danger"></span>
             </div>
             <div class="form_input">
-                <label asp-for="RegisterDTO.Password"></label>
-                <input asp-for="RegisterDTO.Password" type="password" class="form-control" />
-                <span asp-validation-for="RegisterDTO.Password" class="text-danger"></span>
+                <label asp-for="RegisterWebDTO.Password"></label>
+                <input asp-for="RegisterWebDTO.Password" type="password" class="form-control" />
+                <span asp-validation-for="RegisterWebDTO.Password" class="text-danger"></span>
             </div>
             <button type="submit" class="button">Register</button>
         </form>

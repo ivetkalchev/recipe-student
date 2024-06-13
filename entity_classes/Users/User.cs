@@ -37,48 +37,5 @@ namespace entity_classes
         {
             return password;
         }
-
-        protected void SetEmail(string email)
-        {
-            if (!IsEmailValid(email))
-            {
-                throw new InvalidEmailException();
-            }
-            this.email = email;
-        }
-
-        protected void SetPassword(string password)
-        {
-            if (!IsPasswordValid(password))
-            {
-                throw new InvalidPasswordFormatException();
-            }
-            this.password = password;
-        }
-
-        private bool IsEmailValid(string email)
-        {
-            return email.Contains("@");
-        }
-
-        private bool IsPasswordValid(string password)
-        {
-            if (password.Length < 8)
-            {
-                throw new InvalidPasswordLengthException();
-            }
-
-            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public bool IsUserValid()
-        {
-            return IsEmailValid(email) && IsPasswordValid(password);
-        }
     }
 }

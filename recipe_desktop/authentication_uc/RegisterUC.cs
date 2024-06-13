@@ -73,7 +73,7 @@ namespace recipe_desktop
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 string username = tbUsername.Text.Trim();
@@ -158,6 +158,11 @@ namespace recipe_desktop
                 MessageBox.Show("The last name is invalid. Your last name must contain only alphabetic characters.");
                 e.Handled = true;
             }
+        }
+
+        private void tbPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

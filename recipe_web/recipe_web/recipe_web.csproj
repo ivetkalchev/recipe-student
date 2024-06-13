@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\dtos\dtos.csproj" />
     <ProjectReference Include="..\..\entity_classes\entity_classes.csproj" />
     <ProjectReference Include="..\..\manager_classes\manager_classes.csproj" />
   </ItemGroup>

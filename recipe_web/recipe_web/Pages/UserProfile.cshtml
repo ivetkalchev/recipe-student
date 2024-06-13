@@ -6,12 +6,12 @@
 }
 
 <div class="message_container">
-    <h2>@Model.UserDTO.Username's Profile</h2>
+    <h2>@Model.WebUserDTO.Username's Profile</h2>
 </div>
 
 <div class="profile_container">
-    <div class="username"><b>@Model.UserDTO.Username</b></div>
-    <div class="description">@Model.UserDTO.Caption</div>
+    <div class="username"><b>@Model.WebUserDTO.Username</b></div>
+    <div class="description">@Model.WebUserDTO.Caption</div>
     <div class="buttons_profile">
         <a class="button" asp-page="/EditProfile">Edit</a>
         <a class="button" asp-page="/ChangePassword">Change Password</a>

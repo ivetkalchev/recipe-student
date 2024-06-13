@@ -1,18 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using manager_classes;
-using recipe_web.DTOs;
+using dtos;
 using Microsoft.AspNetCore.Authorization;
 
 namespace recipe_web.Pages
 {
-    [Authorize] // with role
+    [Authorize] 
     public class EditProfileModel : PageModel
     {
         private IUserManager userManager;
 
         [BindProperty]
-        public UserDTO UserDTO { get; set; }
+        public WebUserDTO WebUserDTO { get; set; }
 
         public EditProfileModel(IUserManager userManager)
         {
@@ -35,7 +35,7 @@ namespace recipe_web.Pages
                 return NotFound("User not found.");
             }
 
-            UserDTO = new UserDTO
+            WebUserDTO = new WebUserDTO
             {
                 Username = webUser.GetUsername(),
                 Email = webUser.GetEmail(),
@@ -66,7 +66,7 @@ namespace recipe_web.Pages
 
             try
             {
-                userManager.UpdateWebUserDetails(existingUser, UserDTO.Caption, UserDTO.Email);
+                userManager.UpdateWebUserDetails(existingUser, WebUserDTO.Caption, WebUserDTO.Email);
             }
             catch (Exception ex)
             {

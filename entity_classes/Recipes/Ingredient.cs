@@ -29,13 +29,5 @@ namespace entity_classes
         {
             return type;
         }
-
-        public void IsIngredientNameValid(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name) || !System.Text.RegularExpressions.Regex.IsMatch(name, @"^[a-zA-Z\s]+$"))
-            {
-                throw new InvalidIngredientNameException();
-            }
-        }
     }
 }

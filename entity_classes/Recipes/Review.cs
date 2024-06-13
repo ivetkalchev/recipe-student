@@ -40,10 +40,5 @@
         {
             return user;
         }
-
-        public void SetUser(WebUser user)
-        {
-            this.user = user;
-        }
     }
 }

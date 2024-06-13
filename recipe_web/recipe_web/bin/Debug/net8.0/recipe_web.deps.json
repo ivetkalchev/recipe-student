@@ -14,6 +14,7 @@
           "Microsoft.jQuery.Unobtrusive.Ajax": "3.2.6",
           "Microsoft.jQuery.Unobtrusive.Validation": "4.0.0",
           "System.Data.SqlClient": "4.8.6",
+          "dtos": "1.0.0",
           "entity_classes": "1.0.0",
           "manager_classes": "1.0.0"
         },
@@ -989,6 +990,15 @@
           "db_helpers.dll": {}
         }
       },
+      "dtos/1.0.0": {
+        "dependencies": {
+          "entity_classes": "1.0.0",
+          "exceptions": "1.0.0"
+        },
+        "runtime": {
+          "dtos.dll": {}
+        }
+      },
       "entity_classes/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "8.0.1",
@@ -1744,6 +1754,11 @@
       "hashPath": "system.xml.xdocument.4.0.11.nupkg.sha512"
     },
     "db_helpers/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "dtos/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
