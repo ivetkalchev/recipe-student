@@ -10,12 +10,11 @@ namespace recipe_desktop
     public partial class RegisterUC : UserControl
     {
         private IUserManager userManager;
+
         public RegisterUC(IUserManager userManager)
         {
             InitializeComponent();
-
             this.userManager = userManager;
-
             LoadGender();
             LoadToday();
         }
@@ -44,6 +43,7 @@ namespace recipe_desktop
             {
                 cbGenders.Items.Add(gender.GetName());
             }
+
             if (cbGenders.Items.Count > 0)
             {
                 cbGenders.SelectedIndex = 0;
@@ -73,14 +73,19 @@ namespace recipe_desktop
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 string username = tbUsername.Text.Trim();
                 string plainPassword = tbPassword.Text.Trim();
                 Role employeeRole = new Role(2, "Employee");
                 string email = tbEmail.Text.Trim();
-                int.TryParse(tbBsn.Text.Trim(), out int bsn);
+                int bsn = 0;
+                if (!int.TryParse(tbBsn.Text.Trim(), out bsn))
+                {
+                    MessageBox.Show("Invalid BSN.");
+                    return;
+                }
                 string firstName = tbFirstName.Text.Trim();
                 string lastName = tbLastName.Text.Trim();
                 Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());

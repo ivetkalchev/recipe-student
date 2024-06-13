@@ -5,6 +5,11 @@
         public InvalidUserException(string message) : base(message) { }
     }
 
+    public class NullUserException : InvalidUserException
+    {
+        public NullUserException(string credentialType) : base($"The {credentialType} cannot be emprty.") { }
+    }
+
     public class AlreadyExistUserException : InvalidUserException
     {
         public AlreadyExistUserException(string credentialType) : base($"The {credentialType} is already taken.") { }

@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public class WebUser : User
     {
@@ -8,11 +10,20 @@
             : base(idUser, username, email, password)
         {
             this.caption = caption;
+            ValidateWebUser();
         }
 
         public string GetCaption()
         {
             return caption;
+        }
+
+        private void ValidateWebUser()
+        {
+            if (string.IsNullOrWhiteSpace(caption))
+            {
+                throw new InvalidCaptionLengthException();
+            }
         }
     }
 }

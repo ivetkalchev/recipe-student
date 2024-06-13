@@ -46,7 +46,7 @@ namespace recipe_web.Pages
                 idUser: 0,
                 username: RegisterDTO.Username,
                 email: RegisterDTO.Email,
-                password: Hasher.HashText(RegisterDTO.Password),
+                password: RegisterDTO.Password,
                 caption: $"Hello, I am {RegisterDTO.Username}"
             );
 
@@ -64,7 +64,6 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            TempData["SuccessMessage"] = "Registration successful. You can now log in.";
             return RedirectToPage("/Login");
         }
     }

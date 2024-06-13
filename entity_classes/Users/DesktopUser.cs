@@ -12,8 +12,7 @@ namespace entity_classes
         private Gender gender;
         private DateTime birthdate;
 
-        public DesktopUser(int idUser, string username, string email, string password,
-            Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate)
+        public DesktopUser(int idUser, string username, string email, string password, Role role, string firstName, string lastName, int bsn, Gender gender, DateTime birthdate)
             : base(idUser, username, email, password)
         {
             this.role = role;
@@ -22,6 +21,7 @@ namespace entity_classes
             this.bsn = bsn;
             this.gender = gender;
             this.birthdate = birthdate;
+            ValidateDesktopUser();
         }
 
         public Role GetRole()
@@ -54,7 +54,7 @@ namespace entity_classes
             return birthdate;
         }
 
-        private void SetFirstName(string firstName)
+        public void SetFirstName(string firstName)
         {
             if (!IsNameValid(firstName))
             {
@@ -63,7 +63,7 @@ namespace entity_classes
             this.firstName = firstName;
         }
 
-        private void SetLastName(string lastName)
+        public void SetLastName(string lastName)
         {
             if (!IsNameValid(lastName))
             {
@@ -72,7 +72,7 @@ namespace entity_classes
             this.lastName = lastName;
         }
 
-        private void SetBsn(int bsn)
+        public void SetBsn(int bsn)
         {
             if (!IsBsnValid(bsn))
             {
@@ -81,7 +81,7 @@ namespace entity_classes
             this.bsn = bsn;
         }
 
-        private void SetBirthdate(DateTime birthdate)
+        public void SetBirthdate(DateTime birthdate)
         {
             if (!IsBirthdateValid(birthdate))
             {
@@ -98,11 +98,7 @@ namespace entity_classes
         private bool IsBsnValid(int bsn)
         {
             string bsnString = bsn.ToString();
-            if (bsnString.Length < 8 || bsnString.Length > 9)
-            {
-                return false;
-            }
-            return Regex.IsMatch(bsnString, @"^\d+$");
+            return bsnString.Length >= 8 && bsnString.Length <= 9 && Regex.IsMatch(bsnString, @"^\d+$");
         }
 
         private bool IsBirthdateValid(DateTime birthdate)
@@ -112,13 +108,16 @@ namespace entity_classes
             return age >= 14;
         }
 
-        public bool IsDesktopUserValid()
+        private void ValidateDesktopUser()
         {
-            return IsUserValid() &&
-                   IsBsnValid(bsn) &&
-                   IsNameValid(firstName) &&
-                   IsNameValid(lastName) &&
-                   IsBirthdateValid(birthdate);
+            if (!IsUserValid() ||
+                !IsBsnValid(bsn) ||
+                !IsNameValid(firstName) ||
+                !IsNameValid(lastName) ||
+                !IsBirthdateValid(birthdate))
+            {
+                throw new InvalidUserException("Desktop user data is invalid");
+            }
         }
     }
 }

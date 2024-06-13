@@ -9,6 +9,7 @@
     <div class="panel">
         <h1>Register</h1>
         <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form_input">
                 <label asp-for="RegisterDTO.Username"></label>
                 <input asp-for="RegisterDTO.Username" class="form-control" />

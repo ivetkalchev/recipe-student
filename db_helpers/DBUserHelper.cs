@@ -498,16 +498,14 @@ namespace db_helpers
                     conn.Open();
 
                     string query = @"
-                SELECT u.id_user, u.username, u.email, u.password, w.caption
-                FROM [dbo].[User] u
-                INNER JOIN [dbo].[WebUser] w ON u.id_user = w.id_user
-                WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
+            SELECT u.id_user, u.username, u.email, u.password, w.caption
+            FROM [dbo].[User] u
+            INNER JOIN [dbo].[WebUser] w ON u.id_user = w.id_user
+            WHERE u.username COLLATE Latin1_General_BIN = @Username AND u.password = @Password";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Username", username);
                     cmd.Parameters.AddWithValue("@Password", hashedPassword);
-
-                    Console.WriteLine($"Executing query: {query} with Username: {username}, Password: {hashedPassword}");
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -531,8 +529,6 @@ namespace db_helpers
 
             return null;
         }
-
-
 
         public bool IsWebUsernameTaken(string username)
         {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2ZdCAarKx7xVzPiMWEhZR1PjXaoCoPjEh/3jsiAEjDo=",
+  "Hash": "TBUx/PshUA9nnW2HNG1VUZqaD3bNvQoIS2G2t/zvfJ4=",
   "Source": "recipe_web",
   "BasePath": "_content/recipe_web",
   "Mode": "Default",
@@ -188,12 +188,12 @@
       "OriginalItemSpec": "wwwroot\\images\\profile_picture.jpg"
     },
     {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\js\\site.js",
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\js\\cookies.js",
       "SourceId": "recipe_web",
       "SourceType": "Discovered",
       "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
       "BasePath": "_content/recipe_web",
-      "RelativePath": "js/site.js",
+      "RelativePath": "js/cookies.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -204,7 +204,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\site.js"
+      "OriginalItemSpec": "wwwroot\\js\\cookies.js"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

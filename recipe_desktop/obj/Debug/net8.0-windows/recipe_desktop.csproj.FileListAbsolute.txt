@@ -115,3 +115,4 @@ I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensio
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyModel.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+I:\individual-project\recipe_desktop\bin\Debug\net8.0-windows\BouncyCastle.Crypto.dll

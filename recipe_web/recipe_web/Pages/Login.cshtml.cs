@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using recipe_web.DTOs;
 using manager_classes;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using exceptions;
 
 namespace recipe_web.Pages
 {
@@ -14,12 +16,10 @@ namespace recipe_web.Pages
         public LoginDTO LoginDTO { get; set; }
 
         private readonly IUserManager userManager;
-        private readonly ILogger<LoginModel> logger;
 
-        public LoginModel(IUserManager userManager, ILogger<LoginModel> logger)
+        public LoginModel(IUserManager userManager)
         {
             this.userManager = userManager;
-            this.logger = logger;
         }
 
         public void OnGet()
@@ -33,38 +33,30 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            logger.LogInformation("Attempting login for user: {Username}", LoginDTO.Username);
-
-            string hashedPassword = Hasher.HashText(LoginDTO.Password);
-            logger.LogInformation("Hashed password: {HashedPassword}", hashedPassword);
-
-            var webUser = userManager.LoginWebUser(LoginDTO.Username, hashedPassword);
-
-            if (webUser == null)
+            try
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                logger.LogWarning("Login attempt failed for user: {Username}", LoginDTO.Username);
+                var webUser = userManager.LoginWebUser(LoginDTO.Username, LoginDTO.Password);
+
+                if (webUser == null)
+                {
+                    return Page();
+                }
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, webUser.GetIdUser().ToString()),
+                    new Claim(ClaimTypes.Name, webUser.GetUsername())
+                };
+
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                return RedirectToPage("/Index");
+            }
+            catch (InvalidUserException ex)
+            {
                 return Page();
             }
-
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, webUser.GetIdUser().ToString()), // Ensure this claim is set
-                new Claim(ClaimTypes.Name, webUser.GetUsername()),
-                new Claim(ClaimTypes.Email, webUser.GetEmail()),
-            };
-
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var authProperties = new AuthenticationProperties
-            {
-                // Optional: You can set other properties here, like IsPersistent, ExpiresUtc, etc.
-            };
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
-            logger.LogInformation("User {Username} successfully logged in", LoginDTO.Username);
-
-            return RedirectToPage("/Index");
         }
     }
 }

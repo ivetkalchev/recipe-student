@@ -1,5 +1,8 @@
 ﻿using entity_classes;
 using manager_classes;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -10,7 +13,6 @@ namespace recipe_desktop
         public LoginUC(IUserManager userManager)
         {
             InitializeComponent();
-
             this.userManager = userManager;
         }
 
