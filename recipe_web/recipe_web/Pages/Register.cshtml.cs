@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using dtos;
 using entity_classes;
 using manager_classes;
 using exceptions;
+using recipe_web.DTOs;
 
 namespace recipe_web.Pages
 {
     public class RegisterModel : PageModel
     {
         [BindProperty]
-        public RegisterWebDTO RegisterWebDTO { get; set; }
+        public RegisterDTO RegisterDTO { get; set; }
 
         private readonly IUserManager userManager;
 
@@ -30,13 +30,13 @@ namespace recipe_web.Pages
                 return Page();
             }
 
-            if (userManager.IsUsernameTaken(RegisterWebDTO.Username))
+            if (userManager.IsUsernameTaken(RegisterDTO.Username))
             {
                 ModelState.AddModelError("RegisterDTO.Username", "Username is already taken.");
                 return Page();
             }
 
-            if (userManager.IsEmailTaken(RegisterWebDTO.Email))
+            if (userManager.IsEmailTaken(RegisterDTO.Email))
             {
                 ModelState.AddModelError("RegisterDTO.Email", "Email is already taken.");
                 return Page();
@@ -52,7 +52,11 @@ namespace recipe_web.Pages
 
             try
             {
-                if (!userManager.RegisterWebUser(newWebUser))
+                if (userManager.RegisterWebUser(newWebUser))
+                {
+                    return RedirectToPage("/Login");
+                }
+                else
                 {
                     ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
                     return Page();
@@ -60,11 +64,9 @@ namespace recipe_web.Pages
             }
             catch (InvalidUserException ex)
             {
-                ModelState.AddModelError(string.Empty, ex.Message);
+                ModelState.AddModelError(string.Empty, "Registration failed. Please try again.");
                 return Page();
             }
-
-            return RedirectToPage("/Login");
         }
     }
 }

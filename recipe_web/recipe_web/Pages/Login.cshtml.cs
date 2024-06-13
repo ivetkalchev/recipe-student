@@ -39,6 +39,7 @@ namespace recipe_web.Pages
 
                 if (webUser == null)
                 {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
 
@@ -51,12 +52,14 @@ namespace recipe_web.Pages
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                return RedirectToPage("/Index");
             }
             catch (InvalidUserException ex)
             {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return Page();
             }
+            
+            return RedirectToPage("/Index");
         }
     }
 }
