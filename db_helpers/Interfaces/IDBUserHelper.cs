@@ -5,10 +5,8 @@ namespace db_helpers
     public interface IDBUserHelper
     {
         void DeleteUser(DesktopUser user);
-        void DeleteWebUser(WebUser user);
         List<DesktopUser> GetAllDesktopUsers();
         List<Gender> GetAllGenders();
-        List<WebUser> GetAllWebUsers();
         DesktopUser GetDesktopUser(string username, string hashedPassword);
         Gender GetGenderById(int genderId);
         DesktopUser GetUserById(int userId);
@@ -21,8 +19,6 @@ namespace db_helpers
         bool IsEmailTaken(string email);
         bool IsEmailTakenByOtherUser(int userId, string email);
         bool IsUsernameTaken(string username);
-        bool IsWebEmailTaken(string email);
-        bool IsWebUsernameTaken(string username);
         void PromoteUserToAdmin(DesktopUser user);
         void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBSN);
         void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail);

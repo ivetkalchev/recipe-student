@@ -80,12 +80,7 @@ namespace recipe_desktop
                 string plainPassword = tbPassword.Text.Trim();
                 Role employeeRole = new Role(2, "Employee");
                 string email = tbEmail.Text.Trim();
-                int bsn = 0;
-                if (!int.TryParse(tbBsn.Text.Trim(), out bsn))
-                {
-                    MessageBox.Show("Invalid BSN.");
-                    return;
-                }
+                int.TryParse(tbBsn.Text.Trim(), out int bsn);
                 string firstName = tbFirstName.Text.Trim();
                 string lastName = tbLastName.Text.Trim();
                 Gender gender = userManager.GetGenderByName(cbGenders.SelectedItem.ToString());
@@ -115,7 +110,11 @@ namespace recipe_desktop
                     birthdate
                 );
 
+                newUser.UserValidation();
+                newUser.DesktopUserValidation();
+
                 userManager.RegisterDesktopUser(newUser);
+
                 MessageBox.Show($"{username} is registered successfully!");
                 ClearFields();
                 LoadLogin();

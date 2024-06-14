@@ -1,4 +1,5 @@
 ﻿using exceptions;
+using System;
 using System.Text.RegularExpressions;
 
 namespace entity_classes
@@ -21,7 +22,6 @@ namespace entity_classes
             this.bsn = bsn;
             this.gender = gender;
             this.birthdate = birthdate;
-            ValidateDesktopUser();
         }
 
         public Role GetRole()
@@ -54,70 +54,47 @@ namespace entity_classes
             return birthdate;
         }
 
-        public void SetFirstName(string firstName)
+        private void ValidateName(string name, string nameType)
         {
-            if (!IsNameValid(firstName))
+            if (string.IsNullOrWhiteSpace(name))
             {
-                throw new InvalidNameException("first name");
+                throw new NullUserException(nameType);
             }
-            this.firstName = firstName;
+            if (!Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+            {
+                throw new InvalidNameException(nameType);
+            }
         }
 
-        public void SetLastName(string lastName)
+        private void ValidateBsn(int bsn)
         {
-            if (!IsNameValid(lastName))
+            string bsnString = bsn.ToString();
+            if (bsnString.Length < 8 || bsnString.Length > 9)
             {
-                throw new InvalidNameException("last name");
+                throw new InvalidBsnLengthException();
             }
-            this.lastName = lastName;
-        }
-
-        public void SetBsn(int bsn)
-        {
-            if (!IsBsnValid(bsn))
+            if (!Regex.IsMatch(bsnString, @"^\d+$"))
             {
                 throw new InvalidBsnFormatException();
             }
-            this.bsn = bsn;
         }
 
-        public void SetBirthdate(DateTime birthdate)
-        {
-            if (!IsBirthdateValid(birthdate))
-            {
-                throw new InvalidBirthdateException();
-            }
-            this.birthdate = birthdate;
-        }
-
-        private bool IsNameValid(string name)
-        {
-            return Regex.IsMatch(name, @"^[a-zA-Z]+$");
-        }
-
-        private bool IsBsnValid(int bsn)
-        {
-            string bsnString = bsn.ToString();
-            return bsnString.Length >= 8 && bsnString.Length <= 9 && Regex.IsMatch(bsnString, @"^\d+$");
-        }
-
-        private bool IsBirthdateValid(DateTime birthdate)
+        private void ValidateBirthdate(DateTime birthdate)
         {
             int age = DateTime.Now.Year - birthdate.Year;
             if (birthdate > DateTime.Now.AddYears(-age)) age--;
-            return age >= 14;
+            if (age < 14)
+            {
+                throw new InvalidBirthdateException();
+            }
         }
 
-        private void ValidateDesktopUser()
+        public void DesktopUserValidation()
         {
-            if (!IsUserValid() ||
-                !IsBsnValid(bsn) ||
-                !IsNameValid(firstName) ||
-                !IsNameValid(lastName) ||
-                !IsBirthdateValid(birthdate))
-            {
-                throw new InvalidUserException("Desktop user data is invalid");
-            }
+             ValidateName(firstName, "first name");
+             ValidateName(lastName, "last name");
+             ValidateBsn(bsn);
+             ValidateBirthdate(birthdate);
         }
     }
 }

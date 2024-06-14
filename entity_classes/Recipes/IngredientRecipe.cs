@@ -35,7 +35,7 @@
 
         public override string ToString()
         {
-            return $"{ingredient.GetName()} - {quantity} {unit.GetName()}";
+            return $"{ingredient.GetName()} - {GetFormattedQuantity()} {unit.GetName()}";
         }
     }
 }

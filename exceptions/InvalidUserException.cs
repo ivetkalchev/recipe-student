@@ -7,7 +7,7 @@
 
     public class NullUserException : InvalidUserException
     {
-        public NullUserException(string credentialType) : base($"The {credentialType} cannot be emprty.") { }
+        public NullUserException(string credentialType) : base($"The {credentialType} cannot be empty.") { }
     }
 
     public class AlreadyExistUserException : InvalidUserException

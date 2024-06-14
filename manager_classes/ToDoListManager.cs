@@ -10,7 +10,7 @@ namespace manager_classes
 
         public ToDoListManager(IDBToDoListHelper toDoHelper)
         {
-            this.toDoHelper = toDoHelper ?? throw new ArgumentNullException(nameof(toDoHelper));
+            this.toDoHelper = toDoHelper;
         }
 
         public void AddToDoList(int userId, int recipeId)

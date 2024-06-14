@@ -535,52 +535,6 @@ namespace db_helpers
             return null;
         }
 
-        public bool IsWebUsernameTaken(string username)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
-                {
-                    conn.Open();
-
-                    string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE username = @Username";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Username", username);
-
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error checking WebUser username: " + ex.Message);
-                return false;
-            }
-        }
-
-        public bool IsWebEmailTaken(string email)
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
-                {
-                    conn.Open();
-
-                    string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE email = @Email";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Email", email);
-
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error checking WebUser email: " + ex.Message);
-                return false;
-            }
-        }
-
         public void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail)
         {
             using (SqlConnection conn = new SqlConnection(DBConnection.connection))
@@ -613,75 +567,6 @@ namespace db_helpers
                     Console.WriteLine("Error updating WebUser details: " + ex.Message);
                 }
             }
-        }
-
-        public void DeleteWebUser(WebUser user)
-        {
-            using (SqlConnection conn = new SqlConnection(DBConnection.connection))
-            {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
-                try
-                {
-                    string deleteUserQuery = @"
-                        DELETE FROM [dbo].[WebUser] WHERE id_user = @UserId;
-                        DELETE FROM [dbo].[User] WHERE id_user = @UserId;";
-
-                    SqlCommand cmd = new SqlCommand(deleteUserQuery, conn, transaction);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
-
-                    cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    Console.WriteLine("Error deleting WebUser: " + ex.Message);
-                }
-            }
-        }
-
-        public List<WebUser> GetAllWebUsers()
-        {
-            List<WebUser> users = new List<WebUser>();
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
-                {
-                    conn.Open();
-
-                    string query = @"
-                    SELECT u.id_user, u.username, u.email, u.password, w.caption
-                    FROM [dbo].[User] u
-                    INNER JOIN [dbo].[WebUser] w ON u.id_user = w.id_user";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            WebUser user = new WebUser(
-                                (int)reader["id_user"],
-                                reader["username"].ToString(),
-                                reader["email"].ToString(),
-                                reader["password"].ToString(),
-                                reader["caption"].ToString()
-                            );
-
-                            users.Add(user);
-                        }
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Error connecting to the database: " + ex.Message);
-            }
-
-            return users;
         }
 
         public WebUser GetWebUserByUsername(string username)

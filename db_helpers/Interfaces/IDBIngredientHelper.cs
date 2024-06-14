@@ -10,6 +10,7 @@ namespace db_helpers
         List<Ingredient> GetAllIngredients();
         List<TypeIngredient> GetAllTypes();
         List<Unit> GetAllUnits();
+        List<IngredientRecipe> GetIngredientsForRecipe(int recipeId);
         bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name);
         void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType);
     }

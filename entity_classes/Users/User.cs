@@ -1,4 +1,5 @@
 ﻿using exceptions;
+using System;
 using System.Text.RegularExpressions;
 
 namespace entity_classes
@@ -16,7 +17,6 @@ namespace entity_classes
             this.username = username;
             this.email = email;
             this.password = password;
-            ValidateUser();
         }
 
         public int GetIdUser()
@@ -39,39 +39,32 @@ namespace entity_classes
             return password;
         }
 
-        private void ValidateUser()
-        {
-            IsUsernameValid(username);
-            IsEmailValid(email);
-            IsPasswordValid(password);
-        }
-
-        private void IsUsernameValid(string username)
+        private void ValidateUsername(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
             {
-                throw new NullUserException("username");
+                throw new NullUserException("Username");
             }
         }
 
-        private void IsEmailValid(string email)
+        private void ValidateEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
-                throw new NullUserException("email");
+                throw new NullUserException("Email");
             }
 
-            if (!email.Contains("@"))
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 throw new InvalidEmailException();
             }
         }
 
-        private void IsPasswordValid(string password)
+        private void ValidatePassword(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new NullUserException("password");
+                throw new NullUserException("Password");
             }
 
             if (password.Length < 8)
@@ -79,23 +72,17 @@ namespace entity_classes
                 throw new InvalidPasswordLengthException();
             }
 
-            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$"))
+            if (!Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!""#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]).+$"))
             {
                 throw new InvalidPasswordFormatException();
             }
         }
 
-        public bool IsUserValid()
+        public void UserValidation()
         {
-            try
-            {
-                ValidateUser();
-                return true;
-            }
-            catch (InvalidUserException)
-            {
-                return false;
-            }
+            ValidateUsername(username);
+            ValidatePassword(password);
+            ValidateEmail(email);
         }
     }
 }

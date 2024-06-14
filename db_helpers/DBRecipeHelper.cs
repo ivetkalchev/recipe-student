@@ -1,5 +1,7 @@
-﻿using entity_classes;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using entity_classes;
 
 namespace db_helpers
 {
@@ -291,23 +293,23 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
-                       m.is_spicy, m.servings,
-                       d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
-                       ds.is_sugar_free, ds.requires_freezing,
-                       rp.name AS pic_name, rp.data AS pic_data, rp.content_type AS pic_content_type,
-                       ir.id_ingredient, ir.quantity, ir.id_unit,
-                       i.name AS ingredient_name,
-                       u.unit AS unit_name
-                FROM Recipe r
-                LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
-                LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
-                LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
-                LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
-                LEFT JOIN IngredientRecipe ir ON r.id_recipe = ir.id_recipe
-                LEFT JOIN Ingredient i ON ir.id_ingredient = i.id_ingredient
-                LEFT JOIN Unit u ON ir.id_unit = u.id_unit
-                WHERE r.id_recipe = @id";
+                    SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                           m.is_spicy, m.servings,
+                           d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                           ds.is_sugar_free, ds.requires_freezing,
+                           rp.name AS pic_name, rp.data AS pic_data, rp.content_type AS pic_content_type,
+                           ir.id_ingredient, ir.quantity, ir.id_unit,
+                           i.name AS ingredient_name,
+                           u.unit AS unit_name
+                    FROM Recipe r
+                    LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                    LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                    LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                    LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
+                    LEFT JOIN IngredientRecipe ir ON r.id_recipe = ir.id_recipe
+                    LEFT JOIN Ingredient i ON ir.id_ingredient = i.id_ingredient
+                    LEFT JOIN Unit u ON ir.id_unit = u.id_unit
+                    WHERE r.id_recipe = @id";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@id", id);
@@ -374,14 +376,10 @@ namespace db_helpers
                                 int unitId = (int)reader["id_unit"];
                                 string unitName = reader["unit_name"].ToString();
 
-                                if (!ingredientRecipes.ContainsKey(ingredientId))
-                                {
-                                    var ingredient = new Ingredient(ingredientId, ingredientName, null);
-                                    var unit = new Unit(unitId, unitName);
-                                    var ingredientRecipe = new IngredientRecipe(ingredient, quantity, unit);
-                                    recipe.GetIngredientRecipes().Add(ingredientRecipe);
-                                    ingredientRecipes.Add(ingredientId, ingredientRecipe);
-                                }
+                                var ingredient = new Ingredient(ingredientId, ingredientName, null);
+                                var unit = new Unit(unitId, unitName);
+                                var ingredientRecipe = new IngredientRecipe(ingredient, quantity, unit);
+                                recipe.GetIngredientRecipes().Add(ingredientRecipe);
                             }
                         }
                     }
@@ -643,19 +641,19 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
-                       m.is_spicy, m.servings,
-                       d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
-                       ds.is_sugar_free, ds.requires_freezing,
-                       rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
-                FROM Recipe r
-                LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
-                LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
-                LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
-                LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
-                WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')
-                ORDER BY r.id_recipe
-                OFFSET @skip ROWS FETCH NEXT @pageSize ROWS ONLY";
+                        SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                               m.is_spicy, m.servings,
+                               d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                               ds.is_sugar_free, ds.requires_freezing,
+                               rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
+                        FROM Recipe r
+                        LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                        LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                        LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                        LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
+                        WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')
+                        ORDER BY r.id_recipe
+                        OFFSET @skip ROWS FETCH NEXT @pageSize ROWS ONLY";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@searchQuery", string.IsNullOrEmpty(searchQuery) ? (object)DBNull.Value : searchQuery);
@@ -734,9 +732,9 @@ namespace db_helpers
                 {
                     conn.Open();
                     string query = @"
-                    SELECT COUNT(*)
-                    FROM Recipe r
-                    WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')";
+                        SELECT COUNT(*)
+                        FROM Recipe r
+                        WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@searchQuery", string.IsNullOrEmpty(searchQuery) ? (object)DBNull.Value : searchQuery);
@@ -751,6 +749,419 @@ namespace db_helpers
             }
 
             return totalRecipes;
+        }
+
+        public void DeleteRecipe(int recipeId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        string deleteIngredientRecipeQuery = "DELETE FROM IngredientRecipe WHERE id_recipe = @recipeId";
+                        SqlCommand ingredientRecipeCmd = new SqlCommand(deleteIngredientRecipeQuery, conn, transaction);
+                        ingredientRecipeCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                        ingredientRecipeCmd.ExecuteNonQuery();
+
+                        string checkMainCourseQuery = "SELECT COUNT(*) FROM MainCourse WHERE id_recipe = @recipeId";
+                        SqlCommand checkMainCourseCmd = new SqlCommand(checkMainCourseQuery, conn, transaction);
+                        checkMainCourseCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                        int mainCourseCount = (int)checkMainCourseCmd.ExecuteScalar();
+                        if (mainCourseCount > 0)
+                        {
+                            string deleteMainCourseQuery = "DELETE FROM MainCourse WHERE id_recipe = @recipeId";
+                            SqlCommand mainCourseCmd = new SqlCommand(deleteMainCourseQuery, conn, transaction);
+                            mainCourseCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                            mainCourseCmd.ExecuteNonQuery();
+                        }
+
+                        string checkDrinkQuery = "SELECT COUNT(*) FROM Drink WHERE id_recipe = @recipeId";
+                        SqlCommand checkDrinkCmd = new SqlCommand(checkDrinkQuery, conn, transaction);
+                        checkDrinkCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                        int drinkCount = (int)checkDrinkCmd.ExecuteScalar();
+                        if (drinkCount > 0)
+                        {
+                            string deleteDrinkQuery = "DELETE FROM Drink WHERE id_recipe = @recipeId";
+                            SqlCommand drinkCmd = new SqlCommand(deleteDrinkQuery, conn, transaction);
+                            drinkCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                            drinkCmd.ExecuteNonQuery();
+                        }
+
+                        string checkDessertQuery = "SELECT COUNT(*) FROM Dessert WHERE id_recipe = @recipeId";
+                        SqlCommand checkDessertCmd = new SqlCommand(checkDessertQuery, conn, transaction);
+                        checkDessertCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                        int dessertCount = (int)checkDessertCmd.ExecuteScalar();
+                        if (dessertCount > 0)
+                        {
+                            string deleteDessertQuery = "DELETE FROM Dessert WHERE id_recipe = @recipeId";
+                            SqlCommand dessertCmd = new SqlCommand(deleteDessertQuery, conn, transaction);
+                            dessertCmd.Parameters.AddWithValue("@recipeId", recipeId);
+                            dessertCmd.ExecuteNonQuery();
+                        }
+
+                        string deleteRecipeQuery = "DELETE FROM Recipe WHERE id_recipe = @recipeId";
+                        SqlCommand cmd = new SqlCommand(deleteRecipeQuery, conn, transaction);
+                        cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                        cmd.ExecuteNonQuery();
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        Console.WriteLine("Error deleting recipe: " + ex.Message);
+                        throw new Exception("Unable to delete recipe. Please try again later.", ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error deleting recipe: " + ex.Message);
+                throw new Exception("Unable to delete recipe. Please try again later.", ex);
+            }
+        }
+
+
+        public void UpdateDrink(Drink recipe)
+        {
+            if (recipe == null)
+            {
+                throw new ArgumentNullException(nameof(recipe), "The recipe object cannot be null.");
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        int? picId = null;
+                        var recipePic = recipe.GetRecipePic();
+                        if (recipePic != null)
+                        {
+                            string picQuery = @"
+                    INSERT INTO RecipePicture (name, data, content_type)
+                    OUTPUT INSERTED.id_recipe_pic
+                    VALUES (@name, @data, @contentType)";
+                            SqlCommand picCmd = new SqlCommand(picQuery, conn, transaction);
+                            picCmd.Parameters.AddWithValue("@name", recipePic.GetName() ?? (object)DBNull.Value);
+                            picCmd.Parameters.AddWithValue("@data", recipePic.GetData() ?? (object)DBNull.Value);
+                            picCmd.Parameters.AddWithValue("@contentType", recipePic.GetContentType() ?? (object)DBNull.Value);
+                            picId = (int)picCmd.ExecuteScalar();
+                        }
+
+                        string updateRecipeQuery = @"
+                UPDATE Recipe
+                SET title = @title, description = @description, instructions = @instructions, id_desktop_user = @userId,
+                    preparation_time = @prepTime, cooking_time = @cookTime, id_diet_restriction = @dietId, id_difficulty = @difficultyId, id_recipe_pic = @picId
+                WHERE id_recipe = @recipeId";
+                        SqlCommand updateRecipeCmd = new SqlCommand(updateRecipeQuery, conn, transaction);
+                        updateRecipeCmd.Parameters.AddWithValue("@title", (object)recipe.GetTitle() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@description", (object)recipe.GetDescription() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@instructions", (object)recipe.GetInstructions() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@userId", recipe.GetUser()?.GetIdUser() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@prepTime", recipe.GetPreparationTime() != default(TimeSpan) ? (object)recipe.GetPreparationTime() : DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@cookTime", recipe.GetCookingTime() != default(TimeSpan) ? (object)recipe.GetCookingTime() : DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@dietId", recipe.GetDietRestriction()?.GetId() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@difficultyId", recipe.GetDifficulty()?.GetId() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@picId", (object)picId ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        updateRecipeCmd.ExecuteNonQuery();
+
+                        string updateDrinkQuery = @"
+                UPDATE Drink
+                SET is_alcoholic = @isAlcoholic, contains_caffeine = @containsCaffeine, served_hot = @servedHot, pours = @pours
+                WHERE id_recipe = @recipeId";
+                        SqlCommand updateDrinkCmd = new SqlCommand(updateDrinkQuery, conn, transaction);
+                        updateDrinkCmd.Parameters.AddWithValue("@isAlcoholic", recipe.GetIsAlcoholic());
+                        updateDrinkCmd.Parameters.AddWithValue("@containsCaffeine", recipe.GetContainsCaffeine());
+                        updateDrinkCmd.Parameters.AddWithValue("@servedHot", recipe.GetServedHot());
+                        updateDrinkCmd.Parameters.AddWithValue("@pours", recipe.GetPours());
+                        updateDrinkCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        updateDrinkCmd.ExecuteNonQuery();
+
+                        string deleteIngredientRecipesQuery = @"
+                DELETE FROM IngredientRecipe
+                WHERE id_recipe = @recipeId";
+                        SqlCommand deleteIngredientRecipesCmd = new SqlCommand(deleteIngredientRecipesQuery, conn, transaction);
+                        deleteIngredientRecipesCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        deleteIngredientRecipesCmd.ExecuteNonQuery();
+
+                        foreach (var ingredient in recipe.GetIngredientRecipes())
+                        {
+                            if (ingredient != null)
+                            {
+                                string ingredientRecipeQuery = @"
+                        INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity)
+                        VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
+                                SqlCommand ingredientCmd = new SqlCommand(ingredientRecipeQuery, conn, transaction);
+                                ingredientCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                                ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.GetIngredient()?.GetId() ?? (object)DBNull.Value);
+                                ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.GetUnit()?.GetId() ?? (object)DBNull.Value);
+                                ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.GetQuantity());
+                                ingredientCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error in the transaction: " + ex.Message, ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating drink: " + ex.Message, ex);
+            }
+        }
+
+        public void UpdateDessert(Dessert recipe)
+        {
+            if (recipe == null)
+            {
+                throw new ArgumentNullException(nameof(recipe), "The recipe object cannot be null.");
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        int? picId = null;
+                        var recipePic = recipe.GetRecipePic();
+                        if (recipePic != null)
+                        {
+                            string picQuery = @"
+                    INSERT INTO RecipePicture (name, data, content_type)
+                    OUTPUT INSERTED.id_recipe_pic
+                    VALUES (@name, @data, @contentType)";
+                            SqlCommand picCmd = new SqlCommand(picQuery, conn, transaction);
+                            picCmd.Parameters.AddWithValue("@name", recipePic.GetName() ?? (object)DBNull.Value);
+                            picCmd.Parameters.AddWithValue("@data", recipePic.GetData() ?? (object)DBNull.Value);
+                            picCmd.Parameters.AddWithValue("@contentType", recipePic.GetContentType() ?? (object)DBNull.Value);
+                            picId = (int)picCmd.ExecuteScalar();
+                        }
+
+                        string updateRecipeQuery = @"
+                UPDATE Recipe
+                SET title = @title, description = @description, instructions = @instructions, id_desktop_user = @userId,
+                    preparation_time = @prepTime, cooking_time = @cookTime, id_diet_restriction = @dietId, id_difficulty = @difficultyId, id_recipe_pic = @picId
+                WHERE id_recipe = @recipeId";
+                        SqlCommand updateRecipeCmd = new SqlCommand(updateRecipeQuery, conn, transaction);
+                        updateRecipeCmd.Parameters.AddWithValue("@title", (object)recipe.GetTitle() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@description", (object)recipe.GetDescription() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@instructions", (object)recipe.GetInstructions() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@userId", recipe.GetUser()?.GetIdUser() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@prepTime", recipe.GetPreparationTime() != default(TimeSpan) ? (object)recipe.GetPreparationTime() : DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@cookTime", recipe.GetCookingTime() != default(TimeSpan) ? (object)recipe.GetCookingTime() : DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@dietId", recipe.GetDietRestriction()?.GetId() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@difficultyId", recipe.GetDifficulty()?.GetId() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@picId", (object)picId ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        updateRecipeCmd.ExecuteNonQuery();
+
+                        string updateDessertQuery = @"
+                UPDATE Dessert
+                SET is_sugar_free = @isSugarFree, requires_freezing = @requiresFreezing
+                WHERE id_recipe = @recipeId";
+                        SqlCommand updateDessertCmd = new SqlCommand(updateDessertQuery, conn, transaction);
+                        updateDessertCmd.Parameters.AddWithValue("@isSugarFree", recipe.GetIsSugarFree());
+                        updateDessertCmd.Parameters.AddWithValue("@requiresFreezing", recipe.GetRequiresFreezing());
+                        updateDessertCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        updateDessertCmd.ExecuteNonQuery();
+
+                        string deleteIngredientRecipesQuery = @"
+                DELETE FROM IngredientRecipe
+                WHERE id_recipe = @recipeId";
+                        SqlCommand deleteIngredientRecipesCmd = new SqlCommand(deleteIngredientRecipesQuery, conn, transaction);
+                        deleteIngredientRecipesCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        deleteIngredientRecipesCmd.ExecuteNonQuery();
+
+                        foreach (var ingredient in recipe.GetIngredientRecipes())
+                        {
+                            if (ingredient != null)
+                            {
+                                string ingredientRecipeQuery = @"
+                        INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity)
+                        VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
+                                SqlCommand ingredientCmd = new SqlCommand(ingredientRecipeQuery, conn, transaction);
+                                ingredientCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                                ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.GetIngredient()?.GetId() ?? (object)DBNull.Value);
+                                ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.GetUnit()?.GetId() ?? (object)DBNull.Value);
+                                ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.GetQuantity());
+                                ingredientCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error in the transaction: " + ex.Message, ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating dessert: " + ex.Message, ex);
+            }
+        }
+
+        public void UpdateMainCourse(MainCourse recipe)
+        {
+            if (recipe == null)
+            {
+                throw new ArgumentNullException(nameof(recipe), "The recipe object cannot be null.");
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+
+                    try
+                    {
+                        int? picId = null;
+                        var recipePic = recipe.GetRecipePic();
+                        if (recipePic != null)
+                        {
+                            string picQuery = @"
+                    INSERT INTO RecipePicture (name, data, content_type)
+                    OUTPUT INSERTED.id_recipe_pic
+                    VALUES (@name, @data, @contentType)";
+                            SqlCommand picCmd = new SqlCommand(picQuery, conn, transaction);
+                            picCmd.Parameters.AddWithValue("@name", recipePic.GetName() ?? (object)DBNull.Value);
+                            picCmd.Parameters.AddWithValue("@data", recipePic.GetData() ?? (object)DBNull.Value);
+                            picCmd.Parameters.AddWithValue("@contentType", recipePic.GetContentType() ?? (object)DBNull.Value);
+                            picId = (int)picCmd.ExecuteScalar();
+                        }
+
+                        string updateRecipeQuery = @"
+                UPDATE Recipe
+                SET title = @title, description = @description, instructions = @instructions, id_desktop_user = @userId,
+                    preparation_time = @prepTime, cooking_time = @cookTime, id_diet_restriction = @dietId, id_difficulty = @difficultyId, id_recipe_pic = @picId
+                WHERE id_recipe = @recipeId";
+                        SqlCommand updateRecipeCmd = new SqlCommand(updateRecipeQuery, conn, transaction);
+                        updateRecipeCmd.Parameters.AddWithValue("@title", (object)recipe.GetTitle() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@description", (object)recipe.GetDescription() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@instructions", (object)recipe.GetInstructions() ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@userId", recipe.GetUser()?.GetIdUser() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@prepTime", recipe.GetPreparationTime() != default(TimeSpan) ? (object)recipe.GetPreparationTime() : DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@cookTime", recipe.GetCookingTime() != default(TimeSpan) ? (object)recipe.GetCookingTime() : DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@dietId", recipe.GetDietRestriction()?.GetId() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@difficultyId", recipe.GetDifficulty()?.GetId() ?? (object)DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@picId", (object)picId ?? DBNull.Value);
+                        updateRecipeCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        updateRecipeCmd.ExecuteNonQuery();
+
+                        string updateMainCourseQuery = @"
+                UPDATE MainCourse
+                SET is_spicy = @isSpicy, servings = @servings
+                WHERE id_recipe = @recipeId";
+                        SqlCommand updateMainCourseCmd = new SqlCommand(updateMainCourseQuery, conn, transaction);
+                        updateMainCourseCmd.Parameters.AddWithValue("@isSpicy", recipe.GetIsSpicy());
+                        updateMainCourseCmd.Parameters.AddWithValue("@servings", recipe.GetServings());
+                        updateMainCourseCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        updateMainCourseCmd.ExecuteNonQuery();
+
+                        string deleteIngredientRecipesQuery = @"
+                DELETE FROM IngredientRecipe
+                WHERE id_recipe = @recipeId";
+                        SqlCommand deleteIngredientRecipesCmd = new SqlCommand(deleteIngredientRecipesQuery, conn, transaction);
+                        deleteIngredientRecipesCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                        deleteIngredientRecipesCmd.ExecuteNonQuery();
+
+                        foreach (var ingredient in recipe.GetIngredientRecipes())
+                        {
+                            if (ingredient != null)
+                            {
+                                string ingredientRecipeQuery = @"
+                        INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity)
+                        VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
+                                SqlCommand ingredientCmd = new SqlCommand(ingredientRecipeQuery, conn, transaction);
+                                ingredientCmd.Parameters.AddWithValue("@recipeId", recipe.GetIdRecipe());
+                                ingredientCmd.Parameters.AddWithValue("@ingredientId", ingredient.GetIngredient()?.GetId() ?? (object)DBNull.Value);
+                                ingredientCmd.Parameters.AddWithValue("@unitId", ingredient.GetUnit()?.GetId() ?? (object)DBNull.Value);
+                                ingredientCmd.Parameters.AddWithValue("@quantity", ingredient.GetQuantity());
+                                ingredientCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error in the transaction: " + ex.Message, ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating main course: " + ex.Message, ex);
+            }
+        }
+
+
+        public void InsertIngredientToRecipe(int recipeId, int ingredientId, int unitId, decimal quantity)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity) VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                    cmd.Parameters.AddWithValue("@unitId", unitId);
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error adding ingredient to recipe: " + ex.Message);
+                throw new Exception("Unable to add ingredient to recipe. Please try again later.", ex);
+            }
+        }
+
+        public void DeleteIngredientFromRecipe(int recipeId, int ingredientId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "DELETE FROM IngredientRecipe WHERE id_recipe = @recipeId AND id_ingredient = @ingredientId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error deleting ingredient from recipe: " + ex.Message);
+                throw new Exception("Unable to delete ingredient from recipe. Please try again later.", ex);
+            }
         }
     }
 }

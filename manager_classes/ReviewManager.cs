@@ -12,8 +12,8 @@ namespace manager_classes
 
         public ReviewManager(IDBReviewHelper reviewHelper, IDBRecipeHelper recipeHelper)
         {
-            this.reviewHelper = reviewHelper ?? throw new ArgumentNullException(nameof(reviewHelper));
-            this.recipeHelper = recipeHelper ?? throw new ArgumentNullException(nameof(recipeHelper));
+            this.reviewHelper = reviewHelper;
+            this.recipeHelper = recipeHelper;
         }
 
         public void AddReview(Review review)

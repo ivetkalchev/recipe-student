@@ -12,7 +12,7 @@ namespace manager_classes
 
         public IngredientManager(IDBIngredientHelper ingredientHelper)
         {
-            this.ingredientHelper = ingredientHelper ?? throw new ArgumentNullException(nameof(ingredientHelper));
+            this.ingredientHelper = ingredientHelper;
         }
 
         public List<TypeIngredient> GetAllTypeIngredients()
@@ -73,6 +73,11 @@ namespace manager_classes
         private bool IsIngredientNameTakenByOtherIngredient(Ingredient ingredient, string name)
         {
             return ingredientHelper.IsIngredientNameTakenByOtherIngredient(ingredient, name);
+        }
+
+        public List<IngredientRecipe> GetIngredientsForRecipe(int recipeId)
+        {
+            return ingredientHelper.GetIngredientsForRecipe(recipeId);
         }
     }
 }

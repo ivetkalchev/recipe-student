@@ -10,7 +10,7 @@ namespace manager_classes
 
         public RecipeManager(IDBRecipeHelper recipeHelper)
         {
-            this.recipeHelper = recipeHelper ?? throw new ArgumentNullException(nameof(recipeHelper));
+            this.recipeHelper = recipeHelper;
         }
 
         public List<DietRestriction> GetAllDietRestrictions()
@@ -66,6 +66,36 @@ namespace manager_classes
         public int GetTotalRecipesCount(string searchQuery)
         {
             return recipeHelper.GetTotalRecipesCount(searchQuery);
+        }
+
+        public void DeleteRecipe(int recipeId)
+        {
+            recipeHelper.DeleteRecipe(recipeId);
+        }
+
+        public void UpdateDrink(Drink drink)
+        {
+            recipeHelper.UpdateDrink(drink);
+        }
+
+        public void UpdateDessert(Dessert dessert)
+        {
+            recipeHelper.UpdateDessert(dessert);
+        }
+
+        public void UpdateMainCourse(MainCourse mainCourse)
+        {
+            recipeHelper.UpdateMainCourse(mainCourse);
+        }
+
+        public void InsertIngredientToRecipe(int recipeId, int ingredientId, int unitId, decimal quantity)
+        {
+            recipeHelper.InsertIngredientToRecipe(recipeId, ingredientId, unitId, quantity);
+        }
+
+        public void DeleteIngredientFromRecipe(int recipeId, int ingredientId)
+        {
+            recipeHelper.DeleteIngredientFromRecipe(recipeId, ingredientId);
         }
     }
 }

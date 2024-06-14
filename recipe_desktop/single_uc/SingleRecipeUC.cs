@@ -9,14 +9,16 @@ namespace recipe_desktop
     {
         private Recipe recipe;
         private IRecipeManager recipeManager;
+        private IIngredientManager ingredientManager;
 
         public event EventHandler RecipeDeleted;
 
-        public SingleRecipeUC(IRecipeManager recipeManager, Recipe recipe)
+        public SingleRecipeUC(IRecipeManager recipeManager, IIngredientManager ingredientManager, Recipe recipe)
         {
             InitializeComponent();
 
             this.recipeManager = recipeManager;
+            this.ingredientManager = ingredientManager;
             this.recipe = recipe;
 
             LoadRecipeDetails();
@@ -60,14 +62,27 @@ namespace recipe_desktop
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //recipeManager.DeleteRecipe(recipe.GetIdRecipe());
-            //RecipeDeleted?.Invoke(this, EventArgs.Empty);
+            recipeManager.DeleteRecipe(recipe.GetIdRecipe());
+            RecipeDeleted?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //EditRecipeForm editRecipe = new EditRecipeForm(recipe, recipeManager);
-            //editRecipe.Show();
+            if (recipe is MainCourse mainCourse)
+            {
+                EditMainCourseForm editForm = new EditMainCourseForm(mainCourse, recipeManager, ingredientManager);
+                editForm.Show();
+            }
+            else if (recipe is Drink drink)
+            {
+                EditDrinkForm editForm = new EditDrinkForm(drink, recipeManager, ingredientManager);
+                editForm.Show();
+            }
+            else if (recipe is Dessert dessert)
+            {
+                EditDessertForm editForm = new EditDessertForm(dessert, recipeManager, ingredientManager);
+                editForm.Show();
+            }
         }
 
         private Image ConvertBase64ToImage(string base64String)

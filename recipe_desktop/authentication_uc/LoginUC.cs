@@ -1,4 +1,5 @@
 ﻿using entity_classes;
+using exceptions;
 using manager_classes;
 using System;
 using System.Drawing;
@@ -43,15 +44,22 @@ namespace recipe_desktop
                 return;
             }
 
-            var user = userManager.LoginDesktopUser(username, password);
-            if (user != null)
+            try
             {
-                MessageBox.Show($"Login successful! Welcome, {username}!");
-                OpenHomePage(user);
+                var user = userManager.LoginDesktopUser(username, password);
+                if (user != null)
+                {
+                    MessageBox.Show($"Login successful! Welcome, {username}!");
+                    OpenHomePage(user);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username or password.");
+                }
             }
-            else
+            catch (InvalidUserException ex)
             {
-                MessageBox.Show("Invalid username or password.");
+                MessageBox.Show(ex.Message);
             }
         }
 

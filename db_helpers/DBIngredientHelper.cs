@@ -1,4 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using entity_classes;
 
 namespace db_helpers
@@ -216,6 +218,100 @@ namespace db_helpers
             }
 
             return units;
+        }
+
+        public List<IngredientRecipe> GetIngredientsForRecipe(int recipeId)
+        {
+            List<IngredientRecipe> ingredients = new List<IngredientRecipe>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT ir.id_recipe, ir.id_ingredient, ir.id_unit, ir.quantity, 
+                               i.name AS ingredient_name, 
+                               u.unit AS unit_name,
+                               t.id_type, t.type
+                        FROM IngredientRecipe ir
+                        JOIN Ingredient i ON ir.id_ingredient = i.id_ingredient
+                        JOIN Unit u ON ir.id_unit = u.id_unit
+                        JOIN TypeIngredient t ON i.id_type = t.id_type
+                        WHERE ir.id_recipe = @RecipeId";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@RecipeId", recipeId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Ingredient ingredient = new Ingredient(
+                                (int)reader["id_ingredient"],
+                                reader["ingredient_name"].ToString(),
+                                new TypeIngredient((int)reader["id_type"], reader["type"].ToString())
+                            );
+
+                            Unit unit = new Unit((int)reader["id_unit"], reader["unit_name"].ToString());
+                            decimal quantity = (decimal)reader["quantity"];
+
+                            ingredients.Add(new IngredientRecipe(ingredient, quantity, unit));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error fetching ingredients for recipe: " + ex.Message);
+                throw new Exception("Unable to fetch ingredients for recipe. Please try again later.");
+            }
+
+            return ingredients;
+        }
+
+        public void InsertIngredientToRecipe(int recipeId, int ingredientId, int unitId, decimal quantity)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO IngredientRecipe (id_recipe, id_ingredient, id_unit, quantity) VALUES (@recipeId, @ingredientId, @unitId, @quantity)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                    cmd.Parameters.AddWithValue("@unitId", unitId);
+                    cmd.Parameters.AddWithValue("@quantity", quantity);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error adding ingredient to recipe: " + ex.Message);
+                throw new Exception("Unable to add ingredient to recipe. Please try again later.", ex);
+            }
+        }
+
+        public void DeleteIngredientFromRecipe(int recipeId, int ingredientId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = "DELETE FROM IngredientRecipe WHERE id_recipe = @recipeId AND id_ingredient = @ingredientId";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error deleting ingredient from recipe: " + ex.Message);
+                throw new Exception("Unable to delete ingredient from recipe. Please try again later.", ex);
+            }
         }
     }
 }

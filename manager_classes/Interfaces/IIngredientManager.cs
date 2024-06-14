@@ -11,5 +11,6 @@ namespace manager_classes
         List<Unit> GetAllUnits();
         TypeIngredient GetTypeIngredientByName(string name);
         void UpdateIngredientDetails(Ingredient ingredient, string newName, TypeIngredient newType);
+        List<IngredientRecipe> GetIngredientsForRecipe(int recipeId);
     }
 }

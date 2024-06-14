@@ -79,6 +79,9 @@ namespace recipe_desktop
 
             try
             {
+                user.UserValidation();
+                user.DesktopUserValidation();
+
                 userManager.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBSN);
                 MessageBox.Show("Changes saved successfully!");
 

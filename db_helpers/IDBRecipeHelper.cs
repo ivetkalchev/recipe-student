@@ -4,6 +4,8 @@ namespace db_helpers
 {
     public interface IDBRecipeHelper
     {
+        void DeleteIngredientFromRecipe(int recipeId, int ingredientId);
+        void DeleteRecipe(int recipeId);
         List<DietRestriction> GetAllDietRestrictions();
         List<Difficulty> GetAllDifficulties();
         List<Recipe> GetAllRecipes();
@@ -16,6 +18,10 @@ namespace db_helpers
         int GetTotalRecipesCount(string searchQuery);
         void InsertDessert(Dessert recipe);
         void InsertDrink(Drink recipe);
+        void InsertIngredientToRecipe(int recipeId, int ingredientId, int unitId, decimal quantity);
         void InsertMainCourse(MainCourse recipe);
+        void UpdateDessert(Dessert recipe);
+        void UpdateDrink(Drink recipe);
+        void UpdateMainCourse(MainCourse recipe);
     }
 }

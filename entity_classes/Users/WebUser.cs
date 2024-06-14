@@ -10,20 +10,11 @@ namespace entity_classes
             : base(idUser, username, email, password)
         {
             this.caption = caption;
-            ValidateWebUser();
         }
 
         public string GetCaption()
         {
             return caption;
-        }
-
-        private void ValidateWebUser()
-        {
-            if (string.IsNullOrWhiteSpace(caption))
-            {
-                throw new InvalidCaptionLengthException();
-            }
         }
     }
 }

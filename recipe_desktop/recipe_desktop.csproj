@@ -23,10 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AddRecipeForm.cs">
+    <Compile Update="edit\EditMainCourseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="EditIngedientForm.cs" />
+    <Compile Update="edit\EditDrinkForm.cs" />
+    <Compile Update="edit\EditDessertForm.cs" />
+    <Compile Update="add\AddRecipeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="edit\EditIngedientForm.cs" />
     <Compile Update="main_panel_uc\EmployeeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -42,11 +47,11 @@
     <Compile Update="authentication_uc\RegisterUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="main_panel_uc\SingleRecipeUC.cs">
+    <Compile Update="single_uc\SingleRecipeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="main_panel_uc\SingleIngredientUC.cs" />
-    <Compile Update="main_panel_uc\SingleEmployeeUC.cs" />
+    <Compile Update="single_uc\SingleIngredientUC.cs" />
+    <Compile Update="single_uc\SingleEmployeeUC.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

@@ -17,6 +17,8 @@ namespace recipe_desktop
 
         private int currentPage;
         private const int RecipesPerPage = 5;
+        private int totalRecipesCount;
+        private string searchTerm;
 
         public RecipesUC(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
         {
@@ -33,8 +35,8 @@ namespace recipe_desktop
 
         private void LoadAllRecipes()
         {
-            recipes = recipeManager.GetAllRecipes();
-            UpdatePagination();
+            totalRecipesCount = recipeManager.GetTotalRecipesCount(searchTerm);
+            recipes = recipeManager.GetPagedRecipes(currentPage, RecipesPerPage, searchTerm);
             DisplayRecipes();
         }
 
@@ -59,12 +61,9 @@ namespace recipe_desktop
             }
             else
             {
-                int startIndex = (currentPage - 1) * RecipesPerPage;
-                int endIndex = Math.Min(startIndex + RecipesPerPage, recipesToDisplay.Count);
-
-                for (int i = startIndex; i < endIndex; i++)
+                foreach (var recipe in recipesToDisplay)
                 {
-                    SingleRecipeUC recipeUC = new SingleRecipeUC(recipeManager, recipesToDisplay[i]);
+                    SingleRecipeUC recipeUC = new SingleRecipeUC(recipeManager, ingredientManager, recipe);
                     recipeUC.Margin = new Padding(5);
                     recipeUC.RecipeDeleted += new EventHandler(RecipeUC_RecipeDeleted);
                     flowPanel.Controls.Add(recipeUC);
@@ -81,16 +80,10 @@ namespace recipe_desktop
             LoadAllRecipes();
         }
 
-        private void UpdatePagination()
-        {
-            currentPage = 1;
-            UpdatePaginationButtons();
-        }
-
         private void UpdatePaginationButtons()
         {
             btnPrevious.Enabled = currentPage > 1;
-            btnNext.Enabled = currentPage < (searchResults?.Count ?? recipes.Count + RecipesPerPage - 1) / RecipesPerPage;
+            btnNext.Enabled = currentPage < (totalRecipesCount + RecipesPerPage - 1) / RecipesPerPage;
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
@@ -98,41 +91,24 @@ namespace recipe_desktop
             if (currentPage > 1)
             {
                 currentPage--;
-                DisplayRecipes();
+                LoadAllRecipes();
             }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (currentPage < (searchResults?.Count ?? recipes.Count + RecipesPerPage - 1) / RecipesPerPage)
+            if (currentPage < (totalRecipesCount + RecipesPerPage - 1) / RecipesPerPage)
             {
                 currentPage++;
-                DisplayRecipes();
+                LoadAllRecipes();
             }
         }
 
         private void picSearch_Click(object sender, EventArgs e)
         {
-            string searchTerm = tbSearch.Text.Trim().ToLower();
-
-            if (string.IsNullOrEmpty(searchTerm))
-            {
-                searchResults = null;
-            }
-            else
-            {
-                searchResults = new List<Recipe>();
-                foreach (var recipe in recipes)
-                {
-                    if (recipe.GetTitle().ToLower().Contains(searchTerm))
-                    {
-                        searchResults.Add(recipe);
-                    }
-                }
-            }
-
+            searchTerm = tbSearch.Text.Trim().ToLower();
             currentPage = 1;
-            DisplayRecipes();
+            LoadAllRecipes();
         }
 
         private void btnAddRecipes_Click(object sender, EventArgs e)

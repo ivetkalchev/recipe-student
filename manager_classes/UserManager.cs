@@ -10,14 +10,14 @@ namespace manager_classes
 
         public UserManager(IDBUserHelper userHelper)
         {
-            this.userHelper = userHelper ?? throw new ArgumentNullException(nameof(userHelper));
+            this.userHelper = userHelper;
         }
 
-        public bool RegisterDesktopUser(DesktopUser newUser)
+        public void RegisterDesktopUser(DesktopUser newUser)
         {
             if (IsDesktopUserTaken(newUser))
             {
-                return false;
+                throw new InvalidUserException("User already exists.");
             }
 
             newUser = new DesktopUser(
@@ -34,14 +34,13 @@ namespace manager_classes
             );
 
             userHelper.InsertDesktopUser(newUser);
-            return true;
         }
 
         public bool RegisterWebUser(WebUser newUser)
         {
             if (IsWebUserTaken(newUser))
             {
-                return false;
+                throw new InvalidUserException("User already exists.");
             }
 
             newUser = new WebUser(
@@ -55,6 +54,7 @@ namespace manager_classes
             userHelper.InsertWebUser(newUser);
             return true;
         }
+
 
         private bool IsDesktopUserTaken(DesktopUser newUser)
         {
@@ -88,12 +88,22 @@ namespace manager_classes
 
         public DesktopUser LoginDesktopUser(string username, string password)
         {
-            return userHelper.GetDesktopUser(username, Hasher.HashText(password));
+            var user = userHelper.GetDesktopUser(username, Hasher.HashText(password));
+            if (user == null)
+            {
+                throw new InvalidUserException("Invalid username or password.");
+            }
+            return user;
         }
 
         public WebUser LoginWebUser(string username, string password)
         {
-            return userHelper.GetWebUser(username, Hasher.HashText(password));
+            var user = userHelper.GetWebUser(username, Hasher.HashText(password));
+            if (user == null)
+            {
+                throw new InvalidUserException("Invalid username or password.");
+            }
+            return user;
         }
 
         public bool IsUsernameTaken(string username)
@@ -136,9 +146,9 @@ namespace manager_classes
             return userHelper.GetWebUserByUsername(username);
         }
 
-        public bool IsEmailTakenByOtherUser(int user, string email)
+        public bool IsEmailTakenByOtherUser(int userId, string email)
         {
-            return userHelper.IsEmailTakenByOtherUser(user, email);
+            return userHelper.IsEmailTakenByOtherUser(userId, email);
         }
 
         public bool IsBsnTakenByOtherUser(DesktopUser user, int bsn)
@@ -151,21 +161,9 @@ namespace manager_classes
             return userHelper.GetAllDesktopUsers();
         }
 
-        //not used currently
-        public List<WebUser> GetAllWebUsers()
-        {
-            return userHelper.GetAllWebUsers();
-        }
-
         public void DeleteUser(DesktopUser user)
         {
             userHelper.DeleteUser(user);
-        }
-
-        //not used currently
-        public void DeleteWebUser(WebUser user)
-        {
-            userHelper.DeleteWebUser(user);
         }
 
         public void PromoteUserToAdmin(DesktopUser user)
