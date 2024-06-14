@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using recipe_web.DTOs;
 using manager_classes;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using exceptions;
 
 namespace recipe_web.Pages
@@ -46,19 +45,21 @@ namespace recipe_web.Pages
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, webUser.GetIdUser().ToString()),
-                    new Claim(ClaimTypes.Name, webUser.GetUsername())
+                    new Claim(ClaimTypes.Name, webUser.GetUsername()),
+                    new Claim(ClaimTypes.Email, webUser.GetEmail()),
+                    new Claim("Password", webUser.GetPassword()),
+                    new Claim("Caption", webUser.GetCaption())
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             }
-            catch (InvalidUserException ex)
+            catch (InvalidUserException)
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return Page();
             }
-            
+
             return RedirectToPage("/Index");
         }
     }

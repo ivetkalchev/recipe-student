@@ -14,57 +14,9 @@
     <div class="description">@Model.UserDTO.Caption</div>
     <div class="buttons_profile">
         <a class="button" asp-page="/EditProfile">Edit</a>
-        <a class="button" asp-page="/ChangePassword">Change Password</a>
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-
-<style>
-    .profile_container {
-        background-color: #F1F1F1;
-        color: #333;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 10px;
-        width: 80%;
-        max-width: 800px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-        .profile_container .username {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        .profile_container .description {
-            font-size: 18px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-    .buttons_profile {
-        display: flex;
-        justify-content: center;
-    }
-
-        .buttons_profile .button {
-            background-color: #3D538F;
-            color: white;
-            padding: 10px 20px;
-            margin: 0 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-            .buttons_profile .button:hover {
-                background-color: #2C3B70;
-            }
-</style>

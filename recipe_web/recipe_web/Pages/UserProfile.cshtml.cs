@@ -21,17 +21,7 @@ namespace recipe_web.Pages
         {
             var username = User.Identity.Name;
 
-            if (string.IsNullOrEmpty(username))
-            {
-                RedirectToPage("/Login");
-            }
-
             var webUser = userManager.GetWebUserByUsername(username);
-
-            if (webUser == null)
-            {
-                NotFound("User not found.");
-            }
 
             UserDTO = new UserDTO
             {

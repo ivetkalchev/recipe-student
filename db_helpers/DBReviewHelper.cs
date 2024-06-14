@@ -129,7 +129,6 @@ namespace db_helpers
                                 reader["caption"].ToString()
                             );
 
-                            // Assuming you have a method to get the recipe by its ID
                             Recipe recipe = recipeHelper.GetRecipeById(recipeId);
 
                             Review review = new Review(idReview, recipe, ratingValue, reviewText);
@@ -170,6 +169,33 @@ namespace db_helpers
             {
                 Console.WriteLine("Error deleting review: " + ex.Message);
                 throw new Exception("Unable to delete review. Please try again later.", ex);
+            }
+        }
+
+        public void UpdateReview(int reviewId, decimal ratingValue, string reviewText)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DBConnection.connection))
+                {
+                    conn.Open();
+                    string query = @"
+                    UPDATE Review
+                    SET rating_value = @ratingValue, review_text = @reviewText
+                    WHERE id_review = @reviewId";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@reviewId", reviewId);
+                    cmd.Parameters.AddWithValue("@ratingValue", ratingValue);
+                    cmd.Parameters.AddWithValue("@reviewText", reviewText);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error updating review: " + ex.Message);
+                throw new Exception("Unable to update review. Please try again later.", ex);
             }
         }
     }

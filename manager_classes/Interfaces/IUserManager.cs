@@ -12,7 +12,9 @@ namespace manager_classes
         Gender GetGenderByName(string genderName);
         WebUser GetWebUserByUsername(string username);
         bool IsBsnTaken(int bsn);
+        bool IsBsnTakenByOtherUser(DesktopUser user, int bsn);
         bool IsEmailTaken(string email);
+        bool IsEmailTakenByOtherUser(int user, string email);
         bool IsUsernameTaken(string username);
         DesktopUser LoginDesktopUser(string username, string password);
         WebUser LoginWebUser(string username, string password);

@@ -20,13 +20,4 @@
         public InvalidTimeException(string typeTime) : base($"The {typeTime} is invalid!") { }
     }
 
-    public class InvalidReviewValueException : InvalidRecipeException
-    {
-        public InvalidReviewValueException() : base("The rating is invalid!") { }
-    }
-
-    public class InvalidReviewTextException : InvalidRecipeException
-    {
-        public InvalidReviewTextException() : base("The review text cannot be empty!") { }
-    }
 }

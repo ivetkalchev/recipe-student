@@ -5,12 +5,12 @@
       "PackagePath": "staticwebassets\\css\\cookies.css"
     },
     {
-      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\layout.css",
-      "PackagePath": "staticwebassets\\css\\layout.css"
-    },
-    {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
     },
     {
       "Id": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\Login.jpg",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TBUx/PshUA9nnW2HNG1VUZqaD3bNvQoIS2G2t/zvfJ4=",
+  "Hash": "oTnbS+K8HEvbsJnBZgVQyKumiTJeNXO76qIRjHc+/Sw=",
   "Source": "recipe_web",
   "BasePath": "_content/recipe_web",
   "Mode": "Default",
@@ -36,25 +36,6 @@
       "OriginalItemSpec": "wwwroot\\css\\cookies.css"
     },
     {
-      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\layout.css",
-      "SourceId": "recipe_web",
-      "SourceType": "Discovered",
-      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
-      "BasePath": "_content/recipe_web",
-      "RelativePath": "css/layout.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\layout.css"
-    },
-    {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\login.css",
       "SourceId": "recipe_web",
       "SourceType": "Discovered",
@@ -72,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
+      "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\css\\styles.css",
+      "SourceId": "recipe_web",
+      "SourceType": "Discovered",
+      "ContentRoot": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\",
+      "BasePath": "_content/recipe_web",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
     },
     {
       "Identity": "I:\\individual-project\\recipe_web\\recipe_web\\wwwroot\\images\\email.png",

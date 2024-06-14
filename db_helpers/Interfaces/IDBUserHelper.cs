@@ -19,7 +19,7 @@ namespace db_helpers
         bool IsBSNTaken(int bsn);
         bool IsBsnTakenByOtherUser(DesktopUser user, int bsn);
         bool IsEmailTaken(string email);
-        bool IsEmailTakenByOtherUser(DesktopUser user, string email);
+        bool IsEmailTakenByOtherUser(int userId, string email);
         bool IsUsernameTaken(string username);
         bool IsWebEmailTaken(string email);
         bool IsWebUsernameTaken(string username);

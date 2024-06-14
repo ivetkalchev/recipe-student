@@ -17,10 +17,12 @@
     <div class="form_input">
         <label asp-for="UserDTO.Email"></label>
         <input asp-for="UserDTO.Email" class="form-control" />
+        <span asp-validation-for="UserDTO.Email" class="text-danger"></span>
     </div>
     <div class="form_input">
         <label asp-for="UserDTO.Caption"></label>
         <input asp-for="UserDTO.Caption" class="form-control" />
+        <span asp-validation-for="UserDTO.Caption" class="text-danger"></span>
     </div>
     <div class="button-container">
         <button type="submit" class="button">Save</button>
@@ -30,56 +32,3 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
-
-<style>
-    form {
-        background-color: #F1F1F1;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 10px;
-        width: 80%;
-        max-width: 600px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .form_input {
-        margin-bottom: 20px;
-    }
-
-        .form_input label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-    .form-control {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    .button {
-        display: inline-block;
-        background-color: #3D538F;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 16px;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-        .button:hover {
-            background-color: #2C3B70;
-        }
-</style>

@@ -87,7 +87,15 @@ namespace entity_classes
 
         public bool IsUserValid()
         {
-            return true;
+            try
+            {
+                ValidateUser();
+                return true;
+            }
+            catch (InvalidUserException)
+            {
+                return false;
+            }
         }
     }
 }

@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using manager_classes;
 using recipe_web.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
 
 namespace recipe_web.Pages
 {
-    [Authorize] // with role
+    [Authorize]
     public class EditProfileModel : PageModel
     {
-        private IUserManager userManager;
+        private readonly IUserManager userManager;
 
         [BindProperty]
         public UserDTO UserDTO { get; set; }
@@ -22,18 +23,7 @@ namespace recipe_web.Pages
         public IActionResult OnGet()
         {
             var username = User.Identity.Name;
-
-            if (string.IsNullOrEmpty(username))
-            {
-                return RedirectToPage("/Login");
-            }
-
             var webUser = userManager.GetWebUserByUsername(username);
-
-            if (webUser == null)
-            {
-                return NotFound("User not found.");
-            }
 
             UserDTO = new UserDTO
             {
@@ -53,15 +43,12 @@ namespace recipe_web.Pages
             }
 
             var username = User.Identity.Name;
-            if (string.IsNullOrEmpty(username))
-            {
-                return RedirectToPage("/Login");
-            }
-
             var existingUser = userManager.GetWebUserByUsername(username);
-            if (existingUser == null)
+
+            if (existingUser.GetEmail() != UserDTO.Email && userManager.IsEmailTakenByOtherUser(existingUser.GetIdUser(), UserDTO.Email))
             {
-                return NotFound("User not found.");
+                ModelState.AddModelError("UserDTO.Email", "Email is already taken.");
+                return Page();
             }
 
             try

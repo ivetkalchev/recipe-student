@@ -26,8 +26,8 @@ namespace manager_classes
                 newUser.GetEmail(),
                 Hasher.HashText(newUser.GetPassword()),
                 newUser.GetRole(),
-                CapitalizeFirstLetter(newUser.GetFirstName()),
-                CapitalizeFirstLetter(newUser.GetLastName()),
+                newUser.GetFirstName(),
+                newUser.GetLastName(),
                 newUser.GetBsn(),
                 newUser.GetGender(),
                 newUser.GetBirthdate()
@@ -86,11 +86,6 @@ namespace manager_classes
             return false;
         }
 
-        private string CapitalizeFirstLetter(string text)
-        {
-            return char.ToUpper(text[0]) + text.Substring(1).ToLower();
-        }
-
         public DesktopUser LoginDesktopUser(string username, string password)
         {
             return userHelper.GetDesktopUser(username, Hasher.HashText(password));
@@ -118,22 +113,17 @@ namespace manager_classes
 
         public void UpdateDesktopUserDetails(DesktopUser user, string newFirstName, string newLastName, string newEmail, DateTime newBirthdate, Gender newGender, int newBsn)
         {
-            if (newEmail != user.GetEmail() && IsEmailTakenByOtherUser(user, newEmail))
+            if (newEmail != user.GetEmail() && userHelper.IsEmailTakenByOtherUser(user.GetIdUser(), newEmail))
             {
-                throw new AlreadyExistUserException("email");
+                throw new AlreadyExistUserException("Email");
             }
 
-            if (newBsn != user.GetBsn() && IsBsnTakenByOtherUser(user, newBsn))
+            if (newBsn != user.GetBsn() && userHelper.IsBsnTakenByOtherUser(user, newBsn))
             {
                 throw new AlreadyExistUserException("BSN");
             }
 
-            userHelper.UpdateDesktopUserDetails(user, CapitalizeFirstLetter(newFirstName), CapitalizeFirstLetter(newLastName), newEmail, newBirthdate, newGender, newBsn);
-        }
-
-        public WebUser GetWebUserByUsername(string username)
-        {
-            return userHelper.GetWebUserByUsername(username);
+            userHelper.UpdateDesktopUserDetails(user, newFirstName, newLastName, newEmail, newBirthdate, newGender, newBsn);
         }
 
         public void UpdateWebUserDetails(WebUser user, string newCaption, string newEmail)
@@ -141,12 +131,17 @@ namespace manager_classes
             userHelper.UpdateWebUserDetails(user, newCaption, newEmail);
         }
 
-        private bool IsEmailTakenByOtherUser(DesktopUser user, string email)
+        public WebUser GetWebUserByUsername(string username)
+        {
+            return userHelper.GetWebUserByUsername(username);
+        }
+
+        public bool IsEmailTakenByOtherUser(int user, string email)
         {
             return userHelper.IsEmailTakenByOtherUser(user, email);
         }
 
-        private bool IsBsnTakenByOtherUser(DesktopUser user, int bsn)
+        public bool IsBsnTakenByOtherUser(DesktopUser user, int bsn)
         {
             return userHelper.IsBsnTakenByOtherUser(user, bsn);
         }

@@ -15,7 +15,7 @@ namespace recipe_web.Pages
         [BindProperty(SupportsGet = true)]
         public int PageNumber { get; set; } = 1;
         public int TotalPages { get; set; }
-        private const int PageSize = 8;
+        private const int PageSize = 10;
 
         public RecipesModel(IRecipeManager recipeManager)
         {

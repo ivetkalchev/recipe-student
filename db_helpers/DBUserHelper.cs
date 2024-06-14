@@ -403,7 +403,8 @@ namespace db_helpers
 
             return null;
         }
-        public bool IsEmailTakenByOtherUser(DesktopUser user, string email)
+
+        public bool IsEmailTakenByOtherUser(int userId, string email)
         {
             try
             {
@@ -411,10 +412,14 @@ namespace db_helpers
                 {
                     conn.Open();
 
-                    string query = "SELECT COUNT(*) FROM [dbo].[User] WHERE email = @Email AND id_user != @UserId";
+                    string query = @"
+                        SELECT COUNT(*) 
+                        FROM [dbo].[User] 
+                        WHERE email = @Email AND id_user != @UserId";
+
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@UserId", user.GetIdUser());
+                    cmd.Parameters.AddWithValue("@UserId", userId);
 
                     int count = (int)cmd.ExecuteScalar();
                     return count > 0;

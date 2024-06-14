@@ -10,7 +10,7 @@ namespace recipe_web.DTOs
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Caption is required.")]
         [StringLength(300, ErrorMessage = "Caption cannot be longer than 300 characters.")]
         public string Caption { get; set; }
     }
