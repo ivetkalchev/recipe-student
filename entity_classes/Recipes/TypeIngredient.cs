@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace entity_classes
+﻿namespace entity_classes
 {
     public class TypeIngredient
     {

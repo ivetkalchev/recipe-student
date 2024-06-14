@@ -20,4 +20,8 @@
         public InvalidTimeException(string typeTime) : base($"The {typeTime} is invalid!") { }
     }
 
+    public class InvalidRecipeQuantityException : InvalidRecipeException
+    {
+        public InvalidRecipeQuantityException(string recipeQuantity, int quantity) : base($"The {recipeQuantity} is invalid! It cannot be {quantity}.") { }
+    }
 }

@@ -1,8 +1,5 @@
 ﻿using entity_classes;
 using manager_classes;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -169,6 +166,32 @@ namespace recipe_desktop
         {
             try
             {
+                string title = tbTitle.Text.Trim();
+                string description = rtbDescription.Text.Trim();
+                string instructions = rtbInstructions.Text.Trim();
+                string prepTimeText = tbPrepTime.Text.Trim();
+                string cookingTimeText = tbCookingTime.Text.Trim();
+                bool isSugarFree = cbSugarFree.Checked;
+                bool requiresFreezing = cbFreezing.Checked;
+
+                if (string.IsNullOrWhiteSpace(title) ||
+                    string.IsNullOrWhiteSpace(description) ||
+                    string.IsNullOrWhiteSpace(instructions) ||
+                    cbDietRestriction.SelectedItem == null ||
+                    cbDifficulty.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(prepTimeText) ||
+                    string.IsNullOrWhiteSpace(cookingTimeText))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                decimal.TryParse(prepTimeText, out decimal prepTime);
+                decimal.TryParse(cookingTimeText, out decimal cookingTime);
+                
+                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
+                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
+
                 List<IngredientRecipe> ingredientRecipes = new List<IngredientRecipe>();
                 foreach (var item in lbAddedIngredients.Items)
                 {
@@ -180,19 +203,21 @@ namespace recipe_desktop
 
                 var updatedDessert = new Dessert(
                     dessert.GetIdRecipe(),
-                    tbTitle.Text,
-                    rtbDescription.Text,
-                    rtbInstructions.Text,
+                    title,
+                    description,
+                    instructions,
                     ingredientRecipes,
                     (DesktopUser)dessert.GetUser(),
-                    TimeSpan.FromMinutes(Convert.ToDouble(tbPrepTime.Text)),
-                    TimeSpan.FromMinutes(Convert.ToDouble(tbCookingTime.Text)),
-                    recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString()),
-                    recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString()),
+                    TimeSpan.FromMinutes((double)prepTime),
+                    TimeSpan.FromMinutes((double)cookingTime),
+                    diet,
+                    difficulty,
                     dessert.GetRecipePic(),
-                    cbSugarFree.Checked,
-                    cbFreezing.Checked
+                    isSugarFree,
+                    requiresFreezing
                 );
+
+                updatedDessert.RecipeValidation();
 
                 recipeManager.UpdateDessert(updatedDessert);
                 MessageBox.Show("Recipe updated successfully!");
@@ -235,6 +260,24 @@ namespace recipe_desktop
             cbDifficulty.Enabled = true;
             cbDietRestriction.Enabled = true;
             lbAddedIngredients.Enabled = true;
+        }
+
+        private void tbPrepTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
+        }
+
+        private void tbCookingTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
         }
     }
 }

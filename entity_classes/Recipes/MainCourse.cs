@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public class MainCourse : Recipe
     {
@@ -26,6 +28,19 @@
         public override TimeSpan CalculateTotalTime()
         {
             return GetPreparationTime() + GetCookingTime();
+        }
+
+        private void ValidateServings(int servings)
+        {
+            if (servings <= 0)
+            {
+                throw new InvalidRecipeQuantityException("Servings", servings);
+            }
+        }
+
+        public void FoodValidation()
+        {
+            ValidateServings(servings);
         }
     }
 }

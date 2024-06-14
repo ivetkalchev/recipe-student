@@ -1,5 +1,3 @@
-using System;
-using System.Windows.Forms;
 using db_helpers;
 using manager_classes;
 

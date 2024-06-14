@@ -1,6 +1,4 @@
 ﻿using entity_classes;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace db_helpers

@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public class Drink : Recipe
     {
@@ -46,6 +48,19 @@
                 totalTime += TimeSpan.FromMinutes(5); // time for heating
             }
             return totalTime;
+        }
+
+        private void ValidatePours(int pours)
+        {
+            if (pours <= 0)
+            {
+                throw new InvalidRecipeQuantityException("Pours", pours);
+            }
+        }
+
+        public void DrinkValidation()
+        {
+            ValidatePours(pours);
         }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using entity_classes;
 using exceptions;
 using manager_classes;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -202,14 +197,33 @@ namespace recipe_desktop
                 string title = tbTitle.Text.Trim();
                 string description = rtbDescription.Text.Trim();
                 string instructions = rtbInstructions.Text.Trim();
-                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
-                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
-                decimal prepTime = Convert.ToDecimal(tbPrepTime.Text.Trim());
-                decimal cookingTime = Convert.ToDecimal(tbCookingTime.Text.Trim());
+                string prepTimeText = tbPrepTime.Text.Trim();
+                string cookingTimeText = tbCookingTime.Text.Trim();
+                string poursText = tbPours.Text.Trim();
                 bool isAlcoholic = cbAlcohol.Checked;
                 bool containsCaffeine = cbContainsCaffeine.Checked;
                 bool servedHot = cbServedHot.Checked;
-                int pours = Convert.ToInt32(tbPours.Text.Trim());
+
+                if (string.IsNullOrWhiteSpace(title) ||
+                    string.IsNullOrWhiteSpace(description) ||
+                    string.IsNullOrWhiteSpace(instructions) ||
+                    cbDietRestriction.SelectedItem == null ||
+                    cbDifficulty.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(prepTimeText) ||
+                    string.IsNullOrWhiteSpace(cookingTimeText) ||
+                    string.IsNullOrWhiteSpace(poursText))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                decimal.TryParse(prepTimeText, out decimal prepTime);
+                decimal.TryParse(cookingTimeText, out decimal cookingTime);
+                int.TryParse(poursText, out int pours);
+
+
+                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
+                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
 
                 List<IngredientRecipe> ingredients = new List<IngredientRecipe>();
                 foreach (IngredientRecipe item in lbAddedIngredients.Items)
@@ -217,9 +231,26 @@ namespace recipe_desktop
                     ingredients.Add(item);
                 }
 
-                Drink drink = new Drink(0, title, description, instructions, ingredients, user,
-                    TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, 
-                    uploadedPic, isAlcoholic, containsCaffeine, servedHot, pours);
+                Drink drink = new Drink(
+                    0,
+                    title,
+                    description,
+                    instructions,
+                    ingredients,
+                    user,
+                    TimeSpan.FromMinutes((double)prepTime),
+                    TimeSpan.FromMinutes((double)cookingTime),
+                    diet,
+                    difficulty,
+                    uploadedPic,
+                    isAlcoholic,
+                    containsCaffeine,
+                    servedHot,
+                    pours
+                );
+
+                drink.RecipeValidation();
+                drink.DrinkValidation();
 
                 recipeManager.UploadDrink(drink);
                 MessageBox.Show("Recipe uploaded successfully!");
@@ -227,6 +258,24 @@ namespace recipe_desktop
             catch (InvalidRecipeException ex)
             {
                 MessageBox.Show($"Error uploading recipe: {ex.Message}");
+            }
+        }
+
+        private void tbPrepTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
+        }
+
+        private void tbCookingTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
             }
         }
     }

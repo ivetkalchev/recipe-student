@@ -32,6 +32,8 @@
             btnClose = new Button();
             label1 = new Label();
             mainPanel = new Panel();
+            btnEdit = new Button();
+            btnSave = new Button();
             lblNoResults = new Label();
             cbServedHot = new CheckBox();
             cbContainsCaffeine = new CheckBox();
@@ -63,8 +65,6 @@
             label2 = new Label();
             lblHeaderText = new Label();
             sideBarPanel1 = new SideBarPanel();
-            btnEdit = new Button();
-            btnSave = new Button();
             mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbSearch).BeginInit();
             sideBarPanel1.SuspendLayout();
@@ -140,6 +140,44 @@
             mainPanel.Name = "mainPanel";
             mainPanel.Size = new Size(930, 906);
             mainPanel.TabIndex = 0;
+            // 
+            // btnEdit
+            // 
+            btnEdit.BackColor = Color.White;
+            btnEdit.Cursor = Cursors.Hand;
+            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(63, 8, 51);
+            btnEdit.FlatAppearance.BorderSize = 2;
+            btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
+            btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
+            btnEdit.FlatStyle = FlatStyle.Flat;
+            btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnEdit.ForeColor = Color.FromArgb(98, 14, 80);
+            btnEdit.Location = new Point(192, 841);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(235, 49);
+            btnEdit.TabIndex = 159;
+            btnEdit.Text = "EDIT";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.FromArgb(98, 14, 80);
+            btnSave.Cursor = Cursors.Hand;
+            btnSave.FlatAppearance.BorderColor = Color.FromArgb(63, 8, 51);
+            btnSave.FlatAppearance.BorderSize = 2;
+            btnSave.FlatAppearance.MouseDownBackColor = Color.FromArgb(63, 8, 51);
+            btnSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(63, 8, 51);
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(433, 841);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(235, 49);
+            btnSave.TabIndex = 158;
+            btnSave.Text = "SAVE";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // lblNoResults
             // 
@@ -345,6 +383,7 @@
             tbPrepTime.Name = "tbPrepTime";
             tbPrepTime.Size = new Size(127, 36);
             tbPrepTime.TabIndex = 137;
+            tbPrepTime.KeyPress += tbPrepTime_KeyPress;
             // 
             // tbCookingTime
             // 
@@ -355,6 +394,7 @@
             tbCookingTime.Name = "tbCookingTime";
             tbCookingTime.Size = new Size(127, 36);
             tbCookingTime.TabIndex = 136;
+            tbCookingTime.KeyPress += tbCookingTime_KeyPress;
             // 
             // rtbInstructions
             // 
@@ -491,44 +531,6 @@
             sideBarPanel1.Name = "sideBarPanel1";
             sideBarPanel1.Size = new Size(1178, 982);
             sideBarPanel1.TabIndex = 0;
-            // 
-            // btnEdit
-            // 
-            btnEdit.BackColor = Color.White;
-            btnEdit.Cursor = Cursors.Hand;
-            btnEdit.FlatAppearance.BorderColor = Color.FromArgb(63, 8, 51);
-            btnEdit.FlatAppearance.BorderSize = 2;
-            btnEdit.FlatAppearance.MouseDownBackColor = Color.FromArgb(224, 224, 224);
-            btnEdit.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
-            btnEdit.FlatStyle = FlatStyle.Flat;
-            btnEdit.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            btnEdit.ForeColor = Color.FromArgb(98, 14, 80);
-            btnEdit.Location = new Point(192, 841);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(235, 49);
-            btnEdit.TabIndex = 159;
-            btnEdit.Text = "EDIT";
-            btnEdit.UseVisualStyleBackColor = false;
-            btnEdit.Click += this.btnEdit_Click;
-            // 
-            // btnSave
-            // 
-            btnSave.BackColor = Color.FromArgb(98, 14, 80);
-            btnSave.Cursor = Cursors.Hand;
-            btnSave.FlatAppearance.BorderColor = Color.FromArgb(63, 8, 51);
-            btnSave.FlatAppearance.BorderSize = 2;
-            btnSave.FlatAppearance.MouseDownBackColor = Color.FromArgb(63, 8, 51);
-            btnSave.FlatAppearance.MouseOverBackColor = Color.FromArgb(63, 8, 51);
-            btnSave.FlatStyle = FlatStyle.Flat;
-            btnSave.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
-            btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(433, 841);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(235, 49);
-            btnSave.TabIndex = 158;
-            btnSave.Text = "SAVE";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
             // 
             // EditDrinkForm
             // 

@@ -1,8 +1,5 @@
 ﻿using entity_classes;
 using manager_classes;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -171,6 +168,36 @@ namespace recipe_desktop
         {
             try
             {
+                string title = tbTitle.Text.Trim();
+                string description = rtbDescription.Text.Trim();
+                string instructions = rtbInstructions.Text.Trim();
+                string prepTimeText = tbPrepTime.Text.Trim();
+                string cookingTimeText = tbCookingTime.Text.Trim();
+                bool isAlcoholic = cbAlcohol.Checked;
+                bool containsCaffeine = cbContainsCaffeine.Checked;
+                bool servedHot = cbServedHot.Checked;
+                string poursText = tbPours.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(title) ||
+                    string.IsNullOrWhiteSpace(description) ||
+                    string.IsNullOrWhiteSpace(instructions) ||
+                    cbDietRestriction.SelectedItem == null ||
+                    cbDifficulty.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(prepTimeText) ||
+                    string.IsNullOrWhiteSpace(cookingTimeText) ||
+                    string.IsNullOrWhiteSpace(poursText))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                decimal.TryParse(prepTimeText, out decimal prepTime);
+                decimal.TryParse(cookingTimeText, out decimal cookingTime);
+                int.TryParse(poursText, out int pours);
+
+                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
+                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
+
                 List<IngredientRecipe> ingredientRecipes = new List<IngredientRecipe>();
                 foreach (var item in lbAddedIngredients.Items)
                 {
@@ -182,21 +209,24 @@ namespace recipe_desktop
 
                 var updatedDrink = new Drink(
                     drink.GetIdRecipe(),
-                    tbTitle.Text,
-                    rtbDescription.Text,
-                    rtbInstructions.Text,
+                    title,
+                    description,
+                    instructions,
                     ingredientRecipes,
                     (DesktopUser)drink.GetUser(),
-                    TimeSpan.FromMinutes(Convert.ToDouble(tbPrepTime.Text)),
-                    TimeSpan.FromMinutes(Convert.ToDouble(tbCookingTime.Text)),
-                    recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString()),
-                    recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString()),
+                    TimeSpan.FromMinutes((double)prepTime),
+                    TimeSpan.FromMinutes((double)cookingTime),
+                    diet,
+                    difficulty,
                     drink.GetRecipePic(),
-                    cbAlcohol.Checked,
-                    cbContainsCaffeine.Checked,
-                    cbServedHot.Checked,
-                    Convert.ToInt32(tbPours.Text)
+                    isAlcoholic,
+                    containsCaffeine,
+                    servedHot,
+                    pours
                 );
+
+                updatedDrink.RecipeValidation();
+                updatedDrink.DrinkValidation();
 
                 recipeManager.UpdateDrink(updatedDrink);
                 MessageBox.Show("Recipe updated successfully!");
@@ -243,6 +273,24 @@ namespace recipe_desktop
             cbDifficulty.Enabled = true;
             cbDietRestriction.Enabled = true;
             lbAddedIngredients.Enabled = true;
+        }
+
+        private void tbPrepTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
+        }
+
+        private void tbCookingTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
         }
     }
 }

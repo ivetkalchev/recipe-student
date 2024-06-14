@@ -1,8 +1,5 @@
 ﻿using entity_classes;
 using manager_classes;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -169,6 +166,34 @@ namespace recipe_desktop
         {
             try
             {
+                string title = tbTitle.Text.Trim();
+                string description = rtbDescription.Text.Trim();
+                string instructions = rtbInstructions.Text.Trim();
+                string prepTimeText = tbPrepTime.Text.Trim();
+                string cookingTimeText = tbCookingTime.Text.Trim();
+                bool isSpicy = cbSpicy.Checked;
+                string servingsText = tbServings.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(title) ||
+                    string.IsNullOrWhiteSpace(description) ||
+                    string.IsNullOrWhiteSpace(instructions) ||
+                    cbDietRestriction.SelectedItem == null ||
+                    cbDifficulty.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(prepTimeText) ||
+                    string.IsNullOrWhiteSpace(cookingTimeText) ||
+                    string.IsNullOrWhiteSpace(servingsText))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                decimal.TryParse(prepTimeText, out decimal prepTime);
+                decimal.TryParse(cookingTimeText, out decimal cookingTime);
+                int.TryParse(servingsText, out int servings);
+
+                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
+                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
+
                 List<IngredientRecipe> ingredientRecipes = new List<IngredientRecipe>();
                 foreach (var item in lbAddedIngredients.Items)
                 {
@@ -180,19 +205,22 @@ namespace recipe_desktop
 
                 var updatedMainCourse = new MainCourse(
                     mainCourse.GetIdRecipe(),
-                    tbTitle.Text,
-                    rtbDescription.Text,
-                    rtbInstructions.Text,
+                    title,
+                    description,
+                    instructions,
                     ingredientRecipes,
                     (DesktopUser)mainCourse.GetUser(),
-                    TimeSpan.FromMinutes(Convert.ToDouble(tbPrepTime.Text)),
-                    TimeSpan.FromMinutes(Convert.ToDouble(tbCookingTime.Text)),
-                    recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString()),
-                    recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString()),
+                    TimeSpan.FromMinutes((double)prepTime),
+                    TimeSpan.FromMinutes((double)cookingTime),
+                    diet,
+                    difficulty,
                     mainCourse.GetRecipePic(),
-                    cbSpicy.Checked,
-                    Convert.ToInt32(tbServings.Text)
+                    isSpicy,
+                    servings
                 );
+
+                updatedMainCourse.RecipeValidation();
+                updatedMainCourse.FoodValidation();
 
                 recipeManager.UpdateMainCourse(updatedMainCourse);
                 MessageBox.Show("Recipe updated successfully!");
@@ -235,6 +263,24 @@ namespace recipe_desktop
             cbDifficulty.Enabled = true;
             cbDietRestriction.Enabled = true;
             lbAddedIngredients.Enabled = true;
+        }
+
+        private void tbPrepTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
+        }
+
+        private void tbCookingTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
         }
     }
 }

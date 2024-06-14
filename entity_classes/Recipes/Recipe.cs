@@ -1,4 +1,6 @@
-﻿namespace entity_classes
+﻿using exceptions;
+
+namespace entity_classes
 {
     public abstract class Recipe
     {
@@ -13,6 +15,10 @@
         private DietRestriction dietRestriction;
         private Difficulty difficulty;
         private RecipePic? pic;
+
+        private const int maxTitleLength = 100;
+        private const int maxDescriptionLength = 400;
+        private const int maxInstructionsLength = 4000;
 
         public Recipe(int idRecipe, string title, string description, string instructions, List<IngredientRecipe> ingredients, DesktopUser user,
             TimeSpan preparationTime, TimeSpan cookingTime, DietRestriction dietRestriction, Difficulty difficulty, RecipePic? pic)
@@ -87,5 +93,66 @@
 
         public abstract TimeSpan CalculateTotalTime();
 
+        private void ValidateTitle(string title)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                throw new NullRecipeException("Title");
+            }
+            if (title.Length > maxTitleLength)
+            {
+                throw new LengthRecipeException("Title", maxTitleLength);
+            }
+        }
+
+        private void ValidateDescription(string description)
+        {
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                throw new NullRecipeException("Description");
+            }
+            if (description.Length > maxDescriptionLength)
+            {
+                throw new LengthRecipeException("Description", maxDescriptionLength);
+            }
+        }
+
+        private void ValidateInstructions(string instructions)
+        {
+            if (string.IsNullOrWhiteSpace(instructions))
+            {
+                throw new NullRecipeException("Instructions");
+            }
+            if (instructions.Length > maxInstructionsLength)
+            {
+                throw new LengthRecipeException("Instructions", maxInstructionsLength);
+            }
+        }
+
+        private void ValidateIngredients(List<IngredientRecipe> ingredients)
+        {
+            if (ingredients == null || ingredients.Count == 0)
+            {
+                throw new NullRecipeException("Ingredients");
+            }
+        }
+
+        private void ValidateTime(TimeSpan time, string timeType)
+        {
+            if (time < TimeSpan.Zero)
+            {
+                throw new InvalidTimeException(timeType);
+            }
+        }
+
+        public void RecipeValidation()
+        {
+            ValidateTitle(title);
+            ValidateDescription(description);
+            ValidateInstructions(instructions);
+            ValidateIngredients(ingredients);
+            ValidateTime(preparationTime, "PreparationTime");
+            ValidateTime(cookingTime, "CookingTime");
+        }
     }
 }

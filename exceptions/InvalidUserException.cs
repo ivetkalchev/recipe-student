@@ -49,9 +49,4 @@
     {
         public InvalidEmailException() : base("The email you provided is not valid.") { }
     }
-
-    public class InvalidCaptionLengthException : InvalidUserException
-    {
-        public InvalidCaptionLengthException() : base("The caption you provided is too long.") { }
-    }
 }

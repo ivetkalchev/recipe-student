@@ -1,14 +1,6 @@
 ﻿using entity_classes;
+using exceptions;
 using manager_classes;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -207,27 +199,83 @@ namespace recipe_desktop
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            string title = tbTitle.Text.Trim();
-            string description = rtbDescription.Text.Trim();
-            string instructions = rtbInstructions.Text.Trim();
-            DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
-            Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
-            decimal prepTime = Convert.ToDecimal(tbPrepTime.Text.Trim());
-            decimal cookingTime = Convert.ToDecimal(tbCookingTime.Text.Trim());
-            bool isSugarFree = cbSugarFree.Checked;
-            bool requiresFreezing = cbFreezing.Checked;
-
-            List<IngredientRecipe> ingredients = new List<IngredientRecipe>();
-            foreach (IngredientRecipe item in lbAddedIngredients.Items)
+            try
             {
-                ingredients.Add(item);
+                string title = tbTitle.Text.Trim();
+                string description = rtbDescription.Text.Trim();
+                string instructions = rtbInstructions.Text.Trim();
+                string prepTimeText = tbPrepTime.Text.Trim();
+                string cookingTimeText = tbCookingTime.Text.Trim();
+                bool isSugarFree = cbSugarFree.Checked;
+                bool requiresFreezing = cbFreezing.Checked;
+
+                if (string.IsNullOrWhiteSpace(title) ||
+                    string.IsNullOrWhiteSpace(description) ||
+                    string.IsNullOrWhiteSpace(instructions) ||
+                    cbDietRestriction.SelectedItem == null ||
+                    cbDifficulty.SelectedItem == null ||
+                    string.IsNullOrWhiteSpace(prepTimeText) ||
+                    string.IsNullOrWhiteSpace(cookingTimeText))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                decimal.TryParse(prepTimeText, out decimal prepTime);
+                decimal.TryParse(cookingTimeText, out decimal cookingTime);
+
+                DietRestriction diet = recipeManager.GetDietByName(cbDietRestriction.SelectedItem.ToString());
+                Difficulty difficulty = recipeManager.GetDifficultyByName(cbDifficulty.SelectedItem.ToString());
+
+                List<IngredientRecipe> ingredients = new List<IngredientRecipe>();
+                foreach (IngredientRecipe item in lbAddedIngredients.Items)
+                {
+                    ingredients.Add(item);
+                }
+
+                Dessert dessert = new Dessert(
+                    0, 
+                    title, 
+                    description, 
+                    instructions, 
+                    ingredients, 
+                    user,
+                    TimeSpan.FromMinutes((double)prepTime), 
+                    TimeSpan.FromMinutes((double)cookingTime), 
+                    diet,
+                    difficulty, 
+                    uploadedPic, 
+                    isSugarFree, 
+                    requiresFreezing
+                );
+
+                dessert.RecipeValidation();
+
+                recipeManager.UploadDessert(dessert);
+                MessageBox.Show("Recipe uploaded successfully!");
             }
+            catch (InvalidRecipeException ex)
+            {
+                MessageBox.Show($"Error uploading recipe: {ex.Message}");
+            }
+        }
 
-            Dessert dessert = new Dessert(0, title, description, instructions, ingredients, user,
-                TimeSpan.FromMinutes((double)prepTime), TimeSpan.FromMinutes((double)cookingTime), diet, difficulty, uploadedPic, isSugarFree, requiresFreezing);
+        private void tbPrepTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
+        }
 
-            recipeManager.UploadDessert(dessert);
-            MessageBox.Show("Recipe uploaded successfully!");
+        private void tbCookingTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                MessageBox.Show("Please enter only numeric values for time.");
+                e.Handled = true;
+            }
         }
     }
 }

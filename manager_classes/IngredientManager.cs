@@ -1,8 +1,6 @@
 ﻿using db_helpers;
 using entity_classes;
 using exceptions;
-using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace manager_classes
 {

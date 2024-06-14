@@ -276,6 +276,7 @@
             tbPrepTime.Name = "tbPrepTime";
             tbPrepTime.Size = new Size(127, 36);
             tbPrepTime.TabIndex = 99;
+            tbPrepTime.KeyPress += tbPrepTime_KeyPress;
             // 
             // tbCookingTime
             // 
@@ -286,6 +287,7 @@
             tbCookingTime.Name = "tbCookingTime";
             tbCookingTime.Size = new Size(127, 36);
             tbCookingTime.TabIndex = 98;
+            tbCookingTime.KeyPress += tbCookingTime_KeyPress;
             // 
             // lblMaxInstr
             // 

@@ -1,7 +1,5 @@
 ﻿using db_helpers;
 using entity_classes;
-using System;
-using System.Collections.Generic;
 
 namespace manager_classes
 {

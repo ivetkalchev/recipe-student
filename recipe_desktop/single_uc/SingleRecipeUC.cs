@@ -1,7 +1,5 @@
 ﻿using entity_classes;
 using manager_classes;
-using System;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {

@@ -1,9 +1,6 @@
 ﻿using entity_classes;
 using exceptions;
 using manager_classes;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace recipe_desktop
 {

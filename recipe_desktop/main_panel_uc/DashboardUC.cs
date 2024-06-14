@@ -4,7 +4,6 @@ using LiveChartsCore;
 using manager_classes;
 using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace recipe_desktop
 {
