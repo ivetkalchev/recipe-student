@@ -12,6 +12,11 @@
 <div class="search-container">
     <form method="get" class="search-form">
         <input type="text" name="SearchQuery" value="@Model.SearchQuery" placeholder="Search recipes..." class="search-input" />
+        <select name="SortOption" class="sort-select">
+            <option value="Title" selected>Sort by Title</option>
+            <option value="PreparationTime">Sort by Preparation Time</option>
+            <option value="Rating">Sort by Rating</option>
+        </select>
         <button type="submit" class="search-button">Search</button>
     </form>
 </div>
@@ -46,13 +51,13 @@
     <div class="pagination">
         @if (Model.PageNumber > 1)
         {
-            <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Previous</a>
+            <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber - 1)" asp-route-SearchQuery="@Model.SearchQuery" asp-route-SortOption="@Model.SortOption" class="pagination-button">Previous</a>
         }
         @for (int i = 1; i <= Model.TotalPages; i++)
         {
             if (i == Model.PageNumber || (i <= 2 || i >= Model.TotalPages - 1) || (i >= Model.PageNumber - 1 && i <= Model.PageNumber + 1))
             {
-                <a asp-page="./Recipes" asp-route-PageNumber="@i" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button @(i == Model.PageNumber ? "active" : "")">@i</a>
+                <a asp-page="./Recipes" asp-route-PageNumber="@i" asp-route-SearchQuery="@Model.SearchQuery" asp-route-SortOption="@Model.SortOption" class="pagination-button @(i == Model.PageNumber ? "active" : "")">@i</a>
             }
             else if (i == 3 && Model.PageNumber > 4)
             {
@@ -65,7 +70,7 @@
         }
         @if (Model.PageNumber < Model.TotalPages)
         {
-            <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber + 1)" asp-route-SearchQuery="@Model.SearchQuery" class="pagination-button">Next</a>
+            <a asp-page="./Recipes" asp-route-PageNumber="@(Model.PageNumber + 1)" asp-route-SearchQuery="@Model.SearchQuery" asp-route-SortOption="@Model.SortOption" class="pagination-button">Next</a>
         }
     </div>
 }

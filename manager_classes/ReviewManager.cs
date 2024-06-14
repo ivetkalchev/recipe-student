@@ -1,5 +1,6 @@
 ﻿using db_helpers;
 using entity_classes;
+using System.Collections.Generic;
 
 namespace manager_classes
 {
@@ -37,6 +38,11 @@ namespace manager_classes
         public void UpdateReview(int reviewId, decimal ratingValue, string reviewText)
         {
             reviewHelper.UpdateReview(reviewId, ratingValue, reviewText);
+        }
+
+        public int GetReviewCountForRecipe(int recipeId)
+        {
+            return reviewHelper.GetReviewsByRecipeId(recipeId).Count;
         }
     }
 }
