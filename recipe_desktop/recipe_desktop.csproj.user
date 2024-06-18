@@ -1,62 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="add\AddDessertUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="add\AddDrinkUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="add\AddMainCourseUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="AuthenticationForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="authentication_uc\LoginUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="edit\EditDessertForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="edit\EditDrinkForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="edit\EditEmployeeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="edit\EditIngedientForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="HomePageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="main_panel_uc\DashboardUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="main_panel_uc\SettingsUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="single_uc\SingleEmployeeUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="single_uc\SingleIngredientUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="menu_uc\BarUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="menu_uc\MenuUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="menu_uc\SideBarPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="single_uc\SingleIngredientRecipeUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Update="AuthenticationForm.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
