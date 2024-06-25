@@ -1,5 +1,9 @@
 ﻿using entity_classes;
 using manager_classes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace recipe_desktop
 {
@@ -16,6 +20,7 @@ namespace recipe_desktop
         private const int RecipesPerPage = 5;
         private int totalRecipesCount;
         private string searchTerm;
+        private string sortOption = "Title";
 
         public RecipesUC(DesktopUser user, IRecipeManager recipeManager, IIngredientManager ingredientManager)
         {
@@ -33,7 +38,7 @@ namespace recipe_desktop
         private void LoadAllRecipes()
         {
             totalRecipesCount = recipeManager.GetTotalRecipesCount(searchTerm);
-            recipes = recipeManager.GetPagedRecipes(currentPage, RecipesPerPage, searchTerm);
+            recipes = recipeManager.GetPagedRecipes(currentPage, RecipesPerPage, searchTerm, sortOption);
             DisplayRecipes();
         }
 

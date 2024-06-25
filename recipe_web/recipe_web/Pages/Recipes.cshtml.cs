@@ -18,7 +18,7 @@ namespace recipe_web.Pages
         [BindProperty(SupportsGet = true)]
         public string SortOption { get; set; }
         public int TotalPages { get; set; }
-        private const int PageSize = 10;
+        private const int PageSize = 8;
 
         public RecipesModel(IRecipeManager recipeManager, IReviewManager reviewManager)
         {
@@ -30,25 +30,7 @@ namespace recipe_web.Pages
         {
             int totalRecipes = recipeManager.GetTotalRecipesCount(SearchQuery);
             TotalPages = (int)Math.Ceiling(totalRecipes / (double)PageSize);
-            Recipes = recipeManager.GetPagedRecipes(PageNumber, PageSize, SearchQuery);
-
-            var sorter = new RecipeSorter();
-            switch (SortOption)
-            {
-                case "Title":
-                    sorter.SetSortingStrategy(new SortByTitle());
-                    break;
-                case "PreparationTime":
-                    sorter.SetSortingStrategy(new SortByPreparationTime());
-                    break;
-                case "Rating":
-                    sorter.SetSortingStrategy(new SortByRating(reviewManager));
-                    break;
-                default:
-                    sorter.SetSortingStrategy(new SortByTitle());
-                    break;
-            }
-            Recipes = sorter.SortRecipes(Recipes);
+            Recipes = recipeManager.GetPagedRecipes(PageNumber, PageSize, SearchQuery, SortOption);
         }
     }
 }

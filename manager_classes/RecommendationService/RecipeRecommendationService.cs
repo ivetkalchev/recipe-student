@@ -1,6 +1,8 @@
-﻿using entity_classes;
+﻿using db_helpers;
+using entity_classes;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace manager_classes
 {
@@ -9,78 +11,91 @@ namespace manager_classes
         private readonly IRecipeManager recipeManager;
         private readonly IToDoListManager toDoListManager;
         private readonly IReviewManager reviewManager;
+        private readonly IDBRecommendationHelper recommendationHelper;
 
-        public RecipeRecommendationService(IRecipeManager recipeManager, IToDoListManager toDoListManager, IReviewManager reviewManager)
+        public RecipeRecommendationService(IRecipeManager recipeManager, IToDoListManager toDoListManager, IReviewManager reviewManager, IDBRecommendationHelper recommendationHelper)
         {
             this.recipeManager = recipeManager;
             this.toDoListManager = toDoListManager;
             this.reviewManager = reviewManager;
+            this.recommendationHelper = recommendationHelper;
         }
 
         public List<Recipe> GetRecommendedRecipes(int userId)
         {
-            var userToDoList = toDoListManager.GetUserToDoList(userId);
+            try
+            {
+                var userLikedRecipes = recommendationHelper.GetUserLikedRecipes(userId);
 
-            if (userToDoList == null || userToDoList.Count == 0)
-            {
-                return GetMostPopularRecipes();
+                if (userLikedRecipes == null || userLikedRecipes.Count == 0)
+                {
+                    return GetMostPopularRecipes();
+                }
+                else
+                {
+                    return GetUserBasedRecommendations(userId, userLikedRecipes);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return GetSimilarRecipes(userToDoList);
+                throw new Exception("Unable to get recommended recipes. Please try again later.");
             }
         }
 
         private List<Recipe> GetMostPopularRecipes()
         {
             var allRecipes = recipeManager.GetAllRecipes();
-            var popularRecipes = allRecipes.OrderByDescending(r => reviewManager.GetReviewsByRecipeId(r.GetIdRecipe()).Count)
-                                          .Take(4)
-                                          .ToList();
-            return popularRecipes;
-        }
 
-        private List<Recipe> GetSimilarRecipes(List<Recipe> userToDoList)
-        {
-            var allRecipes = recipeManager.GetAllRecipes();
-            var similarRecipes = new List<Recipe>();
-            var uniqueRecipeIds = new HashSet<int>();
-
-            foreach (var toDoRecipe in userToDoList)
+            var recipeReviewCounts = new Dictionary<int, int>();
+            foreach (var recipe in allRecipes)
             {
-                var toDoRecipeDetails = recipeManager.GetRecipeById(toDoRecipe.GetIdRecipe());
-
-                if (toDoRecipeDetails == null || toDoRecipeDetails.GetDietRestriction() == null || toDoRecipeDetails.GetDifficulty() == null)
+                int reviewCount = reviewManager.GetReviewsByRecipeId(recipe.GetIdRecipe()).Count;
+                if (reviewCount > 0)
                 {
-                    continue;
+                    recipeReviewCounts.Add(recipe.GetIdRecipe(), reviewCount);
                 }
+            }
 
-                var dietRestriction = toDoRecipeDetails.GetDietRestriction();
-                var difficulty = toDoRecipeDetails.GetDifficulty();
+            var sortedRecipes = new List<KeyValuePair<int, int>>(recipeReviewCounts);
+            sortedRecipes.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
 
+            var popularRecipes = new List<Recipe>();
+            for (int i = 0; i < sortedRecipes.Count && i < 4; i++)
+            {
+                int recipeId = sortedRecipes[i].Key;
                 foreach (var recipe in allRecipes)
                 {
-                    if (recipe == null || recipe.GetDietRestriction() == null || recipe.GetDifficulty() == null)
-                        continue;
-
-                    var recipeDiet = recipe.GetDietRestriction();
-                    var recipeDifficulty = recipe.GetDifficulty();
-
-                    if (recipeDiet.GetId() == dietRestriction.GetId() &&
-                        recipeDifficulty.GetId() == difficulty.GetId() &&
-                        recipe.GetIdRecipe() != toDoRecipe.GetIdRecipe() &&
-                        !uniqueRecipeIds.Contains(recipe.GetIdRecipe()))
+                    if (recipe.GetIdRecipe() == recipeId)
                     {
-                        similarRecipes.Add(recipe);
-                        uniqueRecipeIds.Add(recipe.GetIdRecipe());
-
-                        if (similarRecipes.Count >= 2)
-                            return similarRecipes.Take(2).ToList();
+                        popularRecipes.Add(recipe);
+                        break;
                     }
                 }
             }
 
-            return similarRecipes.Take(2).ToList();
+            return popularRecipes;
+        }
+
+        private List<Recipe> GetUserBasedRecommendations(int userId, List<Recipe> userLikedRecipes)
+        {
+            var similarUsers = recommendationHelper.GetUsersWithSimilarLikes(userId);
+
+            if (similarUsers.Count == 0)
+            {
+                return new List<Recipe>();
+            }
+
+            var recommendedRecipes = recommendationHelper.GetRecipesLikedByUsers(similarUsers, 4);
+            var uniqueRecommendations = new List<Recipe>();
+
+            foreach (var recipe in recommendedRecipes)
+            {
+                if (!userLikedRecipes.Contains(recipe))
+                {
+                    uniqueRecommendations.Add(recipe);
+                }
+            }
+            return uniqueRecommendations;
         }
     }
 }

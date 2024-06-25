@@ -16,6 +16,8 @@ builder.Services.AddScoped<IDBReviewHelper, DBReviewHelper>();
 builder.Services.AddScoped<IIngredientManager, IngredientManager>();
 builder.Services.AddScoped<IDBIngredientHelper, DBIngredientHelper>();
 builder.Services.AddScoped<IRecipeRecommendationService, RecipeRecommendationService>();
+builder.Services.AddScoped<IDBRecommendationHelper, DBRecommendationHelper>();
+builder.Services.AddScoped<IRecommenderManager, RecommenderManager>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

@@ -11,7 +11,7 @@ namespace manager_classes
         List<Recipe> GetAllRecipes();
         DietRestriction GetDietByName(string name);
         Difficulty GetDifficultyByName(string name);
-        List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery);
+        List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery, string sortOption);
         Recipe GetRecipeById(int id);
         int GetTotalRecipesCount(string searchQuery);
         void InsertIngredientToRecipe(int recipeId, int ingredientId, int unitId, decimal quantity);

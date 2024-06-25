@@ -628,30 +628,49 @@ namespace db_helpers
             }
         }
 
-        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery)
+        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery, string sortOption)
         {
             List<Recipe> recipes = new List<Recipe>();
             int skip = (pageNumber - 1) * pageSize;
+            string orderByClause = "ORDER BY r.title";
+
+            switch (sortOption)
+            {
+                case "PreparationTime":
+                    orderByClause = "ORDER BY r.preparation_time";
+                    break;
+                case "Rating":
+                    orderByClause = @"
+                ORDER BY (
+                    SELECT COALESCE(AVG(rev.rating_value), 0)
+                    FROM Review rev
+                    WHERE rev.id_recipe = r.id_recipe
+                ) DESC";
+                    break;
+                default:
+                    orderByClause = "ORDER BY r.title";
+                    break;
+            }
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(DBConnection.connection))
                 {
                     conn.Open();
-                    string query = @"
-                        SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
-                               m.is_spicy, m.servings,
-                               d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
-                               ds.is_sugar_free, ds.requires_freezing,
-                               rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
-                        FROM Recipe r
-                        LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
-                        LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
-                        LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
-                        LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
-                        WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')
-                        ORDER BY r.id_recipe
-                        OFFSET @skip ROWS FETCH NEXT @pageSize ROWS ONLY";
+                    string query = $@"
+                SELECT r.id_recipe, r.title, r.description, r.instructions, r.id_desktop_user, r.preparation_time, r.cooking_time, r.id_diet_restriction, r.id_difficulty, r.id_recipe_pic,
+                       m.is_spicy, m.servings,
+                       d.is_alcoholic, d.contains_caffeine, d.served_hot, d.pours,
+                       ds.is_sugar_free, ds.requires_freezing,
+                       rp.name as pic_name, rp.data as pic_data, rp.content_type as pic_content_type
+                FROM Recipe r
+                LEFT JOIN MainCourse m ON r.id_recipe = m.id_recipe
+                LEFT JOIN Drink d ON r.id_recipe = d.id_recipe
+                LEFT JOIN Dessert ds ON r.id_recipe = ds.id_recipe
+                LEFT JOIN RecipePicture rp ON r.id_recipe_pic = rp.id_recipe_pic
+                WHERE (@searchQuery IS NULL OR r.title LIKE '%' + @searchQuery + '%' OR r.description LIKE '%' + @searchQuery + '%')
+                {orderByClause}
+                OFFSET @skip ROWS FETCH NEXT @pageSize ROWS ONLY";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@searchQuery", string.IsNullOrEmpty(searchQuery) ? (object)DBNull.Value : searchQuery);

@@ -57,9 +57,9 @@ namespace manager_classes
             return recipeHelper.GetRecipeById(id);
         }
 
-        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery)
+        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery, string sortOption)
         {
-            return recipeHelper.GetPagedRecipes(pageNumber, pageSize, searchQuery);
+            return recipeHelper.GetPagedRecipes(pageNumber, pageSize, searchQuery, sortOption);
         }
 
         public int GetTotalRecipesCount(string searchQuery)

@@ -13,7 +13,7 @@ namespace db_helpers
         DietRestriction GetDietRestrictionById(int dietId);
         Difficulty GetDifficultyById(int difficultyId);
         Difficulty GetDifficultyByName(string name);
-        List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery);
+        List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery, string sortOption);
         Recipe GetRecipeById(int id);
         int GetTotalRecipesCount(string searchQuery);
         void InsertDessert(Dessert recipe);

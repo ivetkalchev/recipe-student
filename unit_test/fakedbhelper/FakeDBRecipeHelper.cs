@@ -55,7 +55,7 @@ namespace unit_tests
             return recipes.Find(r => r.GetIdRecipe() == id);
         }
 
-        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery)
+        public List<Recipe> GetPagedRecipes(int pageNumber, int pageSize, string searchQuery, string sortOption)
         {
             return new List<Recipe>();
         }

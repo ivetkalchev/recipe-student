@@ -1,9 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Linq;
-using entity_classes;
+﻿using entity_classes;
 using manager_classes;
-using db_helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace unit_tests
 {
@@ -14,6 +12,10 @@ namespace unit_tests
         private FakeDBRecipeHelper recipeHelper;
         private FakeDBReviewHelper reviewHelper;
         private FakeDBToDoListHelper toDoListHelper;
+        private FakeDBRecommendationHelper recommendationHelper;
+
+        private IRecipeManager recipeManager;
+        private IReviewManager reviewManager;
 
         [TestInitialize]
         public void Setup()
@@ -22,10 +24,12 @@ namespace unit_tests
             reviewHelper = new FakeDBReviewHelper();
             toDoListHelper = new FakeDBToDoListHelper();
 
-            var recipeManager = new RecipeManager(recipeHelper);
-            var reviewManager = new ReviewManager(reviewHelper, recipeHelper);
+            recipeManager = new RecipeManager(recipeHelper);
+            reviewManager = new ReviewManager(reviewHelper, recipeHelper);
+            recommendationHelper = new FakeDBRecommendationHelper(recipeManager);
+
             var toDoListManager = new ToDoListManager(toDoListHelper);
-            recommendationService = new RecipeRecommendationService(recipeManager, toDoListManager, reviewManager);
+            recommendationService = new RecipeRecommendationService(recipeManager, toDoListManager, reviewManager, recommendationHelper);
 
             SetupFakeData();
         }
@@ -55,16 +59,50 @@ namespace unit_tests
             reviewHelper.InsertReview(new Review(1, dessert1, 5, "Great!"));
             reviewHelper.InsertReview(new Review(2, dessert1, 5, "Excellent!"));
             reviewHelper.InsertReview(new Review(3, dessert2, 3, "Okay"));
-            reviewHelper.InsertReview(new Review(4, dessert3, 4, "Good"));
+            reviewHelper.InsertReview(new Review(4, dessert2, 4, "Good"));
             reviewHelper.InsertReview(new Review(5, dessert3, 4, "Nice"));
+            reviewHelper.InsertReview(new Review(6, dessert3, 5, "Awesome"));
+            reviewHelper.InsertReview(new Review(7, dessert4, 4, "Tasty"));
+            reviewHelper.InsertReview(new Review(8, dessert4, 5, "Amazing"));
+
+            recommendationHelper.AddUserLikedRecipe(1, 1);
+            recommendationHelper.AddUserLikedRecipe(1, 3);
+            recommendationHelper.AddUserSimilarities(1, new List<int> { 2, 3 });
+            recommendationHelper.AddUserLikedRecipe(2, 2);
+            recommendationHelper.AddUserLikedRecipe(2, 4);
+            recommendationHelper.AddUserLikedRecipe(3, 2);
+            recommendationHelper.AddUserLikedRecipe(3, 4);
         }
+
+
+        [TestMethod]
+        public void GetMostPopularRecipes_ReturnsTopFourRecipes()
+        {
+            var popularRecipes = recommendationService.GetMostPopularRecipes();
+
+            Assert.AreEqual(4, popularRecipes.Count, $"Expected 4 popular recipes but got {popularRecipes.Count}");
+
+            var recipeReviewCounts = new Dictionary<int, int>();
+            foreach (var recipe in popularRecipes)
+            {
+                int reviewCount = reviewManager.GetReviewsByRecipeId(recipe.GetIdRecipe()).Count;
+                recipeReviewCounts.Add(recipe.GetIdRecipe(), reviewCount);
+            }
+
+            var expectedReviewCounts = new List<int> { 2, 2, 2, 2 };
+            var actualReviewCounts = new List<int>(recipeReviewCounts.Values);
+
+            for (int i = 0; i < expectedReviewCounts.Count; i++)
+            {
+                Assert.AreEqual(expectedReviewCounts[i], actualReviewCounts[i], $"Expected Review Count: {expectedReviewCounts[i]} but got {actualReviewCounts[i]} for Recipe ID: {popularRecipes[i].GetIdRecipe()}");
+            }
+        }
+
 
         [TestMethod]
         public void GetRecommendedRecipes_ReturnsSimilarRecipes_WhenToDoListIsNotEmpty()
         {
             var userId = 1;
-            toDoListHelper.AddToDoList(userId, 1);
-            toDoListHelper.AddToDoList(userId, 3);
 
             var recommendedRecipes = recommendationService.GetRecommendedRecipes(userId);
 

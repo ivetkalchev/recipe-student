@@ -2,6 +2,7 @@ using manager_classes;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using entity_classes;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace recipe_web.Pages
 {
