@@ -1,7 +1,5 @@
 ﻿using entity_classes;
 using manager_classes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace unit_tests
 {
@@ -80,7 +78,7 @@ namespace unit_tests
         {
             var popularRecipes = recommendationService.GetMostPopularRecipes();
 
-            Assert.AreEqual(4, popularRecipes.Count, $"Expected 4 popular recipes but got {popularRecipes.Count}");
+            Assert.AreEqual(4, popularRecipes.Count);
 
             var recipeReviewCounts = new Dictionary<int, int>();
             foreach (var recipe in popularRecipes)
@@ -94,7 +92,7 @@ namespace unit_tests
 
             for (int i = 0; i < expectedReviewCounts.Count; i++)
             {
-                Assert.AreEqual(expectedReviewCounts[i], actualReviewCounts[i], $"Expected Review Count: {expectedReviewCounts[i]} but got {actualReviewCounts[i]} for Recipe ID: {popularRecipes[i].GetIdRecipe()}");
+                Assert.AreEqual(expectedReviewCounts[i], actualReviewCounts[i]);
             }
         }
 

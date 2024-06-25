@@ -42,7 +42,7 @@ namespace manager_classes
             }
         }
 
-        private List<Recipe> GetMostPopularRecipes()
+        public List<Recipe> GetMostPopularRecipes()
         {
             var allRecipes = recipeManager.GetAllRecipes();
 
